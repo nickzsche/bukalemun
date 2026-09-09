@@ -28,8 +28,18 @@
     mask: url("./assets/logo.svg") center / contain no-repeat;
     vertical-align: -0.3em;
   }
-  .doc-mark-lg { --doc-mark-size: 5rem; }
+  .doc-mark-lg { --doc-mark-size: 4rem; }
   .doc-hero-mark { color: var(--bk-primary); animation: bk-float 5s ease-in-out infinite; }
+  /* The proof strip: eight skins that repaint this page, and the install
+     snippet, both inside the first viewport. Tokens only, like everything. */
+  .doc-proof { display: flex; flex-direction: column; align-items: center; gap: var(--bk-space-3); inline-size: 100%; }
+  .doc-proof-label { margin: 0; font-size: var(--bk-text-md); color: var(--bk-text-muted); }
+  .doc-proof-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bk-space-2); }
+  .doc-proof-dot { display: inline-block; inline-size: 0.7em; block-size: 0.7em; border-radius: var(--bk-radius-full); background: var(--bk-primary); box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12); }
+  .doc-hero-install { inline-size: 100%; max-inline-size: 56rem; text-align: start; margin-block-start: var(--bk-space-4); }
+  .doc-hero-install .bk-code { max-height: none; }
+  .doc-hero-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bk-space-2) var(--bk-space-4); margin: 0; padding: 0; list-style: none; font-size: var(--bk-text-sm); color: var(--bk-text-muted); font-variant-numeric: tabular-nums; }
+  .doc-hero-facts strong { color: var(--bk-text); font-weight: var(--bk-weight-semibold); }
   .doc-shell { display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: var(--bk-space-10); align-items: start; }
   @media (max-width: 64rem) { .doc-shell { grid-template-columns: 1fr; } .doc-aside { display: none; } }
   .doc-aside { position: sticky; top: 5rem; max-height: calc(100svh - 7rem); overflow-y: auto; padding-block-end: var(--bk-space-8); }
@@ -83,6 +93,7 @@
     <a class="bk-nav-link" href="#skins">Skins</a>
     <a class="bk-nav-link" href="#components">Components</a>
     <a class="bk-nav-link" href="#js">JavaScript</a>
+    <a class="bk-nav-link" href="../demos/index.html">Demos</a>
   </div>
 </header>
 
@@ -90,41 +101,51 @@
 
 <!-- ============================================================== hero -->
 <section class="bk-container bk-hero bk-hero-center" id="top">
-  <i class="doc-mark doc-mark-lg doc-hero-mark bk-reveal" aria-hidden="true"></i>
-  <span class="bk-badge bk-badge-primary bk-badge-dot bk-reveal" id="hero-version">zero dependencies</span>
-  <h1 class="bk-display bk-reveal" data-bk-reveal-delay="60">One framework.<br>Fifty skins.</h1>
-  <p class="bk-lead bk-center bk-reveal" data-bk-reveal-delay="120" style="--bk-measure: 46ch;">
+  <i class="doc-mark doc-mark-lg doc-hero-mark" aria-hidden="true"></i>
+  <h1 class="bk-display">One framework.<br>Fifty skins.</h1>
+  <p class="bk-lead bk-center" style="--bk-measure: 46ch;">
     The same markup, the same class names, the same JavaScript — wearing a neo-brutalist,
     glassmorphic, Bauhaus, CRT-terminal, risograph or neon-sign face. Change one attribute, change everything.
   </p>
-  <div class="bk-cluster bk-justify-center bk-reveal" data-bk-reveal-delay="180" style="--bk-gap: var(--bk-space-3);">
-    <a class="bk-btn bk-btn-lg bk-btn-primary" href="#install" data-bk-ripple>Get started</a>
-    <button class="bk-btn bk-btn-lg bk-btn-outline bk-btn-neutral" onclick="bk.theme.random()">
-      🎲 Surprise me
-    </button>
-  </div>
-  <p class="bk-text-sm bk-subtle bk-reveal" data-bk-reveal-delay="240">
-    Currently wearing <strong id="current-skin-label">Default</strong> — <span id="current-skin-blurb"></span>
-  </p>
 
-  <div class="bk-stat-grid bk-reveal bk-w-full" data-bk-reveal-delay="300" style="margin-top: var(--bk-space-10);">
-    <div class="bk-stat">
-      <span class="bk-stat-label">Skins</span>
-      <span class="bk-stat-value" data-bk-counter="50"></span>
+  <div class="doc-proof" role="group" aria-label="Try a skin on this page">
+    <p class="doc-proof-label">Same HTML. Pick a skin and watch this page change.</p>
+    <div class="doc-proof-strip">
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" data-bk-style-set="brutal"><span class="bk-scope doc-proof-dot" data-bk-style="brutal" aria-hidden="true"></span>Neo-Brutalist</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" data-bk-style-set="glass"><span class="bk-scope doc-proof-dot" data-bk-style="glass" aria-hidden="true"></span>Glassmorphism</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" data-bk-style-set="terminal"><span class="bk-scope doc-proof-dot" data-bk-style="terminal" aria-hidden="true"></span>Terminal</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" data-bk-style-set="swiss"><span class="bk-scope doc-proof-dot" data-bk-style="swiss" aria-hidden="true"></span>Swiss</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" data-bk-style-set="vapor"><span class="bk-scope doc-proof-dot" data-bk-style="vapor" aria-hidden="true"></span>Vaporwave</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" data-bk-style-set="paper"><span class="bk-scope doc-proof-dot" data-bk-style="paper" aria-hidden="true"></span>Newsprint</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" data-bk-style-set="y2k"><span class="bk-scope doc-proof-dot" data-bk-style="y2k" aria-hidden="true"></span>Y2K Chrome</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" data-bk-style-set="clinical"><span class="bk-scope doc-proof-dot" data-bk-style="clinical" aria-hidden="true"></span>Clinical</button>
+      <button class="bk-btn bk-btn-sm bk-btn-soft bk-btn-primary" type="button" onclick="bk.theme.random()">Surprise me</button>
+      <a class="bk-btn bk-btn-sm bk-btn-ghost bk-btn-neutral" href="#skins">All fifty</a>
     </div>
-    <div class="bk-stat">
-      <span class="bk-stat-label">Components</span>
-      <span class="bk-stat-value" data-bk-counter="60" data-bk-suffix="+"></span>
-    </div>
-    <div class="bk-stat">
-      <span class="bk-stat-label">Dependencies</span>
-      <span class="bk-stat-value" data-bk-counter="0"></span>
-    </div>
-    <div class="bk-stat">
-      <span class="bk-stat-label">CSS, gzipped</span>
-      <span class="bk-stat-value" data-bk-counter="50" data-bk-suffix=" KB"></span>
-    </div>
+    <p class="bk-text-sm bk-subtle" aria-live="polite">
+      Currently wearing <strong id="current-skin-label">Default</strong> — <span id="current-skin-blurb"></span>
+    </p>
   </div>
+
+  <div class="bk-code-frame doc-hero-install">
+    <div class="bk-code-head">
+      <span class="bk-code-dots"><span></span><span></span><span></span></span>
+      Install · the framework, then one skin · 33 KB gzipped
+      <button class="bk-btn bk-btn-xs bk-btn-ghost bk-btn-neutral bk-code-copy" data-bk-copy="#code-hero" data-bk-copy-toast>
+        <i class="bk-icon bk-i-copy"></i> Copy
+      </button>
+    </div>
+    <pre class="bk-code"><code id="code-hero">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.base.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/styles/brutal.min.css"&gt;</code></pre>
+  </div>
+
+  <ul class="doc-hero-facts">
+    <li><strong>50</strong> skins, light and dark</li>
+    <li><strong>65+</strong> components</li>
+    <li><strong>0</strong> dependencies</li>
+    <li><strong id="hero-version">v1.6.0</strong> · MIT</li>
+    <li><a href="#install">npm, ESM and TypeScript too</a></li>
+  </ul>
 </section>
 
 <div class="bk-container">
@@ -164,7 +185,7 @@
     <div class="bk-code-frame">
       <div class="bk-code-head">
         <span class="bk-code-dots"><span></span><span></span><span></span></span>
-        CDN — what you should ship · 32 KB gzipped
+        CDN — what you should ship · 33 KB gzipped
         <button class="bk-btn bk-btn-xs bk-btn-ghost bk-btn-neutral bk-code-copy" data-bk-copy="#code-cdn" data-bk-copy-toast>
           <i class="bk-icon bk-i-copy"></i> Copy
         </button>
@@ -177,7 +198,7 @@
     <div class="bk-code-frame">
       <div class="bk-code-head">
         <span class="bk-code-dots"><span></span><span></span><span></span></span>
-        CDN — all fifty in one file · 92 KB gzipped
+        CDN — all fifty in one file · 98 KB gzipped
         <button class="bk-btn bk-btn-xs bk-btn-ghost bk-btn-neutral bk-code-copy" data-bk-copy="#code-cdn-all" data-bk-copy-toast>
           <i class="bk-icon bk-i-copy"></i> Copy
         </button>
@@ -207,10 +228,10 @@ import bk from 'bukalemun';</code></pre>
         <div class="bk-alert-title">Why two stylesheets?</div>
         <div class="bk-alert-text">
           <code class="bk-code-inline">base</code> is the framework — every component, no palette
-          (30.8&nbsp;KB gzipped). A skin is the palette on its own (1.7&nbsp;KB). Swapping skins later
+          (31.0&nbsp;KB gzipped). A skin is the palette on its own (1.8&nbsp;KB). Swapping skins later
           means swapping that second line. The fifty-in-one build exists so a page can let a visitor
           switch between them — this site and the demos use it for exactly that — but it costs
-          91.9&nbsp;KB gzipped, which is forty-nine palettes you are not using.
+          98.2&nbsp;KB gzipped, which is forty-nine palettes you are not using.
         </div>
       </div>
     </div>
@@ -324,7 +345,7 @@ import bk from 'bukalemun';</code></pre>
 <section class="doc-section bk-section" id="components">
   <div class="bk-section-head">
     <span class="bk-eyebrow">Components</span>
-    <h2 class="bk-title">Sixty-plus pieces, all skin-aware</h2>
+    <h2 class="bk-title">Sixty-five pieces, all skin-aware</h2>
     <p class="bk-subtitle">Switch skins while you scroll — every example below follows along.</p>
   </div>
 </section>
@@ -656,6 +677,37 @@ import bk from 'bukalemun';</code></pre>
       </div></div>
     </div>
 
+    <div class="doc-grid-2">
+      <div class="bk-card">
+        <div class="bk-card-body">
+          <span class="bk-eyebrow">Empty state</span>
+          <div class="bk-empty">
+            <i class="bk-icon bk-i-file bk-empty-icon" aria-hidden="true"></i>
+            <div class="bk-empty-title">No deployments yet</div>
+            <p class="bk-empty-text">Push a commit and the first build shows up here, with its logs and its status.</p>
+            <div class="bk-cluster bk-justify-center" style="--bk-gap: var(--bk-space-2);">
+              <button class="bk-btn bk-btn-sm bk-btn-primary"><i class="bk-icon bk-i-plus"></i> New deployment</button>
+              <a class="bk-btn bk-btn-sm bk-btn-ghost bk-btn-neutral" href="#js">Read the docs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bk-card">
+        <div class="bk-card-body">
+          <span class="bk-eyebrow">Stepper, vertical</span>
+          <ol class="bk-steps bk-steps-vertical" style="margin-top: var(--bk-space-3);">
+            <li class="bk-step bk-is-done"><span class="bk-step-title">Connect a repository</span><span class="bk-step-text">GitHub, GitLab or a bare remote.</span></li>
+            <li class="bk-step bk-is-active"><span class="bk-step-title">Pick a skin</span><span class="bk-step-text">One attribute. You can change it later.</span></li>
+            <li class="bk-step"><span class="bk-step-title">Deploy</span><span class="bk-step-text">Two lines on a CDN.</span></li>
+          </ol>
+          <p class="bk-help" style="margin-top: var(--bk-space-4);">
+            The horizontal stepper in <a href="#navigation">Navigation</a> is the same markup with
+            <code class="bk-code-inline">bk-steps-responsive</code>, which turns vertical below 45rem.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <div class="bk-accordion bk-accordion-smooth" data-bk-accordion="single">
       <details class="bk-accordion-item" open>
         <summary class="bk-accordion-trigger">How does a skin change everything at once?</summary>
@@ -678,7 +730,7 @@ import bk from 'bukalemun';</code></pre>
         <span class="bk-badge bk-badge-lg bk-badge-success">dark mode</span>
         <span class="bk-badge bk-badge-lg bk-badge-warning">RTL ready</span>
         <span class="bk-badge bk-badge-lg bk-badge-danger">a11y first</span>
-        <span class="bk-badge bk-badge-lg bk-badge-info">50 KB gzipped</span>
+        <span class="bk-badge bk-badge-lg bk-badge-info">33 KB gzipped</span>
       </div>
     </div>
   </div>

@@ -32,14 +32,19 @@
   color: var(--bk-text-muted);
 }
 
-.demo-dock select { min-inline-size: 10rem; }
+/* Nothing in the dock shrinks below its own label, and the selects size to
+   their longest option instead of the 100% a form field would take. */
+.demo-dock > * { flex: 0 0 auto; }
+.demo-dock select { inline-size: auto; }
+.demo-dock select[data-bk-style-select] { min-inline-size: 10rem; }
+.demo-dock select[data-bk-accent-select] { min-inline-size: 7.5rem; }
 
 /* Collapse to a single row of icons where a pill of controls would cover the
    page it is meant to be showing off. */
 @media (max-width: 40rem) {
   .demo-dock { inset-inline: var(--bk-space-3); border-radius: var(--bk-radius-lg); justify-content: center; }
   .demo-dock-label, .demo-dock [data-demo-hide-sm] { display: none; }
-  .demo-dock select { min-inline-size: 0; flex: 1 1 8rem; }
+  .demo-dock select[data-bk-style-select] { min-inline-size: 0; flex: 1 1 8rem; }
 }
 
 @media (prefers-reduced-motion: no-preference) {

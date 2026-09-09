@@ -144,6 +144,12 @@
     // own tokens, so fetch the rest once it scrolls into view — and sooner if
     // someone reaches for a skin control, so the first switch is instant.
     var warm = function () { bk.theme.preload(); };
+    // The proof strip in the hero paints a dot in each skin's own primary, and
+    // a skin that has not arrived yet paints in the page's. Eight small files;
+    // fetch them straight away so the strip is honest before anyone hovers.
+    bk.theme.preload(bk.$$('.doc-proof-strip [data-bk-style-set]').map(function (n) {
+      return n.getAttribute('data-bk-style-set');
+    }));
     if (picker && 'IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
         if (entries.some(function (e) { return e.isIntersecting; })) { warm(); io.disconnect(); }
@@ -393,7 +399,7 @@
   bk.ready(function () {
     load(bk.theme.getStyle());
     var v = document.getElementById('hero-version');
-    if (v && bk.version) v.textContent = 'v' + bk.version + ' \u00b7 zero dependencies';
+    if (v && bk.version) v.textContent = 'v' + bk.version;
     // The picker shows each skin in its own type, so those cards need theirs.
     bk.$$('.doc-skin-card').forEach(function (card) {
       bk.on(card, 'pointerenter', function () {
