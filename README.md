@@ -20,7 +20,7 @@ Change one attribute, change everything.
 [![typed](https://img.shields.io/badge/types-included-black)](types/index.d.ts)
 [![WCAG AA](https://img.shields.io/badge/contrast-WCAG%20AA%20audited-black)](#accessibility)
 
-### [→ Live demo: try all 50 skins](https://bukalemun.zerosixlab.com/)
+### [→ Live demo: try all 50 skins](https://bukalemun.zerosixlab.com/) · [Playground: paste your own HTML](https://bukalemun.zerosixlab.com/playground.html)
 
 <sub>mirror: [nickzsche.github.io/bukalemun](https://nickzsche.github.io/bukalemun/)</sub>
 
@@ -332,6 +332,19 @@ Point `--bk-font-sans` and `--bk-font-display` at whatever you have:
 The demo site loads each skin's intended family from Google Fonts lazily, the
 first time you switch to that skin — see `docs/assets/docs.js` if you want the
 same trick.
+
+## Tokens as data
+
+`dist/tokens.json` is every skin, colour mode and accent variant, resolved, in
+the [W3C Design Tokens](https://tr.designtokens.org/format/) format: colours
+as hex, font stacks as arrays, radii and spacing as dimensions. Pull a skin
+into Figma variables, a Style Dictionary pipeline or a native app without
+reading a line of CSS.
+
+```js
+import tokens from 'bukalemun/tokens' with { type: 'json' };
+tokens.skins.brutal['dark-warm'].color.primary.$value;   // "#ff723f"
+```
 
 ## Customising
 

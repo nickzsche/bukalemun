@@ -80,6 +80,14 @@ export function assemble() {
   const docsIndex = join(site, 'docs', 'index.html');
   writeFileSync(docsIndex, version(readFileSync(docsIndex, 'utf8'), '../dist/'));
 
+  // The playground is a docs page too, served at / and /docs/ like the index.
+  const rootPlay = join(site, 'playground.html');
+  writeFileSync(rootPlay, version(readFileSync(rootPlay, 'utf8')
+    .replaceAll('../dist/', 'dist/')
+    .replaceAll('../demos/', 'demos/'), 'dist/'));
+  const docsPlay = join(site, 'docs', 'playground.html');
+  writeFileSync(docsPlay, version(readFileSync(docsPlay, 'utf8'), '../dist/'));
+
   for (const f of readdirSync(join(site, 'demos')).filter((n) => n.endsWith('.html'))) {
     const p = join(site, 'demos', f);
     writeFileSync(p, version(readFileSync(p, 'utf8'), '../dist/'));
@@ -90,6 +98,7 @@ export function assemble() {
   const required = [
     'index.html', 'assets/docs.js', 'assets/logo.svg', 'assets/favicon.svg',
     'dist/bukalemun.base.min.css', 'dist/no-flash.js', 'docs/index.html',
+    'playground.html', 'docs/playground.html',
     'demos/index.html', 'demos/demo.css', 'demos/demo.js',
     'demos/landing.html', 'demos/dashboard.html', 'demos/docs.html',
     'demos/store.html', 'demos/app.html', 'demos/blog.html',

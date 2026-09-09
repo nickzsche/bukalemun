@@ -126,6 +126,79 @@
     list.appendChild(modeGroup);
   }
 
+  /* --- source for every example ------------------------------------------
+     A component you can see but cannot copy is a picture. Every example group
+     in the component sections gets an "HTML" toggle that shows its markup
+     with the runtime's fingerprints removed (ripple waves, revealed classes,
+     aria-pressed) and a Copy button. Nothing is authored twice: the source
+     shown is the source rendered. */
+
+  var RUNTIME_NODES = '.bk-ripple-wave, .bk-tablist-indicator, .bk-loadbar, .doc-source';
+  var RUNTIME_CLASSES = ['bk-is-revealed', 'bk-is-open', 'bk-is-closing', 'bk-is-leaving', 'bk-is-copied', 'bk-is-dragover', 'bk-reveal'];
+  var RUNTIME_ATTRS = ['aria-pressed', 'data-bk-reveal-delay'];
+
+  function cleanMarkup(node) {
+    var clone = node.cloneNode(true);
+    bk.$$(RUNTIME_NODES, clone).forEach(function (n) { n.remove(); });
+    [clone].concat(bk.$$('*', clone)).forEach(function (n) {
+      RUNTIME_CLASSES.forEach(function (c) { n.classList.remove(c); });
+      if (n.getAttribute('class') === '') n.removeAttribute('class');
+      RUNTIME_ATTRS.forEach(function (a) { n.removeAttribute(a); });
+      if (n.style && n.style.getPropertyValue('--bk-reveal-delay')) n.style.removeProperty('--bk-reveal-delay');
+      if (n.getAttribute('style') === '') n.removeAttribute('style');
+    });
+    var lines = clone.innerHTML.replace(/^\s*\n/, '').replace(/\s+$/, '').split('\n');
+    var indent = Infinity;
+    lines.forEach(function (l) { if (l.trim()) indent = Math.min(indent, l.match(/^\s*/)[0].length); });
+    if (!isFinite(indent)) indent = 0;
+    return lines.map(function (l) { return l.slice(indent).replace(/\s+$/, ''); }).join('\n');
+  }
+
+  var sourceCount = 0;
+  function attachSource(example) {
+    if (example.querySelector('.doc-source') || example.closest('.doc-source')) return;
+    var id = 'doc-html-' + (++sourceCount);
+    var details = bk.el('details', { class: 'doc-source' });
+    var summary = bk.el('summary', { class: 'bk-btn bk-btn-xs bk-btn-ghost bk-btn-neutral doc-source-toggle' }, [
+      bk.el('i', { class: 'bk-icon bk-i-chevron-right' }), document.createTextNode('HTML')
+    ]);
+    var frame = bk.el('div', { class: 'bk-code-frame doc-source-frame' });
+    var head = bk.el('div', { class: 'bk-code-head' }, [
+      bk.el('span', { class: 'bk-code-dots' }, [bk.el('span'), bk.el('span'), bk.el('span')]),
+      document.createTextNode('Same markup in every skin'),
+      bk.el('button', { class: 'bk-btn bk-btn-xs bk-btn-ghost bk-btn-neutral bk-code-copy', type: 'button', 'data-bk-copy': '#' + id, 'data-bk-copy-toast': '' }, [
+        bk.el('i', { class: 'bk-icon bk-i-copy' }), document.createTextNode(' Copy')
+      ])
+    ]);
+    var pre = bk.el('pre', { class: 'bk-code' });
+    var code = bk.el('code', { id: id });
+    pre.appendChild(code);
+    frame.appendChild(head);
+    frame.appendChild(pre);
+    details.appendChild(summary);
+    details.appendChild(frame);
+    // Serialise on open, so the copy reflects the example as it stands.
+    bk.on(details, 'toggle', function () { if (details.open) code.textContent = cleanMarkup(example); });
+    example.insertAdjacentElement('afterend', details);
+    bk.init(details);
+  }
+
+  bk.ready(function () {
+    var sections = ['buttons', 'forms', 'feedback', 'data', 'navigation', 'overlays', 'layout'];
+    sections.forEach(function (id) {
+      var section = document.getElementById(id);
+      if (!section) return;
+      var groups = bk.$$('.doc-demo', section);
+      if (!groups.length) groups = bk.$$('.bk-card-body', section).filter(function (b) { return !b.closest('.doc-demo'); });
+      groups.forEach(attachSource);
+      // Cards with their own demos: the card body is the example when it holds
+      // no .doc-demo of its own.
+      bk.$$('.bk-card-body', section).forEach(function (body) {
+        if (!body.querySelector('.doc-demo') && groups.indexOf(body) === -1) attachSource(body);
+      });
+    });
+  });
+
   /* --- misc demo wiring -------------------------------------------------- */
 
   var indet = document.getElementById('indet');

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en" data-bk-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun playground — your HTML, fifty skins</title>
+<meta name="description" content="Paste your own HTML and watch it wear fifty visual languages without a class name changing. The Bukalemun playground.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Bukalemun playground — your HTML, fifty skins">
+<meta property="og:description" content="Paste your markup. Switch the skin. Nothing else changes.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+<!-- The same shape as the docs: core + components once, skins on demand. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<style>
+  /* Page chrome, tokens only. The playground wears the skin it previews. */
+  .doc-mark {
+    display: inline-block;
+    inline-size: 1.6em;
+    block-size: 1.6em;
+    flex: 0 0 auto;
+    background-color: currentColor;
+    -webkit-mask: url("./assets/logo.svg") center / contain no-repeat;
+    mask: url("./assets/logo.svg") center / contain no-repeat;
+    vertical-align: -0.3em;
+  }
+  .play-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--bk-space-4); margin-block: var(--bk-space-8) var(--bk-space-5); }
+  .play-head h1 { margin: 0; }
+  .play-head p { margin: var(--bk-space-2) 0 0; max-inline-size: 52ch; }
+  .play-controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bk-space-2) var(--bk-space-3); padding: var(--bk-space-3) var(--bk-space-4); }
+  .play-controls .bk-label { margin: 0; }
+  .play-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--bk-space-5); align-items: stretch; margin-block-start: var(--bk-space-5); }
+  @media (max-width: 64rem) { .play-split { grid-template-columns: 1fr; } }
+  .play-editor { display: flex; flex-direction: column; gap: var(--bk-space-3); }
+  .play-editor textarea { flex: 1 1 auto; min-block-size: 28rem; block-size: auto; resize: vertical; font-size: var(--bk-text-sm); line-height: 1.5; tab-size: 2; }
+  .play-presets { display: flex; flex-wrap: wrap; gap: var(--bk-space-2); }
+  .play-stage { display: flex; flex-direction: column; min-inline-size: 0; }
+  .play-chrome { display: flex; align-items: center; gap: var(--bk-space-3); padding: var(--bk-space-2) var(--bk-space-3); border-block-end: var(--bk-border-width) var(--bk-border-style) var(--bk-border); font-size: var(--bk-text-xs); color: var(--bk-text-muted); }
+  .play-chrome-dots { display: flex; gap: .3rem; }
+  .play-chrome-dots i { inline-size: .55rem; block-size: .55rem; border-radius: var(--bk-radius-full); background: var(--bk-border-strong); }
+  .play-chrome strong { color: var(--bk-text); font-weight: var(--bk-weight-semibold); }
+  .play-frame { flex: 1 1 auto; inline-size: 100%; min-block-size: 32rem; border: 0; background: var(--bk-bg); }
+  .play-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); gap: var(--bk-space-4); margin-block-start: var(--bk-space-5); }
+  .play-tile { display: flex; flex-direction: column; overflow: hidden; }
+  .play-tile-frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--bk-bg); }
+  .play-tile-frame iframe { position: absolute; inset-block-start: 0; inset-inline-start: 0; inline-size: 200%; block-size: 200%; border: 0; transform: scale(0.5); transform-origin: top left; pointer-events: none; }
+  .play-tile-name { padding: var(--bk-space-2) var(--bk-space-3); font-size: var(--bk-text-sm); font-weight: var(--bk-weight-medium); }
+  .play-tile-name span { display: block; font-weight: var(--bk-weight-normal); color: var(--bk-text-subtle); font-size: var(--bk-text-xs); }
+  .play-foot { margin-block: var(--bk-space-10) var(--bk-space-8); font-size: var(--bk-text-sm); color: var(--bk-text-muted); }
+</style>
+</head>
+<body>
+
+<a class="bk-skip-link" href="#main">Skip to content</a>
+
+<header class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="./index.html"><i class="doc-mark" aria-hidden="true"></i> Bukalemun</a>
+  <nav class="bk-navbar-nav bk-hide-sm" aria-label="Primary">
+    <a class="bk-nav-link" href="./index.html#install">Install</a>
+    <a class="bk-nav-link" href="./index.html#skins">Skins</a>
+    <a class="bk-nav-link" href="./index.html#components">Components</a>
+    <a class="bk-nav-link bk-is-active" href="./playground.html" aria-current="page">Playground</a>
+    <a class="bk-nav-link" href="../demos/index.html">Demos</a>
+  </nav>
+  <div class="bk-navbar-end">
+    <button class="bk-btn bk-btn-sm bk-btn-ghost bk-btn-neutral" data-bk-style-cycle title="Next skin">
+      <i class="bk-icon bk-i-chevron-right"></i> Skin
+    </button>
+    <button class="bk-btn bk-btn-icon bk-btn-ghost bk-btn-neutral" data-bk-theme-toggle="Toggle dark mode" aria-label="Toggle dark mode">
+      <i class="bk-icon bk-i-moon"></i>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="bk-container">
+
+  <div class="play-head">
+    <div>
+      <h1 class="bk-title">Your HTML, fifty skins.</h1>
+      <p class="bk-subtitle">Paste markup that uses the <code class="bk-code-inline">bk-</code> classes, or start from a preset. Switch the skin: the page you are on and the preview change together, and not one class name moves.</p>
+    </div>
+    <div class="bk-cluster" style="--bk-gap: var(--bk-space-2);">
+      <button class="bk-btn bk-btn-sm bk-btn-primary" type="button" id="play-cycle">Play all fifty</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" id="play-grid-toggle" aria-pressed="false" aria-controls="play-grid">Grid</button>
+      <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" type="button" id="play-share">Share link</button>
+    </div>
+  </div>
+
+  <div class="bk-panel play-controls">
+    <label class="bk-label" for="play-skin">Skin</label>
+    <select class="bk-select bk-select-sm" id="play-skin" data-bk-style-select style="inline-size: auto; min-inline-size: 11rem;"></select>
+    <div class="bk-segmented bk-segmented-sm" role="group" aria-label="Colour mode">
+      <button class="bk-segmented-item" data-bk-mode-set="light">Light</button>
+      <button class="bk-segmented-item" data-bk-mode-set="dark">Dark</button>
+      <button class="bk-segmented-item" data-bk-mode-set="auto">Auto</button>
+    </div>
+    <div class="bk-segmented bk-segmented-sm" role="group" aria-label="Accent">
+      <button class="bk-segmented-item" data-bk-accent-set="none">Skin's own</button>
+      <button class="bk-segmented-item" data-bk-accent-set="warm">Warmer</button>
+      <button class="bk-segmented-item" data-bk-accent-set="cool">Cooler</button>
+    </div>
+    <span class="bk-spacer"></span>
+    <span class="bk-text-sm bk-subtle">Currently wearing <strong id="play-skin-label">Default</strong></span>
+  </div>
+
+  <div class="play-split">
+    <section class="bk-card play-editor" aria-label="Editor">
+      <div class="bk-card-body play-editor">
+        <div class="play-presets" role="group" aria-label="Presets">
+          <span class="bk-label" style="margin: 0; align-self: center;">Start from</span>
+          <button class="bk-btn bk-btn-xs bk-btn-soft bk-btn-primary" type="button" data-preset="card">Card</button>
+          <button class="bk-btn bk-btn-xs bk-btn-soft bk-btn-primary" type="button" data-preset="form">Form</button>
+          <button class="bk-btn bk-btn-xs bk-btn-soft bk-btn-primary" type="button" data-preset="pricing">Pricing</button>
+          <button class="bk-btn bk-btn-xs bk-btn-soft bk-btn-primary" type="button" data-preset="dashboard">Dashboard</button>
+        </div>
+        <label class="bk-sr-only" for="play-html">HTML</label>
+        <textarea class="bk-textarea bk-mono" id="play-html" spellcheck="false" autocapitalize="off" autocorrect="off"></textarea>
+        <p class="bk-help" style="margin: 0;">Runs in a sandboxed frame with the framework and its runtime loaded. Nothing leaves your browser.</p>
+      </div>
+    </section>
+
+    <section class="bk-card play-stage" aria-label="Preview">
+      <div class="play-chrome">
+        <span class="play-chrome-dots"><i></i><i></i><i></i></span>
+        <span><strong id="play-chrome-skin">Default</strong> · <span id="play-chrome-blurb">Neutral, modern, boring on purpose.</span></span>
+      </div>
+      <iframe class="play-frame" id="play-frame" title="Preview of your HTML in the current skin" sandbox="allow-scripts allow-same-origin"></iframe>
+    </section>
+  </div>
+
+  <section id="play-grid" class="play-grid" hidden aria-label="Every skin at once"></section>
+
+  <p class="play-foot">
+    Every preview is the real stylesheet, fetched skin by skin. The markup is yours; the palette,
+    type, radii, shadows and motion come from <code class="bk-code-inline">data-bk-style</code>.
+    <a href="./index.html#skins">Read about the skins</a> or <a href="./index.html#builder">build one</a>.
+  </p>
+</main>
+
+<template id="preset-card"><div class="bk-card" style="max-inline-size: 28rem;">
+  <div class="bk-card-body">
+    <span class="bk-badge bk-badge-primary bk-badge-dot">Shipping today</span>
+    <h3 class="bk-card-title">Repaint your next project</h3>
+    <p class="bk-card-text">One markup, one class list, one JavaScript file. Flip one attribute and the whole page repaints itself.</p>
+    <div class="bk-cluster">
+      <button class="bk-btn bk-btn-primary">Get started</button>
+      <button class="bk-btn bk-btn-ghost bk-btn-neutral">Read the docs</button>
+    </div>
+  </div>
+</div></template>
+
+<template id="preset-form"><form class="bk-stack" style="max-inline-size: 32rem;" onsubmit="return false">
+  <label class="bk-field">
+    <span class="bk-label bk-label-required">Email</span>
+    <input class="bk-input" type="email" placeholder="you@example.com" required>
+    <span class="bk-help">We will never sell it. There is nobody to sell it to.</span>
+  </label>
+  <label class="bk-field">
+    <span class="bk-label">Plan</span>
+    <select class="bk-select">
+      <option>Hobby</option><option>Team</option><option>Self-hosted</option>
+    </select>
+  </label>
+  <label class="bk-check-label"><input class="bk-check" type="checkbox" checked> Send me the changelog</label>
+  <label class="bk-switch-label"><input class="bk-switch" type="checkbox"> Beta channel</label>
+  <div class="bk-cluster">
+    <button class="bk-btn bk-btn-primary" type="submit">Create account</button>
+    <button class="bk-btn bk-btn-ghost bk-btn-neutral" type="reset">Reset</button>
+  </div>
+</form></template>
+
+<template id="preset-pricing"><div class="bk-pricing">
+  <div class="bk-pricing-plan">
+    <h3 class="bk-pricing-name">Hobby</h3>
+    <div class="bk-pricing-price"><span class="bk-pricing-amount">$0</span><span class="bk-pricing-period">/ forever</span></div>
+    <p class="bk-pricing-desc">For side projects and quick prototypes.</p>
+    <ul class="bk-pricing-feats">
+      <li class="bk-pricing-feat">All 50 skins</li>
+      <li class="bk-pricing-feat">Unlimited personal projects</li>
+      <li class="bk-pricing-feat bk-pricing-feat-off">Custom skin audits</li>
+    </ul>
+    <div class="bk-pricing-actions"><button class="bk-btn bk-btn-outline" type="button">Download</button></div>
+  </div>
+  <div class="bk-pricing-plan bk-pricing-plan-featured">
+    <h3 class="bk-pricing-name">Studio <span class="bk-badge bk-badge-primary">Most popular</span></h3>
+    <div class="bk-pricing-price"><span class="bk-pricing-amount">$19</span><span class="bk-pricing-period">/ month</span></div>
+    <p class="bk-pricing-desc">For teams shipping real products.</p>
+    <ul class="bk-pricing-feats">
+      <li class="bk-pricing-feat">Everything in Hobby</li>
+      <li class="bk-pricing-feat">Priority issues on GitHub</li>
+      <li class="bk-pricing-feat">TypeScript declarations</li>
+    </ul>
+    <div class="bk-pricing-actions"><button class="bk-btn bk-btn-primary" type="button">Start trial</button></div>
+  </div>
+  <div class="bk-pricing-plan">
+    <h3 class="bk-pricing-name">Agency</h3>
+    <div class="bk-pricing-price"><span class="bk-pricing-amount">Talk to us</span></div>
+    <p class="bk-pricing-desc">For studios with many clients and one codebase.</p>
+    <ul class="bk-pricing-feats">
+      <li class="bk-pricing-feat">Unlimited client seats</li>
+      <li class="bk-pricing-feat">Custom skin commissioning</li>
+    </ul>
+    <div class="bk-pricing-actions"><button class="bk-btn bk-btn-outline" type="button">Contact us</button></div>
+  </div>
+</div></template>
+
+<template id="preset-dashboard"><div class="bk-stack">
+  <div class="bk-stat-grid">
+    <div class="bk-stat"><span class="bk-stat-label">Revenue today</span><span class="bk-stat-value">18,240</span><span class="bk-stat-delta bk-text-success">▲ +12.4%</span></div>
+    <div class="bk-stat"><span class="bk-stat-label">Orders</span><span class="bk-stat-value">124</span><span class="bk-stat-delta bk-text-success">▲ +6 this hour</span></div>
+    <div class="bk-stat"><span class="bk-stat-label">Refund rate</span><span class="bk-stat-value">1.2%</span><span class="bk-stat-delta bk-text-danger">▼ −0.3 pts</span></div>
+  </div>
+  <div class="bk-table-wrap">
+    <table class="bk-table" data-bk-table>
+      <thead><tr><th data-bk-sort="text">Order</th><th data-bk-sort="text">Customer</th><th>Status</th><th class="bk-td-end" data-bk-sort="number">Total</th></tr></thead>
+      <tbody>
+        <tr><td>#11042</td><td>E. Yilmaz</td><td><span class="bk-badge bk-badge-success bk-badge-dot">Paid</span></td><td class="bk-td-end">420,00</td></tr>
+        <tr><td>#11041</td><td>D. Kaya</td><td><span class="bk-badge bk-badge-warning bk-badge-dot">Pending</span></td><td class="bk-td-end">89,90</td></tr>
+        <tr><td>#11039</td><td>A. Celik</td><td><span class="bk-badge bk-badge-danger bk-badge-dot">Failed</span></td><td class="bk-td-end">310,50</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="bk-alert bk-alert-info"><div class="bk-alert-body"><div class="bk-alert-title">Heads up</div><div class="bk-alert-text">Sort a column. The runtime is loaded in the preview too.</div></div></div>
+</div></template>
+
+<script src="../dist/bukalemun.min.js" defer></script>
+<script>
+(function () {
+  'use strict';
+
+  var editor = document.getElementById('play-html');
+  var frame = document.getElementById('play-frame');
+  var grid = document.getElementById('play-grid');
+  var gridToggle = document.getElementById('play-grid-toggle');
+  var cycleBtn = document.getElementById('play-cycle');
+  var shareBtn = document.getElementById('play-share');
+  var label = document.getElementById('play-skin-label');
+  var chromeSkin = document.getElementById('play-chrome-skin');
+  var chromeBlurb = document.getElementById('play-chrome-blurb');
+
+  // The per-skin files live next to this page's dist, whether the page is
+  // served at /docs/ or copied to /. Resolving at runtime keeps both right.
+  var DIST = new URL('../dist/', location.href).href;
+
+  function preset(name) {
+    var t = document.getElementById('preset-' + name);
+    return t ? t.innerHTML.replace(/^\n/, '').replace(/\s+$/, '') : '';
+  }
+
+  function encode(s) { return btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+  function decode(s) { try { return decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/')))); } catch (e) { return ''; } }
+
+  function fromHash() {
+    var h = new URLSearchParams(location.hash.replace(/^#/, ''));
+    return { html: h.get('h') ? decode(h.get('h')) : '', skin: h.get('skin'), mode: h.get('mode'), accent: h.get('accent') };
+  }
+
+  /** A complete document wearing one skin, ready for srcdoc. The grid tiles
+      leave the runtime out: it would restore the stored skin from
+      localStorage over the tile's own, and a thumbnail needs no behaviour. */
+  function documentFor(html, skin, mode, accent, runtime) {
+    var attrs = ' data-bk-theme="' + (mode || 'auto') + '"';
+    if (skin && skin !== 'default') attrs += ' data-bk-style="' + skin + '"';
+    if (accent && accent !== 'none') attrs += ' data-bk-accent="' + accent + '"';
+    var skinLink = skin && skin !== 'default'
+      ? '<link rel="stylesheet" href="' + DIST + 'styles/' + skin + '.min.css">' : '';
+    var fonts = window.bk && bk.theme.fonts(skin);
+    var fontLink = fonts ? '<link rel="stylesheet" href="' + fonts + '">' : '';
+    return '<!doctype html><html lang="en"' + attrs + '><head><meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<link rel="stylesheet" href="' + DIST + 'bukalemun.base.min.css">' + skinLink + fontLink +
+      (runtime === false ? '' : '<script src="' + DIST + 'bukalemun.min.js" defer><\/script>') +
+      '<style>body{margin:0;padding:var(--bk-space-6);min-height:100vh;box-sizing:border-box}</style>' +
+      '</head><body>' + html + '</body></html>';
+  }
+
+  var pending = null;
+  function render() {
+    if (!window.bk) return;
+    var s = bk.theme.get();
+    frame.srcdoc = documentFor(editor.value, s.style, s.mode, s.accent, true);
+    var meta = bk.theme.info(s.style);
+    label.textContent = meta.label;
+    chromeSkin.textContent = meta.label;
+    chromeBlurb.textContent = meta.blurb;
+    if (!grid.hidden) renderGrid();
+  }
+  function schedule() { clearTimeout(pending); pending = setTimeout(render, 250); }
+
+  /* --- the grid: every skin, the same markup, scaled to a tile ------------ */
+  var gridBuilt = false;
+  function renderGrid() {
+    if (!window.bk) return;
+    var s = bk.theme.get();
+    if (!gridBuilt) {
+      gridBuilt = true;
+      bk.theme.styles.forEach(function (skin) {
+        var meta = bk.theme.info(skin);
+        var tile = bk.el('article', { class: 'bk-card play-tile' }, [
+          bk.el('div', { class: 'play-tile-frame' }, [
+            bk.el('iframe', { title: meta.label + ' preview', loading: 'lazy', tabindex: '-1', 'aria-hidden': 'true', sandbox: 'allow-scripts allow-same-origin', 'data-skin': skin })
+          ]),
+          bk.el('div', { class: 'play-tile-name' }, [document.createTextNode(meta.label), bk.el('span', {}, meta.blurb)])
+        ]);
+        bk.on(tile, 'click', function () { bk.theme.setStyle(skin); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        grid.appendChild(tile);
+      });
+    }
+    bk.$$('iframe[data-skin]', grid).forEach(function (f) {
+      f.srcdoc = documentFor(editor.value, f.getAttribute('data-skin'), s.mode, s.accent, false);
+    });
+  }
+
+  bk_ready(function () {
+    var state = fromHash();
+    editor.value = state.html || preset('card');
+    if (state.skin) bk.theme.setStyle(state.skin);
+    if (state.mode) bk.theme.setMode(state.mode);
+    if (state.accent) bk.theme.setAccent(state.accent);
+    bk.theme.loadFonts();
+    render();
+
+    bk.on(editor, 'input', schedule);
+    bk.theme.onChange(function (s) { bk.theme.loadFonts(s.style); render(); });
+
+    bk.$$('[data-preset]').forEach(function (b) {
+      bk.on(b, 'click', function () { editor.value = preset(b.getAttribute('data-preset')); render(); });
+    });
+
+    bk.on(gridToggle, 'click', function () {
+      grid.hidden = !grid.hidden;
+      gridToggle.setAttribute('aria-pressed', grid.hidden ? 'false' : 'true');
+      gridToggle.textContent = grid.hidden ? 'Grid' : 'Hide grid';
+      if (!grid.hidden) { renderGrid(); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+
+    var timer = null;
+    bk.on(cycleBtn, 'click', function () {
+      if (timer) { clearInterval(timer); timer = null; cycleBtn.textContent = 'Play all fifty'; return; }
+      cycleBtn.textContent = 'Stop';
+      timer = setInterval(function () { bk.theme.next(); }, 1800);
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden && timer) { clearInterval(timer); timer = null; cycleBtn.textContent = 'Play all fifty'; }
+    });
+
+    bk.on(shareBtn, 'click', function () {
+      var s = bk.theme.get();
+      var h = new URLSearchParams();
+      h.set('skin', s.style); h.set('mode', s.mode); if (s.accent !== 'none') h.set('accent', s.accent);
+      h.set('h', encode(editor.value));
+      var url = location.origin + location.pathname + '#' + h.toString();
+      history.replaceState(null, '', '#' + h.toString());
+      bk.copy(url).then(function () { bk.toast.success('Link copied — the markup travels in the URL'); },
+        function () { bk.toast({ title: 'Copy failed', message: 'The link is in the address bar.' }); });
+    });
+  });
+
+  function bk_ready(fn) {
+    if (window.bk && bk.ready) bk.ready(fn);
+    else document.addEventListener('bk:ready', function () { (window.bk && bk.ready ? bk.ready : setTimeout)(fn, 0); }, { once: true });
+  }
+})();
+</script>
+</body>
+</html>

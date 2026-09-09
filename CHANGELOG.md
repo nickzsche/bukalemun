@@ -22,6 +22,14 @@
   lettering was illegible at navbar size.
 - The docs first screen shows the proof and the install; demo footers sit in a
   container; every size in docs and demos is the measured figure.
+- **Playground.** `docs/playground.html`: paste your own markup, watch it wear
+  every skin, mode and accent variant; a grid of all fifty at once; a share
+  link that carries the markup in the URL. Every example on the docs page now
+  has an HTML toggle with a Copy button, serialised from the rendered example
+  with the runtime's fingerprints removed.
+- **`dist/tokens.json`.** Every skin, colour mode and accent variant resolved in
+  the W3C Design Tokens format (colours, font stacks, radii, spacing), exported
+  as `bukalemun/tokens` for Figma variables and token pipelines.
 
 ## 1.6.0
 

@@ -40,6 +40,15 @@
   .doc-hero-install .bk-code { max-height: none; }
   .doc-hero-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--bk-space-2) var(--bk-space-4); margin: 0; padding: 0; list-style: none; font-size: var(--bk-text-sm); color: var(--bk-text-muted); font-variant-numeric: tabular-nums; }
   .doc-hero-facts strong { color: var(--bk-text); font-weight: var(--bk-weight-semibold); }
+  /* The HTML toggle under every example. The summary is a small ghost button;
+     the frame below it is the framework's own code frame. */
+  .doc-source { margin-block-start: var(--bk-space-3); }
+  .doc-source > summary { list-style: none; inline-size: max-content; cursor: pointer; }
+  .doc-source > summary::-webkit-details-marker { display: none; }
+  .doc-source > summary .bk-icon { transition: transform var(--bk-dur-fast) var(--bk-ease); }
+  .doc-source[open] > summary .bk-icon { transform: rotate(90deg); }
+  .doc-source-frame { margin-block-start: var(--bk-space-2); }
+  .doc-source-frame .bk-code { max-height: 24rem; font-size: var(--bk-text-xs); }
   .doc-shell { display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: var(--bk-space-10); align-items: start; }
   @media (max-width: 64rem) { .doc-shell { grid-template-columns: 1fr; } .doc-aside { display: none; } }
   .doc-aside { position: sticky; top: 5rem; max-height: calc(100svh - 7rem); overflow-y: auto; padding-block-end: var(--bk-space-8); }
@@ -70,6 +79,7 @@
     <a class="bk-nav-link" href="#skins">Skins</a>
     <a class="bk-nav-link" href="#components">Components</a>
     <a class="bk-nav-link" href="#js">JavaScript</a>
+    <a class="bk-nav-link" href="./playground.html">Playground</a>
     <a class="bk-nav-link" href="../demos/index.html">Demos</a>
   </nav>
 
@@ -93,6 +103,7 @@
     <a class="bk-nav-link" href="#skins">Skins</a>
     <a class="bk-nav-link" href="#components">Components</a>
     <a class="bk-nav-link" href="#js">JavaScript</a>
+    <a class="bk-nav-link" href="./playground.html">Playground</a>
     <a class="bk-nav-link" href="../demos/index.html">Demos</a>
   </div>
 </header>
@@ -145,6 +156,7 @@
     <li><strong>0</strong> dependencies</li>
     <li><strong id="hero-version">v1.6.0</strong> · MIT</li>
     <li><a href="#install">npm, ESM and TypeScript too</a></li>
+    <li><a href="./playground.html">Try your own HTML</a></li>
   </ul>
 </section>
 
