@@ -10,6 +10,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadTokens, tokenMap, combinations, get, toHex, parseColor } from './lib/tokens.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
@@ -316,6 +317,47 @@ writeFileSync(join(dist, 'bukalemun.esm.min.js'), banner('runtime (ESM)') + mini
 const flash = `/* Paste inline in <head> to apply the saved skin before first paint. Ship base + one skin and add data-bk-skins="…/styles/{skin}.min.css" to this tag: the stored skin is fetched here, before paint, and bk.theme fetches the rest as they are chosen. */
 (function(){try{var d=document.documentElement,s=localStorage.getItem('bk:style'),m=localStorage.getItem('bk:mode'),a=localStorage.getItem('bk:accent');if(s&&s!=='default'){d.setAttribute('data-bk-style',s);var c=document.currentScript,t=c&&c.getAttribute('data-bk-skins');if(t&&!document.querySelector('link[data-bk-skin="'+s+'"]')){var l=document.createElement('link');l.rel='stylesheet';l.href=t.replace('{skin}',s);l.setAttribute('data-bk-skin',s);document.head.appendChild(l);}}if(m)d.setAttribute('data-bk-theme',m);else if(!d.getAttribute('data-bk-theme'))d.setAttribute('data-bk-theme','auto');if(a&&a!=='none')d.setAttribute('data-bk-accent',a);d.classList.add('bk-no-js');}catch(e){}})();`;
 writeFileSync(join(dist, 'no-flash.js'), flash);
+
+/* --------------------------------------------------------- tokens.json --
+   Every skin, mode and accent variant, resolved, in the W3C Design Tokens
+   Community Group format. The audit already computes what each token comes
+   to; writing it down lets a designer pull a skin into Figma variables or a
+   token pipeline without reading CSS. Colours are resolved to hex (with an
+   alpha byte when translucent), families to arrays, radii to dimensions
+   where they are plain lengths. Minified: it is a data file, not a read. */
+
+function tokensJson() {
+  const tokens = loadTokens(src);
+  const out = {
+    $description: `Bukalemun ${VERSION} — every skin, colour mode and accent variant, resolved. Groups: skins.<skin>.<mode>[-<variant>].`,
+    skins: {}
+  };
+  const family = (v) => v.split(',').map((s) => s.trim().replace(/^["']|["']$/g, '')).filter(Boolean);
+  const dimension = (v) => { const t = v.trim(); return /^-?[\d.]+(px|rem|em|%)$/.test(t) || /^0+(\.0+)?$/.test(t) ? t : null; };
+  for (const { skin, mode, variant } of combinations(tokens)) {
+    const map = tokenMap(tokens, skin, mode, variant);
+    const set = { color: {}, font: {}, radius: {}, space: {} };
+    for (const [token, raw] of Object.entries(map)) {
+      const name = token.replace(/^--bk-/, '');
+      if (!name) continue;
+      if (/^font-(sans|serif|mono|display|body)$/.test(name)) { set.font[name.slice(5)] = { $type: 'fontFamily', $value: family(raw) }; continue; }
+      if (/^radius-/.test(name)) { const d = dimension(raw); if (d) set.radius[name.slice(7)] = { $type: 'dimension', $value: d }; continue; }
+      if (/^space-\d+$/.test(name)) { const d = dimension(raw); if (d) set.space[name.slice(6)] = { $type: 'dimension', $value: d }; continue; }
+      if (/shadow|image|transition|transform|gradient|backdrop|noise|font|weight|leading|tracking|text-|dur-|ease|z-|control|container|prose|label|heading|border-width|border-style|ring-width|ring-offset|ring-style|corner|outline|attachment|size$/.test(name) && !/^(text|text-muted|text-subtle|text-inverted|text-link)$/.test(name)) {
+        if (!parseColor(raw)) continue;
+      }
+      const c = get(map, token);
+      if (!c || raw === undefined) continue;
+      const hex = c.a < 1 ? toHex(c) + Math.round(c.a * 255).toString(16).padStart(2, '0') : toHex(c);
+      set.color[name] = { $type: 'color', $value: hex };
+    }
+    for (const k of Object.keys(set)) if (!Object.keys(set[k]).length) delete set[k];
+    const bucket = out.skins[skin] || (out.skins[skin] = {});
+    bucket[variant ? `${mode}-${variant}` : mode] = set;
+  }
+  return JSON.stringify(out);
+}
+writeFileSync(join(dist, 'tokens.json'), tokensJson() + '\n');
 
 /* ---------------------------------------------------------- manifest --- */
 

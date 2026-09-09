@@ -57,6 +57,7 @@
     "./styles/*": "./dist/styles/*",
     "./no-flash": "./dist/no-flash.js",
     "./manifest": "./dist/manifest.json",
+    "./tokens": "./dist/tokens.json",
     "./package.json": "./package.json"
   },
   "files": [

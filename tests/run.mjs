@@ -547,7 +547,7 @@ if (distExists) {
     'bukalemun.js', 'bukalemun.min.js',
     'bukalemun.cjs', 'bukalemun.min.cjs',
     'bukalemun.esm.js', 'bukalemun.esm.min.js',
-    'no-flash.js', 'manifest.json'
+    'no-flash.js', 'manifest.json', 'tokens.json'
   ];
 
   test('every expected artefact is emitted', () => {
@@ -706,6 +706,22 @@ if (distExists) {
       pkg.exports['.'].require.endsWith('.cjs'),
       `exports["."].require is ${pkg.exports['.'].require}, which Node will parse as ESM`
     );
+  });
+
+  test('tokens.json resolves every skin, mode and variant', () => {
+    const t = JSON.parse(read(join(dist, 'tokens.json')));
+    assert(t.skins && t.skins.default, 'tokens.json has no default palette');
+    for (const skin of [...skinNames, 'default']) {
+      const s = t.skins[skin];
+      assert(s, `tokens.json is missing ${skin}`);
+      for (const key of ['light', 'dark']) {
+        assert(s[key] && s[key].color && s[key].color.primary, `tokens.json: ${skin}.${key} has no primary colour`);
+        assert(/^#[0-9a-f]{6}([0-9a-f]{2})?$/.test(s[key].color.primary.$value), `tokens.json: ${skin}.${key} primary is not hex`);
+      }
+      if (skin !== 'default') {
+        assert(s['light-warm'] && s['dark-cool'], `tokens.json: ${skin} is missing its accent variants`);
+      }
+    }
   });
 
   test('manifest agrees with the file system', () => {
