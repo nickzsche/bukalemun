@@ -126,6 +126,12 @@
   --bk-neutral-soft: #131313;
   --bk-neutral-border: #ffffff;
   --bk-on-neutral: #000000;
+  /* The second colour is ink, and ink flips with the page. Without this the
+     secondary button was black on black. */
+  --bk-secondary: #ffffff;
+  --bk-secondary-soft: #131313;
+  --bk-secondary-border: #ffffff;
+  --bk-on-secondary: #000000;
   --bk-primary: #ff3b30;
   --bk-primary-soft: #2a0d0b;
   --bk-field-border: #ffffff;
@@ -185,8 +191,7 @@
   --bk-primary-on-soft: #d02018;
   --bk-primary-soft: #fdecea;
   --bk-primary-text: #d42118;
-  --bk-secondary-on-soft: #000000;
-  --bk-secondary-text: #000000;
+  --bk-secondary-hover: #262626;
   --bk-success: #007a3d;
   --bk-success-active: #006934;
   --bk-success-hover: #14854d;
@@ -226,8 +231,7 @@
   --bk-primary-on-soft: #ff3b30;
   --bk-primary-soft: #2a0d0b;
   --bk-primary-text: #ff3b30;
-  --bk-secondary-on-soft: #000000;
-  --bk-secondary-text: #828282;
+  --bk-secondary-hover: #ffffff;
   --bk-success: #007a3d;
   --bk-success-active: #006934;
   --bk-success-hover: #007038;
@@ -264,6 +268,12 @@
   --bk-neutral-soft: #131313;
   --bk-neutral-border: #ffffff;
   --bk-on-neutral: #000000;
+  /* The second colour is ink, and ink flips with the page. Without this the
+     secondary button was black on black. */
+  --bk-secondary: #ffffff;
+  --bk-secondary-soft: #131313;
+  --bk-secondary-border: #ffffff;
+  --bk-on-secondary: #000000;
   --bk-primary: #ff3b30;
   --bk-primary-soft: #2a0d0b;
   --bk-field-border: #ffffff;
@@ -299,8 +309,7 @@
   --bk-primary-on-soft: #ff3b30;
   --bk-primary-soft: #2a0d0b;
   --bk-primary-text: #ff3b30;
-  --bk-secondary-on-soft: #000000;
-  --bk-secondary-text: #828282;
+  --bk-secondary-hover: #ffffff;
   --bk-success: #007a3d;
   --bk-success-active: #006934;
   --bk-success-hover: #007038;

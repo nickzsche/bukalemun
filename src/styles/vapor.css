@@ -216,8 +216,8 @@
 [data-bk-style="vapor"] .bk-title,
 [data-bk-style="vapor"] .bk-navbar-brand {
   background-image: var(--bk-text-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; /* impeccable-disable-line gradient-text -- chrome lettering is the vaporwave world; a11y.css restores solid ink under forced colours */
+  background-clip: text; /* impeccable-disable-line gradient-text -- chrome lettering is the vaporwave world; a11y.css restores solid ink under forced colours */
   color: transparent;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 12px rgb(255 113 206 / 0.5));
@@ -234,7 +234,7 @@
 [data-bk-style="vapor"] .bk-btn-primary:not(.bk-btn-outline):not(.bk-btn-ghost):not(.bk-btn-soft):not(.bk-btn-link) {
   background-image: var(--bk-btn-gradient);
   border-color: transparent;
-  color: #180322;
+  color: var(--bk-on-primary);
 }
 [data-bk-style="vapor"] .bk-hero,
 [data-bk-style="vapor"] .bk-cover { position: relative; overflow: hidden; }

@@ -176,8 +176,8 @@
 [data-bk-style="holo"] .bk-navbar-brand {
   background-image: var(--_prism);
   background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; /* impeccable-disable-line gradient-text -- prism-foil lettering is the holo world; a11y.css restores solid ink under forced colours */
+  background-clip: text; /* impeccable-disable-line gradient-text -- prism-foil lettering is the holo world; a11y.css restores solid ink under forced colours */
   color: transparent;
   -webkit-text-fill-color: transparent;
   animation: bk-gradient-pan 9s ease-in-out infinite;

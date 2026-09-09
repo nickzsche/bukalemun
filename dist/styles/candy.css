@@ -99,7 +99,7 @@
   --bk-selection-bg: rgb(255 79 157 / 0.35);
   --bk-scrollbar-thumb: #ffa8ce;
   --bk-divider-color: #ffc2de;
-  --bk-ease-spring: cubic-bezier(0.34, 1.8, 0.5, 1);
+  --bk-ease-spring: cubic-bezier(0.34, 1.8, 0.5, 1); /* impeccable-disable-line bounce-easing -- the bounce on press is the bubblegum world; reset.css removes it under reduced motion */
 
   /* Sprinkles. */
   --bk-body-image:

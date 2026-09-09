@@ -164,8 +164,8 @@
 [data-bk-style="aurora"] .bk-display,
 [data-bk-style="aurora"] .bk-title {
   background-image: var(--bk-text-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
+  -webkit-background-clip: text; /* impeccable-disable-line gradient-text -- gradient lettering is the aurora world; a11y.css restores solid ink under forced colours */
+  background-clip: text; /* impeccable-disable-line gradient-text -- gradient lettering is the aurora world; a11y.css restores solid ink under forced colours */
   color: transparent;
   -webkit-text-fill-color: transparent;
 }

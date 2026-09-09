@@ -172,7 +172,10 @@
   padding: 0.2em 0.6em;
   display: inline-block;
 }
-[data-bk-style="magazine"] .bk-navbar { border-block-end: 3px solid var(--bk-border); background: transparent; }
+/* The masthead is page-white with a rule under it, not a tinted bar. It is
+   also sticky, so it needs an opaque page colour behind it or the article
+   scrolls through it. */
+[data-bk-style="magazine"] .bk-navbar { border-block-end: 3px solid var(--bk-border); background: var(--bk-bg); }
 [data-bk-style="magazine"] .bk-section-head { border-block-start: 6px solid var(--bk-border); padding-block-start: var(--bk-space-3); }
 [data-bk-style="magazine"] .bk-card { border-block-start: 3px solid var(--bk-border); border-inline: 0; border-block-end: 0; }
 [data-bk-style="magazine"] .bk-table thead th { background: var(--bk-surface-inverted); color: var(--bk-text-inverted); }

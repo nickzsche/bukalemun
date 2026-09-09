@@ -222,7 +222,7 @@
 [data-bk-style="win95"] .bk-drawer-header .bk-close {
   inline-size: 1.1rem;
   block-size: 1.1rem;
-  color: #000;
+  color: var(--bk-text);
   background: var(--_face);
   box-shadow: var(--_outset);
   border-radius: 0;

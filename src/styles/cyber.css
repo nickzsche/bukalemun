@@ -73,6 +73,11 @@
   --bk-radius-thumb: 0;
   --bk-corner-cut: 10px;
 
+  /* The recessed "well" behind switches, progress tracks and table heads. */
+  --_well: #101028;
+  --_well-edge: #2c2e5c;
+  --_knob: #4d5c78;
+
   --bk-shadow-xs: 0 0 0 1px rgb(0 229 255 / 0.12);
   --bk-shadow-sm: 0 0 8px rgb(0 229 255 / 0.18);
   --bk-shadow-md: 0 0 16px rgb(0 229 255 / 0.24);
@@ -160,16 +165,16 @@
   text-shadow: 0 0 10px currentColor;
   border-block-end-width: 2px;
 }
-[data-bk-style="cyber"] .bk-progress { background: #101028; border: 1px solid #2c2e5c; }
+[data-bk-style="cyber"] .bk-progress { background: var(--_well); border: 1px solid var(--_well-edge); }
 [data-bk-style="cyber"] .bk-progress-bar { box-shadow: 0 0 12px var(--bk-primary); }
-[data-bk-style="cyber"] .bk-switch { border: 1px solid #2c2e5c; background: #101028; }
-[data-bk-style="cyber"] .bk-switch::before { background: #4d5c78; border-radius: 0; }
+[data-bk-style="cyber"] .bk-switch { border: 1px solid var(--_well-edge); background: var(--_well); }
+[data-bk-style="cyber"] .bk-switch::before { background: var(--_knob); border-radius: 0; }
 [data-bk-style="cyber"] .bk-switch:checked::before { background: var(--bk-primary); box-shadow: 0 0 10px var(--bk-primary); }
 [data-bk-style="cyber"] .bk-avatar { border-radius: 0; border: 1px solid var(--bk-primary-border); }
 [data-bk-style="cyber"] .bk-check { border-radius: 0; }
 [data-bk-style="cyber"] .bk-eyebrow { color: var(--bk-secondary); text-shadow: 0 0 10px rgb(255 46 136 / 0.5); }
 [data-bk-style="cyber"] .bk-table thead th {
-  background: #101028;
+  background: var(--_well);
   color: var(--bk-primary);
   border-block-end: 1px solid var(--bk-primary-border);
 }
