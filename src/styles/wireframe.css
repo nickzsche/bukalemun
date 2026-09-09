@@ -1,0 +1,250 @@
+/* =============================================================================
+   SKIN — wireframe · Lo-fi mockup
+   The look of a design still under discussion: greyscale, dashed placeholders,
+   crosshatched media boxes and a hand-annotated feel. Useful for prototypes you
+   do not want stakeholders to mistake for finished work.
+   ========================================================================== */
+
+[data-bk-style="wireframe"] {
+  --bk-font-sans: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --bk-font-display: var(--bk-font-sans);
+  --bk-font-mono: var(--bk-font-sans);
+  --bk-heading-weight: 600;
+  --bk-heading-tracking: 0;
+  --bk-label-transform: uppercase;
+  --bk-label-tracking: 0.08em;
+
+  --bk-bg: #f7f7f7;
+  --bk-surface: #ffffff;
+  --bk-surface-2: #f2f2f2;
+  --bk-surface-3: #e4e4e4;
+  --bk-surface-inverted: #1c1c1c;
+
+  --bk-text: #1c1c1c;
+  --bk-text-muted: #565656;
+  --bk-text-subtle: #8a8a8a;
+  --bk-text-inverted: #ffffff;
+
+  --bk-border: #9a9a9a;
+  --bk-border-muted: #cfcfcf;
+  --bk-border-strong: #4a4a4a;
+  --bk-border-width: 1px;
+  --bk-border-style: dashed;
+
+  --bk-primary: #4a4a4a;
+  --bk-primary-hover: #333333;
+  --bk-primary-active: #1c1c1c;
+  --bk-primary-soft: #e8e8e8;
+  --bk-primary-border: #9a9a9a;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #6e6e6e;
+  --bk-secondary-hover: #565656;
+  --bk-secondary-soft: #ececec;
+  --bk-secondary-border: #b0b0b0;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #4a4a4a;
+  --bk-success-soft: #e8e8e8;
+  --bk-success-border: #9a9a9a;
+  --bk-warning: #5c5c5c;
+  --bk-warning-soft: #ededed;
+  --bk-warning-border: #a8a8a8;
+  --bk-danger: #3a3a3a;
+  --bk-danger-soft: #e4e4e4;
+  --bk-danger-border: #929292;
+  --bk-info: #6e6e6e;
+  --bk-info-soft: #ececec;
+  --bk-info-border: #b0b0b0;
+  --bk-neutral: #1c1c1c;
+  --bk-neutral-soft: #ececec;
+  --bk-neutral-border: #9a9a9a;
+  --bk-on-neutral: #ffffff;
+
+  --bk-radius-scale: 0.3;
+  --bk-radius-field: 2px;
+  --bk-radius-card: 2px;
+  --bk-radius-overlay: 2px;
+  --bk-radius-pill: 9999px;
+
+  --bk-shadow-xs: none;
+  --bk-shadow-sm: none;
+  --bk-shadow-md: none;
+  --bk-shadow-lg: none;
+  --bk-shadow-xl: 0 6px 24px rgb(0 0 0 / 0.12);
+  --bk-shadow-2xl: 0 12px 40px rgb(0 0 0 / 0.16);
+  --bk-shadow-inner: none;
+
+  --bk-ring: #1c1c1c;
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 2px;
+  --bk-ring-style: dashed;
+
+  --bk-btn-border-width: 1px;
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: none;
+  --bk-btn-shadow-active: none;
+  --bk-btn-weight: 600;
+  --bk-btn-transform: uppercase;
+  --bk-btn-tracking: 0.06em;
+  --bk-press-transform: translateY(1px);
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #ffffff;
+  --bk-field-border: #9a9a9a;
+  --bk-field-border-hover: #4a4a4a;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #a0a0a0;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: none;
+  --bk-overlay-surface: #ffffff;
+  --bk-overlay-border: #4a4a4a;
+  --bk-overlay-shadow: var(--bk-shadow-2xl);
+  --bk-overlay-bg: rgb(28 28 28 / 0.3);
+  --bk-code-bg: #f0f0f0;
+  --bk-code-border: #9a9a9a;
+  --bk-tooltip-bg: #1c1c1c;
+  --bk-selection-bg: #d4d4d4;
+  --bk-selection-fg: #1c1c1c;
+  --bk-scrollbar-thumb: #b0b0b0;
+  --bk-divider-color: #9a9a9a;
+  --bk-divider-style: dashed;
+}
+
+[data-bk-style="wireframe"][data-bk-theme="dark"] {
+  --bk-bg: #171717;
+  --bk-surface: #1c1c1c;
+  --bk-surface-2: #242424;
+  --bk-surface-3: #2e2e2e;
+  --bk-surface-inverted: #ffffff;
+  --bk-text-inverted: #1c1c1c;
+  --bk-text: #ededed;
+  --bk-text-muted: #a8a8a8;
+  --bk-text-subtle: #7a7a7a;
+  --bk-border: #5a5a5a;
+  --bk-border-muted: #333333;
+  --bk-border-strong: #ababab;
+  --bk-primary: #d4d4d4;
+  --bk-primary-hover: #e8e8e8;
+  --bk-primary-soft: #2a2a2a;
+  --bk-primary-border: #5a5a5a;
+  --bk-on-primary: #171717;
+  --bk-neutral: #ededed;
+  --bk-neutral-soft: #2a2a2a;
+  --bk-neutral-border: #5a5a5a;
+  --bk-on-neutral: #171717;
+  --bk-field-bg: #1c1c1c;
+  --bk-field-border: #5a5a5a;
+  --bk-code-bg: #242424;
+  --bk-code-border: #5a5a5a;
+  --bk-overlay-surface: #1c1c1c;
+  --bk-overlay-border: #ababab;
+  --bk-tooltip-bg: #ededed;
+  --bk-tooltip-fg: #171717;
+  --bk-divider-color: #5a5a5a;
+  --bk-ring: #ededed;
+}
+
+/* Media boxes read as "image goes here", not as art. */
+[data-bk-style="wireframe"] .bk-card-media,
+[data-bk-style="wireframe"] .bk-frame {
+  background-image:
+    linear-gradient(45deg, var(--bk-border) 1px, transparent 1px),
+    linear-gradient(-45deg, var(--bk-border) 1px, transparent 1px);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: 1px dashed var(--bk-border);
+  background-color: var(--bk-surface-2);
+}
+[data-bk-style="wireframe"] .bk-card-media > img,
+[data-bk-style="wireframe"] .bk-frame > img { opacity: 0.35; filter: grayscale(1); }
+[data-bk-style="wireframe"] .bk-avatar {
+  background: repeating-linear-gradient(45deg, var(--bk-surface-3) 0 4px, var(--bk-surface-2) 4px 8px);
+  border: 1px dashed var(--bk-border);
+}
+[data-bk-style="wireframe"] .bk-skeleton { background-image: none; border: 1px dashed var(--bk-border); }
+[data-bk-style="wireframe"] .bk-navbar { border-block-end: 1px dashed var(--bk-border-strong); }
+[data-bk-style="wireframe"] .bk-table thead th { background: var(--bk-surface-2); border-block-end: 1px dashed var(--bk-border-strong); }
+[data-bk-style="wireframe"] .bk-table th,
+[data-bk-style="wireframe"] .bk-table td { border-block-end-style: dashed; }
+[data-bk-style="wireframe"] .bk-badge { border: 1px dashed currentColor; }
+[data-bk-style="wireframe"] .bk-progress { border: 1px dashed var(--bk-border); background: transparent; }
+[data-bk-style="wireframe"] .bk-progress-bar {
+  background-image: repeating-linear-gradient(45deg, transparent 0 4px, rgb(255 255 255 / 0.35) 4px 8px);
+}
+[data-bk-style="wireframe"] .bk-eyebrow::before { content: "// "; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="wireframe"] {
+  --bk-danger: #3a3a3a;
+  --bk-danger-active: #565656;
+  --bk-danger-hover: #4a4a4a;
+  --bk-danger-on-soft: #3a3a3a;
+  --bk-danger-soft: #e4e4e4;
+  --bk-danger-text: #3a3a3a;
+  --bk-field-placeholder: #919191;
+  --bk-info: #6e6e6e;
+  --bk-info-active: #5f5f5f;
+  --bk-info-hover: #656565;
+  --bk-info-on-soft: #666666;
+  --bk-info-soft: #ececec;
+  --bk-info-text: #6e6e6e;
+  --bk-on-danger: #ffffff;
+  --bk-on-info: #ffffff;
+  --bk-on-success: #ffffff;
+  --bk-on-warning: #ffffff;
+  --bk-primary-active: #1c1c1c;
+  --bk-secondary-active: #5f5f5f;
+  --bk-secondary-on-soft: #666666;
+  --bk-secondary-text: #6e6e6e;
+  --bk-success: #4a4a4a;
+  --bk-success-active: #636363;
+  --bk-success-hover: #585858;
+  --bk-success-on-soft: #4a4a4a;
+  --bk-success-soft: #e8e8e8;
+  --bk-success-text: #4a4a4a;
+  --bk-text-subtle: #7d7d7d;
+  --bk-warning: #5c5c5c;
+  --bk-warning-active: #737373;
+  --bk-warning-hover: #696969;
+  --bk-warning-on-soft: #5c5c5c;
+  --bk-warning-soft: #ededed;
+  --bk-warning-text: #5c5c5c;
+}
+[data-bk-style="wireframe"][data-bk-theme="dark"] {
+  --bk-danger: #3a3a3a;
+  --bk-danger-active: #323232;
+  --bk-danger-hover: #353535;
+  --bk-danger-on-soft: #3a3a3a;
+  --bk-danger-soft: #e4e4e4;
+  --bk-danger-text: #8e8e8e;
+  --bk-field-placeholder: #a0a0a0;
+  --bk-info: #6e6e6e;
+  --bk-info-active: #5f5f5f;
+  --bk-info-hover: #656565;
+  --bk-info-on-soft: #666666;
+  --bk-info-soft: #ececec;
+  --bk-info-text: #8f8f8f;
+  --bk-on-danger: #e88d97;
+  --bk-on-info: #f0f7fd;
+  --bk-on-success: #24d875;
+  --bk-on-warning: #f5d59c;
+  --bk-primary-active: #dadada;
+  --bk-secondary-active: #5f5f5f;
+  --bk-secondary-on-soft: #666666;
+  --bk-secondary-text: #8f8f8f;
+  --bk-success: #4a4a4a;
+  --bk-success-active: #404040;
+  --bk-success-hover: #444444;
+  --bk-success-on-soft: #4a4a4a;
+  --bk-success-soft: #e8e8e8;
+  --bk-success-text: #8f8f8f;
+  --bk-text-subtle: #7a7a7a;
+  --bk-warning: #5c5c5c;
+  --bk-warning-active: #4f4f4f;
+  --bk-warning-hover: #555555;
+  --bk-warning-on-soft: #5c5c5c;
+  --bk-warning-soft: #ededed;
+  --bk-warning-text: #8f8f8f;
+}
+/* ==== end derived contrast tokens ==== */

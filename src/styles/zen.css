@@ -1,0 +1,252 @@
+/* =============================================================================
+   SKIN — zen · Japandi
+   Washi paper, sumi ink, one clay accent. Very long lines of nothing, thin
+   rules instead of boxes, and a type scale that whispers.
+   ========================================================================== */
+
+[data-bk-style="zen"] {
+  --bk-font-sans: "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Sans", ui-sans-serif, system-ui, sans-serif;
+  --bk-font-serif: "Zen Old Mincho", "Noto Serif JP", "Hiragino Mincho ProN", Georgia, serif;
+  --bk-font-display: var(--bk-font-serif);
+  --bk-heading-font: var(--bk-font-display);
+  --bk-heading-weight: 400;
+  --bk-heading-tracking: 0.04em;
+  --bk-label-tracking: 0.1em;
+  --bk-leading-relaxed: 1.9;
+  --bk-leading-normal: 1.75;
+  --bk-space-unit: 0.3125rem;
+  --bk-prose-width: 62ch;
+
+  --bk-bg: #f6f3ec;
+  --bk-surface: #fbf9f4;
+  --bk-surface-2: #f1ede4;
+  --bk-surface-3: #e6e0d3;
+  --bk-surface-inverted: #24221d;
+
+  --bk-text: #2b2823;
+  --bk-text-muted: #625d53;
+  --bk-text-subtle: #918a7c;
+  --bk-text-inverted: #f6f3ec;
+
+  --bk-border: #ddd6c7;
+  --bk-border-muted: #ebe6da;
+  --bk-border-strong: #b9b0a0;
+  --bk-border-width: 1px;
+
+  --bk-primary: #8a6f4e;
+  --bk-primary-hover: #77603f;
+  --bk-primary-active: #645032;
+  --bk-primary-soft: #efe8dc;
+  --bk-primary-border: #cbbca4;
+  --bk-on-primary: #fbf9f4;
+  --bk-secondary: #566b5e;
+  --bk-secondary-hover: #485a4e;
+  --bk-secondary-soft: #e6ece7;
+  --bk-secondary-border: #b0c0b5;
+  --bk-on-secondary: #fbf9f4;
+  --bk-success: #4d6b4a;
+  --bk-success-soft: #e6ede4;
+  --bk-success-border: #aec1a9;
+  --bk-warning: #93701f;
+  --bk-warning-soft: #f3ecd8;
+  --bk-warning-border: #d6c288;
+  --bk-danger: #8f4136;
+  --bk-danger-soft: #f2e3df;
+  --bk-danger-border: #cfa79e;
+  --bk-info: #47616f;
+  --bk-info-soft: #e4eaee;
+  --bk-info-border: #a9bcc6;
+  --bk-neutral: #2b2823;
+  --bk-neutral-soft: #ede8dd;
+  --bk-neutral-border: #ddd6c7;
+  --bk-on-neutral: #fbf9f4;
+
+  --bk-radius-scale: 0.25;
+  --bk-radius-field: 2px;
+  --bk-radius-card: 2px;
+  --bk-radius-overlay: 2px;
+  --bk-radius-pill: 9999px;
+
+  --bk-shadow-color: 35 25% 25%;
+  --bk-shadow-xs: none;
+  --bk-shadow-sm: none;
+  --bk-shadow-md: none;
+  --bk-shadow-lg: 0 2px 16px rgb(70 60 40 / 0.07);
+  --bk-shadow-xl: 0 8px 40px rgb(70 60 40 / 0.1);
+  --bk-shadow-2xl: 0 18px 60px rgb(70 60 40 / 0.14);
+  --bk-shadow-inner: none;
+
+  --bk-ring: #8a6f4e;
+  --bk-ring-width: 1px;
+  --bk-ring-offset: 4px;
+
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: none;
+  --bk-btn-shadow-active: none;
+  --bk-btn-weight: 500;
+  --bk-btn-tracking: 0.08em;
+  --bk-press-transform: none;
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #fbf9f4;
+  --bk-field-border: #cdc5b4;
+  --bk-field-border-hover: #8a6f4e;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #a79f8f;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: var(--bk-shadow-lg);
+  --bk-card-pad: var(--bk-space-8);
+  --bk-overlay-surface: #fbf9f4;
+  --bk-overlay-shadow: var(--bk-shadow-2xl);
+  --bk-overlay-bg: rgb(43 40 35 / 0.32);
+  --bk-code-bg: #f1ede4;
+  --bk-code-border: #ddd6c7;
+  --bk-tooltip-bg: #2b2823;
+  --bk-selection-bg: rgb(138 111 78 / 0.2);
+  --bk-scrollbar-thumb: #cdc5b4;
+  --bk-divider-color: #ddd6c7;
+  --bk-container-gutter: var(--bk-space-8);
+  --bk-body-image: radial-gradient(60rem 40rem at 70% -10%, rgb(160 140 100 / 0.05), transparent 60%);
+}
+
+[data-bk-style="zen"][data-bk-theme="dark"] {
+  --bk-bg: #1a1815;
+  --bk-surface: #221f1b;
+  --bk-surface-2: #292520;
+  --bk-surface-3: #322d27;
+  --bk-surface-inverted: #fbf9f4;
+  --bk-text-inverted: #2b2823;
+  --bk-text: #ece6da;
+  --bk-text-muted: #b3aa9a;
+  --bk-text-subtle: #857d6f;
+  --bk-border: #363029;
+  --bk-border-muted: #282420;
+  --bk-border-strong: #554d42;
+  --bk-primary: #c4a476;
+  --bk-primary-hover: #d0b389;
+  --bk-primary-soft: #2b241a;
+  --bk-primary-border: #574a35;
+  --bk-on-primary: #1a1510;
+  --bk-secondary: #93ad9c;
+  --bk-secondary-soft: #1f2721;
+  --bk-secondary-border: #3d4b42;
+  --bk-neutral: #ece6da;
+  --bk-neutral-soft: #292520;
+  --bk-neutral-border: #363029;
+  --bk-on-neutral: #1a1815;
+  --bk-field-bg: #221f1b;
+  --bk-field-border: #443d34;
+  --bk-code-bg: #201e1a;
+  --bk-code-border: #363029;
+  --bk-overlay-surface: #221f1b;
+  --bk-tooltip-bg: #ece6da;
+  --bk-tooltip-fg: #1a1815;
+  --bk-divider-color: #363029;
+  --bk-body-image: radial-gradient(60rem 40rem at 70% -10%, rgb(196 164 118 / 0.05), transparent 60%);
+}
+
+[data-bk-style="zen"] .bk-card { border-inline: 0; border-block-start: 0; }
+[data-bk-style="zen"] .bk-navbar { background: transparent; border-block-end: 1px solid var(--bk-border); }
+[data-bk-style="zen"] .bk-table thead th { background: transparent; font-weight: 400; letter-spacing: 0.12em; }
+[data-bk-style="zen"] .bk-section-head::after {
+  content: "";
+  display: block;
+  inline-size: 2.5rem;
+  block-size: 1px;
+  margin-block-start: var(--bk-space-4);
+  background: var(--bk-primary);
+}
+[data-bk-style="zen"] .bk-title { font-weight: 400; }
+[data-bk-style="zen"] .bk-blockquote { font-family: var(--bk-font-serif); border-inline-start-width: 1px; background: transparent; }
+[data-bk-style="zen"] .bk-badge { font-weight: 400; letter-spacing: 0.08em; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="zen"] {
+  --bk-danger: #8f4136;
+  --bk-danger-active: #9f5c52;
+  --bk-danger-hover: #985046;
+  --bk-danger-on-soft: #8f4136;
+  --bk-danger-soft: #f2e3df;
+  --bk-danger-text: #8f4136;
+  --bk-field-placeholder: #958b78;
+  --bk-info: #47616f;
+  --bk-info-active: #617783;
+  --bk-info-hover: #566e7b;
+  --bk-info-on-soft: #47616f;
+  --bk-info-soft: #e4eaee;
+  --bk-info-text: #47616f;
+  --bk-on-danger: #ffffff;
+  --bk-on-info: #ffffff;
+  --bk-on-primary: #ffffff;
+  --bk-on-secondary: #fbf9f4;
+  --bk-on-success: #ffffff;
+  --bk-on-warning: #ffffff;
+  --bk-primary: #8a6f4e;
+  --bk-primary-active: #645032;
+  --bk-primary-on-soft: #7a6245;
+  --bk-primary-soft: #efe8dc;
+  --bk-primary-text: #7d6547;
+  --bk-secondary: #566b5e;
+  --bk-secondary-active: #4a5c51;
+  --bk-secondary-hover: #485a4e;
+  --bk-secondary-soft: #e6ece7;
+  --bk-success: #4d6b4a;
+  --bk-success-active: #425c40;
+  --bk-success-hover: #5b7758;
+  --bk-success-on-soft: #4d6b4a;
+  --bk-success-soft: #e6ede4;
+  --bk-success-text: #4d6b4a;
+  --bk-text-subtle: #827b6d;
+  --bk-warning: #93701f;
+  --bk-warning-active: #7e601b;
+  --bk-warning-hover: #87671d;
+  --bk-warning-on-soft: #82631b;
+  --bk-warning-soft: #f3ecd8;
+  --bk-warning-text: #82631b;
+}
+[data-bk-style="zen"][data-bk-theme="dark"] {
+  --bk-danger: #8f4136;
+  --bk-danger-active: #7b382e;
+  --bk-danger-hover: #843c32;
+  --bk-danger-on-soft: #8f4136;
+  --bk-danger-soft: #f2e3df;
+  --bk-danger-text: #c97c71;
+  --bk-field-placeholder: #a79f8f;
+  --bk-info: #47616f;
+  --bk-info-active: #3d535f;
+  --bk-info-hover: #415966;
+  --bk-info-on-soft: #47616f;
+  --bk-info-soft: #e4eaee;
+  --bk-info-text: #7595a7;
+  --bk-on-danger: #f4c8cd;
+  --bk-on-info: #c1dff9;
+  --bk-on-primary: #1a1510;
+  --bk-on-secondary: #443719;
+  --bk-on-success: #b2f2cf;
+  --bk-on-warning: #ffffff;
+  --bk-primary: #c4a476;
+  --bk-primary-active: #ccb189;
+  --bk-primary-on-soft: #c4a476;
+  --bk-primary-soft: #2b241a;
+  --bk-primary-text: #c4a476;
+  --bk-secondary: #93ad9c;
+  --bk-secondary-active: #a2b8aa;
+  --bk-secondary-hover: #9cb4a4;
+  --bk-secondary-soft: #1f2721;
+  --bk-success: #4d6b4a;
+  --bk-success-active: #425c40;
+  --bk-success-hover: #476244;
+  --bk-success-on-soft: #4d6b4a;
+  --bk-success-soft: #e6ede4;
+  --bk-success-text: #719a6d;
+  --bk-text-subtle: #857d6f;
+  --bk-warning: #8f6d1e;
+  --bk-warning-active: #7b5e1a;
+  --bk-warning-hover: #83641c;
+  --bk-warning-on-soft: #82631b;
+  --bk-warning-soft: #f3ecd8;
+  --bk-warning-text: #b58a26;
+}
+/* ==== end derived contrast tokens ==== */

@@ -1,0 +1,241 @@
+/* =============================================================================
+   SKIN — organic · Blob / earthy
+   Asymmetric border-radii that never repeat, clay-and-moss palette, humanist
+   type. Nothing in nature is a perfect rectangle.
+   ========================================================================== */
+
+[data-bk-style="organic"] {
+  --bk-font-sans: "Outfit", "Nunito Sans", ui-rounded, system-ui, sans-serif;
+  --bk-font-display: "Fraunces", "Georgia", serif;
+  --bk-heading-font: var(--bk-font-display);
+  --bk-heading-weight: 600;
+  --bk-heading-tracking: -0.015em;
+
+  --bk-bg: #faf7f2;
+  --bk-surface: #fffdf9;
+  --bk-surface-2: #f4efe6;
+  --bk-surface-3: #e9e1d4;
+  --bk-surface-inverted: #2b2a26;
+
+  --bk-text: #2f2c25;
+  --bk-text-muted: #5e594e;
+  --bk-text-subtle: #8d8676;
+  --bk-text-inverted: #fffdf9;
+
+  --bk-border: #e0d7c7;
+  --bk-border-muted: #ece5d9;
+  --bk-border-strong: #c4b8a2;
+
+  --bk-primary: #6b8f5e;
+  --bk-primary-hover: #5d7f51;
+  --bk-primary-active: #4f6e45;
+  --bk-primary-soft: #e7efe3;
+  --bk-primary-border: #b3c9aa;
+  --bk-on-primary: #fffdf9;
+  --bk-secondary: #c47a4a;
+  --bk-secondary-hover: #b26b3e;
+  --bk-secondary-soft: #f7e9dd;
+  --bk-secondary-border: #e0bb9c;
+  --bk-on-secondary: #fffdf9;
+  --bk-success: #5c8a52;
+  --bk-success-soft: #e6efe3;
+  --bk-success-border: #b0c9a7;
+  --bk-warning: #c08a2e;
+  --bk-warning-soft: #f8eed9;
+  --bk-warning-border: #e2c78e;
+  --bk-danger: #b1533f;
+  --bk-danger-soft: #f6e3de;
+  --bk-danger-border: #ddaa9a;
+  --bk-info: #4f7d8c;
+  --bk-info-soft: #e3edf0;
+  --bk-info-border: #a8c6cf;
+  --bk-neutral: #5e594e;
+  --bk-neutral-soft: #efe9de;
+  --bk-neutral-border: #ddd4c3;
+  --bk-on-neutral: #fffdf9;
+
+  --bk-radius-scale: 1.6;
+  --bk-radius-field: 14px 20px 16px 22px;
+  --bk-radius-card: 32px 12px 28px 14px;
+  --bk-radius-overlay: 28px 14px 30px 16px;
+  --bk-radius-pill: 9999px;
+
+  --bk-shadow-color: 32 30% 30%;
+  --bk-shadow-strength: 0.9;
+
+  --bk-btn-radius: 18px 24px 20px 26px;
+  --bk-btn-weight: 600;
+  --bk-btn-shadow: 0 2px 6px rgb(90 75 45 / 0.08);
+  --bk-btn-shadow-hover: 0 6px 16px rgb(90 75 45 / 0.14);
+  --bk-btn-shadow-active: 0 1px 3px rgb(90 75 45 / 0.1);
+  --bk-hover-transform: translateY(-2px) rotate(-0.4deg);
+  --bk-press-transform: translateY(0) rotate(0deg) scale(0.99);
+
+  --bk-field-bg: #fffdf9;
+  --bk-field-border: #d9cfbc;
+  --bk-field-border-hover: #6b8f5e;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #a89f8c;
+  --bk-card-shadow: 0 4px 18px rgb(90 75 45 / 0.07);
+  --bk-card-shadow-hover: 0 10px 30px rgb(90 75 45 / 0.12);
+  --bk-card-pad: var(--bk-space-6);
+  --bk-overlay-surface: #fffdf9;
+  --bk-overlay-shadow: 0 24px 60px rgb(60 48 26 / 0.22);
+  --bk-overlay-bg: rgb(47 44 37 / 0.4);
+  --bk-code-bg: #f2ede2;
+  --bk-code-border: #e0d7c7;
+  --bk-code-radius: 12px 6px 12px 6px;
+  --bk-tooltip-bg: #2f2c25;
+  --bk-tooltip-radius: 10px 4px 10px 4px;
+  --bk-selection-bg: rgb(107 143 94 / 0.28);
+  --bk-scrollbar-thumb: #d3c8b4;
+  --bk-divider-color: #e0d7c7;
+  --bk-body-image: radial-gradient(50rem 40rem at 85% -10%, rgb(107 143 94 / 0.09), transparent 60%),
+    radial-gradient(40rem 30rem at 0% 100%, rgb(196 122 74 / 0.08), transparent 60%);
+  --bk-body-attachment: fixed;
+}
+
+[data-bk-style="organic"][data-bk-theme="dark"] {
+  --bk-bg: #1d1c18;
+  --bk-surface: #262520;
+  --bk-surface-2: #2e2d26;
+  --bk-surface-3: #38362d;
+  --bk-surface-inverted: #fffdf9;
+  --bk-text-inverted: #2f2c25;
+  --bk-text: #f0ebe0;
+  --bk-text-muted: #b9b2a2;
+  --bk-text-subtle: #8b8474;
+  --bk-border: #3c3a31;
+  --bk-border-muted: #2e2d26;
+  --bk-border-strong: #565345;
+  --bk-primary: #9bc08c;
+  --bk-primary-soft: #24301f;
+  --bk-primary-border: #45573c;
+  --bk-on-primary: #16210f;
+  --bk-secondary: #e0a173;
+  --bk-secondary-soft: #33251a;
+  --bk-field-bg: #262520;
+  --bk-field-border: #45433a;
+  --bk-code-bg: #23221d;
+  --bk-code-border: #3c3a31;
+  --bk-overlay-surface: #262520;
+  --bk-tooltip-bg: #f0ebe0;
+  --bk-tooltip-fg: #1d1c18;
+  --bk-body-image: radial-gradient(50rem 40rem at 85% -10%, rgb(107 143 94 / 0.1), transparent 60%);
+}
+
+/* Rotate the asymmetry so no two neighbours share a silhouette. */
+[data-bk-style="organic"] .bk-card:nth-child(2n) { border-radius: 12px 32px 14px 28px; }
+[data-bk-style="organic"] .bk-card:nth-child(3n) { border-radius: 28px 28px 12px 30px; }
+[data-bk-style="organic"] .bk-btn:nth-of-type(2n) { border-radius: 24px 18px 26px 20px; }
+[data-bk-style="organic"] .bk-badge,
+[data-bk-style="organic"] .bk-chip { border-radius: 9999px; }
+[data-bk-style="organic"] .bk-avatar { border-radius: 46% 54% 42% 58% / 52% 44% 56% 48%; }
+[data-bk-style="organic"] .bk-check { border-radius: 7px 5px 8px 4px; }
+[data-bk-style="organic"] .bk-panel { border-radius: 20px 10px 22px 12px; }
+[data-bk-style="organic"] .bk-alert { border-radius: 18px 8px 20px 10px; }
+[data-bk-style="organic"] .bk-tab { border-radius: 12px 12px 0 0; }
+[data-bk-style="organic"] .bk-progress { border-radius: 9999px; }
+[data-bk-style="organic"] .bk-title { font-style: italic; }
+[data-bk-style="organic"] .bk-table-wrap { border-radius: 24px 12px 24px 12px; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="organic"] {
+  --bk-danger: #b1533f;
+  --bk-danger-active: #984736;
+  --bk-danger-hover: #a34c3a;
+  --bk-danger-on-soft: #9e4a38;
+  --bk-danger-soft: #f6e3de;
+  --bk-danger-text: #a94f3c;
+  --bk-field-placeholder: #998e78;
+  --bk-info: #4f7d8c;
+  --bk-info-active: #446c78;
+  --bk-info-hover: #497381;
+  --bk-info-on-soft: #446c78;
+  --bk-info-soft: #e3edf0;
+  --bk-info-text: #466e7c;
+  --bk-neutral-on-soft: #5e594e;
+  --bk-neutral-text: #5e594e;
+  --bk-on-danger: #ffffff;
+  --bk-on-info: #ffffff;
+  --bk-on-primary: #231700;
+  --bk-on-secondary: #2d1e00;
+  --bk-on-success: #0f0f0f;
+  --bk-on-warning: #292929;
+  --bk-primary: #6b8f5e;
+  --bk-primary-active: #809f75;
+  --bk-primary-hover: #77986b;
+  --bk-primary-on-soft: #54704a;
+  --bk-primary-soft: #e7efe3;
+  --bk-primary-text: #54704a;
+  --bk-secondary: #c47a4a;
+  --bk-secondary-active: #cc8d63;
+  --bk-secondary-hover: #c98558;
+  --bk-secondary-on-soft: #965931;
+  --bk-secondary-soft: #f7e9dd;
+  --bk-secondary-text: #9a5b32;
+  --bk-success: #5c8a52;
+  --bk-success-active: #739a6a;
+  --bk-success-hover: #699360;
+  --bk-success-on-soft: #4b7043;
+  --bk-success-soft: #e6efe3;
+  --bk-success-text: #4d7445;
+  --bk-text-subtle: #827c6c;
+  --bk-warning: #c08a2e;
+  --bk-warning-active: #c99a4b;
+  --bk-warning-hover: #c5933f;
+  --bk-warning-on-soft: #866120;
+  --bk-warning-soft: #f8eed9;
+  --bk-warning-text: #8b6421;
+}
+[data-bk-style="organic"][data-bk-theme="dark"] {
+  --bk-danger: #b1533f;
+  --bk-danger-active: #984736;
+  --bk-danger-hover: #a34c3a;
+  --bk-danger-on-soft: #9e4a38;
+  --bk-danger-soft: #f6e3de;
+  --bk-danger-text: #ce8474;
+  --bk-field-placeholder: #a89f8c;
+  --bk-info: #51808f;
+  --bk-info-active: #69929f;
+  --bk-info-hover: #5f8a98;
+  --bk-info-on-soft: #446c78;
+  --bk-info-soft: #e3edf0;
+  --bk-info-text: #6f9fae;
+  --bk-neutral-on-soft: #5e594e;
+  --bk-neutral-text: #9d9789;
+  --bk-on-danger: #fdf7f7;
+  --bk-on-info: #000000;
+  --bk-on-primary: #16210f;
+  --bk-on-secondary: #563900;
+  --bk-on-success: #04180d;
+  --bk-on-warning: #1f1503;
+  --bk-primary: #9bc08c;
+  --bk-primary-active: #a9c99c;
+  --bk-primary-hover: #a3c595;
+  --bk-primary-on-soft: #9bc08c;
+  --bk-primary-soft: #24301f;
+  --bk-primary-text: #9bc08c;
+  --bk-secondary: #e0a173;
+  --bk-secondary-active: #e4ae87;
+  --bk-secondary-hover: #e2a97e;
+  --bk-secondary-on-soft: #e0a173;
+  --bk-secondary-soft: #33251a;
+  --bk-secondary-text: #e0a173;
+  --bk-success: #5c8a52;
+  --bk-success-active: #739a6a;
+  --bk-success-hover: #699360;
+  --bk-success-on-soft: #4b7043;
+  --bk-success-soft: #e6efe3;
+  --bk-success-text: #71a466;
+  --bk-text-subtle: #8b8474;
+  --bk-warning: #c08a2e;
+  --bk-warning-active: #a97a28;
+  --bk-warning-hover: #b3812b;
+  --bk-warning-on-soft: #866120;
+  --bk-warning-soft: #f8eed9;
+  --bk-warning-text: #c08a2e;
+}
+/* ==== end derived contrast tokens ==== */

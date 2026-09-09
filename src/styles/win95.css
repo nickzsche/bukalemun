@@ -1,0 +1,320 @@
+/* =============================================================================
+   SKIN — win95 · Desktop chrome
+   The grey box that taught a generation what a button is. Outset bevels drawn
+   with four box-shadows, a title-bar gradient, and MS Sans Serif's tight,
+   unapologetic 11px rhythm. Buttons invert their bevel when pressed, because
+   that is the whole point.
+   ========================================================================== */
+
+[data-bk-style="win95"] {
+  --bk-font-sans: "MS Sans Serif", "Pixelated MS Sans Serif", Tahoma, "Segoe UI", Verdana, sans-serif;
+  --bk-font-display: var(--bk-font-sans);
+  --bk-font-mono: "Courier New", ui-monospace, monospace;
+  --bk-heading-weight: 700;
+  --bk-heading-tracking: 0;
+  --bk-text-base: 0.8125rem;
+  --bk-text-md: 0.75rem;
+  --bk-leading-normal: 1.45;
+  --bk-space-unit: 0.1875rem;
+
+  --_face: #c0c0c0;
+  --_light: #ffffff;
+  --_shade: #808080;
+  --_dark: #000000;
+
+  /* The famous teal was the desktop *behind* windows — nothing was ever typed
+     on it. Content sits on the window face, so that is the page background. */
+  --bk-bg: #c0c0c0;
+  --bk-surface: #c0c0c0;
+  --bk-surface-2: #d4d0c8;
+  --bk-surface-3: #b8b4ac;
+  --bk-surface-inverted: #000080;
+
+  --bk-text: #000000;
+  --bk-text-muted: #3a3a3a;
+  --bk-text-subtle: #5c5c5c;
+  --bk-text-inverted: #ffffff;
+
+  --bk-border: #808080;
+  --bk-border-muted: #d4d0c8;
+  --bk-border-strong: #000000;
+  --bk-border-width: 1px;
+
+  --bk-primary: #000080;
+  --bk-primary-hover: #00006b;
+  --bk-primary-active: #000055;
+  --bk-primary-soft: #d9d9ec;
+  --bk-primary-border: #000080;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #008080;
+  --bk-secondary-hover: #006a6a;
+  --bk-secondary-soft: #d4e8e8;
+  --bk-secondary-border: #008080;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #007000;
+  --bk-success-soft: #d8ecd8;
+  --bk-success-border: #007000;
+  --bk-warning: #7a6000;
+  --bk-warning-soft: #f0e9cf;
+  --bk-warning-border: #7a6000;
+  --bk-danger: #900000;
+  --bk-danger-soft: #f0d8d8;
+  --bk-danger-border: #900000;
+  --bk-info: #000080;
+  --bk-info-soft: #d9d9ec;
+  --bk-info-border: #000080;
+  --bk-neutral: #000000;
+  --bk-neutral-soft: #d4d0c8;
+  --bk-neutral-border: #808080;
+  --bk-on-neutral: #ffffff;
+
+  --bk-radius-scale: 0;
+  --bk-radius-full: 0;
+  --bk-radius-pill: 0;
+  --bk-radius-field: 0;
+  --bk-radius-card: 0;
+  --bk-radius-overlay: 0;
+  --bk-radius-thumb: 0;
+
+  /* An outset bevel: light top-left, shade bottom-right, black outer edge. */
+  --_outset:
+    inset 1px 1px 0 0 var(--_light),
+    inset -1px -1px 0 0 var(--_dark),
+    inset 2px 2px 0 0 var(--_face),
+    inset -2px -2px 0 0 var(--_shade);
+  --_inset:
+    inset 1px 1px 0 0 var(--_shade),
+    inset -1px -1px 0 0 var(--_light),
+    inset 2px 2px 0 0 var(--_dark),
+    inset -2px -2px 0 0 var(--_face);
+
+  --bk-shadow-none: 0 0 #0000;
+  --bk-shadow-xs: var(--_outset);
+  --bk-shadow-sm: var(--_outset);
+  --bk-shadow-md: var(--_outset);
+  --bk-shadow-lg: var(--_outset), 2px 2px 0 rgb(0 0 0 / 0.35);
+  --bk-shadow-xl: var(--_outset), 3px 3px 0 rgb(0 0 0 / 0.4);
+  --bk-shadow-2xl: var(--_outset), 4px 4px 0 rgb(0 0 0 / 0.45);
+  --bk-shadow-inner: var(--_inset);
+
+  --bk-ring: #000000;
+  --bk-ring-width: 1px;
+  --bk-ring-offset: -4px;
+  --bk-ring-style: dotted;
+
+  --bk-btn-border-width: 0px;
+  --bk-btn-weight: 400;
+  --bk-btn-shadow: var(--_outset);
+  --bk-btn-shadow-hover: var(--_outset);
+  --bk-btn-shadow-active: var(--_inset);
+  --bk-press-transform: translate(1px, 1px);
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #ffffff;
+  --bk-field-border-width: 0px;
+  --bk-field-border: transparent;
+  --bk-field-border-hover: transparent;
+  --bk-field-shadow: var(--_inset);
+  --bk-field-shadow-focus: var(--_inset);
+  --bk-field-placeholder: #808080;
+
+  --bk-card-bg: #c0c0c0;
+  --bk-card-border-width: 0px;
+  --bk-card-border: transparent;
+  --bk-card-shadow: var(--_outset);
+  --bk-card-shadow-hover: var(--_outset);
+  --bk-card-pad: var(--bk-space-4);
+  --bk-overlay-surface: #c0c0c0;
+  --bk-overlay-border: transparent;
+  --bk-overlay-shadow: var(--_outset), 4px 4px 0 rgb(0 0 0 / 0.4);
+  --bk-overlay-bg: rgb(0 0 0 / 0.25);
+  --bk-code-bg: #ffffff;
+  --bk-code-border: #808080;
+  --bk-tooltip-bg: #ffffe1;
+  --bk-tooltip-fg: #000000;
+  --bk-selection-bg: #000080;
+  --bk-selection-fg: #ffffff;
+  --bk-scrollbar-thumb: #c0c0c0;
+  --bk-divider-color: #808080;
+  --bk-transition: none;
+}
+
+[data-bk-style="win95"][data-bk-theme="dark"] {
+  --_face: #3b3b3b;
+  --_light: #6e6e6e;
+  --_shade: #1a1a1a;
+  --_dark: #000000;
+  --bk-bg: #3b3b3b;
+  --bk-surface: #3b3b3b;
+  --bk-surface-2: #454545;
+  --bk-surface-3: #2e2e2e;
+  --bk-surface-inverted: #c0c0c0;
+  --bk-text-inverted: #000000;
+  --bk-text: #e6e6e6;
+  --bk-text-muted: #b4b4b4;
+  --bk-text-subtle: #8c8c8c;
+  --bk-border: #1a1a1a;
+  --bk-border-muted: #454545;
+  --bk-border-strong: #6e6e6e;
+  --bk-primary: #7b7bd6;
+  --bk-primary-soft: #23234a;
+  --bk-primary-border: #7b7bd6;
+  --bk-on-primary: #06061c;
+  --bk-secondary: #46b4b4;
+  --bk-secondary-soft: #102c2c;
+  --bk-secondary-border: #46b4b4;
+  --bk-success-soft: #12240f;
+  --bk-warning-soft: #2c2508;
+  --bk-danger-soft: #2c0f0f;
+  --bk-info-soft: #23234a;
+  --bk-neutral: #e6e6e6;
+  --bk-neutral-soft: #454545;
+  --bk-neutral-border: #1a1a1a;
+  --bk-on-neutral: #000000;
+  --bk-field-bg: #1a1a1a;
+  --bk-card-bg: #3b3b3b;
+  --bk-code-bg: #1a1a1a;
+  --bk-code-border: #6e6e6e;
+  --bk-overlay-surface: #3b3b3b;
+  --bk-tooltip-bg: #4a4636;
+  --bk-tooltip-fg: #f0eddc;
+  --bk-divider-color: #1a1a1a;
+  --bk-ring: #e6e6e6;
+}
+
+[data-bk-style="win95"] .bk-btn:not(.bk-btn-link) { border: 0; }
+[data-bk-style="win95"] .bk-input,
+[data-bk-style="win95"] .bk-textarea,
+[data-bk-style="win95"] .bk-select { border: 0; }
+[data-bk-style="win95"] .bk-check,
+[data-bk-style="win95"] .bk-switch,
+[data-bk-style="win95"] .bk-avatar,
+[data-bk-style="win95"] .bk-badge { border-radius: 0; }
+[data-bk-style="win95"] .bk-check { border: 0; background: #fff; box-shadow: var(--_inset); }
+[data-bk-style="win95"] .bk-check:checked { background: #fff; }
+[data-bk-style="win95"] .bk-check:checked::before { background-color: #000; }
+[data-bk-style="win95"] .bk-switch { border: 0; box-shadow: var(--_inset); background: var(--bk-surface-3); }
+[data-bk-style="win95"] .bk-switch::before { border-radius: 0; box-shadow: var(--_outset); background: var(--_face); }
+[data-bk-style="win95"] .bk-progress { box-shadow: var(--_inset); background: var(--bk-surface); border: 0; }
+[data-bk-style="win95"] .bk-progress-bar {
+  background-image: repeating-linear-gradient(90deg, var(--bk-primary) 0 10px, transparent 10px 13px);
+  background-color: transparent;
+}
+[data-bk-style="win95"] .bk-navbar { box-shadow: var(--_outset); border-block-end: 0; background: var(--bk-surface); }
+
+/* The title bar — the one gradient this era allowed itself. */
+[data-bk-style="win95"] .bk-modal-header,
+[data-bk-style="win95"] .bk-drawer-header {
+  background: linear-gradient(90deg, #000080, #1084d0);
+  color: #fff;
+  padding: 2px 3px;
+  border-block-end: 0;
+  margin: 3px;
+}
+[data-bk-style="win95"] .bk-modal-title,
+[data-bk-style="win95"] .bk-drawer-header .bk-modal-title { color: #fff; font-size: var(--bk-text-md); font-weight: 700; }
+[data-bk-style="win95"] .bk-modal-header .bk-close,
+[data-bk-style="win95"] .bk-drawer-header .bk-close {
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+  color: #000;
+  background: var(--_face);
+  box-shadow: var(--_outset);
+  border-radius: 0;
+}
+[data-bk-style="win95"] .bk-tablist { border-block-end: 0; gap: 0; }
+[data-bk-style="win95"] .bk-tab {
+  box-shadow: var(--_outset);
+  margin-inline-end: 2px;
+  border: 0;
+}
+[data-bk-style="win95"] .bk-tab[aria-selected="true"] { background: var(--bk-surface-2); font-weight: 700; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="win95"] {
+  --bk-danger: #900000;
+  --bk-danger-active: #a02424;
+  --bk-danger-hover: #991414;
+  --bk-danger-on-soft: #900000;
+  --bk-danger-soft: #f0d8d8;
+  --bk-danger-text: #900000;
+  --bk-info: #000080;
+  --bk-info-active: #242492;
+  --bk-info-hover: #14148a;
+  --bk-info-on-soft: #000080;
+  --bk-info-soft: #d9d9ec;
+  --bk-info-text: #000080;
+  --bk-on-danger: #ffffff;
+  --bk-on-info: #ffffff;
+  --bk-on-secondary: #ffffff;
+  --bk-on-success: #ffffff;
+  --bk-on-warning: #ffffff;
+  --bk-primary-active: #000055;
+  --bk-primary-hover: #00006b;
+  --bk-primary-on-soft: #000080;
+  --bk-primary-text: #000080;
+  --bk-secondary: #008080;
+  --bk-secondary-active: #006e6e;
+  --bk-secondary-hover: #006a6a;
+  --bk-secondary-on-soft: #006c6c;
+  --bk-secondary-soft: #d4e8e8;
+  --bk-secondary-text: #005252;
+  --bk-success: #007000;
+  --bk-success-active: #248424;
+  --bk-success-hover: #147b14;
+  --bk-success-on-soft: #007000;
+  --bk-success-soft: #d8ecd8;
+  --bk-success-text: #005700;
+  --bk-text-subtle: #5c5c5c;
+  --bk-warning: #7a6000;
+  --bk-warning-active: #695300;
+  --bk-warning-hover: #856d14;
+  --bk-warning-on-soft: #7a6000;
+  --bk-warning-soft: #f0e9cf;
+  --bk-warning-text: #5b4800;
+}
+[data-bk-style="win95"][data-bk-theme="dark"] {
+  --bk-danger: #900000;
+  --bk-danger-active: #7c0000;
+  --bk-danger-hover: #840000;
+  --bk-danger-on-soft: #ff2525;
+  --bk-danger-soft: #2c0f0f;
+  --bk-danger-text: #ff9a9a;
+  --bk-info: #000080;
+  --bk-info-active: #00006e;
+  --bk-info-hover: #000076;
+  --bk-info-on-soft: #8585ff;
+  --bk-info-soft: #23234a;
+  --bk-info-text: #aeaeff;
+  --bk-on-danger: #eca2aa;
+  --bk-on-info: #2890ea;
+  --bk-on-secondary: #383838;
+  --bk-on-success: #a1efc4;
+  --bk-on-warning: #f8e1b8;
+  --bk-primary-active: #8d8ddc;
+  --bk-primary-hover: #8686d9;
+  --bk-primary-on-soft: #8b8bdb;
+  --bk-primary-text: #b1b1e7;
+  --bk-secondary: #46b4b4;
+  --bk-secondary-active: #60bfbf;
+  --bk-secondary-hover: #55baba;
+  --bk-secondary-on-soft: #46b4b4;
+  --bk-secondary-soft: #102c2c;
+  --bk-secondary-text: #69c4c4;
+  --bk-success: #007000;
+  --bk-success-active: #006000;
+  --bk-success-hover: #006700;
+  --bk-success-on-soft: #00a300;
+  --bk-success-soft: #12240f;
+  --bk-success-text: #00d600;
+  --bk-text-subtle: #949494;
+  --bk-warning: #7a6000;
+  --bk-warning-active: #695300;
+  --bk-warning-hover: #705800;
+  --bk-warning-on-soft: #b28c00;
+  --bk-warning-soft: #2c2508;
+  --bk-warning-text: #e0b000;
+}
+/* ==== end derived contrast tokens ==== */

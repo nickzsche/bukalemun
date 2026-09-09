@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="paper" data-bk-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Docs demo</title>
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/paper.min.css" data-bk-skin="paper">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  .demo-docs { max-inline-size: 46rem; }
+  .demo-docs > * + * { margin-block-start: var(--bk-space-5); }
+</style>
+</head>
+<body>
+
+<nav class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="#">Bukalemun Docs</a>
+  <div class="bk-navbar-nav">
+    <a class="bk-nav-link" href="#">Guide</a>
+    <a class="bk-nav-link bk-is-active" href="#">Components</a>
+    <a class="bk-nav-link" href="#">Tokens</a>
+  </div>
+  <div class="bk-navbar-end">
+    <a class="bk-btn bk-btn-sm bk-btn-outline" href="https://github.com/nickzsche/bukalemun">GitHub</a>
+  </div>
+</nav>
+
+<main class="bk-container" style="padding-block: var(--bk-space-6);">
+  <nav class="bk-breadcrumb" aria-label="Breadcrumb">
+    <a href="#">Docs</a>
+    <a href="#">Components</a>
+    <span>Key caps</span>
+  </nav>
+
+  <div class="bk-sidebar-layout" style="margin-block-start: var(--bk-space-5);">
+    <aside class="bk-sidebar bk-sidebar-sticky">
+      <div class="bk-sidebar-title">On this page</div>
+      <a class="bk-sidebar-link" href="#install">Install</a>
+      <a class="bk-sidebar-link" href="#usage">Usage</a>
+      <a class="bk-sidebar-link" href="#shortcuts">Shortcut combos</a>
+      <a class="bk-sidebar-link" href="#api">Theming API</a>
+    </aside>
+
+    <article class="demo-docs">
+      <h1>Key caps</h1>
+      <p class="bk-card-text">The <code>bk-kbd</code> component renders keyboard keys as physical
+      key caps. It inherits the code palette of the active skin, so it reads as terminal output in
+      the terminal skin and as letterpress in paper — without touching a line of CSS.</p>
+
+      <h2 id="install">Install</h2>
+      <pre class="bk-code"><code>npm install bukalemun</code></pre>
+      <p class="bk-card-text">Or paste the two CDN tags from the README and you are done. There is no
+      third thing to configure.</p>
+      <button class="bk-btn bk-btn-sm bk-btn-outline" type="button" data-bk-copy="npm install bukalemun">Copy install command</button>
+
+      <h2 id="usage">Usage</h2>
+      <p class="bk-card-text">Wrap any key label in a <code>bk-kbd</code> element. Sizes come in
+      <code>sm</code> and <code>lg</code>; the quiet variant drops the cap background for inline
+      prose.</p>
+      <p>Press <span class="bk-kbd">Enter</span> to continue, or
+      <span class="bk-kbd bk-kbd-lg">Esc</span> to bail out entirely.</p>
+
+      <div class="bk-callout bk-callout-tip">
+        <div class="bk-callout-title">Tip</div>
+        <p>Key caps inherit the code tokens. If a skin restyles its code blocks, the key caps
+        follow automatically — that is the token contract doing its job.</p>
+      </div>
+
+      <h2 id="shortcuts">Shortcut combos</h2>
+      <p class="bk-card-text">Join key caps with the combo separator for full chords:</p>
+      <table class="bk-table bk-table-compact">
+        <thead><tr><th>Action</th><th>Keys</th></tr></thead>
+        <tbody>
+          <tr><td>Command palette</td><td><span class="bk-kbd-combo"><span class="bk-kbd">Ctrl</span><span class="bk-kbd-combo-sep">+</span><span class="bk-kbd">K</span></span></td></tr>
+          <tr><td>Save document</td><td><span class="bk-kbd-combo"><span class="bk-kbd">Ctrl</span><span class="bk-kbd-combo-sep">+</span><span class="bk-kbd">S</span></span></td></tr>
+          <tr><td>Cycle skin</td><td><span class="bk-kbd-combo"><span class="bk-kbd">Alt</span><span class="bk-kbd-combo-sep">+</span><span class="bk-kbd">T</span></span></td></tr>
+          <tr><td>Force quit</td><td><span class="bk-kbd-combo"><span class="bk-kbd">Ctrl</span><span class="bk-kbd-combo-sep">+</span><span class="bk-kbd">Alt</span><span class="bk-kbd-combo-sep">+</span><span class="bk-kbd">Del</span></span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="bk-callout bk-callout-warn">
+        <div class="bk-callout-title">Careful</div>
+        <p>The separator is decorative. Screen readers announce the keys in DOM order, so keep
+        the markup order identical to the physical key order.</p>
+      </div>
+
+      <h2 id="api">Theming API</h2>
+      <p class="bk-card-text">The same page, two lines apart. Pick your side of the fence:</p>
+      <div class="bk-tabs" data-bk-tabs>
+        <div class="bk-tablist bk-tablist-enclosed" role="tablist">
+          <button class="bk-tab bk-is-active" type="button" data-bk-panel="#api-css">CSS</button>
+          <button class="bk-tab" type="button" data-bk-panel="#api-js">JavaScript</button>
+        </div>
+        <div id="api-css" class="bk-tabpanel">
+          <pre class="bk-code"><code>&lt;html data-bk-style="vapor" data-bk-theme="dark"&gt;</code></pre>
+          <p class="bk-card-text">The declarative route: set the attributes, forget the runtime
+          even exists. Persistence still works if you ship <code>no-flash.js</code>.</p>
+        </div>
+        <div id="api-js" class="bk-tabpanel" hidden>
+          <pre class="bk-code"><code>bk.theme.setStyle('vapor');
+bk.theme.toggle();      // light &lt;-&gt; dark
+bk.theme.random();      // roulette</code></pre>
+          <p class="bk-card-text">The imperative route: build a skin picker, a settings panel, or
+          an easter egg. Your call.</p>
+        </div>
+      </div>
+
+      <hr class="bk-divider">
+
+      <p class="bk-card-text">That is the whole component. Small, boring, reliable — the way
+      documentation components should be.</p>
+      <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-to-top>Back to top</button>
+    </article>
+  </div>
+</main>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+/*! Bukalemun 1.6.0 — skin: material
+ *  One framework, 50 skins. Zero dependencies.
+ *  https://bukalemun.zerosixlab.com/
+ *  Released under the MIT licence.
+ */
+/* =============================================================================
+   SKIN — material · Material-flavoured
+   Elevation instead of borders, tonal surface layers, generous ripples and a
+   single vivid key colour.
+   ========================================================================== */
+
+[data-bk-style="material"] {
+  --bk-font-sans: "Roboto", "Roboto Flex", ui-sans-serif, system-ui, "Helvetica Neue", Arial, sans-serif;
+  --bk-heading-weight: 500;
+  --bk-heading-tracking: 0;
+  --bk-label-tracking: 0.02em;
+  --bk-weight-medium: 500;
+  --bk-weight-semibold: 500;
+
+  --bk-bg: #fef7ff;
+  --bk-surface: #fffbfe;
+  --bk-surface-2: #f7f2fa;
+  --bk-surface-3: #ece6f0;
+  --bk-surface-inverted: #322f35;
+
+  --bk-text: #1d1b20;
+  --bk-text-muted: #49454f;
+  --bk-text-subtle: #79747e;
+  --bk-text-inverted: #f5eff7;
+
+  --bk-border: #cac4d0;
+  --bk-border-muted: #e7e0ec;
+  --bk-border-strong: #79747e;
+
+  --bk-primary: #6750a4;
+  --bk-primary-hover: #5b4691;
+  --bk-primary-active: #503c80;
+  --bk-primary-soft: #eaddff;
+  --bk-primary-border: #b9a6e6;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #625b71;
+  --bk-secondary-hover: #554e63;
+  --bk-secondary-soft: #e8def8;
+  --bk-secondary-border: #c9c0d6;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #146c2e;
+  --bk-success-soft: #d7f5dd;
+  --bk-success-border: #a3ddb1;
+  --bk-warning: #7d5700;
+  --bk-warning-soft: #ffdea8;
+  --bk-warning-border: #e5bf75;
+  --bk-danger: #b3261e;
+  --bk-danger-soft: #f9dedc;
+  --bk-danger-border: #f2b8b5;
+  --bk-info: #00639c;
+  --bk-info-soft: #cee5ff;
+  --bk-info-border: #9cc9f0;
+  --bk-neutral: #49454f;
+  --bk-neutral-soft: #e7e0ec;
+  --bk-neutral-border: #cac4d0;
+  --bk-on-neutral: #ffffff;
+
+  --bk-radius-scale: 1;
+  --bk-radius-field: 4px;
+  --bk-radius-card: 12px;
+  --bk-radius-overlay: 28px;
+  --bk-radius-pill: 9999px;
+
+  --bk-shadow-color: 270 15% 10%;
+  --bk-shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 1px 3px 1px rgb(0 0 0 / 0.15);
+  --bk-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 2px 6px 2px rgb(0 0 0 / 0.15);
+  --bk-shadow-md: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 4px 8px 3px rgb(0 0 0 / 0.15);
+  --bk-shadow-lg: 0 2px 3px 0 rgb(0 0 0 / 0.3), 0 6px 10px 4px rgb(0 0 0 / 0.15);
+  --bk-shadow-xl: 0 4px 4px 0 rgb(0 0 0 / 0.3), 0 8px 12px 6px rgb(0 0 0 / 0.15);
+  --bk-shadow-2xl: 0 6px 10px 0 rgb(0 0 0 / 0.3), 0 12px 20px 8px rgb(0 0 0 / 0.15);
+
+  --bk-ring: #6750a4;
+  --bk-ring-width: 3px;
+  --bk-ring-offset: 2px;
+
+  --bk-btn-radius: 9999px;
+  --bk-btn-weight: 500;
+  --bk-btn-border-width: 1px;
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: var(--bk-shadow-xs);
+  --bk-btn-shadow-active: none;
+  --bk-press-transform: none;
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #f7f2fa;
+  --bk-field-bg-hover: #f0ebf4;
+  --bk-field-border: #79747e;
+  --bk-field-border-hover: #1d1b20;
+  --bk-field-radius: 4px 4px 0 0;
+  --bk-field-shadow: none;
+  --bk-card-shadow: none;
+  --bk-card-bg: #f7f2fa;
+  --bk-card-border: transparent;
+  --bk-card-border-width: 0px;
+  --bk-card-shadow-hover: var(--bk-shadow-sm);
+  --bk-overlay-surface: #f5eefa;
+  --bk-overlay-border: transparent;
+  --bk-overlay-shadow: var(--bk-shadow-xl);
+  --bk-code-bg: #ece6f0;
+  --bk-code-border: transparent;
+  --bk-tooltip-bg: #322f35;
+  --bk-selection-bg: rgb(103 80 164 / 0.24);
+  --bk-scrollbar-thumb: #cac4d0;
+  --bk-dur-base: 250ms;
+  --bk-ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+[data-bk-style="material"][data-bk-theme="dark"] {
+  --bk-bg: #141218;
+  --bk-surface: #211f26;
+  --bk-surface-2: #2b2930;
+  --bk-surface-3: #36343b;
+  --bk-surface-inverted: #e6e0e9;
+  --bk-text: #e6e0e9;
+  --bk-text-muted: #cac4d0;
+  --bk-text-subtle: #938f99;
+  --bk-text-inverted: #322f35;
+  --bk-border: #49454f;
+  --bk-border-muted: #322f35;
+  --bk-border-strong: #938f99;
+  --bk-primary: #d0bcff;
+  --bk-primary-hover: #dbcbff;
+  --bk-primary-active: #e5dbff;
+  --bk-primary-soft: #4f378b;
+  --bk-primary-border: #6b5aa0;
+  --bk-on-primary: #381e72;
+  --bk-danger: #f2b8b5;
+  --bk-danger-soft: #8c1d18;
+  --bk-danger-border: #b3261e;
+  --bk-on-danger: #601410;
+  --bk-neutral: #cac4d0;
+  --bk-neutral-soft: #36343b;
+  --bk-on-neutral: #322f35;
+  --bk-field-bg: #2b2930;
+  --bk-field-border: #938f99;
+  --bk-card-bg: #211f26;
+  --bk-overlay-surface: #2b2930;
+  --bk-code-bg: #2b2930;
+  --bk-tooltip-bg: #e6e0e9;
+  --bk-tooltip-fg: #322f35;
+}
+
+[data-bk-style="material"] .bk-btn { position: relative; overflow: hidden; }
+[data-bk-style="material"] .bk-btn-solid,
+[data-bk-style="material"] .bk-btn-primary:not([class*="bk-btn-outline"]):not([class*="bk-btn-ghost"]):not([class*="bk-btn-soft"]) { box-shadow: none; }
+[data-bk-style="material"] .bk-input,
+[data-bk-style="material"] .bk-select,
+[data-bk-style="material"] .bk-textarea {
+  border-radius: 4px 4px 0 0;
+  border-block-end-width: 1px;
+}
+[data-bk-style="material"] .bk-input:focus,
+[data-bk-style="material"] .bk-select:focus,
+[data-bk-style="material"] .bk-textarea:focus {
+  outline: none;
+  border-block-end: 2px solid var(--bk-primary);
+  box-shadow: inset 0 -1px 0 0 var(--bk-primary);
+}
+[data-bk-style="material"] .bk-tab { text-transform: none; }
+[data-bk-style="material"] .bk-tab[aria-selected="true"] { border-block-end-width: 3px; }
+[data-bk-style="material"] .bk-fab { border-radius: 16px; }
+[data-bk-style="material"] .bk-card-interactive:hover { transform: none; }
+[data-bk-style="material"] .bk-navbar { box-shadow: none; border-block-end: 0; background: var(--bk-surface-2); }
+[data-bk-style="material"] .bk-navbar.bk-is-scrolled { box-shadow: var(--bk-shadow-xs); }
+[data-bk-style="material"] .bk-chip { border: 1px solid var(--bk-border); background: transparent; }
+[data-bk-style="material"] .bk-chip.bk-is-active { background: var(--bk-primary-soft); border-color: transparent; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="material"] {
+  --bk-info: #00639c;
+  --bk-info-active: #2479aa;
+  --bk-info-hover: #146fa4;
+  --bk-info-on-soft: #00639c;
+  --bk-info-soft: #cee5ff;
+  --bk-info-text: #00639c;
+  --bk-on-info: #ffffff;
+  --bk-on-success: #ffffff;
+  --bk-on-warning: #ffffff;
+  --bk-secondary-active: #544e61;
+  --bk-secondary-on-soft: #625b71;
+  --bk-secondary-text: #625b71;
+  --bk-success: #146c2e;
+  --bk-success-active: #35814b;
+  --bk-success-hover: #27783f;
+  --bk-success-on-soft: #146c2e;
+  --bk-success-soft: #d7f5dd;
+  --bk-success-text: #146c2e;
+  --bk-warning: #7d5700;
+  --bk-warning-active: #8f6f24;
+  --bk-warning-hover: #876414;
+  --bk-warning-on-soft: #7d5700;
+  --bk-warning-soft: #ffdea8;
+  --bk-warning-text: #7d5700;
+}
+[data-bk-style="material"][data-bk-theme="dark"] {
+  --bk-info: #00639c;
+  --bk-info-active: #005586;
+  --bk-info-hover: #005b90;
+  --bk-info-on-soft: #00639c;
+  --bk-info-soft: #cee5ff;
+  --bk-info-text: #009af3;
+  --bk-on-info: #c6e1f9;
+  --bk-on-success: #94edbc;
+  --bk-on-warning: #f6d7a0;
+  --bk-secondary-active: #544e61;
+  --bk-secondary-on-soft: #625b71;
+  --bk-secondary-text: #9891a6;
+  --bk-success: #146c2e;
+  --bk-success-active: #115d28;
+  --bk-success-hover: #12632a;
+  --bk-success-on-soft: #146c2e;
+  --bk-success-soft: #d7f5dd;
+  --bk-success-text: #20ad49;
+  --bk-warning: #7d5700;
+  --bk-warning-active: #6c4b00;
+  --bk-warning-hover: #735000;
+  --bk-warning-on-soft: #7d5700;
+  --bk-warning-soft: #ffdea8;
+  --bk-warning-text: #c48900;
+}
+/* ==== end derived contrast tokens ==== */
+
+
+/* auto-mode mirror for "material" — generated by scripts/build.mjs */
+@media (prefers-color-scheme: dark) {
+  [data-bk-style="material"][data-bk-theme="auto"] {
+  --bk-bg: #141218;
+  --bk-surface: #211f26;
+  --bk-surface-2: #2b2930;
+  --bk-surface-3: #36343b;
+  --bk-surface-inverted: #e6e0e9;
+  --bk-text: #e6e0e9;
+  --bk-text-muted: #cac4d0;
+  --bk-text-subtle: #938f99;
+  --bk-text-inverted: #322f35;
+  --bk-border: #49454f;
+  --bk-border-muted: #322f35;
+  --bk-border-strong: #938f99;
+  --bk-primary: #d0bcff;
+  --bk-primary-hover: #dbcbff;
+  --bk-primary-active: #e5dbff;
+  --bk-primary-soft: #4f378b;
+  --bk-primary-border: #6b5aa0;
+  --bk-on-primary: #381e72;
+  --bk-danger: #f2b8b5;
+  --bk-danger-soft: #8c1d18;
+  --bk-danger-border: #b3261e;
+  --bk-on-danger: #601410;
+  --bk-neutral: #cac4d0;
+  --bk-neutral-soft: #36343b;
+  --bk-on-neutral: #322f35;
+  --bk-field-bg: #2b2930;
+  --bk-field-border: #938f99;
+  --bk-card-bg: #211f26;
+  --bk-overlay-surface: #2b2930;
+  --bk-code-bg: #2b2930;
+  --bk-tooltip-bg: #e6e0e9;
+  --bk-tooltip-fg: #322f35;
+
+
+  --bk-info: #00639c;
+  --bk-info-active: #005586;
+  --bk-info-hover: #005b90;
+  --bk-info-on-soft: #00639c;
+  --bk-info-soft: #cee5ff;
+  --bk-info-text: #009af3;
+  --bk-on-info: #c6e1f9;
+  --bk-on-success: #94edbc;
+  --bk-on-warning: #f6d7a0;
+  --bk-secondary-active: #544e61;
+  --bk-secondary-on-soft: #625b71;
+  --bk-secondary-text: #9891a6;
+  --bk-success: #146c2e;
+  --bk-success-active: #115d28;
+  --bk-success-hover: #12632a;
+  --bk-success-on-soft: #146c2e;
+  --bk-success-soft: #d7f5dd;
+  --bk-success-text: #20ad49;
+  --bk-warning: #7d5700;
+  --bk-warning-active: #6c4b00;
+  --bk-warning-hover: #735000;
+  --bk-warning-on-soft: #7d5700;
+  --bk-warning-soft: #ffdea8;
+  --bk-warning-text: #c48900;
+}
+}

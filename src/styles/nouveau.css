@@ -1,0 +1,243 @@
+/* =============================================================================
+   SKIN — nouveau · Art Nouveau
+   Whiplash curves and stems: asymmetric radii that lean, sage and old brass,
+   an ornamental rule under every section, and lettering with a stalk on it.
+   Curves everywhere, but never the same curve twice.
+   ========================================================================== */
+
+[data-bk-style="nouveau"] {
+  --bk-font-display: "Cormorant Garamond", "Eczar", Georgia, serif;
+  --bk-font-serif: var(--bk-font-display);
+  --bk-font-sans: "Julius Sans One", "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
+  --bk-font-body: "EB Garamond", Georgia, serif;
+  --bk-heading-font: var(--bk-font-display);
+  --bk-heading-weight: 500;
+  --bk-heading-tracking: 0.02em;
+  --bk-label-transform: uppercase;
+  --bk-label-tracking: 0.22em;
+  --bk-leading-relaxed: 1.8;
+
+  --_brass: #9c7b3c;
+  --_sage: #6b7f5e;
+
+  --bk-bg: #f2eee1;
+  --bk-surface: #f9f6ec;
+  --bk-surface-2: #eee9d9;
+  --bk-surface-3: #ded7c1;
+  --bk-surface-inverted: #2a2b22;
+
+  --bk-text: #2e3026;
+  --bk-text-muted: #5b5d4c;
+  --bk-text-subtle: #8b8b76;
+  --bk-text-inverted: #f9f6ec;
+
+  --bk-border: #cbc3a7;
+  --bk-border-muted: #e0d9c3;
+  --bk-border-strong: var(--_brass);
+  --bk-border-width: 1px;
+
+  --bk-primary: #7a5c26;
+  --bk-primary-hover: #654b1f;
+  --bk-primary-active: #523c19;
+  --bk-primary-soft: #efe6cf;
+  --bk-primary-border: #c9b385;
+  --bk-on-primary: #f9f6ec;
+  --bk-secondary: #4d6142;
+  --bk-secondary-hover: #405136;
+  --bk-secondary-soft: #e4ebde;
+  --bk-secondary-border: #a9bd9f;
+  --bk-on-secondary: #f9f6ec;
+  --bk-success: #4d6142;
+  --bk-success-soft: #e4ebde;
+  --bk-success-border: #a9bd9f;
+  --bk-warning: #8a6414;
+  --bk-warning-soft: #f3e9cd;
+  --bk-warning-border: #d5be83;
+  --bk-danger: #8a3b32;
+  --bk-danger-soft: #f1dfda;
+  --bk-danger-border: #cfa79e;
+  --bk-info: #445f6b;
+  --bk-info-soft: #dfe9ec;
+  --bk-info-border: #a6c0c7;
+  --bk-neutral: #2e3026;
+  --bk-neutral-soft: #eae4d2;
+  --bk-neutral-border: #cbc3a7;
+  --bk-on-neutral: #f9f6ec;
+
+  --bk-radius-scale: 1;
+  /* The whiplash: every corner a different arc. */
+  --bk-radius-field: 22px 4px 22px 4px;
+  --bk-radius-card: 48px 6px 48px 6px;
+  --bk-radius-overlay: 40px 8px 40px 8px;
+  --bk-radius-pill: 9999px;
+
+  --bk-shadow-color: 45 25% 28%;
+  --bk-shadow-strength: 0.8;
+
+  --bk-ring: var(--_brass);
+  --bk-ring-width: 1px;
+  --bk-ring-offset: 3px;
+
+  --bk-btn-radius: 20px 4px 20px 4px;
+  --bk-btn-weight: 500;
+  --bk-btn-transform: uppercase;
+  --bk-btn-tracking: 0.18em;
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: 0 4px 14px rgb(120 95 40 / 0.2);
+  --bk-btn-shadow-active: none;
+  --bk-press-transform: translateY(1px);
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #fbf9f1;
+  --bk-field-border: #bcb193;
+  --bk-field-border-hover: var(--_brass);
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #a8a48f;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: 0 8px 26px rgb(120 95 40 / 0.14);
+  --bk-card-pad: var(--bk-space-6);
+  --bk-overlay-surface: #f9f6ec;
+  --bk-overlay-border: var(--_brass);
+  --bk-overlay-shadow: 0 24px 60px rgb(50 45 25 / 0.28);
+  --bk-overlay-bg: rgb(46 48 38 / 0.4);
+  --bk-code-bg: #eee9d9;
+  --bk-code-border: #cbc3a7;
+  --bk-tooltip-bg: #2e3026;
+  --bk-selection-bg: rgb(156 123 60 / 0.25);
+  --bk-scrollbar-thumb: #cbc3a7;
+  --bk-divider-color: var(--_brass);
+
+  --bk-body-image:
+    radial-gradient(40rem 30rem at 100% 0%, rgb(156 123 60 / 0.1), transparent 60%),
+    radial-gradient(36rem 28rem at 0% 100%, rgb(107 127 94 / 0.1), transparent 60%);
+  --bk-body-attachment: fixed;
+}
+
+[data-bk-style="nouveau"][data-bk-theme="dark"] {
+  --bk-bg: #1c1d17;
+  --bk-surface: #24261d;
+  --bk-surface-2: #2b2d22;
+  --bk-surface-3: #35372a;
+  --bk-surface-inverted: #f9f6ec;
+  --bk-text-inverted: #2e3026;
+  --bk-text: #ece7d5;
+  --bk-text-muted: #b3b09b;
+  --bk-text-subtle: #878472;
+  --bk-border: #3c3f2f;
+  --bk-border-muted: #2b2d22;
+  --bk-border-strong: #b6924b;
+  --bk-primary: #cba85e;
+  --bk-primary-hover: #d9b972;
+  --bk-primary-soft: #2c2515;
+  --bk-primary-border: #5b4b28;
+  --bk-on-primary: #171206;
+  --bk-secondary: #94ac86;
+  --bk-secondary-soft: #202a1c;
+  --bk-secondary-border: #3f4f37;
+  --bk-on-secondary: #0d1409;
+  --bk-success: #94ac86;
+  --bk-success-soft: #202a1c;
+  --bk-success-border: #3f4f37;
+  --bk-warning-soft: #2c2612;
+  --bk-danger-soft: #2e1d19;
+  --bk-info-soft: #1b2528;
+  --bk-neutral: #ece7d5;
+  --bk-neutral-soft: #2b2d22;
+  --bk-neutral-border: #3c3f2f;
+  --bk-on-neutral: #1c1d17;
+  --bk-field-bg: #24261d;
+  --bk-field-border: #4b4e3b;
+  --bk-code-bg: #22241b;
+  --bk-code-border: #3c3f2f;
+  --bk-overlay-surface: #24261d;
+  --bk-overlay-border: #b6924b;
+  --bk-tooltip-bg: #ece7d5;
+  --bk-tooltip-fg: #1c1d17;
+  --bk-divider-color: #b6924b;
+  --bk-body-image: radial-gradient(40rem 30rem at 100% 0%, rgb(203 168 94 / 0.08), transparent 60%);
+}
+
+/* No two neighbours share a silhouette — that is the whole idiom. */
+[data-bk-style="nouveau"] .bk-card:nth-child(2n) { border-radius: 6px 48px 6px 48px; }
+[data-bk-style="nouveau"] .bk-card:nth-child(3n) { border-radius: 48px 48px 6px 6px; }
+[data-bk-style="nouveau"] .bk-btn:nth-of-type(2n) { border-radius: 4px 20px 4px 20px; }
+[data-bk-style="nouveau"] .bk-avatar { border-radius: 60% 40% 55% 45% / 45% 55% 45% 55%; border: 1px solid var(--bk-border-strong); }
+[data-bk-style="nouveau"] .bk-badge { border-radius: 9999px; border: 1px solid currentColor; }
+[data-bk-style="nouveau"] .bk-navbar { background: transparent; border-block-end: 1px solid var(--bk-border-strong); }
+[data-bk-style="nouveau"] .bk-title,
+[data-bk-style="nouveau"] .bk-display { color: var(--bk-primary); }
+[data-bk-style="nouveau"] .bk-section-head::after {
+  content: "❧";
+  display: block;
+  margin-block-start: var(--bk-space-3);
+  color: var(--bk-primary);
+  font-size: var(--bk-text-xl);
+}
+[data-bk-style="nouveau"] .bk-table thead th {
+  background: transparent;
+  font-family: var(--bk-font-sans);
+  border-block-end: 1px solid var(--bk-border-strong);
+}
+[data-bk-style="nouveau"] .bk-divider-text::before,
+[data-bk-style="nouveau"] .bk-divider-text::after { border-color: var(--bk-border-strong); }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="nouveau"] {
+  --bk-danger: #8a3b32;
+  --bk-danger-active: #9a564f;
+  --bk-danger-hover: #934b42;
+  --bk-danger-on-soft: #8a3b32;
+  --bk-danger-soft: #f1dfda;
+  --bk-danger-text: #8a3b32;
+  --bk-field-placeholder: #928d72;
+  --bk-info: #445f6b;
+  --bk-info-active: #5e7580;
+  --bk-info-hover: #536c77;
+  --bk-info-on-soft: #445f6b;
+  --bk-info-soft: #dfe9ec;
+  --bk-info-text: #445f6b;
+  --bk-on-danger: #ffffff;
+  --bk-on-info: #ffffff;
+  --bk-on-warning: #ffffff;
+  --bk-primary-active: #523c19;
+  --bk-secondary-active: #425339;
+  --bk-secondary-hover: #405136;
+  --bk-text-subtle: #787865;
+  --bk-warning: #8a6414;
+  --bk-warning-active: #775611;
+  --bk-warning-hover: #7f5c12;
+  --bk-warning-on-soft: #815e13;
+  --bk-warning-soft: #f3e9cd;
+  --bk-warning-text: #815e13;
+}
+[data-bk-style="nouveau"][data-bk-theme="dark"] {
+  --bk-danger: #8a3b32;
+  --bk-danger-active: #77332b;
+  --bk-danger-hover: #7f362e;
+  --bk-danger-on-soft: #ca766c;
+  --bk-danger-soft: #2e1d19;
+  --bk-danger-text: #cf847b;
+  --bk-field-placeholder: #a8a48f;
+  --bk-info: #445f6b;
+  --bk-info-active: #3a525c;
+  --bk-info-hover: #3f5762;
+  --bk-info-on-soft: #6d92a2;
+  --bk-info-soft: #1b2528;
+  --bk-info-text: #7a9baa;
+  --bk-on-danger: #f2c0c5;
+  --bk-on-info: #bcddf9;
+  --bk-on-warning: #fbefd8;
+  --bk-primary-active: #d2b475;
+  --bk-secondary-active: #819775;
+  --bk-secondary-hover: #9db390;
+  --bk-text-subtle: #878472;
+  --bk-warning: #8a6414;
+  --bk-warning-active: #775611;
+  --bk-warning-hover: #7f5c12;
+  --bk-warning-on-soft: #bb881b;
+  --bk-warning-soft: #2c2612;
+  --bk-warning-text: #c48e1c;
+}
+/* ==== end derived contrast tokens ==== */

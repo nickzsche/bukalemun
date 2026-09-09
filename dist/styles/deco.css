@@ -1,0 +1,224 @@
+/*! Bukalemun 1.6.0 — skin: deco
+ *  One framework, 50 skins. Zero dependencies.
+ *  https://bukalemun.zerosixlab.com/
+ *  Released under the MIT licence.
+ */
+/* =============================================================================
+   SKIN — deco · Art Deco
+   Gold hairlines on midnight, symmetric chamfers, high-contrast display type
+   and stepped ornament. 1925 with a stylesheet.
+   ========================================================================== */
+
+[data-bk-style="deco"] {
+  --bk-font-display: "Cormorant Garamond", "Didot", "Bodoni MT", Georgia, serif;
+  --bk-font-serif: var(--bk-font-display);
+  --bk-font-sans: "Josefin Sans", "Futura", "Century Gothic", ui-sans-serif, system-ui, sans-serif;
+  --bk-font-body: var(--bk-font-sans);
+  --bk-heading-font: var(--bk-font-display);
+  --bk-heading-weight: 600;
+  --bk-heading-transform: uppercase;
+  --bk-heading-tracking: 0.14em;
+  --bk-label-transform: uppercase;
+  --bk-label-tracking: 0.18em;
+
+  --_gold: #c9a227;
+  --_gold-2: #e6c65c;
+
+  --bk-bg: #0e1116;
+  --bk-surface: #131820;
+  --bk-surface-2: #1a2029;
+  --bk-surface-3: #232b36;
+  --bk-surface-inverted: #f5eedd;
+
+  --bk-text: #f2ead6;
+  --bk-text-muted: #b9ae94;
+  --bk-text-subtle: #857c68;
+  --bk-text-inverted: #0e1116;
+
+  --bk-border: #3c3626;
+  --bk-border-muted: #262215;
+  --bk-border-strong: var(--_gold);
+  --bk-border-width: 1px;
+
+  --bk-primary: var(--_gold);
+  --bk-primary-hover: var(--_gold-2);
+  --bk-primary-active: #f0d67e;
+  --bk-primary-soft: #2a2412;
+  --bk-primary-border: #5e5222;
+  --bk-on-primary: #14120a;
+  --bk-secondary: #1f6f6b;
+  --bk-secondary-hover: #2a8681;
+  --bk-secondary-soft: #102523;
+  --bk-secondary-border: #2c4f4d;
+  --bk-on-secondary: #eafaf8;
+  --bk-success: #7fae6a;
+  --bk-success-soft: #16220f;
+  --bk-success-border: #35502a;
+  --bk-on-success: #0a1206;
+  --bk-warning: #d99b42;
+  --bk-warning-soft: #2c2010;
+  --bk-warning-border: #5c4522;
+  --bk-on-warning: #1a1105;
+  --bk-danger: #b5495a;
+  --bk-danger-soft: #2a1218;
+  --bk-danger-border: #582530;
+  --bk-on-danger: #f8e6ea;
+  --bk-info: #6d8bb5;
+  --bk-info-soft: #16202c;
+  --bk-info-border: #2e4059;
+  --bk-on-info: #0a1119;
+  --bk-neutral: #b9ae94;
+  --bk-neutral-soft: #1a2029;
+  --bk-neutral-border: #3c3626;
+  --bk-on-neutral: #0e1116;
+
+  --bk-radius-scale: 0;
+  --bk-radius-full: 0;
+  --bk-radius-pill: 0;
+  --bk-radius-field: 0;
+  --bk-radius-card: 0;
+  --bk-radius-overlay: 0;
+  --bk-radius-thumb: 0;
+  --bk-corner-cut: 12px;
+
+  --bk-shadow-xs: none;
+  --bk-shadow-sm: 0 0 0 1px rgb(201 162 39 / 0.16);
+  --bk-shadow-md: 0 0 0 1px rgb(201 162 39 / 0.22), 0 8px 24px rgb(0 0 0 / 0.5);
+  --bk-shadow-lg: 0 0 0 1px rgb(201 162 39 / 0.3), 0 16px 40px rgb(0 0 0 / 0.6);
+  --bk-shadow-xl: 0 0 0 1px rgb(201 162 39 / 0.4), 0 24px 60px rgb(0 0 0 / 0.7);
+  --bk-shadow-2xl: 0 0 0 2px rgb(201 162 39 / 0.5), 0 36px 90px rgb(0 0 0 / 0.8);
+
+  --bk-ring: var(--_gold);
+  --bk-ring-width: 1px;
+  --bk-ring-offset: 3px;
+
+  --bk-btn-transform: uppercase;
+  --bk-btn-tracking: 0.2em;
+  --bk-btn-weight: 600;
+  --bk-btn-border-width: 1px;
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: 0 0 18px rgb(201 162 39 / 0.3);
+  --bk-btn-shadow-active: none;
+  --bk-press-transform: translateY(1px);
+
+  --bk-field-bg: #0b0e12;
+  --bk-field-border: #4a422c;
+  --bk-field-border-hover: var(--_gold);
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #6d6553;
+
+  --bk-card-bg: #131820;
+  --bk-card-border: #3c3626;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: 0 0 0 1px var(--_gold);
+  --bk-card-pad: var(--bk-space-6);
+  --bk-overlay-surface: #131820;
+  --bk-overlay-border: var(--_gold);
+  --bk-overlay-shadow: var(--bk-shadow-2xl);
+  --bk-overlay-bg: rgb(6 8 11 / 0.85);
+  --bk-code-bg: #0b0e12;
+  --bk-code-border: #3c3626;
+  --bk-tooltip-bg: var(--_gold);
+  --bk-tooltip-fg: #14120a;
+  --bk-selection-bg: rgb(201 162 39 / 0.35);
+  --bk-scrollbar-thumb: #4a422c;
+  --bk-divider-color: var(--_gold);
+
+  --bk-body-image:
+    linear-gradient(180deg, rgb(201 162 39 / 0.05), transparent 22rem),
+    repeating-linear-gradient(90deg, rgb(201 162 39 / 0.028) 0 1px, transparent 1px 5rem);
+  --bk-body-attachment: fixed;
+  color-scheme: dark;
+}
+[data-bk-style="deco"] .bk-btn:not(.bk-btn-link),
+[data-bk-style="deco"] .bk-card,
+[data-bk-style="deco"] .bk-modal,
+[data-bk-style="deco"] .bk-panel {
+  clip-path: polygon(
+    var(--bk-corner-cut) 0, calc(100% - var(--bk-corner-cut)) 0, 100% var(--bk-corner-cut),
+    100% calc(100% - var(--bk-corner-cut)), calc(100% - var(--bk-corner-cut)) 100%,
+    var(--bk-corner-cut) 100%, 0 calc(100% - var(--bk-corner-cut)), 0 var(--bk-corner-cut));
+}
+[data-bk-style="deco"] .bk-btn:not(.bk-btn-link) { --bk-corner-cut: 8px; }
+[data-bk-style="deco"] .bk-card { --bk-corner-cut: 18px; }
+[data-bk-style="deco"] .bk-card { position: relative; }
+[data-bk-style="deco"] .bk-card::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgb(201 162 39 / 0.22);
+  pointer-events: none;
+  clip-path: inherit;
+}
+[data-bk-style="deco"] .bk-display,
+[data-bk-style="deco"] .bk-title { color: var(--_gold); }
+[data-bk-style="deco"] .bk-section-head::after {
+  content: "◆ ◆ ◆";
+  display: block;
+  margin-block-start: var(--bk-space-3);
+  color: var(--_gold);
+  letter-spacing: 0.6em;
+  font-size: var(--bk-text-xs);
+}
+[data-bk-style="deco"] .bk-divider-text::before,
+[data-bk-style="deco"] .bk-divider-text::after { border-color: var(--_gold); }
+[data-bk-style="deco"] .bk-navbar { border-block-end: 1px solid var(--_gold); background: transparent; }
+[data-bk-style="deco"] .bk-navbar-brand { color: var(--_gold); }
+[data-bk-style="deco"] .bk-table thead th { color: var(--_gold); border-block-end: 1px solid var(--_gold); background: transparent; }
+[data-bk-style="deco"] .bk-avatar { border-radius: 0; border: 1px solid var(--_gold); }
+[data-bk-style="deco"] .bk-badge { border: 1px solid currentColor; border-radius: 0; }
+[data-bk-style="deco"] .bk-check,
+[data-bk-style="deco"] .bk-switch,
+[data-bk-style="deco"] .bk-switch::before { border-radius: 0; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="deco"] {
+  --bk-danger: #b5495a;
+  --bk-danger-active: #9c3f4d;
+  --bk-danger-hover: #a74353;
+  --bk-danger-on-soft: #c36977;
+  --bk-danger-soft: #2a1218;
+  --bk-danger-text: #c6717e;
+  --bk-info-active: #819bbf;
+  --bk-on-danger: #fbf2f4;
+  --bk-secondary-active: #1b5f5c;
+  --bk-secondary-hover: #1d6662;
+  --bk-secondary-on-soft: #2b9b95;
+  --bk-secondary-text: #2b9b95;
+}
+[data-bk-style="deco"][data-bk-theme="dark"] {
+  --bk-danger: #b5495a;
+  --bk-danger-active: #9c3f4d;
+  --bk-danger-hover: #a74353;
+  --bk-danger-on-soft: #c36977;
+  --bk-danger-soft: #2a1218;
+  --bk-danger-text: #c6717e;
+  --bk-info-active: #819bbf;
+  --bk-on-danger: #fbf2f4;
+  --bk-secondary-active: #1b5f5c;
+  --bk-secondary-hover: #1d6662;
+  --bk-secondary-on-soft: #2b9b95;
+  --bk-secondary-text: #2b9b95;
+}
+/* ==== end derived contrast tokens ==== */
+
+
+/* auto-mode mirror for "deco" — generated by scripts/build.mjs */
+@media (prefers-color-scheme: dark) {
+  [data-bk-style="deco"][data-bk-theme="auto"] {
+  --bk-danger: #b5495a;
+  --bk-danger-active: #9c3f4d;
+  --bk-danger-hover: #a74353;
+  --bk-danger-on-soft: #c36977;
+  --bk-danger-soft: #2a1218;
+  --bk-danger-text: #c6717e;
+  --bk-info-active: #819bbf;
+  --bk-on-danger: #fbf2f4;
+  --bk-secondary-active: #1b5f5c;
+  --bk-secondary-hover: #1d6662;
+  --bk-secondary-on-soft: #2b9b95;
+  --bk-secondary-text: #2b9b95;
+}
+}

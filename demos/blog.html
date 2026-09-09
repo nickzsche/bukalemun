@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="magazine" data-bk-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Article demo</title>
+<meta name="description" content="A long-form editorial page built from Bukalemun components. Switch the skin in the corner and the whole article re-sets itself.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/magazine.min.css" data-bk-skin="magazine">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  .article-head { padding-block: var(--bk-space-8) var(--bk-space-6); }
+  .article-figure { margin-block: var(--bk-space-6); }
+  .article-figure figcaption { margin-block-start: var(--bk-space-2); font-size: var(--bk-text-sm); color: var(--bk-text-muted); }
+  /* A flat wash instead of a photograph: the demo ships no binary assets, and a
+     gradient built from tokens re-colours itself with the skin anyway. */
+  .article-plate { aspect-ratio: 21 / 9; background: linear-gradient(135deg, var(--bk-primary), var(--bk-secondary)); border-radius: var(--bk-radius-md); }
+  .article-drop::first-letter { float: inline-start; font-size: 3.4em; line-height: .8; padding-inline-end: .08em; font-family: var(--bk-font-display); }
+</style>
+</head>
+<body>
+
+<nav class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="./index.html">The Chameleon Review</a>
+  <div class="bk-navbar-nav">
+    <a class="bk-nav-link bk-is-active" href="#">Essays</a>
+    <a class="bk-nav-link" href="#">Interviews</a>
+    <a class="bk-nav-link" href="#">Archive</a>
+  </div>
+  <div class="bk-navbar-end">
+    <button class="bk-btn bk-btn-sm bk-btn-outline" type="button">Subscribe</button>
+  </div>
+</nav>
+
+
+<main class="bk-container bk-container-md">
+
+  <header class="article-head">
+    <nav class="bk-breadcrumb" aria-label="Breadcrumb">
+      <a href="#">Essays</a><a href="#">Craft</a><span>Fifty faces</span>
+    </nav>
+    <p class="bk-eyebrow">Craft · 12 min read</p>
+    <h1 class="bk-display">Fifty faces, one skeleton</h1>
+    <p class="bk-lead">What happens to a design system when you refuse to let any component name a
+    colour, and hand the entire palette to a single attribute on the root element.</p>
+
+    <div class="bk-media" style="margin-block-start: var(--bk-space-5);">
+      <span class="bk-avatar bk-avatar-md bk-avatar-ring">ŞH</span>
+      <div class="bk-media-body">
+        <p class="bk-media-title">Şahan Hasret</p>
+        <p class="bk-media-meta">Published 28 August · Updated today</p>
+      </div>
+      <div class="bk-cluster bk-gap-2">
+        <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button">Share</button>
+        <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button">Save</button>
+      </div>
+    </div>
+  </header>
+
+  <figure class="article-figure">
+    <div class="article-plate"></div>
+    <figcaption>The same page, photographed under fifty different lights. Nothing in the markup moved.</figcaption>
+  </figure>
+
+  <article class="bk-prose">
+    <p class="article-drop">Most design systems die of the same disease. Someone, under deadline,
+    writes <code class="bk-code-inline">color: #2563eb</code> inside a button. It works. Nobody
+    notices. Six months later there are four hundred of them, and the word "rebrand" means
+    a quarter of engineering time.</p>
+
+    <p>The rule here is narrower than it sounds, and it is the only rule: <strong>no component
+    stylesheet may name a colour, a radius, a shadow or a typeface.</strong> It may only read a
+    token. Everything else follows from that.</p>
+
+    <h2>Three tiers, and only two of them move</h2>
+
+    <p>Primitives are raw values. Semantics give them jobs — <code class="bk-code-inline">--bk-primary</code>,
+    <code class="bk-code-inline">--bk-surface</code>, <code class="bk-code-inline">--bk-border</code>. Component
+    knobs are the last mile. A skin rewrites the middle two and never touches the first or the last.</p>
+
+    <blockquote class="bk-blockquote">
+      A skin is not a theme file. It is a claim about what the words "surface" and "border" mean
+      in one particular world, and a component that reads those words gets dressed for free.
+    </blockquote>
+
+    <p>That is why fifty skins cost roughly nine kilobytes each instead of a fork of the entire
+    stylesheet, and why adding a component means adding it once.</p>
+
+    <h2>Where it gets hard</h2>
+
+    <p>Contrast. A single "text on primary" token breaks the moment a skin paints primary as
+    fluorescent yellow. One accent needs <em>three</em> foregrounds — on the fill, on the page,
+    and on a soft chip — and each has to be audited separately.</p>
+
+    <div class="bk-callout bk-callout-note">
+      <p class="bk-callout-title">Audited, not eyeballed</p>
+      <p>4,386 foreground/background pairs are checked on every commit, across fifty-one palettes
+      in both colour modes, without opening a browser.</p>
+    </div>
+
+    <ol class="bk-list bk-list-decimal">
+      <li>Resolve the token graph the way a browser would — <code class="bk-code-inline">var()</code> chains, fallbacks, alpha compositing.</li>
+      <li>Walk every pair the components actually paint.</li>
+      <li>Move lightness in one per cent steps until the pair clears AA. Never touch hue or saturation.</li>
+      <li>Write the fix back into the skin as a regenerable block.</li>
+    </ol>
+
+    <p>The last step matters more than the first three. A fix that lives in someone's memory is
+    not a fix.</p>
+
+    <h2>What you give up</h2>
+
+    <p>Arbitrary one-off colours, mostly. If a page needs a shade the token contract does not
+    have, the honest move is to add it to the contract — for all fifty skins — or to accept that
+    the page will look wrong in forty-nine of them.</p>
+
+    <p>That trade is the whole product.</p>
+  </article>
+
+  <div class="bk-cluster bk-gap-2" style="margin-block: var(--bk-space-6);">
+    <span class="bk-chip">design systems</span>
+    <span class="bk-chip">css</span>
+    <span class="bk-chip">tokens</span>
+    <span class="bk-chip">accessibility</span>
+  </div>
+
+  <hr class="bk-divider bk-divider-strong">
+
+  <section class="bk-card bk-card-inset" style="margin-block: var(--bk-space-6);">
+    <div class="bk-card-body">
+      <div class="bk-media">
+        <span class="bk-avatar bk-avatar-lg">ŞH</span>
+        <div class="bk-media-body">
+          <p class="bk-media-title">Written by Şahan Hasret</p>
+          <p class="bk-card-text">Full-stack developer in Ankara. Writes CSS that other people
+          have to maintain, and tries to make that a kindness rather than a threat.</p>
+        </div>
+      </div>
+      <div class="bk-card-footer bk-card-footer-between">
+        <span class="bk-cluster bk-gap-2">
+          <span class="bk-badge bk-badge-ghost">42 essays</span>
+          <span class="bk-badge bk-badge-ghost">since 2019</span>
+        </span>
+        <button class="bk-btn bk-btn-sm bk-btn-primary" type="button">Follow</button>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-block: var(--bk-space-8);">
+    <div class="bk-section-head">
+      <h2>Keep reading</h2>
+      <a class="bk-link bk-link-arrow" href="#">All essays</a>
+    </div>
+    <div class="bk-grid bk-cols-3 bk-gap-4">
+      <a class="bk-card bk-card-interactive bk-card-link" href="#">
+        <div class="bk-card-body">
+          <p class="bk-eyebrow">Craft</p>
+          <h3 class="bk-card-title">The specificity tax</h3>
+          <p class="bk-card-text">Why <code class="bk-code-inline">:where()</code> costs nothing and buys everything.</p>
+        </div>
+      </a>
+      <a class="bk-card bk-card-interactive bk-card-link" href="#">
+        <div class="bk-card-body">
+          <p class="bk-eyebrow">Process</p>
+          <h3 class="bk-card-title">Lockfiles for looks</h3>
+          <p class="bk-card-text">A snapshot test that asks "is this still itself?"</p>
+        </div>
+      </a>
+      <a class="bk-card bk-card-interactive bk-card-link" href="#">
+        <div class="bk-card-body">
+          <p class="bk-eyebrow">Opinion</p>
+          <h3 class="bk-card-title">Against dark mode toggles</h3>
+          <p class="bk-card-text">And the one case where they are unavoidable.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <nav class="bk-pagination" aria-label="Article navigation">
+    <a class="bk-page" href="#">‹ Previous</a>
+    <a class="bk-page bk-is-active" href="#">1</a>
+    <a class="bk-page" href="#">2</a>
+    <a class="bk-page" href="#">3</a>
+    <span class="bk-page-ellipsis">…</span>
+    <a class="bk-page" href="#">9</a>
+    <a class="bk-page" href="#">Next ›</a>
+  </nav>
+
+  <section class="bk-panel" style="margin-block: var(--bk-space-8);">
+    <h2 class="bk-title">One essay a month. Nothing else.</h2>
+    <p class="bk-subtle">No tracking pixels, no drip campaign, no "quick question".</p>
+    <form class="bk-form-actions" style="margin-block-start: var(--bk-space-4);" onsubmit="return false">
+      <div class="bk-input-group">
+        <input class="bk-input" type="email" placeholder="you@example.com" aria-label="Email address" required>
+        <button class="bk-btn bk-btn-primary" type="submit">Subscribe</button>
+      </div>
+    </form>
+  </section>
+
+</main>
+
+<footer class="bk-footer">
+  <div class="bk-footer-bottom">
+    <span>The Chameleon Review — a Bukalemun demo</span>
+    <a class="bk-link" href="./index.html">← Back to the gallery</a>
+  </div>
+</footer>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

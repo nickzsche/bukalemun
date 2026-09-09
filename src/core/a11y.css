@@ -1,0 +1,135 @@
+/* =============================================================================
+   BUKALEMUN — core/a11y.css
+   Two environments where a skin's taste must get out of the way:
+
+   forced-colors    Windows High Contrast and friends replace the palette
+                    wholesale. Anything a skin expressed through background
+                    images, shadows or colour-mix disappears — so borders have
+                    to carry the meaning instead.
+   prefers-contrast Some users ask for more contrast without leaving the skin.
+                    Here we keep the palette but firm up the edges.
+
+   Loaded last in the core so it wins over component defaults, and written with
+   the same tokens so a skin can still opt out.
+   ========================================================================== */
+
+@media (forced-colors: active) {
+  /* Let the OS pick every colour; keep our geometry. */
+  :where(.bk-btn, .bk-input, .bk-textarea, .bk-select, .bk-card, .bk-panel,
+         .bk-alert, .bk-badge, .bk-chip, .bk-menu, .bk-popover, .bk-modal,
+         .bk-drawer, .bk-toast, .bk-table-wrap, .bk-list-group, .bk-accordion,
+         .bk-segmented, .bk-toolbar, .bk-avatar, .bk-progress, .bk-code) {
+    forced-color-adjust: none;
+    background-image: none !important;
+    box-shadow: none !important;
+    background-color: Canvas;
+    color: CanvasText;
+    border: 1px solid CanvasText;
+  }
+
+  /* A "solid" button must still read as the primary action. */
+  :where(.bk-btn-solid, .bk-btn-primary, .bk-btn-danger, .bk-btn-success,
+         .bk-btn-warning, .bk-btn-info, .bk-btn-secondary, .bk-btn-neutral):not(
+         .bk-btn-outline, .bk-btn-ghost, .bk-btn-soft, .bk-btn-link, .bk-btn-dashed) {
+    background-color: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+  :where(.bk-btn:hover, .bk-btn:focus-visible) { border-color: Highlight; }
+  :where(.bk-btn:disabled, .bk-btn[aria-disabled="true"]) {
+    color: GrayText;
+    border-color: GrayText;
+    background-color: Canvas;
+  }
+
+  /* Selection and current state cannot rely on a tint alone. */
+  :where(.bk-tab[aria-selected="true"], .bk-nav-link.bk-is-active,
+         .bk-sidebar-link.bk-is-active, .bk-menu-item.bk-is-active,
+         .bk-cmdk-item[aria-selected="true"], .bk-page[aria-current="page"],
+         .bk-list-item.bk-is-active, .bk-segmented > input:checked + label) {
+    background-color: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+
+  /* Mask-drawn icons vanish without an explicit forced colour. */
+  :where(.bk-icon, .bk-close::before, .bk-check::before, .bk-alert::before,
+         .bk-toast::before, .bk-accordion-trigger::after, .bk-error::before) {
+    background-color: CanvasText !important;
+  }
+
+  /* Controls the OS does not know about still need visible state. */
+  :where(.bk-check) { border: 1px solid CanvasText; background: Canvas; }
+  :where(.bk-check:checked, .bk-check:indeterminate) { background: Highlight; }
+  :where(.bk-check:checked)::before { background-color: HighlightText !important; }
+  :where(.bk-switch) { border: 1px solid CanvasText; background: Canvas; }
+  :where(.bk-switch)::before { background: CanvasText; }
+  :where(.bk-switch:checked) { background: Highlight; }
+  :where(.bk-switch:checked)::before { background: HighlightText; }
+  :where(.bk-progress) { border: 1px solid CanvasText; }
+  :where(.bk-progress-bar) { background: Highlight; }
+  :where(.bk-skeleton) { background: Canvas; border: 1px dashed CanvasText; animation: none; }
+  :where(.bk-spinner) { border-color: CanvasText; border-block-start-color: Highlight; }
+
+  /* Decorative washes are noise here. */
+  :where(body) { background-image: none !important; }
+  :where(.bk-hero-bg, .bk-hero-overlay, .bk-marquee) { display: none; }
+  :where(::backdrop) { background: Canvas; }
+
+  /* The focus ring must survive the palette swap. */
+  :where(:focus-visible) { outline: 2px solid Highlight; outline-offset: 2px; }
+}
+
+@media (prefers-contrast: more) {
+  :where(:root), :where(.bk-scope) {
+    /* Keep the skin, firm up every edge and mute nothing. */
+    --bk-border: var(--bk-border-strong);
+    --bk-border-muted: var(--bk-border-strong);
+    --bk-border-width: max(1.5px, var(--bk-border-width));
+    --bk-text-subtle: var(--bk-text-muted);
+    --bk-field-placeholder: var(--bk-text-muted);
+    --bk-ring-width: 3px;
+    --bk-divider-color: var(--bk-border-strong);
+  }
+  :where(.bk-btn-ghost, .bk-btn-link) { text-decoration: underline; }
+  :where(.bk-btn-soft, .bk-badge, .bk-chip) { border-color: currentColor; }
+  :where(.bk-card, .bk-panel, .bk-alert) { border-width: max(1.5px, var(--bk-card-border-width)); }
+  :where(a:not(.bk-btn):not(.bk-nav-link):not(.bk-sidebar-link)) { text-decoration: underline; }
+}
+
+@media (prefers-contrast: less) {
+  :where(:root), :where(.bk-scope) {
+    --bk-border: var(--bk-border-muted);
+    --bk-ring-width: 2px;
+  }
+}
+
+/* Some users disable transparency system-wide; honour it where we can. */
+@media (prefers-reduced-transparency: reduce) {
+  :where(.bk-glass, .bk-card-glass, .bk-navbar-glass, .bk-dock, .bk-btn-glass) {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: var(--bk-surface);
+  }
+  :where(.bk-modal::backdrop, .bk-drawer::backdrop, .bk-cmdk::backdrop) {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Print: overlays, chrome and decoration are never wanted on paper. */
+@media print {
+  :where(.bk-navbar, .bk-sidebar, .bk-dock, .bk-bottom-nav, .bk-to-top,
+         .bk-toaster, .bk-fab, .bk-skip-link) { display: none !important; }
+  :where(.bk-card, .bk-panel, .bk-alert, .bk-table-wrap) {
+    box-shadow: none !important;
+    border: 1px solid #999 !important;
+    background: #fff !important;
+    color: #000 !important;
+    break-inside: avoid;
+  }
+  :where(body) { background: #fff !important; color: #000 !important; background-image: none !important; }
+  :where(a[href^="http"])::after { content: " (" attr(href) ")"; font-size: 0.85em; word-break: break-all; }
+  :where(.bk-tabpanel) { display: block !important; }
+  :where(details) { display: block; }
+}

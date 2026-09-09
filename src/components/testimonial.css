@@ -1,0 +1,57 @@
+/* =============================================================================
+   BUKALEMUN — components/testimonial.css
+   Testimonials: a quote, an author row and optional rating.
+   Quiet variant drops the card chrome for editorial layouts.
+   ========================================================================== */
+
+.bk-testimonial {
+  --bk-c: var(--bk-primary);
+  --bk-c-soft: var(--bk-primary-soft);
+  --bk-c-border: var(--bk-primary-border);
+
+  display: grid;
+  gap: var(--bk-space-4);
+  background: var(--bk-card-bg);
+  border: var(--bk-card-border-width) var(--bk-border-style) var(--bk-card-border);
+  border-radius: var(--bk-card-radius);
+  box-shadow: var(--bk-card-shadow);
+  padding: var(--bk-card-pad);
+}
+
+.bk-testimonial-quiet {
+  background: transparent;
+  border: 0;
+  box-shadow: var(--bk-shadow-none);
+  padding: 0;
+}
+
+.bk-testimonial-quote {
+  margin: 0;
+  font-size: var(--bk-text-lg);
+  line-height: var(--bk-leading-relaxed);
+  color: var(--bk-text);
+}
+
+/* opening quote mark as a CSS escape — never a literal glyph */
+.bk-testimonial-quote::before {
+  content: "\201C";
+  color: var(--bk-c);
+  font-family: var(--bk-font-serif);
+  font-size: 1.8em;
+  line-height: 0;
+  vertical-align: -0.3em;
+  margin-inline-end: 0.15em;
+  opacity: 0.45;
+}
+
+.bk-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: var(--bk-space-3);
+}
+
+.bk-testimonial-meta { display: grid; gap: var(--bk-space-0); }
+.bk-testimonial-name { font-size: var(--bk-text-sm); font-weight: var(--bk-weight-semibold); }
+.bk-testimonial-role { font-size: var(--bk-text-xs); color: var(--bk-text-muted); }
+
+.bk-testimonial-lg .bk-testimonial-quote { font-size: var(--bk-text-xl); }

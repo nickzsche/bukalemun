@@ -1,0 +1,196 @@
+/* =============================================================================
+   SKIN — thermal · Receipt printer
+   One ink, no greys — only dithered dots. Narrow measure, everything
+   centre-stamped, perforated rules and the slightly-too-dark edges of paper
+   that has been through a hot head.
+   ========================================================================== */
+
+[data-bk-style="thermal"] {
+  --bk-font-mono: "Courier Prime", "Courier New", ui-monospace, monospace;
+  --bk-font-sans: var(--bk-font-mono);
+  --bk-font-body: var(--bk-font-mono);
+  --bk-font-display: var(--bk-font-mono);
+  --bk-heading-weight: 700;
+  --bk-heading-transform: uppercase;
+  --bk-heading-tracking: 0.18em;
+  --bk-label-transform: uppercase;
+  --bk-label-tracking: 0.2em;
+  --bk-text-base: 0.8125rem;
+  --bk-leading-normal: 1.65;
+  --bk-prose-width: 44ch;
+  --bk-container-md: 34rem;
+  --bk-container-lg: 40rem;
+  --bk-container-xl: 46rem;
+
+  --bk-bg: #eceae5;
+  --bk-surface: #f7f6f2;
+  --bk-surface-2: #e9e7e1;
+  --bk-surface-3: #dbd8d1;
+  --bk-surface-inverted: #17171a;
+
+  --bk-text: #17171a;
+  --bk-text-muted: #45454a;
+  --bk-text-subtle: #77777d;
+  --bk-text-inverted: #f7f6f2;
+
+  --bk-border: #17171a;
+  --bk-border-muted: #b6b4ae;
+  --bk-border-strong: #17171a;
+  --bk-border-width: 1px;
+
+  --bk-primary: #17171a;
+  --bk-primary-hover: #303036;
+  --bk-primary-active: #45454a;
+  --bk-primary-soft: #dedcd6;
+  --bk-primary-border: #17171a;
+  --bk-on-primary: #f7f6f2;
+  --bk-secondary: #45454a;
+  --bk-secondary-hover: #303036;
+  --bk-secondary-soft: #e2e0da;
+  --bk-secondary-border: #17171a;
+  --bk-on-secondary: #f7f6f2;
+  --bk-success: #17171a; --bk-success-soft: #dedcd6; --bk-success-border: #17171a;
+  --bk-warning: #17171a; --bk-warning-soft: #dedcd6; --bk-warning-border: #17171a;
+  --bk-danger: #17171a; --bk-danger-soft: #d8d4cc; --bk-danger-border: #17171a;
+  --bk-info: #17171a; --bk-info-soft: #dedcd6; --bk-info-border: #17171a;
+  --bk-neutral: #17171a;
+  --bk-neutral-soft: #e4e1db;
+  --bk-neutral-border: #17171a;
+  --bk-on-neutral: #f7f6f2;
+
+  --bk-radius-scale: 0;
+  --bk-radius-full: 0;
+  --bk-radius-pill: 0;
+  --bk-radius-field: 0;
+  --bk-radius-card: 0;
+  --bk-radius-overlay: 0;
+  --bk-radius-thumb: 0;
+
+  --bk-shadow-xs: none; --bk-shadow-sm: none; --bk-shadow-md: none;
+  --bk-shadow-lg: none; --bk-shadow-xl: none; --bk-shadow-2xl: none;
+  --bk-shadow-inner: none;
+
+  --bk-ring: #17171a;
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 1px;
+  --bk-ring-style: dotted;
+
+  --bk-btn-border-width: 1px;
+  --bk-btn-weight: 700;
+  --bk-btn-transform: uppercase;
+  --bk-btn-tracking: 0.16em;
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: none;
+  --bk-btn-shadow-active: none;
+  --bk-press-transform: none;
+  --bk-hover-transform: none;
+
+  --bk-field-bg: transparent;
+  --bk-field-border: #17171a;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #8d8b85;
+  --bk-card-bg: #f7f6f2;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: none;
+  --bk-card-pad: var(--bk-space-4);
+  --bk-overlay-surface: #f7f6f2;
+  --bk-overlay-border: #17171a;
+  --bk-overlay-shadow: none;
+  --bk-overlay-bg: rgb(23 23 26 / 0.4);
+  --bk-code-bg: #e9e7e1;
+  --bk-code-border: #17171a;
+  --bk-tooltip-bg: #17171a;
+  --bk-selection-bg: #17171a;
+  --bk-selection-fg: #f7f6f2;
+  --bk-scrollbar-thumb: #17171a;
+  --bk-divider-color: #17171a;
+  --bk-transition: none;
+
+  /* Head burn along the edges, and the grain of a one-bit print. */
+  --bk-body-image:
+    linear-gradient(90deg, rgb(23 23 26 / 0.08), transparent 4%, transparent 96%, rgb(23 23 26 / 0.08)),
+    repeating-conic-gradient(rgb(23 23 26 / 0.045) 0% 25%, transparent 0% 50%);
+  --bk-body-image-size: 100% 100%, 3px 3px;
+  --bk-body-attachment: fixed;
+}
+[data-bk-style="thermal"] body,
+body[data-bk-style="thermal"] { background-size: 100% 100%, 3px 3px; }
+
+[data-bk-style="thermal"][data-bk-theme="dark"] {
+  --bk-bg: #121214;
+  --bk-surface: #17171a;
+  --bk-surface-2: #1e1e21;
+  --bk-surface-3: #26262a;
+  --bk-surface-inverted: #ecebe6;
+  --bk-text: #ecebe6;
+  --bk-text-muted: #b6b5b0;
+  --bk-text-subtle: #83827e;
+  --bk-text-inverted: #121214;
+  --bk-border: #ecebe6;
+  --bk-border-muted: #3a3a3e;
+  --bk-border-strong: #ecebe6;
+  --bk-primary: #ecebe6; --bk-primary-hover: #ffffff; --bk-primary-soft: #26262a;
+  --bk-primary-border: #ecebe6; --bk-on-primary: #121214;
+  --bk-secondary: #c9c8c3; --bk-secondary-soft: #26262a; --bk-secondary-border: #ecebe6;
+  --bk-on-secondary: #121214;
+  --bk-success: #ecebe6; --bk-success-soft: #26262a; --bk-success-border: #ecebe6;
+  --bk-warning: #ecebe6; --bk-warning-soft: #26262a; --bk-warning-border: #ecebe6;
+  --bk-danger: #ecebe6; --bk-danger-soft: #2b2426; --bk-danger-border: #ecebe6;
+  --bk-info: #ecebe6; --bk-info-soft: #26262a; --bk-info-border: #ecebe6;
+  --bk-neutral: #ecebe6; --bk-neutral-soft: #1e1e21; --bk-neutral-border: #ecebe6;
+  --bk-on-neutral: #121214;
+  --bk-field-border: #ecebe6;
+  --bk-card-bg: #17171a;
+  --bk-code-bg: #1e1e21;
+  --bk-code-border: #ecebe6;
+  --bk-overlay-surface: #17171a;
+  --bk-overlay-border: #ecebe6;
+  --bk-tooltip-bg: #ecebe6;
+  --bk-tooltip-fg: #121214;
+  --bk-divider-color: #ecebe6;
+  --bk-ring: #ecebe6;
+  --bk-body-image: repeating-conic-gradient(rgb(236 235 230 / 0.05) 0% 25%, transparent 0% 50%);
+}
+
+/* Perforated rules, and the tear line under a total. */
+[data-bk-style="thermal"] .bk-divider,
+[data-bk-style="thermal"] hr { border-block-start-style: dashed; }
+[data-bk-style="thermal"] .bk-card { border-block: 1px dashed var(--bk-border); border-inline: 0; }
+[data-bk-style="thermal"] .bk-section-head { text-align: center; align-items: center; margin-inline: auto; }
+[data-bk-style="thermal"] .bk-navbar { border-block-end: 1px dashed var(--bk-border); background: transparent; }
+[data-bk-style="thermal"] .bk-table thead th { background: transparent; border-block-end: 1px dashed var(--bk-border); }
+[data-bk-style="thermal"] .bk-table th,
+[data-bk-style="thermal"] .bk-table td { border-block-end-style: dashed; }
+[data-bk-style="thermal"] .bk-table tfoot td { border-block-start: 1px dashed var(--bk-border); }
+[data-bk-style="thermal"] .bk-badge { border: 1px solid currentColor; }
+[data-bk-style="thermal"] .bk-avatar {
+  border-radius: 0;
+  border: 1px solid var(--bk-border);
+  background-image: repeating-conic-gradient(rgb(23 23 26 / 0.35) 0% 25%, transparent 0% 50%);
+  background-size: 3px 3px;
+}
+[data-bk-style="thermal"] .bk-progress { border: 1px solid var(--bk-border); background: transparent; }
+[data-bk-style="thermal"] .bk-progress-bar {
+  background-color: transparent;
+  background-image: repeating-conic-gradient(var(--bk-text) 0% 25%, transparent 0% 50%);
+  background-size: 3px 3px;
+}
+[data-bk-style="thermal"] .bk-card-media > img,
+[data-bk-style="thermal"] .bk-avatar > img { filter: grayscale(1) contrast(2.6); }
+[data-bk-style="thermal"] .bk-eyebrow::before { content: "*** "; }
+[data-bk-style="thermal"] .bk-eyebrow::after { content: " ***"; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="thermal"] {
+  --bk-field-placeholder: #86837d;
+  --bk-primary-active: #45454a;
+  --bk-secondary-hover: #303036;
+}
+[data-bk-style="thermal"][data-bk-theme="dark"] {
+  --bk-field-placeholder: #8d8b85;
+  --bk-primary-active: #efeeea;
+  --bk-secondary-hover: #cdccc8;
+}
+/* ==== end derived contrast tokens ==== */

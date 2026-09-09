@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="clinical" data-bk-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Settings demo</title>
+<meta name="description" content="Every form control Bukalemun ships, in one working settings page.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/clinical.min.css" data-bk-skin="clinical">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+</head>
+<body>
+
+<nav class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="./index.html">Vira Console</a>
+  <div class="bk-navbar-nav">
+    <a class="bk-nav-link" href="#">Overview</a>
+    <a class="bk-nav-link" href="#">Billing</a>
+    <a class="bk-nav-link bk-is-active" href="#">Settings</a>
+  </div>
+  <div class="bk-navbar-end">
+    <span class="bk-avatar bk-avatar-sm">ŞH</span>
+  </div>
+</nav>
+
+<main class="bk-container" style="padding-block: var(--bk-space-6);">
+
+  <div class="bk-section-head">
+    <div>
+      <h1>Settings</h1>
+      <p class="bk-subtle">Changes save as you make them. There is no Save button and that is deliberate.</p>
+    </div>
+    <span><span class="bk-badge bk-badge-success bk-badge-dot">All changes saved</span></span>
+  </div>
+
+  <div class="bk-sidebar-layout" style="margin-block-start: var(--bk-space-5);">
+
+    <aside class="bk-sidebar bk-sidebar-sticky">
+      <div class="bk-sidebar-title">Account</div>
+      <a class="bk-sidebar-link bk-is-active" href="#profile">Profile</a>
+      <a class="bk-sidebar-link" href="#security">Security</a>
+      <a class="bk-sidebar-link" href="#notify">Notifications <span class="bk-sidebar-link-badge">3</span></a>
+      <div class="bk-sidebar-section">Workspace</div>
+      <a class="bk-sidebar-link" href="#team">Team</a>
+      <a class="bk-sidebar-link" href="#import">Import</a>
+      <a class="bk-sidebar-link" href="#danger">Danger zone</a>
+    </aside>
+
+    <div class="bk-stack">
+
+      <!-- profile ------------------------------------------------------- -->
+      <section class="bk-card" id="profile">
+        <div class="bk-card-header">
+          <h2 class="bk-card-title">Profile</h2>
+          <p class="bk-card-subtitle">How you appear to everyone else in the workspace.</p>
+        </div>
+        <div class="bk-card-body">
+          <form class="bk-form bk-form-grid" data-bk-validate onsubmit="return false">
+
+            <div class="bk-field">
+              <label class="bk-label bk-label-required" for="s-name">Display name</label>
+              <input class="bk-input" id="s-name" value="Şahan Hasret" required>
+            </div>
+
+            <div class="bk-field">
+              <label class="bk-label" for="s-handle">Handle</label>
+              <div class="bk-input-group">
+                <span class="bk-addon">@</span>
+                <input class="bk-input" id="s-handle" value="nickzsche">
+              </div>
+              <span class="bk-help">Used in mentions and in your public profile URL.</span>
+            </div>
+
+            <div class="bk-field bk-col-span-2">
+              <label class="bk-label" for="s-bio">Bio</label>
+              <textarea class="bk-textarea" id="s-bio" rows="3" data-bk-autosize>Full-stack developer. Writes CSS other people have to maintain.</textarea>
+            </div>
+
+            <div class="bk-field">
+              <label class="bk-label" for="s-role">Role</label>
+              <select class="bk-select" id="s-role">
+                <option>Owner</option><option selected>Maintainer</option>
+                <option>Contributor</option><option>Read only</option>
+              </select>
+            </div>
+
+            <div class="bk-field">
+              <label class="bk-label" for="s-tz">Time zone</label>
+              <select class="bk-select" id="s-tz">
+                <option selected>Europe/Istanbul (UTC+3)</option>
+                <option>Europe/Berlin (UTC+2)</option>
+                <option>UTC</option>
+              </select>
+            </div>
+
+            <div class="bk-field bk-col-span-2">
+              <label class="bk-label" for="s-skills">Skills</label>
+              <!-- Seeded through data-bk-value: the module renders the chips
+                   itself and clears anything it finds inside. -->
+              <div class="bk-tags-input" data-bk-tags data-bk-value="CSS,TypeScript,Design systems">
+                <input class="bk-input bk-input-plain" id="s-skills" placeholder="Add a skill and press Enter" aria-label="Add a skill">
+              </div>
+            </div>
+
+            <div class="bk-field bk-col-span-2">
+              <label class="bk-label" for="s-avatar">Avatar</label>
+              <div class="bk-dropzone" data-bk-dropzone>
+                <span class="bk-dropzone-icon" aria-hidden="true">⇪</span>
+                <p class="bk-dropzone-hint">Drop a square PNG here, or <label class="bk-link" for="s-avatar">browse</label>. Max 2 MB.</p>
+                <input class="bk-file" id="s-avatar" type="file" accept="image/*" data-bk-file-list="#s-avatar-list">
+              </div>
+              <ul class="bk-file-list" id="s-avatar-list"></ul>
+            </div>
+
+          </form>
+        </div>
+      </section>
+
+      <!-- security ------------------------------------------------------ -->
+      <section class="bk-card" id="security">
+        <div class="bk-card-header">
+          <h2 class="bk-card-title">Security</h2>
+          <p class="bk-card-subtitle">Two of these are on by default. Leave them that way.</p>
+        </div>
+        <div class="bk-card-body bk-stack">
+
+          <div class="bk-field">
+            <label class="bk-label" for="s-pw">New password</label>
+            <div class="bk-input-wrap">
+              <input class="bk-input" id="s-pw" type="password" value="hunter2hunter2">
+              <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-password-toggle="#s-pw">Show</button>
+            </div>
+            <span class="bk-help">Twelve characters minimum. A passphrase beats a symbol soup.</span>
+          </div>
+
+          <fieldset class="bk-fieldset">
+            <legend class="bk-label">Confirm with the code we just sent</legend>
+            <div class="bk-otp" data-bk-otp>
+              <input class="bk-input" inputmode="numeric" maxlength="1" value="4" aria-label="Digit 1">
+              <input class="bk-input" inputmode="numeric" maxlength="1" value="0" aria-label="Digit 2">
+              <input class="bk-input" inputmode="numeric" maxlength="1" value="6" aria-label="Digit 3">
+              <span class="bk-otp-sep">–</span>
+              <input class="bk-input" inputmode="numeric" maxlength="1" aria-label="Digit 4">
+              <input class="bk-input" inputmode="numeric" maxlength="1" aria-label="Digit 5">
+              <input class="bk-input" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+            </div>
+          </fieldset>
+
+          <div class="bk-switch-row">
+            <label class="bk-switch-label" for="s-2fa">
+              <input class="bk-switch bk-switch-success" id="s-2fa" type="checkbox" checked>
+              <span><strong>Two-factor authentication</strong><br><span class="bk-subtle">Required for everyone with write access.</span></span>
+            </label>
+          </div>
+          <div class="bk-switch-row">
+            <label class="bk-switch-label" for="s-sessions">
+              <input class="bk-switch" id="s-sessions" type="checkbox" checked>
+              <span><strong>Sign out other sessions on password change</strong><br><span class="bk-subtle">Recommended.</span></span>
+            </label>
+          </div>
+          <div class="bk-switch-row">
+            <label class="bk-switch-label" for="s-beta">
+              <input class="bk-switch" id="s-beta" type="checkbox">
+              <span><strong>Join the beta channel</strong><br><span class="bk-subtle">Ships weekly. Occasionally on fire.</span></span>
+            </label>
+          </div>
+
+          <div class="bk-alert bk-alert-warning">
+            <div class="bk-alert-body">
+              <p class="bk-alert-title">One recovery code left</p>
+              <p class="bk-alert-text">Generate a new set before you use it, or you will be locked out.</p>
+            </div>
+            <div class="bk-alert-actions">
+              <button class="bk-btn bk-btn-sm bk-btn-warning" type="button">Regenerate</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- notifications ------------------------------------------------- -->
+      <section class="bk-card" id="notify">
+        <div class="bk-card-header"><h2 class="bk-card-title">Notifications</h2></div>
+        <div class="bk-card-body bk-stack">
+
+          <fieldset class="bk-fieldset">
+            <legend class="bk-label">How often</legend>
+            <div class="bk-check-group">
+              <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="freq" checked><span class="bk-check-label-text">Immediately</span></label>
+              <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="freq"><span class="bk-check-label-text">A daily digest at 09:00</span></label>
+              <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="freq"><span class="bk-check-label-text">Weekly, on Mondays</span></label>
+              <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="freq"><span class="bk-check-label-text">Never. I will come and look.</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="bk-fieldset">
+            <legend class="bk-label">Plan</legend>
+            <div class="bk-grid bk-cols-3 bk-gap-3">
+              <label class="bk-choice-card">
+                <input class="bk-check bk-check-radio" type="radio" name="plan">
+                <span><span class="bk-choice-card-title">Solo</span><span class="bk-choice-card-desc">One seat, unlimited projects.</span></span>
+              </label>
+              <label class="bk-choice-card">
+                <input class="bk-check bk-check-radio" type="radio" name="plan" checked>
+                <span><span class="bk-choice-card-title">Team</span><span class="bk-choice-card-desc">Up to twenty seats and audit logs.</span></span>
+              </label>
+              <label class="bk-choice-card">
+                <input class="bk-check bk-check-radio" type="radio" name="plan">
+                <span><span class="bk-choice-card-title">Self-hosted</span><span class="bk-choice-card-desc">Your metal, your rules.</span></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="bk-field">
+            <label class="bk-label" for="s-quiet">Quiet hours start</label>
+            <input class="bk-range bk-range-lg" id="s-quiet" type="range" min="18" max="24" value="22" data-bk-output="#s-quiet-out">
+            <output class="bk-help" id="s-quiet-out">22:00</output>
+          </div>
+
+          <div class="bk-field">
+            <label class="bk-label" for="s-seats">Seats</label>
+            <div class="bk-input-group" data-bk-stepper>
+              <button class="bk-btn bk-btn-neutral" type="button" data-bk-step-down aria-label="One fewer">−</button>
+              <input class="bk-input bk-numeric" id="s-seats" type="number" value="12" min="1" max="20">
+              <button class="bk-btn bk-btn-neutral" type="button" data-bk-step-up aria-label="One more">+</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- team ---------------------------------------------------------- -->
+      <section class="bk-card" id="team">
+        <div class="bk-card-header">
+          <h2 class="bk-card-title">Team</h2>
+          <div class="bk-card-actions"><button class="bk-btn bk-btn-sm bk-btn-primary" type="button">Invite</button></div>
+        </div>
+        <ul class="bk-list-group bk-list-group-flush">
+          <li class="bk-list-item">
+            <span class="bk-avatar bk-avatar-sm bk-avatar-status bk-status-online">ŞH</span>
+            <span class="bk-list-item-body"><span class="bk-list-item-title">Şahan Hasret</span><span class="bk-list-item-text">Owner · joined 2019</span></span>
+            <span class="bk-list-item-action"><span class="bk-badge bk-badge-primary">Owner</span></span>
+          </li>
+          <li class="bk-list-item">
+            <span class="bk-avatar bk-avatar-sm bk-avatar-status bk-status-away">MK</span>
+            <span class="bk-list-item-body"><span class="bk-list-item-title">Merve Kaya</span><span class="bk-list-item-text">Maintainer · joined 2021</span></span>
+            <span class="bk-list-item-action"><button class="bk-btn bk-btn-xs bk-btn-ghost" type="button">Manage</button></span>
+          </li>
+          <li class="bk-list-item">
+            <span class="bk-avatar bk-avatar-sm bk-avatar-status bk-status-offline">EY</span>
+            <span class="bk-list-item-body"><span class="bk-list-item-title">Emre Yıldız</span><span class="bk-list-item-text">Invited · has not accepted</span></span>
+            <span class="bk-list-item-action"><button class="bk-btn bk-btn-xs bk-btn-ghost" type="button">Resend</button></span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- import -------------------------------------------------------- -->
+      <section class="bk-card" id="import">
+        <div class="bk-card-header"><h2 class="bk-card-title">Import</h2></div>
+        <div class="bk-card-body bk-stack">
+          <ol class="bk-steps">
+            <li class="bk-step bk-is-done"><span class="bk-step-text"><span class="bk-step-title">Connect</span>Source authorised</span></li>
+            <li class="bk-step bk-is-active"><span class="bk-step-text"><span class="bk-step-title">Map fields</span>3 of 11 unmatched</span></li>
+            <li class="bk-step"><span class="bk-step-text"><span class="bk-step-title">Review</span>Nothing writes until you confirm</span></li>
+          </ol>
+          <div class="bk-progress bk-progress-lg bk-progress-striped bk-progress-animated">
+            <div class="bk-progress-bar" style="inline-size: 38%"></div>
+          </div>
+          <p class="bk-help">1,204 of 3,160 records mapped.</p>
+        </div>
+      </section>
+
+      <!-- danger -------------------------------------------------------- -->
+      <section class="bk-card bk-card-danger" id="danger">
+        <div class="bk-card-header"><h2 class="bk-card-title">Danger zone</h2></div>
+        <div class="bk-card-body">
+          <div class="bk-split">
+            <div>
+              <p><strong>Delete this workspace</strong></p>
+              <p class="bk-subtle">Removes every project, export and audit log. This cannot be undone.</p>
+            </div>
+            <button class="bk-btn bk-btn-danger" type="button" data-bk-open="#confirm-delete">Delete workspace</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<div class="bk-modal bk-modal-sm" id="confirm-delete" role="dialog" aria-modal="true" aria-labelledby="cd-t" hidden>
+  <div class="bk-modal-inner">
+    <div class="bk-modal-body">
+      <div class="bk-modal-icon bk-modal-icon-danger" aria-hidden="true">!</div>
+      <h2 class="bk-modal-title" id="cd-t">Delete the workspace?</h2>
+      <p class="bk-modal-desc">Type the workspace name to confirm. Nine people will lose access immediately.</p>
+      <input class="bk-input" placeholder="vira-console" aria-label="Workspace name">
+    </div>
+    <div class="bk-modal-footer">
+      <button class="bk-btn bk-btn-ghost" type="button" data-bk-close>Cancel</button>
+      <button class="bk-btn bk-btn-danger" type="button" data-bk-close>I understand, delete it</button>
+    </div>
+  </div>
+</div>
+
+<footer class="bk-footer">
+  <div class="bk-footer-bottom">
+    <span>Every control on this page is a Bukalemun component. Change the skin and none of them break.</span>
+    <a class="bk-link" href="./index.html">← Back to the gallery</a>
+  </div>
+</footer>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

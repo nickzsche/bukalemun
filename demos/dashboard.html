@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="terminal" data-bk-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Dashboard demo</title>
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/terminal.min.css" data-bk-skin="terminal">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  .demo-grid { display: grid; gap: var(--bk-space-5); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .demo-cols { display: grid; gap: var(--bk-space-5); grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  @media (max-width: 60rem) { .demo-cols { grid-template-columns: minmax(0, 1fr); } }
+  .demo-topbar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--bk-space-3); justify-content: space-between; margin-block-end: var(--bk-space-5); }
+</style>
+</head>
+<body>
+
+<div class="bk-sidebar-layout">
+
+  <aside class="bk-sidebar bk-sidebar-sticky">
+    <div class="bk-sidebar-title">Opsdeck</div>
+    <div class="bk-sidebar-section">Overview</div>
+    <a class="bk-sidebar-link bk-is-active" href="#">Orders <span class="bk-sidebar-link-badge bk-badge bk-badge-primary">24</span></a>
+    <a class="bk-sidebar-link" href="#">Customers</a>
+    <a class="bk-sidebar-link" href="#">Refunds</a>
+    <div class="bk-sidebar-section">Manage</div>
+    <a class="bk-sidebar-link" href="#">Products</a>
+    <a class="bk-sidebar-link" href="#">Payouts</a>
+    <a class="bk-sidebar-link" href="#">Settings</a>
+  </aside>
+
+  <main style="padding: var(--bk-space-5);">
+
+    <div class="demo-topbar">
+      <div>
+        <h1 style="margin: 0; font-size: var(--bk-text-2xl);">Orders</h1>
+        <p style="margin: 0; color: var(--bk-text-muted); font-size: var(--bk-text-sm);">Tuesday, 28 August — all systems nominal</p>
+      </div>
+      <div style="display: flex; gap: var(--bk-space-3); align-items: center;">
+        <input class="bk-input" type="search" placeholder="Search orders…" style="inline-size: 14rem;">
+        <button class="bk-btn bk-btn-primary" type="button"
+          onclick="bk.toast({ title: 'Report queued', message: 'July orders, 1,204 rows', variant: 'success' })">Run report</button>
+      </div>
+    </div>
+
+    <div class="bk-stat-grid" style="margin-block-end: var(--bk-space-5);">
+      <div class="bk-stat">
+        <span class="bk-stat-label">Revenue today</span>
+        <span class="bk-stat-row"><span class="bk-stat-value">18,240</span><span class="bk-stat-unit">TRY</span></span>
+        <span class="bk-stat-delta bk-stat-up">+12.4% vs yesterday</span>
+      </div>
+      <div class="bk-stat">
+        <span class="bk-stat-label">Orders</span>
+        <span class="bk-stat-row"><span class="bk-stat-value">124</span></span>
+        <span class="bk-stat-delta bk-stat-up">+6 this hour</span>
+      </div>
+      <div class="bk-stat">
+        <span class="bk-stat-label">Refund rate</span>
+        <span class="bk-stat-row"><span class="bk-stat-value">1.2</span><span class="bk-stat-unit">%</span></span>
+        <span class="bk-stat-delta bk-stat-down">-0.3 pts</span>
+      </div>
+      <div class="bk-stat">
+        <span class="bk-stat-label">Avg. basket</span>
+        <span class="bk-stat-row"><span class="bk-stat-value">147</span><span class="bk-stat-unit">TRY</span></span>
+        <span class="bk-stat-delta bk-stat-flat">holding steady</span>
+      </div>
+    </div>
+
+    <div class="demo-cols">
+      <div class="bk-card">
+        <div class="bk-card-header bk-table-toolbar">
+          <strong>Recent orders</strong>
+          <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button">Export CSV</button>
+        </div>
+        <div class="bk-table-wrap">
+          <table class="bk-table bk-table-hover bk-table-striped">
+            <thead>
+              <tr>
+                <th data-bk-sort>Order</th>
+                <th data-bk-sort>Customer</th>
+                <th>Status</th>
+                <th data-bk-sort style="text-align: end;">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>#11042</td><td>E. Yilmaz</td><td><span class="bk-status bk-status-ok"></span> Paid</td><td class="bk-table-numeric" style="text-align: end;">420,00</td></tr>
+              <tr><td>#11041</td><td>D. Kaya</td><td><span class="bk-status bk-status-warn"></span> Pending</td><td class="bk-table-numeric" style="text-align: end;">89,90</td></tr>
+              <tr><td>#11040</td><td>S. Demir</td><td><span class="bk-status bk-status-ok"></span> Paid</td><td class="bk-table-numeric" style="text-align: end;">1.250,00</td></tr>
+              <tr><td>#11039</td><td>A. Celik</td><td><span class="bk-status bk-status-err"></span> Failed</td><td class="bk-table-numeric" style="text-align: end;">310,50</td></tr>
+              <tr><td>#11038</td><td>M. Aydin</td><td><span class="bk-status bk-status-ok"></span> Paid</td><td class="bk-table-numeric" style="text-align: end;">76,00</td></tr>
+              <tr><td>#11037</td><td>P. Ozkan</td><td><span class="bk-status bk-status-warn"></span> Pending</td><td class="bk-table-numeric" style="text-align: end;">640,00</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bk-card-footer bk-pagination" style="justify-content: space-between; align-items: center;">
+          <span class="bk-pagination-info">1–6 of 1,204</span>
+          <span>
+            <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" aria-label="Previous page">&#8249;</button>
+            <button class="bk-btn bk-btn-sm bk-btn-ghost bk-is-active" type="button">1</button>
+            <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button">2</button>
+            <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button">3</button>
+            <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" aria-label="Next page">&#8250;</button>
+          </span>
+        </div>
+      </div>
+
+      <div style="display: grid; gap: var(--bk-space-5); align-content: start;">
+        <div class="bk-card">
+          <div class="bk-card-header"><strong>Checkout throughput</strong></div>
+          <div class="bk-card-body" style="display: grid; gap: var(--bk-space-4);">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: var(--bk-text-sm); margin-block-end: var(--bk-space-1);"><span>Cart created</span><span>100%</span></div>
+              <div class="bk-progress"><div class="bk-progress-bar" style="inline-size: 100%;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: var(--bk-text-sm); margin-block-end: var(--bk-space-1);"><span>Payment started</span><span>68%</span></div>
+              <div class="bk-progress bk-progress-striped"><div class="bk-progress-bar" style="inline-size: 68%;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: var(--bk-text-sm); margin-block-end: var(--bk-space-1);"><span>Paid</span><span>54%</span></div>
+              <div class="bk-progress bk-progress-success"><div class="bk-progress-bar" style="inline-size: 54%;"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="bk-card">
+          <div class="bk-card-header"><strong>Activity</strong></div>
+          <div class="bk-card-body" style="padding-block-start: 0;">
+            <div class="bk-timeline">
+              <div class="bk-timeline-item">
+                <span class="bk-timeline-time">09:41</span>
+                <div><div class="bk-timeline-title">Payout batch sent</div><div class="bk-timeline-text">42,300 TRY to 3 accounts</div></div>
+              </div>
+              <div class="bk-timeline-item">
+                <span class="bk-timeline-time">09:12</span>
+                <div><div class="bk-timeline-title">Stock alert cleared</div><div class="bk-timeline-text">Desk lamp back above threshold</div></div>
+              </div>
+              <div class="bk-timeline-item">
+                <span class="bk-timeline-time">08:55</span>
+                <div><div class="bk-timeline-title">Payment retry succeeded</div><div class="bk-timeline-text">Order #11034 after 2 attempts</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

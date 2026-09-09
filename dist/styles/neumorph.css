@@ -1,0 +1,343 @@
+/*! Bukalemun 1.6.0 — skin: neumorph
+ *  One framework, 50 skins. Zero dependencies.
+ *  https://bukalemun.zerosixlab.com/
+ *  Released under the MIT licence.
+ */
+/* =============================================================================
+   SKIN — neumorph · Soft UI / Neumorphism
+   One material, lit from the top-left. Nothing has a border; everything is
+   extruded or pressed into the same slab of plastic.
+   ========================================================================== */
+
+[data-bk-style="neumorph"] {
+  --bk-font-sans: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, sans-serif;
+  --bk-heading-weight: 800;
+  --bk-heading-tracking: -0.01em;
+
+  --_light: rgb(255 255 255 / 0.9);
+  --_dark: rgb(163 177 198 / 0.6);
+
+  --bk-bg: #e0e5ec;
+  --bk-surface: #e0e5ec;
+  --bk-surface-2: #e0e5ec;
+  --bk-surface-3: #d6dbe3;
+  --bk-surface-inverted: #2f3542;
+
+  --bk-text: #3d4759;
+  --bk-text-muted: #6b7488;
+  --bk-text-subtle: #98a1b3;
+  --bk-text-inverted: #eef1f6;
+
+  --bk-border: transparent;
+  --bk-border-muted: rgb(163 177 198 / 0.25);
+  --bk-border-strong: transparent;
+  --bk-border-width: 0px;
+
+  --bk-primary: #6d5dfc;
+  --bk-primary-hover: #5f50f0;
+  --bk-primary-active: #5243e0;
+  --bk-primary-soft: #dfe0fb;
+  --bk-primary-border: transparent;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #2ec5a6;
+  --bk-secondary-soft: #d5f3ec;
+  --bk-secondary-border: transparent;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #35b97f;
+  --bk-success-soft: #d6f0e4;
+  --bk-success-border: transparent;
+  --bk-warning: #e8a33d;
+  --bk-warning-soft: #f7ead6;
+  --bk-warning-border: transparent;
+  --bk-danger: #ef5f6b;
+  --bk-danger-soft: #f8dde0;
+  --bk-danger-border: transparent;
+  --bk-info: #4a90e2;
+  --bk-info-soft: #dbe8f7;
+  --bk-info-border: transparent;
+  --bk-neutral: #7b869c;
+  --bk-neutral-soft: #e0e5ec;
+  --bk-neutral-border: transparent;
+  --bk-on-neutral: #ffffff;
+
+  --bk-radius-scale: 2.2;
+  --bk-radius-field: var(--bk-radius-xl);
+  --bk-radius-card: var(--bk-radius-2xl);
+  --bk-radius-overlay: var(--bk-radius-3xl);
+
+  --bk-shadow-none: 0 0 #0000;
+  --bk-shadow-xs: 2px 2px 4px var(--_dark), -2px -2px 4px var(--_light);
+  --bk-shadow-sm: 4px 4px 8px var(--_dark), -4px -4px 8px var(--_light);
+  --bk-shadow-md: 6px 6px 12px var(--_dark), -6px -6px 12px var(--_light);
+  --bk-shadow-lg: 9px 9px 18px var(--_dark), -9px -9px 18px var(--_light);
+  --bk-shadow-xl: 14px 14px 28px var(--_dark), -14px -14px 28px var(--_light);
+  --bk-shadow-2xl: 20px 20px 40px var(--_dark), -20px -20px 40px var(--_light);
+  --bk-shadow-inner: inset 4px 4px 8px var(--_dark), inset -4px -4px 8px var(--_light);
+
+  --bk-ring: var(--bk-primary);
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 3px;
+
+  --bk-btn-shadow: var(--bk-shadow-sm);
+  --bk-btn-shadow-hover: var(--bk-shadow-md);
+  --bk-btn-shadow-active: var(--bk-shadow-inner);
+  --bk-btn-border-width: 0px;
+  --bk-btn-weight: 700;
+  --bk-press-transform: scale(0.985);
+
+  --bk-field-bg: var(--bk-bg);
+  --bk-field-bg-hover: var(--bk-bg);
+  --bk-field-bg-disabled: var(--bk-bg);
+  --bk-field-border: transparent;
+  --bk-field-border-hover: transparent;
+  --bk-field-border-width: 0px;
+  --bk-field-shadow: var(--bk-shadow-inner);
+  --bk-field-shadow-focus: inset 5px 5px 10px var(--_dark), inset -5px -5px 10px var(--_light);
+  --bk-field-placeholder: #9aa3b5;
+
+  --bk-card-bg: var(--bk-bg);
+  --bk-card-border-width: 0px;
+  --bk-card-shadow: var(--bk-shadow-md);
+  --bk-card-shadow-hover: var(--bk-shadow-lg);
+  --bk-overlay-surface: var(--bk-bg);
+  --bk-overlay-shadow: var(--bk-shadow-2xl);
+  --bk-overlay-border: transparent;
+  --bk-overlay-bg: rgb(163 177 198 / 0.4);
+  --bk-code-bg: var(--bk-bg);
+  --bk-code-border: transparent;
+  --bk-divider-color: rgb(163 177 198 / 0.4);
+  --bk-tooltip-bg: #3d4759;
+  --bk-scrollbar-thumb: #c3cad6;
+  --bk-selection-bg: rgb(109 93 252 / 0.25);
+}
+
+[data-bk-style="neumorph"][data-bk-theme="dark"] {
+  --_light: rgb(70 80 100 / 0.55);
+  --_dark: rgb(9 12 18 / 0.75);
+  --bk-bg: #262b33;
+  --bk-surface: #262b33;
+  --bk-surface-2: #262b33;
+  --bk-surface-3: #2d333c;
+  --bk-surface-inverted: #e0e5ec;
+  --bk-text-inverted: #3d4759;
+  --bk-text: #d5dbe6;
+  --bk-text-muted: #98a1b3;
+  --bk-text-subtle: #6d7688;
+  --bk-primary: #8b7dff;
+  --bk-primary-soft: #2e3145;
+  --bk-overlay-bg: rgb(0 0 0 / 0.6);
+  --bk-scrollbar-thumb: #3a414d;
+  --bk-tooltip-bg: #11141a;
+  --bk-tooltip-fg: #d5dbe6;
+}
+
+/* Solid-coloured things keep the extrusion but tint it. */
+[data-bk-style="neumorph"] .bk-btn-solid,
+[data-bk-style="neumorph"] .bk-btn:not([class*="bk-btn-"]) { text-shadow: 0 1px 1px rgb(0 0 0 / 0.15); }
+[data-bk-style="neumorph"] .bk-badge,
+[data-bk-style="neumorph"] .bk-chip { box-shadow: var(--bk-shadow-xs); }
+[data-bk-style="neumorph"] .bk-progress { box-shadow: var(--bk-shadow-inner); background: var(--bk-bg); }
+[data-bk-style="neumorph"] .bk-progress-bar { box-shadow: var(--bk-shadow-xs); }
+[data-bk-style="neumorph"] .bk-switch { box-shadow: var(--bk-shadow-inner); background: var(--bk-bg); }
+[data-bk-style="neumorph"] .bk-switch::before { background: var(--bk-bg); box-shadow: var(--bk-shadow-xs); }
+[data-bk-style="neumorph"] .bk-switch:checked { background: var(--bk-primary-soft); }
+[data-bk-style="neumorph"] .bk-switch:checked::before { background: var(--bk-primary); }
+[data-bk-style="neumorph"] .bk-check { box-shadow: var(--bk-shadow-inner); background: var(--bk-bg); }
+[data-bk-style="neumorph"] .bk-check:checked { box-shadow: var(--bk-shadow-xs); }
+[data-bk-style="neumorph"] .bk-tab[aria-selected="true"] { box-shadow: var(--bk-shadow-sm); border-radius: var(--bk-radius-lg); border-block-end-color: transparent; }
+[data-bk-style="neumorph"] .bk-tablist { border-block-end: 0; }
+[data-bk-style="neumorph"] .bk-table-wrap { box-shadow: var(--bk-shadow-md); }
+[data-bk-style="neumorph"] .bk-avatar { box-shadow: var(--bk-shadow-xs); }
+[data-bk-style="neumorph"] .bk-segmented { box-shadow: var(--bk-shadow-inner); background: var(--bk-bg); }
+[data-bk-style="neumorph"] .bk-segmented > input:checked + label { box-shadow: var(--bk-shadow-xs); background: var(--bk-bg); }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="neumorph"] {
+  --bk-danger: #ef5f6b;
+  --bk-danger-active: #f17580;
+  --bk-danger-hover: #f06c77;
+  --bk-danger-on-soft: #c51422;
+  --bk-danger-soft: #f8dde0;
+  --bk-danger-text: #c51422;
+  --bk-field-placeholder: #748099;
+  --bk-info: #4a90e2;
+  --bk-info-active: #63a0e6;
+  --bk-info-hover: #5899e4;
+  --bk-info-on-soft: #1d65b8;
+  --bk-info-soft: #dbe8f7;
+  --bk-info-text: #1d62b3;
+  --bk-neutral: #7b869c;
+  --bk-neutral-active: #8d97aa;
+  --bk-neutral-hover: #8690a4;
+  --bk-neutral-on-soft: #596377;
+  --bk-neutral-soft: #e0e5ec;
+  --bk-neutral-text: #596377;
+  --bk-on-danger: #262626;
+  --bk-on-info: #242424;
+  --bk-on-neutral: #191919;
+  --bk-on-primary: #ffffff;
+  --bk-on-secondary: #404040;
+  --bk-on-success: #383838;
+  --bk-on-warning: #404040;
+  --bk-primary: #6d5dfc;
+  --bk-primary-active: #5243e0;
+  --bk-primary-hover: #5f50f0;
+  --bk-primary-on-soft: #4d3afb;
+  --bk-primary-soft: #dfe0fb;
+  --bk-primary-text: #523ffb;
+  --bk-secondary: #2ec5a6;
+  --bk-secondary-active: #4bcdb2;
+  --bk-secondary-hover: #3fcaad;
+  --bk-secondary-on-soft: #1b7260;
+  --bk-secondary-soft: #d5f3ec;
+  --bk-secondary-text: #1a6e5d;
+  --bk-success: #35b97f;
+  --bk-success-active: #51c391;
+  --bk-success-hover: #45bf89;
+  --bk-success-on-soft: #21724e;
+  --bk-success-soft: #d6f0e4;
+  --bk-success-text: #1f6e4b;
+  --bk-text-muted: #555c6b;
+  --bk-text-subtle: #6c7992;
+  --bk-warning: #e8a33d;
+  --bk-warning-active: #ebb058;
+  --bk-warning-hover: #eaaa4d;
+  --bk-warning-on-soft: #8f5c11;
+  --bk-warning-soft: #f7ead6;
+  --bk-warning-text: #865710;
+}
+[data-bk-style="neumorph"][data-bk-theme="dark"] {
+  --bk-danger: #ef5f6b;
+  --bk-danger-active: #f17580;
+  --bk-danger-hover: #df5863;
+  --bk-danger-on-soft: #c51422;
+  --bk-danger-soft: #f8dde0;
+  --bk-danger-text: #f06874;
+  --bk-field-placeholder: #9aa3b5;
+  --bk-info: #4a90e2;
+  --bk-info-active: #63a0e6;
+  --bk-info-hover: #4486d2;
+  --bk-info-on-soft: #1d65b8;
+  --bk-info-soft: #dbe8f7;
+  --bk-info-text: #5798e4;
+  --bk-neutral: #7b869c;
+  --bk-neutral-active: #8d97aa;
+  --bk-neutral-hover: #8690a4;
+  --bk-neutral-on-soft: #596377;
+  --bk-neutral-soft: #e0e5ec;
+  --bk-neutral-text: #8c96a9;
+  --bk-on-danger: #22070a;
+  --bk-on-info: #03121f;
+  --bk-on-neutral: #191919;
+  --bk-on-primary: #242424;
+  --bk-on-secondary: #404040;
+  --bk-on-success: #04180d;
+  --bk-on-warning: #1f1503;
+  --bk-primary: #8b7dff;
+  --bk-primary-active: #9b8fff;
+  --bk-primary-hover: #9487ff;
+  --bk-primary-on-soft: #9d91ff;
+  --bk-primary-soft: #2e3145;
+  --bk-primary-text: #9487ff;
+  --bk-secondary: #2ec5a6;
+  --bk-secondary-active: #4bcdb2;
+  --bk-secondary-hover: #3fcaad;
+  --bk-secondary-on-soft: #1b7260;
+  --bk-secondary-soft: #d5f3ec;
+  --bk-secondary-text: #2ec5a6;
+  --bk-success: #35b97f;
+  --bk-success-active: #2ea26f;
+  --bk-success-hover: #31ac76;
+  --bk-success-on-soft: #21724e;
+  --bk-success-soft: #d6f0e4;
+  --bk-success-text: #35b97f;
+  --bk-text-muted: #98a1b3;
+  --bk-text-subtle: #778092;
+  --bk-warning: #e8a33d;
+  --bk-warning-active: #cc8f35;
+  --bk-warning-hover: #d89838;
+  --bk-warning-on-soft: #8f5c11;
+  --bk-warning-soft: #f7ead6;
+  --bk-warning-text: #e8a33d;
+}
+/* ==== end derived contrast tokens ==== */
+
+
+/* auto-mode mirror for "neumorph" — generated by scripts/build.mjs */
+@media (prefers-color-scheme: dark) {
+  [data-bk-style="neumorph"][data-bk-theme="auto"] {
+  --_light: rgb(70 80 100 / 0.55);
+  --_dark: rgb(9 12 18 / 0.75);
+  --bk-bg: #262b33;
+  --bk-surface: #262b33;
+  --bk-surface-2: #262b33;
+  --bk-surface-3: #2d333c;
+  --bk-surface-inverted: #e0e5ec;
+  --bk-text-inverted: #3d4759;
+  --bk-text: #d5dbe6;
+  --bk-text-muted: #98a1b3;
+  --bk-text-subtle: #6d7688;
+  --bk-primary: #8b7dff;
+  --bk-primary-soft: #2e3145;
+  --bk-overlay-bg: rgb(0 0 0 / 0.6);
+  --bk-scrollbar-thumb: #3a414d;
+  --bk-tooltip-bg: #11141a;
+  --bk-tooltip-fg: #d5dbe6;
+
+
+  --bk-danger: #ef5f6b;
+  --bk-danger-active: #f17580;
+  --bk-danger-hover: #df5863;
+  --bk-danger-on-soft: #c51422;
+  --bk-danger-soft: #f8dde0;
+  --bk-danger-text: #f06874;
+  --bk-field-placeholder: #9aa3b5;
+  --bk-info: #4a90e2;
+  --bk-info-active: #63a0e6;
+  --bk-info-hover: #4486d2;
+  --bk-info-on-soft: #1d65b8;
+  --bk-info-soft: #dbe8f7;
+  --bk-info-text: #5798e4;
+  --bk-neutral: #7b869c;
+  --bk-neutral-active: #8d97aa;
+  --bk-neutral-hover: #8690a4;
+  --bk-neutral-on-soft: #596377;
+  --bk-neutral-soft: #e0e5ec;
+  --bk-neutral-text: #8c96a9;
+  --bk-on-danger: #22070a;
+  --bk-on-info: #03121f;
+  --bk-on-neutral: #191919;
+  --bk-on-primary: #242424;
+  --bk-on-secondary: #404040;
+  --bk-on-success: #04180d;
+  --bk-on-warning: #1f1503;
+  --bk-primary: #8b7dff;
+  --bk-primary-active: #9b8fff;
+  --bk-primary-hover: #9487ff;
+  --bk-primary-on-soft: #9d91ff;
+  --bk-primary-soft: #2e3145;
+  --bk-primary-text: #9487ff;
+  --bk-secondary: #2ec5a6;
+  --bk-secondary-active: #4bcdb2;
+  --bk-secondary-hover: #3fcaad;
+  --bk-secondary-on-soft: #1b7260;
+  --bk-secondary-soft: #d5f3ec;
+  --bk-secondary-text: #2ec5a6;
+  --bk-success: #35b97f;
+  --bk-success-active: #2ea26f;
+  --bk-success-hover: #31ac76;
+  --bk-success-on-soft: #21724e;
+  --bk-success-soft: #d6f0e4;
+  --bk-success-text: #35b97f;
+  --bk-text-muted: #98a1b3;
+  --bk-text-subtle: #778092;
+  --bk-warning: #e8a33d;
+  --bk-warning-active: #cc8f35;
+  --bk-warning-hover: #d89838;
+  --bk-warning-on-soft: #8f5c11;
+  --bk-warning-soft: #f7ead6;
+  --bk-warning-text: #e8a33d;
+}
+}

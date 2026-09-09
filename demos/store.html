@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="clay" data-bk-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Store demo</title>
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/clay.min.css" data-bk-skin="clay">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  .demo-grid { display: grid; gap: var(--bk-space-5); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .demo-tile { display: grid; place-items: center; inline-size: 100%; block-size: 12rem; border-radius: var(--bk-radius-md); background: var(--bk-surface-3); color: var(--bk-text-subtle); font-size: var(--bk-text-sm); }
+  .demo-qty { max-inline-size: 6rem; }
+</style>
+</head>
+<body>
+
+<nav class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="#">Attic &amp; Co.</a>
+  <div class="bk-navbar-nav">
+    <a class="bk-nav-link" href="#">Shop</a>
+    <a class="bk-nav-link bk-is-active" href="#">Desk lamps</a>
+    <a class="bk-nav-link" href="#">Journal</a>
+  </div>
+  <div class="bk-navbar-end">
+    <button class="bk-btn bk-btn-outline bk-btn-sm" type="button">
+      Cart <span class="bk-badge bk-badge-primary bk-badge-count">3</span>
+    </button>
+  </div>
+</nav>
+
+<main class="bk-container" style="padding-block: var(--bk-space-5);">
+
+  <nav class="bk-breadcrumb" aria-label="Breadcrumb">
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <span>Desk lamps</span>
+  </nav>
+
+  <div class="demo-grid" style="grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); align-items: start; margin-block: var(--bk-space-5);">
+
+    <div style="display: grid; gap: var(--bk-space-3);">
+      <div class="bk-carousel" data-bk-carousel>
+        <div class="bk-carousel-track">
+          <div class="bk-carousel-slide"><div class="demo-tile" style="block-size: 20rem;">Mubectl — front</div></div>
+          <div class="bk-carousel-slide"><div class="demo-tile" style="block-size: 20rem;">Mubectl — detail</div></div>
+          <div class="bk-carousel-slide"><div class="demo-tile" style="block-size: 20rem;">Mubectl — in situ</div></div>
+        </div>
+      </div>
+      <div class="demo-grid" style="grid-template-columns: repeat(3, 1fr); gap: var(--bk-space-3);">
+        <div class="demo-tile" style="block-size: 5rem;">front</div>
+        <div class="demo-tile" style="block-size: 5rem;">detail</div>
+        <div class="demo-tile" style="block-size: 5rem;">in situ</div>
+      </div>
+    </div>
+
+    <div style="display: grid; gap: var(--bk-space-4); align-content: start;">
+      <div style="display: flex; gap: var(--bk-space-2); align-items: center;">
+        <span class="bk-badge bk-badge-success">In stock</span>
+        <span class="bk-badge">Ships in 2 days</span>
+      </div>
+      <div>
+        <h1 style="margin: 0; font-size: var(--bk-text-3xl);">Mubectl Desk Lamp</h1>
+        <p style="margin: var(--bk-space-1) 0 0; color: var(--bk-text-muted); font-size: var(--bk-text-sm);">
+          <span class="bk-badge bk-badge-warning">4.8</span> 214 reviews · 96% would buy again
+        </p>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: var(--bk-space-3);">
+        <span class="bk-stat-value">42,00</span>
+        <del style="color: var(--bk-text-subtle);">56,00</del>
+        <span class="bk-badge bk-badge-danger">-25%</span>
+      </div>
+      <p class="bk-card-text">A focused pool of warm light with a stem that stays exactly where you
+      bend it. Weighted base, fabric cable, and a switch that clicks like it means it.</p>
+
+      <fieldset style="border: 0; padding: 0; margin: 0;">
+        <legend class="bk-label">Colour</legend>
+        <div class="demo-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--bk-space-3);">
+          <label class="bk-choice-card"><input class="bk-check bk-check-radio" type="radio" name="colour" checked><span class="bk-choice-card-title">Sand</span></label>
+          <label class="bk-choice-card"><input class="bk-check bk-check-radio" type="radio" name="colour"><span class="bk-choice-card-title">Ink</span></label>
+          <label class="bk-choice-card"><input class="bk-check bk-check-radio" type="radio" name="colour"><span class="bk-choice-card-title">Clay</span></label>
+        </div>
+      </fieldset>
+
+      <div>
+        <span class="bk-label">Quantity</span>
+        <div style="display: flex; gap: var(--bk-space-3); align-items: center; margin-block-start: var(--bk-space-2);">
+          <input class="bk-input demo-qty" type="number" value="1" min="1" max="9">
+          <button class="bk-btn bk-btn-primary" type="button"
+            onclick="bk.toast({ title: 'Added to cart', message: 'Mubectl Desk Lamp x1', variant: 'success' })">Add to cart</button>
+          <button class="bk-btn bk-btn-ghost" type="button"
+            onclick="bk.toast({ title: 'One step closer', message: 'Checkout opens in the full shop.', variant: 'info' })">Buy now</button>
+        </div>
+      </div>
+
+      <ul class="bk-list-group" style="margin-block-start: var(--bk-space-2);">
+        <li class="bk-list-item"><span class="bk-list-item-body">Free shipping over 200,00</span></li>
+        <li class="bk-list-item"><span class="bk-list-item-body">2-year warranty, no small print</span></li>
+        <li class="bk-list-item"><span class="bk-list-item-body">30-day returns, we pay the label</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="bk-tabs" data-bk-tabs style="margin-block: var(--bk-space-8);">
+    <div class="bk-tablist bk-tablist-boxed" role="tablist">
+      <button class="bk-tab bk-is-active" type="button" data-bk-panel="#tab-desc">Description</button>
+      <button class="bk-tab" type="button" data-bk-panel="#tab-specs">Specs</button>
+      <button class="bk-tab" type="button" data-bk-panel="#tab-reviews">Reviews</button>
+    </div>
+
+    <div id="tab-desc" class="bk-tabpanel" style="padding-block: var(--bk-space-4);">
+      <p class="bk-card-text">The Mubectl started as a workshop favour: a lamp that could survive a
+      maker space. The joint is a friction clutch, not a spring, so it holds its angle for years.
+      The diffuser spreads 2700K light wide enough to kill glare on screens but tight enough to
+      read a paperback by.</p>
+    </div>
+    <div id="tab-specs" class="bk-tabpanel" hidden style="padding-block: var(--bk-space-4);">
+      <table class="bk-table bk-table-compact bk-table-borderless">
+        <tbody>
+          <tr><td>Light</td><td>2700K, 480 lm, CRI 92</td></tr>
+          <tr><td>Height</td><td>38–54 cm, friction joint</td></tr>
+          <tr><td>Cable</td><td>1.8 m braided fabric</td></tr>
+          <tr><td>Base</td><td>1.4 kg weighted steel</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="tab-reviews" class="bk-tabpanel" hidden style="padding-block: var(--bk-space-4); display: grid; gap: var(--bk-space-4);">
+      <figure class="bk-testimonial bk-testimonial-quiet">
+        <blockquote class="bk-testimonial-quote">Bought one for my desk, then two more for the studio.
+        The switch click alone is worth the money.</blockquote>
+        <figcaption class="bk-testimonial-author">
+          <span class="bk-avatar bk-avatar-primary">SB</span>
+          <span class="bk-testimonial-meta">
+            <span class="bk-testimonial-name">Selin B.</span>
+            <span class="bk-testimonial-role">Verified buyer</span>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="bk-testimonial bk-testimonial-quiet">
+        <blockquote class="bk-testimonial-quote">Held its angle through two house moves and one cat.
+        The cat is fine, by the way.</blockquote>
+        <figcaption class="bk-testimonial-author">
+          <span class="bk-avatar">JT</span>
+          <span class="bk-testimonial-meta">
+            <span class="bk-testimonial-name">Jonas T.</span>
+            <span class="bk-testimonial-role">Verified buyer</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <h2>You may also break these</h2>
+  <div class="demo-grid" style="margin-block-start: var(--bk-space-5);">
+    <div class="bk-card">
+      <div class="demo-tile" style="border-radius: 0;">Clip lamp</div>
+      <div class="bk-card-body">
+        <h3 class="bk-card-title">Clampmate</h3>
+        <p class="bk-card-text"><strong>29,00</strong> · 12 reviews</p>
+        <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button">View</button>
+      </div>
+    </div>
+    <div class="bk-card">
+      <div class="demo-tile" style="border-radius: 0;">Floor lamp</div>
+      <div class="bk-card-body">
+        <h3 class="bk-card-title">Longstem</h3>
+        <p class="bk-card-text"><strong>74,00</strong> · 31 reviews</p>
+        <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button">View</button>
+      </div>
+    </div>
+    <div class="bk-card">
+      <div class="demo-tile" style="border-radius: 0;">Portable</div>
+      <div class="bk-card-body">
+        <h3 class="bk-card-title">Pocketglow</h3>
+        <p class="bk-card-text"><strong>18,00</strong> · 57 reviews</p>
+        <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button">View</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="bk-footer">
+  <div class="bk-footer-bottom">Attic &amp; Co. — demo shop, built entirely with Bukalemun.</div>
+</footer>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

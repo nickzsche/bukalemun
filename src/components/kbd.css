@@ -1,0 +1,48 @@
+/* =============================================================================
+   BUKALEMUN — components/kbd.css
+   Keyboard key caps, shortcut hints and key combinations.
+   ========================================================================== */
+
+.bk-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bk-space-1);
+  min-inline-size: 1.75em;
+  padding: 0.15em 0.5em;
+  font-family: var(--bk-font-mono);
+  font-size: 0.8em;
+  font-weight: var(--bk-weight-medium);
+  line-height: var(--bk-leading-none);
+  color: var(--bk-code-fg);
+  background: var(--bk-code-bg);
+  border: var(--bk-border-width) var(--bk-border-style) var(--bk-code-border);
+  border-bottom-width: calc(var(--bk-border-width) + 1px);
+  border-radius: var(--bk-radius-sm);
+  vertical-align: middle;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.bk-kbd-sm { font-size: 0.7em; }
+.bk-kbd-lg { font-size: 1em; padding: 0.25em 0.65em; }
+
+.bk-kbd-quiet {
+  background: transparent;
+  border-color: var(--bk-border-muted);
+  color: var(--bk-text-muted);
+}
+
+/* a row of key caps joined by separators: Ctrl + Shift + P */
+.bk-kbd-combo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bk-space-1);
+  white-space: nowrap;
+}
+
+.bk-kbd-combo-sep {
+  color: var(--bk-text-subtle);
+  font-size: 0.8em;
+  font-weight: var(--bk-weight-normal);
+}

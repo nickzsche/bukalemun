@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="en" data-bk-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — one framework, 50 skins</title>
+<meta name="description" content="A zero-dependency CSS + JS framework that wears 50 completely different visual languages. Drop it in from a CDN and switch the whole look with one attribute.">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Bukalemun — one framework, 50 skins">
+<meta property="og:description" content="Neo-brutalist, glassmorphic, terminal, Bauhaus, vaporwave, Y2K chrome… same markup, 50 aesthetics. Zero dependencies.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+<link rel="apple-touch-icon" href="./assets/favicon.svg">
+<!-- Core + components once; skins one at a time. no-flash.js applies the
+     saved skin before first paint and, told where the per-skin files live,
+     fetches that one too. bk.theme fetches any other as it is chosen. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<style>
+  /* Page chrome — the docs site's own handful of rules. */
+  .doc-mark {
+    display: inline-block;
+    inline-size: var(--doc-mark-size, 1.6em);
+    block-size: var(--doc-mark-size, 1.6em);
+    flex: 0 0 auto;
+    background-color: currentColor;
+    -webkit-mask: url("./assets/logo.svg") center / contain no-repeat;
+    mask: url("./assets/logo.svg") center / contain no-repeat;
+    vertical-align: -0.3em;
+  }
+  .doc-mark-lg { --doc-mark-size: 5rem; }
+  .doc-hero-mark { color: var(--bk-primary); animation: bk-float 5s ease-in-out infinite; }
+  .doc-shell { display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: var(--bk-space-10); align-items: start; }
+  @media (max-width: 64rem) { .doc-shell { grid-template-columns: 1fr; } .doc-aside { display: none; } }
+  .doc-aside { position: sticky; top: 5rem; max-height: calc(100svh - 7rem); overflow-y: auto; padding-block-end: var(--bk-space-8); }
+  .doc-section { scroll-margin-top: 6rem; }
+  .doc-demo { display: flex; flex-wrap: wrap; gap: var(--bk-space-3); align-items: center; }
+  .doc-swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(11rem, 100%), 1fr)); gap: var(--bk-space-3); }
+  .doc-skin-card { display: flex; flex-direction: column; gap: var(--bk-space-2); padding: var(--bk-space-3); text-align: start; cursor: pointer; border: var(--bk-border-width) solid var(--bk-border); border-radius: var(--bk-radius-lg); background: var(--bk-surface); transition: var(--bk-transition); }
+  .doc-skin-card:hover { border-color: var(--bk-primary); transform: translateY(-2px); }
+  .doc-skin-card.bk-is-active { border-color: var(--bk-primary); box-shadow: 0 0 0 2px var(--bk-primary); }
+  .doc-skin-chip { display: flex; gap: 4px; }
+  .doc-skin-chip > i { display: block; width: 100%; height: 1.5rem; border-radius: 4px; }
+  .doc-code { position: relative; }
+  .doc-code .bk-code { max-height: 22rem; }
+  .doc-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr)); gap: var(--bk-space-5); }
+  .doc-token-row { display: flex; align-items: center; gap: var(--bk-space-3); font-size: var(--bk-text-sm); }
+  .doc-token-chip { width: 2rem; height: 2rem; border-radius: var(--bk-radius-md); border: 1px solid var(--bk-border); flex: 0 0 auto; }
+</style>
+</head>
+<body data-bk-smooth data-bk-offset="90">
+
+<a class="bk-skip-link" href="#main">Skip to content</a>
+
+<header class="bk-navbar bk-navbar-sticky" data-bk-navbar-scroll="8">
+  <a class="bk-navbar-brand" href="#top"><i class="doc-mark" aria-hidden="true"></i> Bukalemun</a>
+
+  <nav class="bk-navbar-nav bk-hide-sm" aria-label="Primary">
+    <a class="bk-nav-link" href="#install">Install</a>
+    <a class="bk-nav-link" href="#skins">Skins</a>
+    <a class="bk-nav-link" href="#components">Components</a>
+    <a class="bk-nav-link" href="#js">JavaScript</a>
+    <a class="bk-nav-link" href="../demos/index.html">Demos</a>
+  </nav>
+
+  <div class="bk-navbar-end">
+    <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral bk-hide-sm" data-bk-open="#palette">
+      <i class="bk-icon bk-i-search"></i> Search <kbd class="bk-kbd">⌘K</kbd>
+    </button>
+    <button class="bk-btn bk-btn-sm bk-btn-ghost bk-btn-neutral" data-bk-style-cycle title="Next skin">
+      <i class="bk-icon bk-i-chevron-right"></i> Skin
+    </button>
+    <button class="bk-btn bk-btn-icon bk-btn-ghost bk-btn-neutral" data-bk-theme-toggle="Toggle dark mode" aria-label="Toggle dark mode">
+      <i class="bk-icon bk-i-moon"></i>
+    </button>
+    <button class="bk-btn bk-btn-icon bk-btn-ghost bk-btn-neutral bk-only-sm" data-bk-toggle="#mobile-nav" aria-expanded="false" aria-label="Menu">
+      <i class="bk-icon bk-i-menu"></i>
+    </button>
+  </div>
+
+  <div class="bk-navbar-collapse bk-navbar-nav" id="mobile-nav">
+    <a class="bk-nav-link" href="#install">Install</a>
+    <a class="bk-nav-link" href="#skins">Skins</a>
+    <a class="bk-nav-link" href="#components">Components</a>
+    <a class="bk-nav-link" href="#js">JavaScript</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================== hero -->
+<section class="bk-container bk-hero bk-hero-center" id="top">
+  <i class="doc-mark doc-mark-lg doc-hero-mark bk-reveal" aria-hidden="true"></i>
+  <span class="bk-badge bk-badge-primary bk-badge-dot bk-reveal" id="hero-version">zero dependencies</span>
+  <h1 class="bk-display bk-reveal" data-bk-reveal-delay="60">One framework.<br>Fifty skins.</h1>
+  <p class="bk-lead bk-center bk-reveal" data-bk-reveal-delay="120" style="--bk-measure: 46ch;">
+    The same markup, the same class names, the same JavaScript — wearing a neo-brutalist,
+    glassmorphic, Bauhaus, CRT-terminal, risograph or neon-sign face. Change one attribute, change everything.
+  </p>
+  <div class="bk-cluster bk-justify-center bk-reveal" data-bk-reveal-delay="180" style="--bk-gap: var(--bk-space-3);">
+    <a class="bk-btn bk-btn-lg bk-btn-primary" href="#install" data-bk-ripple>Get started</a>
+    <button class="bk-btn bk-btn-lg bk-btn-outline bk-btn-neutral" onclick="bk.theme.random()">
+      🎲 Surprise me
+    </button>
+  </div>
+  <p class="bk-text-sm bk-subtle bk-reveal" data-bk-reveal-delay="240">
+    Currently wearing <strong id="current-skin-label">Default</strong> — <span id="current-skin-blurb"></span>
+  </p>
+
+  <div class="bk-stat-grid bk-reveal bk-w-full" data-bk-reveal-delay="300" style="margin-top: var(--bk-space-10);">
+    <div class="bk-stat">
+      <span class="bk-stat-label">Skins</span>
+      <span class="bk-stat-value" data-bk-counter="50"></span>
+    </div>
+    <div class="bk-stat">
+      <span class="bk-stat-label">Components</span>
+      <span class="bk-stat-value" data-bk-counter="60" data-bk-suffix="+"></span>
+    </div>
+    <div class="bk-stat">
+      <span class="bk-stat-label">Dependencies</span>
+      <span class="bk-stat-value" data-bk-counter="0"></span>
+    </div>
+    <div class="bk-stat">
+      <span class="bk-stat-label">CSS, gzipped</span>
+      <span class="bk-stat-value" data-bk-counter="50" data-bk-suffix=" KB"></span>
+    </div>
+  </div>
+</section>
+
+<div class="bk-container">
+<div class="doc-shell">
+
+<!-- ========================================================== sidebar -->
+<aside class="doc-aside bk-no-print">
+  <nav class="bk-toc" data-bk-scrollspy data-bk-offset="120" aria-label="On this page">
+    <a href="#install">Install</a>
+    <a href="#skins">The 50 skins</a>
+    <a href="#tokens">Design tokens</a>
+    <a href="#components">Components</a>
+    <a href="#buttons" class="bk-toc-2">Buttons</a>
+    <a href="#forms" class="bk-toc-2">Forms</a>
+    <a href="#feedback" class="bk-toc-2">Feedback</a>
+    <a href="#data" class="bk-toc-2">Data display</a>
+    <a href="#navigation" class="bk-toc-2">Navigation</a>
+    <a href="#overlays" class="bk-toc-2">Overlays</a>
+    <a href="#layout">Layout</a>
+    <a href="#builder">Build your own</a>
+    <a href="#js">JavaScript API</a>
+    <a href="#a11y">Accessibility</a>
+  </nav>
+</aside>
+
+<div class="bk-stack" style="--bk-gap: var(--bk-space-16); min-width: 0;">
+
+<!-- ========================================================== install -->
+<section class="doc-section bk-section" id="install" style="padding-block-start: 0;">
+  <div class="bk-section-head">
+    <span class="bk-eyebrow">Install</span>
+    <h2 class="bk-title">Two lines and you are done</h2>
+    <p class="bk-subtitle">No build step, no config file, no plugin ecosystem to learn.</p>
+  </div>
+
+  <div class="bk-stack">
+    <div class="bk-code-frame">
+      <div class="bk-code-head">
+        <span class="bk-code-dots"><span></span><span></span><span></span></span>
+        CDN — what you should ship · 32 KB gzipped
+        <button class="bk-btn bk-btn-xs bk-btn-ghost bk-btn-neutral bk-code-copy" data-bk-copy="#code-cdn" data-bk-copy-toast>
+          <i class="bk-icon bk-i-copy"></i> Copy
+        </button>
+      </div>
+      <pre class="bk-code"><code id="code-cdn">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.base.min.css"&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/styles/brutal.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.js" defer&gt;&lt;/script&gt;</code></pre>
+    </div>
+
+    <div class="bk-code-frame">
+      <div class="bk-code-head">
+        <span class="bk-code-dots"><span></span><span></span><span></span></span>
+        CDN — all fifty in one file · 92 KB gzipped
+        <button class="bk-btn bk-btn-xs bk-btn-ghost bk-btn-neutral bk-code-copy" data-bk-copy="#code-cdn-all" data-bk-copy-toast>
+          <i class="bk-icon bk-i-copy"></i> Copy
+        </button>
+      </div>
+      <pre class="bk-code"><code id="code-cdn-all">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.js" defer&gt;&lt;/script&gt;</code></pre>
+    </div>
+
+    <div class="bk-code-frame">
+      <div class="bk-code-head">
+        <span class="bk-code-dots"><span></span><span></span><span></span></span>
+        npm
+        <button class="bk-btn bk-btn-xs bk-btn-ghost bk-btn-neutral bk-code-copy" data-bk-copy="#code-npm" data-bk-copy-toast>
+          <i class="bk-icon bk-i-copy"></i> Copy
+        </button>
+      </div>
+      <pre class="bk-code"><code id="code-npm">npm install bukalemun
+
+// then
+import 'bukalemun/css/base';
+import 'bukalemun/styles/brutal.min.css';
+import bk from 'bukalemun';</code></pre>
+    </div>
+
+    <div class="bk-alert bk-alert-info">
+      <div class="bk-alert-body">
+        <div class="bk-alert-title">Why two stylesheets?</div>
+        <div class="bk-alert-text">
+          <code class="bk-code-inline">base</code> is the framework — every component, no palette
+          (30.8&nbsp;KB gzipped). A skin is the palette on its own (1.7&nbsp;KB). Swapping skins later
+          means swapping that second line. The fifty-in-one build exists so a page can let a visitor
+          switch between them — this site and the demos use it for exactly that — but it costs
+          91.9&nbsp;KB gzipped, which is forty-nine palettes you are not using.
+        </div>
+      </div>
+    </div>
+
+    <p class="bk-text-md bk-muted">Then pick a look:</p>
+    <div class="bk-code-frame">
+      <pre class="bk-code"><code>&lt;html data-bk-style="brutal" data-bk-theme="dark"&gt;</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ skins -->
+<section class="doc-section bk-section" id="skins">
+  <div class="bk-section-head">
+    <span class="bk-eyebrow">Skins</span>
+    <h2 class="bk-title">Pick a personality</h2>
+    <p class="bk-subtitle">
+      Every card below repaints this entire page. Nothing on the page changes except
+      <code class="bk-code-inline">&lt;html data-bk-style&gt;</code>.
+    </p>
+  </div>
+
+  <div class="doc-swatch-grid" id="skin-picker"><!-- rendered by script --></div>
+
+  <div class="bk-cluster" style="margin-top: var(--bk-space-5);">
+    <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" data-bk-style-cycle="prev">← Previous</button>
+    <button class="bk-btn bk-btn-sm bk-btn-outline bk-btn-neutral" data-bk-style-cycle>Next →</button>
+    <button class="bk-btn bk-btn-sm bk-btn-ghost bk-btn-neutral" onclick="bk.theme.setStyle('default')">Reset</button>
+    <span class="bk-spacer"></span>
+    <div class="bk-segmented bk-segmented-sm">
+      <button class="bk-segmented-item" data-bk-mode-set="light">Light</button>
+      <button class="bk-segmented-item" data-bk-mode-set="dark">Dark</button>
+      <button class="bk-segmented-item" data-bk-mode-set="auto">Auto</button>
+    </div>
+  </div>
+
+  <div class="bk-panel" style="margin-top: var(--bk-space-6);">
+    <div class="bk-cluster" style="--bk-gap: var(--bk-space-6);">
+      <label class="bk-field" style="min-width: 12rem;">
+        <span class="bk-label">Density</span>
+        <select class="bk-select bk-select-sm" onchange="document.documentElement.setAttribute('data-bk-density', this.value)">
+          <option value="">Default</option>
+          <option value="compact">Compact</option>
+          <option value="comfortable">Comfortable</option>
+        </select>
+      </label>
+      <label class="bk-field" style="min-width: 12rem;">
+        <span class="bk-label">Corner radius</span>
+        <select class="bk-select bk-select-sm" onchange="document.documentElement.setAttribute('data-bk-radius', this.value)">
+          <option value="">Skin default</option>
+          <option value="none">None</option>
+          <option value="sm">Small</option>
+          <option value="lg">Large</option>
+          <option value="full">Pill</option>
+        </select>
+      </label>
+      <label class="bk-field" style="min-width: 12rem;">
+        <span class="bk-label">Direction</span>
+        <select class="bk-select bk-select-sm" onchange="document.documentElement.dir = this.value">
+          <option value="ltr">LTR</option>
+          <option value="rtl">RTL</option>
+        </select>
+      </label>
+    </div>
+    <p class="bk-help" style="margin-top: var(--bk-space-3);">
+      Density, radius and direction are orthogonal to the skin — they compose with all 50.
+    </p>
+  </div>
+</section>
+
+<!-- =========================================================== tokens -->
+<section class="doc-section bk-section" id="tokens">
+  <div class="bk-section-head">
+    <span class="bk-eyebrow">Tokens</span>
+    <h2 class="bk-title">One contract, fifty implementations</h2>
+    <p class="bk-subtitle">
+      Components never name a colour. They read semantic tokens; a skin rewrites the tokens.
+      That is the whole trick.
+    </p>
+  </div>
+
+  <div class="doc-grid-2">
+    <div class="bk-card">
+      <div class="bk-card-body">
+        <h3 class="bk-card-title">Live palette</h3>
+        <p class="bk-card-text">These swatches read the current skin's tokens directly.</p>
+        <div class="bk-stack" style="--bk-gap: var(--bk-space-2);" id="token-preview"></div>
+      </div>
+    </div>
+    <div class="bk-code-frame">
+      <div class="bk-code-head">
+        <span class="bk-code-dots"><span></span><span></span><span></span></span>
+        Overriding a token
+      </div>
+      <pre class="bk-code"><code>/* Brand it without touching a component */
+:root {
+  --bk-primary:       #ff5c00;
+  --bk-primary-hover: #e65200;
+  --bk-on-primary:    #ffffff;
+  --bk-radius-card:   1.25rem;
+  --bk-font-sans:     "Inter", system-ui;
+}
+
+/* Or scope it to one region */
+.checkout { --bk-primary: #16794b; }</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= components -->
+<section class="doc-section bk-section" id="components">
+  <div class="bk-section-head">
+    <span class="bk-eyebrow">Components</span>
+    <h2 class="bk-title">Sixty-plus pieces, all skin-aware</h2>
+    <p class="bk-subtitle">Switch skins while you scroll — every example below follows along.</p>
+  </div>
+</section>
+
+<!-- ---------------------------------------------------------- buttons -->
+<section class="doc-section" id="buttons">
+  <h3 class="bk-text-2xl bk-weight-semibold" style="margin-bottom: var(--bk-space-4);">Buttons</h3>
+  <div class="bk-stack">
+    <div class="bk-card"><div class="bk-card-body">
+      <span class="bk-eyebrow">Appearance</span>
+      <div class="doc-demo">
+        <button class="bk-btn bk-btn-primary">Solid</button>
+        <button class="bk-btn bk-btn-soft bk-btn-primary">Soft</button>
+        <button class="bk-btn bk-btn-outline bk-btn-primary">Outline</button>
+        <button class="bk-btn bk-btn-dashed bk-btn-primary">Dashed</button>
+        <button class="bk-btn bk-btn-ghost bk-btn-primary">Ghost</button>
+        <button class="bk-btn bk-btn-link bk-btn-primary">Link</button>
+        <button class="bk-btn bk-btn-gradient">Gradient</button>
+        <button class="bk-btn bk-btn-elevated bk-btn-neutral">Elevated</button>
+      </div>
+
+      <span class="bk-eyebrow">Colour</span>
+      <div class="doc-demo">
+        <button class="bk-btn bk-btn-primary">Primary</button>
+        <button class="bk-btn bk-btn-secondary">Secondary</button>
+        <button class="bk-btn bk-btn-success">Success</button>
+        <button class="bk-btn bk-btn-warning">Warning</button>
+        <button class="bk-btn bk-btn-danger">Danger</button>
+        <button class="bk-btn bk-btn-info">Info</button>
+        <button class="bk-btn bk-btn-neutral">Neutral</button>
+      </div>
+
+      <span class="bk-eyebrow">Size &amp; shape</span>
+      <div class="doc-demo">
+        <button class="bk-btn bk-btn-xs bk-btn-primary">XS</button>
+        <button class="bk-btn bk-btn-sm bk-btn-primary">SM</button>
+        <button class="bk-btn bk-btn-primary">MD</button>
+        <button class="bk-btn bk-btn-lg bk-btn-primary">LG</button>
+        <button class="bk-btn bk-btn-xl bk-btn-primary">XL</button>
+        <button class="bk-btn bk-btn-pill bk-btn-secondary">Pill</button>
+        <button class="bk-btn bk-btn-icon bk-btn-outline bk-btn-neutral" aria-label="Settings"><i class="bk-icon bk-i-settings"></i></button>
+        <button class="bk-btn bk-btn-circle bk-btn-primary" aria-label="Add"><i class="bk-icon bk-i-plus"></i></button>
+      </div>
+
+      <span class="bk-eyebrow">State</span>
+      <div class="doc-demo">
+        <button class="bk-btn bk-btn-primary" disabled>Disabled</button>
+        <button class="bk-btn bk-btn-primary bk-is-loading">Loading</button>
+        <button class="bk-btn bk-btn-outline bk-btn-neutral" aria-pressed="true">Pressed</button>
+        <button class="bk-btn bk-btn-primary" data-bk-ripple>With ripple</button>
+        <button class="bk-btn bk-btn-neutral bk-btn-soft" onclick="this.classList.add('bk-is-loading');setTimeout(()=>{this.classList.remove('bk-is-loading');bk.toast.success('Saved');},1200)">
+          Click me
+        </button>
+      </div>
+
+      <span class="bk-eyebrow">Groups</span>
+      <div class="doc-demo">
+        <div class="bk-btn-group">
+          <button class="bk-btn bk-btn-outline bk-btn-neutral">Day</button>
+          <button class="bk-btn bk-btn-outline bk-btn-neutral" aria-pressed="true">Week</button>
+          <button class="bk-btn bk-btn-outline bk-btn-neutral">Month</button>
+        </div>
+        <div class="bk-segmented">
+          <button class="bk-segmented-item bk-is-active">Grid</button>
+          <button class="bk-segmented-item">List</button>
+          <button class="bk-segmented-item">Board</button>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------ forms -->
+<section class="doc-section" id="forms">
+  <h3 class="bk-text-2xl bk-weight-semibold" style="margin-bottom: var(--bk-space-4);">Forms</h3>
+  <div class="doc-grid-2">
+    <div class="bk-card"><div class="bk-card-body">
+      <form class="bk-form" data-bk-validate>
+        <label class="bk-field">
+          <span class="bk-label bk-label-required">Email</span>
+          <input class="bk-input" type="email" name="email" placeholder="you@example.com" required>
+          <span class="bk-help">We will never sell it. There is nobody to sell it to.</span>
+        </label>
+
+        <label class="bk-field">
+          <span class="bk-label">Password</span>
+          <div class="bk-input-wrap">
+            <input class="bk-input" type="password" id="pw" minlength="8" placeholder="At least 8 characters" required>
+            <button type="button" class="bk-affix bk-affix-end bk-affix-action" data-bk-password-toggle="#pw" aria-label="Show password">
+              <i class="bk-icon bk-i-eye"></i>
+            </button>
+          </div>
+        </label>
+
+        <label class="bk-field">
+          <span class="bk-label">Plan</span>
+          <select class="bk-select">
+            <option>Hobby</option><option>Pro</option><option>Enterprise</option>
+          </select>
+        </label>
+
+        <div class="bk-field">
+          <span class="bk-label">Tags</span>
+          <div class="bk-tags-input" data-bk-tags data-bk-value="css,vanilla">
+            <input type="hidden" name="tags">
+            <input type="text" placeholder="Add a tag…">
+          </div>
+        </div>
+
+        <label class="bk-field">
+          <span class="bk-label">Notes</span>
+          <textarea class="bk-textarea" rows="3" maxlength="200" data-bk-autosize data-bk-count="#note-count" placeholder="Type…"></textarea>
+          <span class="bk-help bk-text-end" id="note-count">0 / 200</span>
+        </label>
+
+        <div class="bk-form-actions">
+          <button class="bk-btn bk-btn-primary" type="submit">Submit</button>
+          <button class="bk-btn bk-btn-ghost bk-btn-neutral" type="reset">Reset</button>
+        </div>
+      </form>
+    </div></div>
+
+    <div class="bk-card"><div class="bk-card-body">
+      <span class="bk-eyebrow">Choice controls</span>
+      <div class="bk-check-group">
+        <label class="bk-check-label"><input class="bk-check" type="checkbox" checked> Checkbox</label>
+        <label class="bk-check-label"><input class="bk-check" type="checkbox" id="indet"> Indeterminate</label>
+        <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="r" checked> Radio one</label>
+        <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="r"> Radio two</label>
+        <label class="bk-switch-label"><input class="bk-switch" type="checkbox" checked> Switch</label>
+        <label class="bk-switch-label"><input class="bk-switch bk-switch-success" type="checkbox"> Success switch</label>
+      </div>
+
+      <span class="bk-eyebrow">Choice cards</span>
+      <label class="bk-choice-card">
+        <input class="bk-check bk-check-radio" type="radio" name="plan" checked>
+        <span class="bk-check-label-text">
+          <span class="bk-choice-card-title">Pro — $19/mo</span>
+          <span class="bk-choice-card-desc">Everything, plus the things you actually wanted.</span>
+        </span>
+      </label>
+
+      <span class="bk-eyebrow">Range &amp; rating</span>
+      <input class="bk-range" type="range" min="0" max="100" value="62" data-bk-output="#range-out" aria-label="Volume">
+      <div class="bk-range-ticks"><span>0</span><span id="range-out">62</span><span>100</span></div>
+      <div class="bk-rating" role="radiogroup" aria-label="Rating">
+        <input type="radio" name="rate" id="r5" value="5"><label for="r5" aria-label="5 stars"></label>
+        <input type="radio" name="rate" id="r4" value="4" checked><label for="r4" aria-label="4 stars"></label>
+        <input type="radio" name="rate" id="r3" value="3"><label for="r3" aria-label="3 stars"></label>
+        <input type="radio" name="rate" id="r2" value="2"><label for="r2" aria-label="2 stars"></label>
+        <input type="radio" name="rate" id="r1" value="1"><label for="r1" aria-label="1 star"></label>
+      </div>
+
+      <span class="bk-eyebrow">One-time code</span>
+      <div class="bk-otp" data-bk-otp="6"><input type="hidden" name="otp"></div>
+
+      <span class="bk-eyebrow">File drop</span>
+      <div class="bk-dropzone" data-bk-dropzone="#file-input" data-bk-file-list="#file-list">
+        <i class="bk-icon bk-icon-xl bk-i-upload bk-dropzone-icon"></i>
+        <strong>Drop files here</strong>
+        <span class="bk-dropzone-hint">or click to browse</span>
+        <input class="bk-sr-only" type="file" id="file-input" multiple>
+      </div>
+      <div class="bk-file-list" id="file-list"></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- --------------------------------------------------------- feedback -->
+<section class="doc-section" id="feedback">
+  <h3 class="bk-text-2xl bk-weight-semibold" style="margin-bottom: var(--bk-space-4);">Feedback</h3>
+  <div class="bk-stack">
+    <div class="bk-alert bk-alert-info">
+      <div class="bk-alert-body"><div class="bk-alert-title">Heads up</div>
+      <div class="bk-alert-text">This alert borrows its icon, colour and radius from the active skin.</div></div>
+      <button class="bk-close" aria-label="Dismiss"></button>
+    </div>
+    <div class="bk-alert bk-alert-success"><div class="bk-alert-body"><div class="bk-alert-title">Deployed</div><div class="bk-alert-text">Build 4127 is live.</div></div></div>
+    <div class="bk-alert bk-alert-warning"><div class="bk-alert-body"><div class="bk-alert-title">Quota at 82%</div></div></div>
+    <div class="bk-alert bk-alert-danger bk-alert-solid"><div class="bk-alert-body"><div class="bk-alert-title">Payment failed</div><div class="bk-alert-text">We could not charge the card on file.</div></div></div>
+
+    <div class="doc-grid-2">
+      <div class="bk-card"><div class="bk-card-body">
+        <span class="bk-eyebrow">Progress</span>
+        <div class="bk-progress-label"><span>Uploading</span><span>68%</span></div>
+        <div class="bk-progress" data-bk-progress="68"><div class="bk-progress-bar"></div></div>
+        <div class="bk-progress bk-progress-striped bk-progress-animated bk-progress-success" data-bk-progress="45"><div class="bk-progress-bar"></div></div>
+        <div class="bk-progress bk-progress-indeterminate"><div class="bk-progress-bar"></div></div>
+        <div class="bk-cluster" style="margin-top: var(--bk-space-4);">
+          <div class="bk-progress-ring" data-bk-progress="72"><span class="bk-progress-ring-value">72%</span></div>
+          <span class="bk-spinner"></span>
+          <span class="bk-spinner bk-spinner-lg bk-text-primary"></span>
+          <span class="bk-dots"><span></span><span></span><span></span></span>
+          <span class="bk-bars"><span></span><span></span><span></span><span></span></span>
+        </div>
+      </div></div>
+
+      <div class="bk-card"><div class="bk-card-body">
+        <span class="bk-eyebrow">Toasts</span>
+        <p class="bk-card-text">Programmatic, queued, pausable, promise-aware.</p>
+        <div class="doc-demo">
+          <button class="bk-btn bk-btn-sm bk-btn-success" onclick="bk.toast.success('Saved to the cloud')">Success</button>
+          <button class="bk-btn bk-btn-sm bk-btn-danger" onclick="bk.toast.danger('Could not reach the server')">Error</button>
+          <button class="bk-btn bk-btn-sm bk-btn-warning" onclick="bk.toast.warning('Session expires in 2 minutes')">Warning</button>
+          <button class="bk-btn bk-btn-sm bk-btn-neutral bk-btn-outline"
+            onclick="bk.toast({title:'Item deleted',message:'You can still get it back.',action:{label:'Undo',onClick:()=>bk.toast.success('Restored')}})">
+            With action
+          </button>
+          <button class="bk-btn bk-btn-sm bk-btn-primary bk-btn-soft"
+            onclick="bk.toast.promise(new Promise(r=>setTimeout(r,1800)),{loading:'Deploying…',success:'Deployed',error:'Failed'})">
+            Promise
+          </button>
+        </div>
+
+        <span class="bk-eyebrow">Skeletons</span>
+        <div class="bk-media">
+          <span class="bk-skeleton bk-skeleton-circle"></span>
+          <div class="bk-media-body bk-skeleton-group">
+            <span class="bk-skeleton bk-skeleton-title"></span>
+            <span class="bk-skeleton bk-skeleton-text"></span>
+            <span class="bk-skeleton bk-skeleton-text"></span>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------- data -->
+<section class="doc-section" id="data">
+  <h3 class="bk-text-2xl bk-weight-semibold" style="margin-bottom: var(--bk-space-4);">Data display</h3>
+  <div class="bk-stack">
+
+    <div class="bk-table-wrap">
+      <div class="bk-table-toolbar">
+        <div class="bk-search" style="max-width: 18rem;">
+          <input class="bk-input bk-input-sm" type="search" id="table-filter" placeholder="Filter rows…" aria-label="Filter table">
+        </div>
+        <span class="bk-text-sm bk-subtle"><span id="row-count">4</span> rows</span>
+      </div>
+      <table class="bk-table bk-table-hover bk-table-cards" data-bk-table data-bk-filter="#table-filter" data-bk-count-into="#row-count">
+        <thead>
+          <tr>
+            <th class="bk-th-check"><input class="bk-check" type="checkbox" data-bk-check-all="#demo-tbody" aria-label="Select all"></th>
+            <th data-bk-sort="text">Project</th>
+            <th data-bk-sort="text">Owner</th>
+            <th data-bk-sort="number" class="bk-td-end">Builds</th>
+            <th data-bk-sort="text">Status</th>
+          </tr>
+        </thead>
+        <tbody id="demo-tbody">
+          <tr>
+            <td class="bk-td-check"><input class="bk-check" type="checkbox" data-bk-check-item aria-label="Select row"></td>
+            <td data-label="Project"><strong>bukalemun</strong></td>
+            <td data-label="Owner"><span class="bk-media bk-media-center"><span class="bk-avatar bk-avatar-xs bk-avatar-primary">ŞH</span> Şahan</span></td>
+            <td data-label="Builds" class="bk-td-end bk-numeric">1284</td>
+            <td data-label="Status"><span class="bk-badge bk-badge-success bk-badge-dot">Passing</span></td>
+          </tr>
+          <tr>
+            <td class="bk-td-check"><input class="bk-check" type="checkbox" data-bk-check-item aria-label="Select row"></td>
+            <td data-label="Project"><strong>temrensec</strong></td>
+            <td data-label="Owner"><span class="bk-media bk-media-center"><span class="bk-avatar bk-avatar-xs">AK</span> Ada</span></td>
+            <td data-label="Builds" class="bk-td-end bk-numeric">312</td>
+            <td data-label="Status"><span class="bk-badge bk-badge-warning bk-badge-dot">Flaky</span></td>
+          </tr>
+          <tr>
+            <td class="bk-td-check"><input class="bk-check" type="checkbox" data-bk-check-item aria-label="Select row"></td>
+            <td data-label="Project"><strong>maisonask</strong></td>
+            <td data-label="Owner"><span class="bk-media bk-media-center"><span class="bk-avatar bk-avatar-xs">MK</span> Mert</span></td>
+            <td data-label="Builds" class="bk-td-end bk-numeric">97</td>
+            <td data-label="Status"><span class="bk-badge bk-badge-danger bk-badge-dot">Failing</span></td>
+          </tr>
+          <tr>
+            <td class="bk-td-check"><input class="bk-check" type="checkbox" data-bk-check-item aria-label="Select row"></td>
+            <td data-label="Project"><strong>octogent</strong></td>
+            <td data-label="Owner"><span class="bk-media bk-media-center"><span class="bk-avatar bk-avatar-xs">ZL</span> Zeynep</span></td>
+            <td data-label="Builds" class="bk-td-end bk-numeric">2041</td>
+            <td data-label="Status"><span class="bk-badge bk-badge-success bk-badge-dot">Passing</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="bk-table-footer">
+        <span>Sortable headers, live filter, responsive card mode below 45rem.</span>
+        <ul class="bk-pagination">
+          <li><button class="bk-page" aria-label="Previous"><i class="bk-icon bk-i-chevron-left"></i></button></li>
+          <li><button class="bk-page" aria-current="page">1</button></li>
+          <li><button class="bk-page">2</button></li>
+          <li><button class="bk-page">3</button></li>
+          <li><span class="bk-page bk-page-ellipsis">…</span></li>
+          <li><button class="bk-page">9</button></li>
+          <li><button class="bk-page" aria-label="Next"><i class="bk-icon bk-i-chevron-right"></i></button></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="doc-grid-2">
+      <div class="bk-card bk-card-interactive">
+        <figure class="bk-card-media" style="--bk-ratio: 21/9; background: linear-gradient(120deg, var(--bk-primary), var(--bk-secondary));"></figure>
+        <div class="bk-card-body">
+          <div class="bk-cluster"><span class="bk-badge bk-badge-primary">New</span><span class="bk-badge bk-badge-outline">v1.0</span></div>
+          <h4 class="bk-card-title">Card with media</h4>
+          <p class="bk-card-text">Hover it. The lift, the shadow and the border all come from the skin.</p>
+          <div class="bk-card-actions">
+            <button class="bk-btn bk-btn-sm bk-btn-primary">Open</button>
+            <button class="bk-btn bk-btn-sm bk-btn-ghost bk-btn-neutral">Dismiss</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bk-card"><div class="bk-card-body">
+        <span class="bk-eyebrow">Timeline</span>
+        <ol class="bk-timeline">
+          <li class="bk-timeline-item bk-is-done">
+            <span class="bk-timeline-time">09:12</span>
+            <span class="bk-timeline-title">Commit pushed</span>
+            <span class="bk-timeline-text">feat: add 50th skin</span>
+          </li>
+          <li class="bk-timeline-item bk-is-active">
+            <span class="bk-timeline-time">09:14</span>
+            <span class="bk-timeline-title">Build running</span>
+            <span class="bk-timeline-text">Compiling tokens…</span>
+          </li>
+          <li class="bk-timeline-item">
+            <span class="bk-timeline-time">—</span>
+            <span class="bk-timeline-title">Deploy</span>
+            <span class="bk-timeline-text">Waiting</span>
+          </li>
+        </ol>
+      </div></div>
+    </div>
+
+    <div class="bk-accordion bk-accordion-smooth" data-bk-accordion="single">
+      <details class="bk-accordion-item" open>
+        <summary class="bk-accordion-trigger">How does a skin change everything at once?</summary>
+        <div class="bk-accordion-panel">Components only ever read semantic custom properties. A skin redefines those properties under its own attribute selector, so a single attribute swap repaints the entire tree without touching a single component rule.</div>
+      </details>
+      <details class="bk-accordion-item">
+        <summary class="bk-accordion-trigger">Can I ship only one skin?</summary>
+        <div class="bk-accordion-panel">Yes — load <code class="bk-code-inline">bukalemun.base.min.css</code> plus one file from <code class="bk-code-inline">dist/styles/</code>.</div>
+      </details>
+      <details class="bk-accordion-item">
+        <summary class="bk-accordion-trigger">Does it need JavaScript?</summary>
+        <div class="bk-accordion-panel">No. Every visual component is pure CSS. The runtime only adds behaviour — overlays, sorting, toasts, skin persistence — and degrades to plain HTML without it.</div>
+      </details>
+    </div>
+
+    <div class="bk-marquee" data-bk-marquee="22">
+      <div class="bk-marquee-track">
+        <span class="bk-badge bk-badge-lg bk-badge-primary">zero dependencies</span>
+        <span class="bk-badge bk-badge-lg bk-badge-secondary">50 skins</span>
+        <span class="bk-badge bk-badge-lg bk-badge-success">dark mode</span>
+        <span class="bk-badge bk-badge-lg bk-badge-warning">RTL ready</span>
+        <span class="bk-badge bk-badge-lg bk-badge-danger">a11y first</span>
+        <span class="bk-badge bk-badge-lg bk-badge-info">50 KB gzipped</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------- navigation -->
+<section class="doc-section" id="navigation">
+  <h3 class="bk-text-2xl bk-weight-semibold" style="margin-bottom: var(--bk-space-4);">Navigation</h3>
+  <div class="bk-card"><div class="bk-card-body">
+    <nav aria-label="Breadcrumb">
+      <ol class="bk-breadcrumb bk-breadcrumb-chevron">
+        <li><a href="#top"><i class="bk-icon bk-i-home"></i> Home</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><span aria-current="page">Navigation</span></li>
+      </ol>
+    </nav>
+
+    <div class="bk-tabs" data-bk-tabs>
+      <div class="bk-tablist bk-tablist-indicator">
+        <button class="bk-tab" data-bk-panel="#tab-1" aria-selected="true">Overview</button>
+        <button class="bk-tab" data-bk-panel="#tab-2">Settings</button>
+        <button class="bk-tab" data-bk-panel="#tab-3">Members <span class="bk-badge bk-badge-count bk-badge-primary">3</span></button>
+        <button class="bk-tab" disabled>Billing</button>
+      </div>
+      <div class="bk-tabpanel" id="tab-1"><p class="bk-muted">Arrow keys move between tabs; the indicator animates with the skin's easing.</p></div>
+      <div class="bk-tabpanel" id="tab-2"><p class="bk-muted">Panels are real tabpanels with the right ARIA wiring.</p></div>
+      <div class="bk-tabpanel" id="tab-3"><p class="bk-muted">Third panel.</p></div>
+    </div>
+
+    <ol class="bk-steps bk-steps-responsive">
+      <li class="bk-step bk-is-done"><span class="bk-step-title">Account</span><span class="bk-step-text">Done</span></li>
+      <li class="bk-step bk-is-active"><span class="bk-step-title">Profile</span><span class="bk-step-text">In progress</span></li>
+      <li class="bk-step"><span class="bk-step-title">Confirm</span><span class="bk-step-text">Pending</span></li>
+    </ol>
+  </div></div>
+</section>
+
+<!-- --------------------------------------------------------- overlays -->
+<section class="doc-section" id="overlays">
+  <h3 class="bk-text-2xl bk-weight-semibold" style="margin-bottom: var(--bk-space-4);">Overlays</h3>
+  <div class="bk-card"><div class="bk-card-body">
+    <p class="bk-card-text">Built on native <code class="bk-code-inline">&lt;dialog&gt;</code>: real top layer, real focus trapping, real Esc.</p>
+    <div class="doc-demo">
+      <button class="bk-btn bk-btn-primary" data-bk-open="#demo-modal">Open modal</button>
+      <button class="bk-btn bk-btn-outline bk-btn-neutral" data-bk-open="#demo-drawer">Open drawer</button>
+      <button class="bk-btn bk-btn-outline bk-btn-neutral" data-bk-open="#palette">Command palette <kbd class="bk-kbd">⌘K</kbd></button>
+      <button class="bk-btn bk-btn-danger bk-btn-soft" onclick="bk.confirm({title:'Delete project?',message:'This cannot be undone.',confirmText:'Delete',danger:true}).then(ok=>ok&&bk.toast.danger('Deleted'))">
+        Confirm dialog
+      </button>
+      <button class="bk-btn bk-btn-neutral bk-btn-ghost" data-bk-menu="#demo-menu">Dropdown <i class="bk-icon bk-i-chevron-down"></i></button>
+      <button class="bk-btn bk-btn-neutral bk-btn-ghost" data-bk-popover="#demo-popover" data-bk-placement="top">Popover</button>
+      <button class="bk-btn bk-btn-neutral bk-btn-ghost" data-bk-tooltip="Positioned, flipped and shifted automatically">Tooltip</button>
+      <span class="bk-badge bk-badge-outline" data-bk-title="Pure-CSS tooltip, no JS">CSS tooltip</span>
+    </div>
+  </div></div>
+</section>
+
+<!-- ----------------------------------------------------------- layout -->
+<section class="doc-section bk-section" id="layout">
+  <div class="bk-section-head">
+    <span class="bk-eyebrow">Layout</span>
+    <h2 class="bk-title">Intrinsic, not breakpoint soup</h2>
+    <p class="bk-subtitle">Primitives that reflow on their own: stack, cluster, switcher, grid-auto, reel, sidebar.</p>
+  </div>
+  <div class="bk-grid-auto" style="--bk-min: 12rem;">
+    <div class="bk-panel bk-text-center">grid-auto</div>
+    <div class="bk-panel bk-text-center">wraps</div>
+    <div class="bk-panel bk-text-center">without</div>
+    <div class="bk-panel bk-text-center">breakpoints</div>
+  </div>
+</section>
+
+<!-- ========================================================== builder -->
+<section class="doc-section bk-section" id="builder">
+  <div class="bk-section-head">
+    <span class="bk-eyebrow">Make your own</span>
+    <h2 class="bk-title">Fifty not enough?</h2>
+    <p class="bk-subtitle">
+      A skin is just a token document. Move these six dials, watch the whole page
+      follow, then copy the CSS — that file <em>is</em> a skin.
+    </p>
+  </div>
+
+  <div class="bk-split" style="--bk-split: minmax(0, 20rem) minmax(0, 1fr);">
+    <div class="bk-card"><div class="bk-card-body">
+      <label class="bk-field">
+        <span class="bk-label">Accent</span>
+        <div class="bk-cluster">
+          <input class="bk-color" type="color" id="mk-primary" value="#5b5bd6">
+          <input class="bk-input bk-input-sm bk-mono" id="mk-primary-hex" value="#5b5bd6" style="max-width: 8rem;" aria-label="Accent hex">
+        </div>
+      </label>
+
+      <label class="bk-field">
+        <span class="bk-label">Page background</span>
+        <div class="bk-cluster">
+          <input class="bk-color" type="color" id="mk-bg" value="#ffffff">
+          <input class="bk-input bk-input-sm bk-mono" id="mk-bg-hex" value="#ffffff" style="max-width: 8rem;" aria-label="Background hex">
+        </div>
+      </label>
+
+      <label class="bk-field">
+        <span class="bk-label">Corner radius <output id="mk-radius-out" class="bk-subtle bk-mono">1.0×</output></span>
+        <input class="bk-range" type="range" id="mk-radius" min="0" max="30" value="10">
+      </label>
+
+      <label class="bk-field">
+        <span class="bk-label">Border weight <output id="mk-border-out" class="bk-subtle bk-mono">1px</output></span>
+        <input class="bk-range" type="range" id="mk-border" min="1" max="4" value="1">
+      </label>
+
+      <label class="bk-field">
+        <span class="bk-label">Depth</span>
+        <select class="bk-select bk-select-sm" id="mk-depth">
+          <option value="soft">Soft shadow</option>
+          <option value="none">Flat, no shadow</option>
+          <option value="hard">Hard offset shadow</option>
+          <option value="glow">Neon glow</option>
+        </select>
+      </label>
+
+      <label class="bk-field">
+        <span class="bk-label">Type</span>
+        <select class="bk-select bk-select-sm" id="mk-font">
+          <option value="sans">System sans</option>
+          <option value="serif">Serif</option>
+          <option value="mono">Monospace</option>
+          <option value="rounded">Rounded</option>
+        </select>
+      </label>
+
+      <div class="bk-form-actions">
+        <button class="bk-btn bk-btn-primary bk-btn-sm" id="mk-copy" data-bk-copy="#mk-output" data-bk-copy-toast>
+          <i class="bk-icon bk-i-copy"></i> Copy CSS
+        </button>
+        <button class="bk-btn bk-btn-ghost bk-btn-neutral bk-btn-sm" id="mk-reset">Reset</button>
+      </div>
+      <p class="bk-help">Applies live to this page. Reset restores the active skin.</p>
+    </div></div>
+
+    <div class="bk-code-frame">
+      <div class="bk-code-head">
+        <span class="bk-code-dots"><span></span><span></span><span></span></span>
+        my-skin.css
+      </div>
+      <pre class="bk-code" style="max-height: 26rem;"><code id="mk-output"></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ js -->
+<section class="doc-section bk-section" id="js">
+  <div class="bk-section-head">
+    <span class="bk-eyebrow">JavaScript</span>
+    <h2 class="bk-title">A runtime, not a framework</h2>
+    <p class="bk-subtitle">Everything is opt-in through <code class="bk-code-inline">data-bk-*</code> attributes, and everything has a programmatic twin.</p>
+  </div>
+  <div class="doc-grid-2">
+    <div class="bk-code-frame">
+      <div class="bk-code-head"><span class="bk-code-dots"><span></span><span></span><span></span></span> Markup-driven</div>
+      <pre class="bk-code"><code>&lt;button data-bk-open="#dialog"&gt;Open&lt;/button&gt;
+&lt;dialog id="dialog" class="bk-modal"&gt;…&lt;/dialog&gt;
+
+&lt;table data-bk-table data-bk-filter="#q"&gt;
+  &lt;th data-bk-sort="number"&gt;Builds&lt;/th&gt;
+&lt;/table&gt;
+
+&lt;div data-bk-tabs&gt;…&lt;/div&gt;
+&lt;div data-bk-carousel&gt;…&lt;/div&gt;
+&lt;span data-bk-counter="1284"&gt;&lt;/span&gt;
+&lt;button data-bk-copy="#snippet"&gt;Copy&lt;/button&gt;</code></pre>
+    </div>
+    <div class="bk-code-frame">
+      <div class="bk-code-head"><span class="bk-code-dots"><span></span><span></span><span></span></span> Programmatic</div>
+      <pre class="bk-code"><code>bk.theme.setStyle('brutal');
+bk.theme.toggle();              // light ⇄ dark
+bk.theme.random();
+
+bk.toast.success('Saved');
+await bk.confirm('Delete this?');
+bk.modal('#dialog', 'open');
+
+bk.hotkey('mod+k', openPalette);
+bk.copy('text');
+bk.announce('Row deleted');
+
+const s = bk.store({ count: 0 });
+s.subscribe(state =&gt; render(state));</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= a11y -->
+<section class="doc-section bk-section" id="a11y">
+  <div class="bk-section-head">
+    <span class="bk-eyebrow">Accessibility</span>
+    <h2 class="bk-title">Not a checklist item</h2>
+  </div>
+  <div class="bk-grid-auto" style="--bk-min: 15rem;">
+    <div class="bk-card"><div class="bk-card-body">
+      <h4 class="bk-card-title">Native first</h4>
+      <p class="bk-card-text">Checkboxes are checkboxes, dialogs are dialogs, details are details. Semantics come free.</p>
+    </div></div>
+    <div class="bk-card"><div class="bk-card-body">
+      <h4 class="bk-card-title">Focus you can see</h4>
+      <p class="bk-card-text">Every skin defines its own ring, and every skin keeps it visible for keyboard users.</p>
+    </div></div>
+    <div class="bk-card"><div class="bk-card-body">
+      <h4 class="bk-card-title">Motion respected</h4>
+      <p class="bk-card-text"><code class="bk-code-inline">prefers-reduced-motion</code> disables animation in CSS and in the runtime.</p>
+    </div></div>
+    <div class="bk-card"><div class="bk-card-body">
+      <h4 class="bk-card-title">RTL by construction</h4>
+      <p class="bk-card-text">Logical properties throughout — no separate right-to-left stylesheet.</p>
+    </div></div>
+  </div>
+</section>
+
+</div><!-- /content -->
+</div><!-- /shell -->
+</div><!-- /container -->
+</main>
+
+<footer class="bk-footer">
+  <div class="bk-container">
+    <div class="bk-footer-grid">
+      <div>
+        <div class="bk-navbar-brand"><i class="doc-mark" aria-hidden="true"></i> Bukalemun</div>
+        <p class="bk-text-sm bk-muted" style="margin-top: var(--bk-space-2); max-width: 32ch;">
+          One framework, 50 skins, zero dependencies. MIT licensed.
+        </p>
+      </div>
+      <div>
+        <div class="bk-footer-title">Docs</div>
+        <ul class="bk-footer-links">
+          <li><a href="#install">Install</a></li>
+          <li><a href="#skins">Skins</a></li>
+          <li><a href="#tokens">Tokens</a></li>
+          <li><a href="#js">JavaScript</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="bk-footer-title">Project</div>
+        <ul class="bk-footer-links">
+          <li><a href="https://github.com/nickzsche/bukalemun">GitHub</a></li>
+          <li><a href="https://github.com/nickzsche/bukalemun/blob/main/PROJECT.md">Architecture</a></li>
+          <li><a href="https://www.npmjs.com/package/bukalemun">npm</a></li>
+          <li><a href="https://cdn.jsdelivr.net/gh/nickzsche/bukalemun@main/dist/bukalemun.min.css">CDN build</a></li>
+          <li><a href="https://github.com/nickzsche/bukalemun/blob/main/CHANGELOG.md">Changelog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bk-footer-bottom">
+      <span>© 2026 Şahan Hasret</span>
+      <span class="bk-status bk-status-ok bk-status-live">All 50 skins operational</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========================================================== overlays -->
+<dialog class="bk-modal bk-modal-sheet-sm" id="demo-modal" aria-labelledby="demo-modal-title">
+  <div class="bk-modal-inner">
+    <div class="bk-modal-header">
+      <div>
+        <h2 class="bk-modal-title" id="demo-modal-title">Native dialog</h2>
+        <p class="bk-modal-desc">Focus is trapped, the page is inert, Esc closes it.</p>
+      </div>
+      <button class="bk-close" data-bk-close aria-label="Close"></button>
+    </div>
+    <div class="bk-modal-body">
+      <label class="bk-field">
+        <span class="bk-label">Project name</span>
+        <input class="bk-input" placeholder="my-app" autofocus>
+      </label>
+      <label class="bk-check-label"><input class="bk-check" type="checkbox" checked> Make it public</label>
+    </div>
+    <div class="bk-modal-footer">
+      <button class="bk-btn bk-btn-ghost bk-btn-neutral" data-bk-close>Cancel</button>
+      <button class="bk-btn bk-btn-primary" data-bk-close onclick="bk.toast.success('Created')">Create</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="bk-drawer" id="demo-drawer" data-side="end" aria-labelledby="demo-drawer-title">
+  <div class="bk-drawer-header">
+    <h2 class="bk-modal-title" id="demo-drawer-title">Drawer</h2>
+    <button class="bk-close" data-bk-close aria-label="Close"></button>
+  </div>
+  <div class="bk-drawer-body bk-stack">
+    <p class="bk-muted">Slide it in from any side with <code class="bk-code-inline">data-side</code>.</p>
+    <div class="bk-list-group">
+      <a class="bk-list-item bk-list-item-action" href="#top"><i class="bk-icon bk-i-home"></i><span class="bk-list-item-body">Home</span></a>
+      <a class="bk-list-item bk-list-item-action" href="#skins"><i class="bk-icon bk-i-star"></i><span class="bk-list-item-body">Skins</span></a>
+      <a class="bk-list-item bk-list-item-action" href="#js"><i class="bk-icon bk-i-settings"></i><span class="bk-list-item-body">JavaScript</span></a>
+    </div>
+  </div>
+  <div class="bk-drawer-footer">
+    <button class="bk-btn bk-btn-primary bk-btn-block" data-bk-close>Done</button>
+  </div>
+</dialog>
+
+<dialog class="bk-cmdk" id="palette" data-bk-cmdk="mod+k" aria-label="Command palette">
+  <div class="bk-cmdk-input-wrap">
+    <i class="bk-icon bk-i-search bk-subtle"></i>
+    <input class="bk-cmdk-input" placeholder="Jump to a section or a skin…" aria-label="Search">
+    <kbd class="bk-kbd">Esc</kbd>
+  </div>
+  <ul class="bk-cmdk-list" id="palette-list"></ul>
+  <div class="bk-cmdk-empty" hidden>No matches.</div>
+  <div class="bk-cmdk-footer">
+    <span><kbd class="bk-kbd">↑</kbd><kbd class="bk-kbd">↓</kbd> navigate</span>
+    <span><kbd class="bk-kbd">↵</kbd> select</span>
+    <span><kbd class="bk-kbd">Esc</kbd> close</span>
+  </div>
+</dialog>
+
+<ul class="bk-menu" id="demo-menu">
+  <li class="bk-menu-label">Actions</li>
+  <li><button class="bk-menu-item"><i class="bk-icon bk-i-copy"></i> Duplicate <span class="bk-menu-item-shortcut">⌘D</span></button></li>
+  <li><button class="bk-menu-item"><i class="bk-icon bk-i-external"></i> Open in new tab</button></li>
+  <li><hr class="bk-menu-sep"></li>
+  <li><button class="bk-menu-item bk-menu-item-danger"><i class="bk-icon bk-i-trash"></i> Delete</button></li>
+</ul>
+
+<div class="bk-popover" id="demo-popover" style="--bk-popover-width: 18rem;">
+  <div class="bk-popover-arrow"></div>
+  <div class="bk-popover-header">Anchored popover</div>
+  <p class="bk-popover-text">Flips when it would overflow the viewport, shifts to stay in view, and points its arrow at the anchor.</p>
+</div>
+
+<button class="bk-btn bk-btn-circle bk-btn-primary bk-to-top" data-bk-to-top="500" aria-label="Back to top">
+  <i class="bk-icon bk-i-arrow-up"></i>
+</button>
+
+<script src="../dist/bukalemun.min.js"></script>
+<script src="./assets/docs.js"></script>
+</body>
+</html>

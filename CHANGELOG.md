@@ -1,0 +1,255 @@
+# Changelog
+
+## 1.6.0
+
+Every skin, put through the same audit the components are — and the audit
+made wider first.
+
+- **Hover and active fills are derived from the fill and its label.** A skin
+  that set `--bk-success` but not `--bk-success-hover` (forty-five of them)
+  showed the default palette's green under the pointer, with a label tuned for
+  the wrong fill; several fell to 1.0:1. The core now mixes each state from the
+  fill towards its own label, the audit checks the label on all three fills,
+  and the deriver pins a literal wherever the derived step would fall short.
+  The default palette's six fills moved a step darker to carry that margin.
+- **`--bk-surface-inverted` is now actually inverted in both modes.** Thirty-
+  three skins flipped `--bk-text-inverted` in their dark (or light) block and
+  left the surface behind, so inverted chips and tooltips painted page-on-page.
+- **Cards and overlays are audited too.** `denim`, `herbarium` and `marble`
+  kept a light card in dark mode; `gothic` and `terminal` a dark one in light
+  mode; `paper` a light dialog in dark mode. Body text on those was invisible.
+- `brutal` and `memphis` drew black field borders in dark mode.
+- **`neonsign` and `vapor` gained a light mode.** They were the only two skins
+  that ignored the theme toggle. By day the sign is switched off — the same
+  pink and cyan as the colour of the glass, on plaster — and vaporwave is the
+  same sunset at noon, on lilac paper.
+- **Skins declare their webfont.** `bk.theme.info(skin).fonts` is the Google
+  Fonts spec each skin was drawn for (or `null` for system faces), and
+  `bk.theme.loadFonts()` fetches it, once, on request. The docs and every demo
+  use it, so the demos stop rendering pixel art in Courier. `aero` now names
+  Titillium Web, which the docs were loading for it all along.
+- **Token contract tidied.** `--bk-bg-subtle` and `--bk-bg-muted`, which
+  nothing read and which 43 skins had let rot, are aliases of the surface ramp.
+  `--bk-primary-soft-hover`, `--bk-ring-offset-color`, `--bk-hue` and
+  `--bk-noise` (read by nothing) are gone. `--bk-glow` now drives `.bk-glow`.
+  `--bk-btn-gradient`, `--bk-text-gradient`, `--bk-table-pad` and
+  `--bk-container-gutter`, which components already read, are declared.
+- **The docs ship one skin, not fifty.** The docs page was loading the
+  unminified all-skins bundle and runtime — 150 KB gzipped, three quarters of
+  it palettes nobody had asked for. It now loads base + the stored skin, like
+  the demos and like the README has always recommended: 55 KB on arrival, about
+  2 KB per skin looked at. The machinery moved into the framework so anyone can
+  do the same: `<script src="no-flash.js" data-bk-skins="…/{skin}.min.css">`
+  fetches the stored skin before first paint, `bk.theme.setStyle()` fetches an
+  unshipped skin and waits for it before flipping the attribute (no frame in
+  the base palette, and a fast second click beats a slow first one), and
+  `bk.theme.preload()` warms the rest during idle time. The site assembler
+  fingerprints the per-skin URLs too, so an edge can never pair a stale skin
+  with a fresh core.
+- The contrast resolver understands `color-mix()`. The audit grew from 4 386
+  pairs to 7 242, and the full bundle by 6 KB gzipped, all of it pinned hover
+  and active fills.
+
+## 1.5.1
+
+`bukalemun@1.5.0` on npm was published from a tree built eighteen minutes
+before the version fix landed, so its `bk.version` still reports `1.3.2` — the
+exact bug 1.5.0 claims to fix. npm will not let a version be replaced, so this
+is that release with a working build. Nothing else changed.
+
+## 1.5.0
+
+Demos, and four bugs the demos found.
+
+- **Ten demo pages, up from five.** New: `blog` (long-form editorial),
+  `portfolio` (gallery, modals, marquee, counters), `settings` (the whole form
+  kit — validation, switches, range, dropzone, tags, OTP, steps), `chat`
+  (bubbles, presence, typing indicator) and `arcade` (leaderboard, meters,
+  tree, key caps).
+- **The gallery at `demos/index.html` is new.** Each thumbnail is the live page
+  in a scaled iframe rather than a screenshot, so it cannot go out of date, and
+  one control re-dresses all ten at once.
+- The skin dock is shared code now (`demos/demo.{css,js}`) instead of five
+  copy-pasted blocks with five hardcoded skins. It offers all fifty, plus
+  `Shift + ← →` to cycle, `Shift + R` for random and `Shift + D` for dark.
+  Any demo takes `?skin=vapor&mode=dark`, applied without touching what the
+  visitor had chosen.
+
+Fixes, each one found by building the demos above:
+
+- `no-flash.js` overwrote a `data-bk-theme` written into the markup whenever
+  nothing was stored, so a page that asked for dark opened light. A stored
+  preference still wins; the markup no longer loses to nothing.
+- `bk:ready` fired from inside the UMD wrapper, before the global was assigned.
+  Every listener that reached for `window.bk` found `undefined`. Auto-start is
+  deferred by one tick.
+- `.bk-hero` was defined twice, in `card.css` and `hero.css`. The newer rule
+  won on `display` while the older one kept leaking `justify-content: center`,
+  which is why `.bk-hero-start` could not left-align anything. One definition
+  now, in `hero.css`, and a test that no class is declared in two files.
+- A repeating background image needs a tile size, and the three dithered skins
+  each carried their own hand-written list of which elements to size. All three
+  lists were incomplete — the pixel-art navbar rendered as one giant cone,
+  half flat and half checkerboard. The size travels with the image as
+  `--bk-*-image-size` now.
+- `char-count` claimed the bare `[data-bk-count]` selector, so it grabbed
+  elements that were not form fields and tried to use their attribute value as
+  a CSS selector. Scoped to `input`, `textarea` and `select`.
+
+Four new tests: the no-flash snippet's precedence, image tokens always being
+sized, one class never being defined twice, and the demo pages only using
+classes and hooks that exist — the last one caught `bk-badge-soft`, which
+never existed, and a mistyped counter hook.
+
+## 1.0.0
+
+First release.
+
+- 22 skins, each with light and dark palettes: brutal, glass, neumorph, skeuo,
+  terminal, swiss, memphis, clay, cyber, pixel, material, minimal, paper,
+  aurora, blueprint, deco, bauhaus, vapor, organic, aero, sketch, luxe — plus a
+  neutral default.
+- 60+ components across actions, forms, data display, feedback, navigation,
+  overlays and layout. All pure CSS; the runtime is optional.
+- Zero-dependency runtime: theme switching with persistence, native-`<dialog>`
+  overlays, anchored positioning with flip/shift, tabs, accordion, toasts,
+  table sort/filter, command palette, hotkeys, form validation, and a small
+  reactive store.
+- Dependency-free build with its own conservative CSS and JS minifiers.
+- 27 structural tests and a 1 960-pair WCAG contrast audit, both runnable
+  without a browser.
+- Accessible accent variants derived automatically by
+  `scripts/derive-contrast.mjs` rather than hand-tuned.
+
+## 1.1.0
+
+- **Six new skins** → 28 total: `y2k` (liquid chrome and bevelled bubbles),
+  `zen` (Japandi washi and sumi ink), `comic` (ink outlines and Ben-Day
+  halftone), `wireframe` (lo-fi greyscale mockup), `solarpunk` (brass and leaf
+  green) and `retro70s` (avocado, rust and harvest gold).
+- **TypeScript declarations** shipped in `types/index.d.ts`, including a
+  `SkinName` union kept in sync with the files on disk by a test.
+- **Forced-colors support.** Under Windows High Contrast the skins step aside:
+  system colours take over and borders carry the meaning that shadows and tints
+  used to. Mask-drawn icons are explicitly repainted so they do not vanish.
+- **`prefers-contrast` and `prefers-reduced-transparency`** are honoured, and
+  the print stylesheet now flattens surfaces and expands every tab panel.
+- **Palette lockfile.** `tests/palette.mjs` snapshots how all 58 skin/mode
+  combinations actually resolve, so a refactor cannot repaint a skin in silence.
+- **Skin builder** on the demo site: six dials, a live preview, and CSS you can
+  copy — the output is a skin file.
+- The contrast audit now covers 2 476 pairs; all pass.
+
+## 1.2.0
+
+- **Two new skins** → 30 total: `pixelart` (a 16-bit palette with checkerboard
+  dithering in place of gradients, two-tone outlines and a lit top edge — the
+  lush end of the medium, where `pixel` is the blocky 8-bit end) and `riso`
+  (risograph: two spot inks overprinted on grained paper, deliberately a hair
+  off register).
+- **Real artwork.** The chameleon mascot now heads the README, and the site
+  carries the mark instead of an emoji — drawn as a CSS mask so it inherits
+  `currentColor` and recolours itself in all 30 skins.
+- Favicon is now the mark rather than an emoji glyph.
+
+## 1.2.1
+
+- **`pixelart` now actually looks like pixel art.** The first pass was little
+  more than square corners over a faint checkerboard. The signature of a
+  pixel-art interface is a frame whose *corner pixels are missing* — which
+  `border` cannot draw, because a border always turns the corner. It is now
+  built from four offset box-shadows, none of which reaches the corner, plus a
+  lit top edge and shaded bottom edge for volume, an inner light rule on cards
+  (the RPG-window look), and dithering that is actually visible at 8px.
+- **The demo loads each skin's display font.** Skins have always named families
+  they did not ship, so every one of them was quietly falling back to a system
+  face — a pixel skin rendered in Courier is a lie. The demo now fetches the
+  intended family the first time you switch to a skin, and on hover for the
+  cards in the picker. The framework itself still ships no fonts.
+
+## 1.2.2
+
+- Fixed a dead link in the site footer: it pointed at an npm package that has
+  not been published, so it opened a 404. Replaced with the CDN build and the
+  changelog; npm goes back the day it is published.
+- Added `npm run check:links`, which walks every link in the docs and the
+  markdown and reports the ones that do not resolve. Kept out of `npm test` on
+  purpose — it needs the network, and someone else's outage is not a reason to
+  fail a build.
+
+## 1.3.0
+
+- **Twenty new skins** → 50 total: `gothic`, `win95`, `macclassic`, `noir`,
+  `candy`, `industrial`, `herbarium`, `typewriter`, `magazine`, `ledger`,
+  `nouveau`, `holo`, `thermal`, `chalk`, `neonsign`, `denim`, `marble`,
+  `space`, `clinical` and `origami`. Each has a light and a dark palette and
+  clears the contrast audit, now 4 386 pairs.
+- **Fixed a hole in the token resolver.** Skins may keep their palette in
+  file-local variables (`--_gold`, `--_orange`) and point the semantic tokens
+  at them. The audit collected only `--bk-*`, so it could not see through
+  `--bk-primary: var(--_orange)` and quietly failed to check those colours.
+  It now follows private variables the way a browser does — which immediately
+  surfaced a real contrast failure in `industrial`.
+- **`win95` no longer types on the desktop.** Its background was the famous
+  teal, but nothing was ever typed on that teal — content lived on the window
+  face. Body text on teal measured 4.40:1, just under AA, and a teal accent on
+  a teal page measured 1.0:1. The page background is now the window face; the
+  teal survives in the title bars, where it belongs.
+- The demo loads display fonts for the new skins too. `win95` and `macclassic`
+  deliberately load none — their faces are system chrome, and a webfont
+  substitute would read as a different decade.
+
+## 1.3.1
+
+- **Fixed `require('bukalemun')` returning an empty object.** The package is
+  `"type": "module"`, which means Node reads a bare `.js` as an ES module — so
+  the UMD build that `main` pointed at produced nothing for CommonJS consumers.
+  The same bytes now also ship as `dist/bukalemun.cjs`, and that is what `main`
+  and `exports.require` resolve to.
+- The test that was supposed to catch this hand-rolled a CommonJS context with
+  `new Function`, which passed while the real `require()` was broken. It now
+  loads both builds through Node's own resolver, and a separate check asserts
+  that a `"type": "module"` package never points `require` at a `.js` file.
+
+## 1.3.2
+
+- Fixed stale skin counts left behind in the site footer, the demo timeline and
+  four places in the architecture doc — the headline said 50 while the small
+  print still said 22.
+- Added a test that refuses any prose in the docs or README quoting a skin
+  count that is not the real one. It caught a sixth instance the moment it was
+  written, in a sentence nobody had thought to re-read.
+
+Also in this release, three things a reader of the repo caught:
+
+- **`bk.version` was lying.** It was hardcoded in `src/js/core.js` and still
+  read `1.3.2` while `package.json` said `1.5.0` — two releases of a runtime
+  reporting the wrong one. The build injects it from `package.json` now, the
+  source carries an obvious `0.0.0-dev` placeholder, and a test asserts the UMD
+  build, the ES module and the manifest all agree with the package.
+- **The audits said "51 skins" next to a README that says 50.** They were
+  counting the neutral `default` palette, which is not a skin file. Both
+  reports say what they mean now, and derive the number instead of spelling it
+  out.
+- **The recommended install is `base` + one skin, and the docs say so first.**
+  The README and the docs site both led with the fifty-skin bundle — 91.9 KB
+  gzipped, forty-nine palettes the reader is not using. The shipping shape is
+  30.8 KB + 1.7 KB. The demos practise it too: each loads only its own skin and
+  fetches the rest when a visitor reaches for the skin dock, so reading a demo
+  costs a third of what it did. A test recomputes the size table from `dist/`
+  so the figures cannot drift again.
+
+  `bukalemun.core.min.css` (13.4 KB) is not a smaller install of the framework —
+  it contains no components at all. That is now stated where it is listed.
+
+## 1.4.0
+
+- New components: key caps (`bk-kbd`), pricing tables (`bk-pricing`),
+  testimonials (`bk-testimonial`), hero sections (`bk-hero`). All pure CSS,
+  built on the existing card, code and heading tokens — so every one of the
+  50 skins dresses them correctly with zero changes.
+- Fixed the last hardcoded colour in any component stylesheet: the switch knob
+  now reads `--bk-switch-knob` (defaults to `--bk-surface-inverted`, so the
+  knob always contrasts with its track in light and dark palettes).
+- Demos: five standalone pages under `demos/` — dashboard, landing, docs,
+  store and app UI — each with a live skin switcher.

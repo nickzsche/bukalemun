@@ -1,0 +1,108 @@
+/* =============================================================================
+   BUKALEMUN — core/icons.css
+   A tiny built-in icon set shipped as CSS mask URLs, so components can draw
+   chevrons/checks/crosses without any icon font, sprite, or extra request.
+   Every icon inherits `currentColor` because it is painted as a mask.
+
+   Usage:
+     <i class="bk-icon bk-i-check"></i>
+     .my-thing::after { -webkit-mask: var(--bk-icon-chevron-down) ...; }
+   ========================================================================== */
+
+:where(:root), :where(.bk-scope) {
+  --bk-icon-x: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
+  --bk-icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m20 6-11 11-5-5'/%3E%3C/svg%3E");
+  --bk-icon-minus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E");
+  --bk-icon-plus: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
+  --bk-icon-chevron-down: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  --bk-icon-chevron-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m18 15-6-6-6 6'/%3E%3C/svg%3E");
+  --bk-icon-chevron-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3C/svg%3E");
+  --bk-icon-chevron-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m15 18-6-6 6-6'/%3E%3C/svg%3E");
+  --bk-icon-arrow-right: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14m-6-7 7 7-7 7'/%3E%3C/svg%3E");
+  --bk-icon-arrow-left: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5m6 7-7-7 7-7'/%3E%3C/svg%3E");
+  --bk-icon-arrow-up: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V5m-7 7 7-7 7 7'/%3E%3C/svg%3E");
+  --bk-icon-search: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.6-3.6'/%3E%3C/svg%3E");
+  --bk-icon-info: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 7.6v.2'/%3E%3C/svg%3E");
+  --bk-icon-warning: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.3 3.8 1.9 18a2 2 0 0 0 1.7 3h16.8a2 2 0 0 0 1.7-3L13.7 3.8a2 2 0 0 0-3.4 0Z'/%3E%3Cpath d='M12 9v4M12 17v.2'/%3E%3C/svg%3E");
+  --bk-icon-danger: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='m15 9-6 6M9 9l6 6'/%3E%3C/svg%3E");
+  --bk-icon-success: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='m8.5 12.2 2.5 2.5 4.5-5'/%3E%3C/svg%3E");
+  --bk-icon-copy: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='12' height='12' rx='2'/%3E%3Cpath d='M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1'/%3E%3C/svg%3E");
+  --bk-icon-external: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6M20 4l-9 9'/%3E%3Cpath d='M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'/%3E%3C/svg%3E");
+  --bk-icon-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E");
+  --bk-icon-dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Ccircle cx='5' cy='12' r='1.8'/%3E%3Ccircle cx='12' cy='12' r='1.8'/%3E%3Ccircle cx='19' cy='12' r='1.8'/%3E%3C/svg%3E");
+  --bk-icon-sun: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/%3E%3C/svg%3E");
+  --bk-icon-moon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z'/%3E%3C/svg%3E");
+  --bk-icon-upload: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 16V4m-5 5 5-5 5 5'/%3E%3Cpath d='M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3'/%3E%3C/svg%3E");
+  --bk-icon-trash: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16M10 11v6M14 11v6'/%3E%3Cpath d='M6 7l1 12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-12M9 7V4h6v3'/%3E%3C/svg%3E");
+  --bk-icon-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.4l6.5-.9Z'/%3E%3C/svg%3E");
+  --bk-icon-heart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M12 21s-8-4.7-8-10.2A4.8 4.8 0 0 1 12 7a4.8 4.8 0 0 1 8 3.8C20 16.3 12 21 12 21Z'/%3E%3C/svg%3E");
+  --bk-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4 3.6-6 8-6s8 2 8 6'/%3E%3C/svg%3E");
+  --bk-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Crect x='3' y='5' width='18' height='16' rx='2'/%3E%3Cpath d='M3 10h18M8 3v4M16 3v4'/%3E%3C/svg%3E");
+  --bk-icon-clock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3.2 2'/%3E%3C/svg%3E");
+  --bk-icon-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Crect x='4' y='10' width='16' height='11' rx='2'/%3E%3Cpath d='M8 10V7a4 4 0 0 1 8 0v3'/%3E%3C/svg%3E");
+  --bk-icon-eye: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M2 12s3.8-6.5 10-6.5S22 12 22 12s-3.8 6.5-10 6.5S2 12 2 12Z'/%3E%3Ccircle cx='12' cy='12' r='2.8'/%3E%3C/svg%3E");
+  --bk-icon-eye-off: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 4l16 16'/%3E%3Cpath d='M9.9 5.7A9.7 9.7 0 0 1 12 5.5c6.2 0 10 6.5 10 6.5a17 17 0 0 1-3.3 4M6.3 8A17 17 0 0 0 2 12s3.8 6.5 10 6.5c1.3 0 2.4-.2 3.5-.6'/%3E%3C/svg%3E");
+  --bk-icon-filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 5h18l-7 8v6l-4 2v-8Z'/%3E%3C/svg%3E");
+  --bk-icon-sort: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m8 8-3-3-3 3M5 5v14M16 16l3 3 3-3M19 19V5'/%3E%3C/svg%3E");
+  --bk-icon-grip: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Ccircle cx='9' cy='6' r='1.6'/%3E%3Ccircle cx='15' cy='6' r='1.6'/%3E%3Ccircle cx='9' cy='12' r='1.6'/%3E%3Ccircle cx='15' cy='12' r='1.6'/%3E%3Ccircle cx='9' cy='18' r='1.6'/%3E%3Ccircle cx='15' cy='18' r='1.6'/%3E%3C/svg%3E");
+  --bk-icon-spinner: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M12 3a9 9 0 1 0 9 9'/%3E%3C/svg%3E");
+  --bk-icon-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7Z'/%3E%3Cpath d='M14 3v4h4'/%3E%3C/svg%3E");
+  --bk-icon-home: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m3 11 9-8 9 8'/%3E%3Cpath d='M5 10v10h14V10'/%3E%3C/svg%3E");
+  --bk-icon-settings: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 8 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 14.2H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 8a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.8 3H10a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1.3Z'/%3E%3C/svg%3E");
+  --bk-icon-bell: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8'/%3E%3Cpath d='M13.7 21a2 2 0 0 1-3.4 0'/%3E%3C/svg%3E");
+}
+
+.bk-icon {
+  display: inline-block;
+  inline-size: var(--bk-icon-size, 1em);
+  block-size: var(--bk-icon-size, 1em);
+  flex: 0 0 auto;
+  background-color: currentColor;
+  -webkit-mask: var(--bk-i, var(--bk-icon-info)) center / contain no-repeat;
+  mask: var(--bk-i, var(--bk-icon-info)) center / contain no-repeat;
+  vertical-align: -0.125em;
+}
+.bk-icon-sm { --bk-icon-size: 0.85em; }
+.bk-icon-lg { --bk-icon-size: 1.35em; }
+.bk-icon-xl { --bk-icon-size: 2em; }
+
+.bk-i-x { --bk-i: var(--bk-icon-x); }
+.bk-i-check { --bk-i: var(--bk-icon-check); }
+.bk-i-minus { --bk-i: var(--bk-icon-minus); }
+.bk-i-plus { --bk-i: var(--bk-icon-plus); }
+.bk-i-chevron-down { --bk-i: var(--bk-icon-chevron-down); }
+.bk-i-chevron-up { --bk-i: var(--bk-icon-chevron-up); }
+.bk-i-chevron-right { --bk-i: var(--bk-icon-chevron-right); }
+.bk-i-chevron-left { --bk-i: var(--bk-icon-chevron-left); }
+.bk-i-arrow-right { --bk-i: var(--bk-icon-arrow-right); }
+.bk-i-arrow-left { --bk-i: var(--bk-icon-arrow-left); }
+.bk-i-arrow-up { --bk-i: var(--bk-icon-arrow-up); }
+.bk-i-search { --bk-i: var(--bk-icon-search); }
+.bk-i-info { --bk-i: var(--bk-icon-info); }
+.bk-i-warning { --bk-i: var(--bk-icon-warning); }
+.bk-i-danger { --bk-i: var(--bk-icon-danger); }
+.bk-i-success { --bk-i: var(--bk-icon-success); }
+.bk-i-copy { --bk-i: var(--bk-icon-copy); }
+.bk-i-external { --bk-i: var(--bk-icon-external); }
+.bk-i-menu { --bk-i: var(--bk-icon-menu); }
+.bk-i-dots { --bk-i: var(--bk-icon-dots); }
+.bk-i-sun { --bk-i: var(--bk-icon-sun); }
+.bk-i-moon { --bk-i: var(--bk-icon-moon); }
+.bk-i-upload { --bk-i: var(--bk-icon-upload); }
+.bk-i-trash { --bk-i: var(--bk-icon-trash); }
+.bk-i-star { --bk-i: var(--bk-icon-star); }
+.bk-i-heart { --bk-i: var(--bk-icon-heart); }
+.bk-i-user { --bk-i: var(--bk-icon-user); }
+.bk-i-calendar { --bk-i: var(--bk-icon-calendar); }
+.bk-i-clock { --bk-i: var(--bk-icon-clock); }
+.bk-i-lock { --bk-i: var(--bk-icon-lock); }
+.bk-i-eye { --bk-i: var(--bk-icon-eye); }
+.bk-i-eye-off { --bk-i: var(--bk-icon-eye-off); }
+.bk-i-filter { --bk-i: var(--bk-icon-filter); }
+.bk-i-sort { --bk-i: var(--bk-icon-sort); }
+.bk-i-grip { --bk-i: var(--bk-icon-grip); }
+.bk-i-spinner { --bk-i: var(--bk-icon-spinner); animation: bk-spin 800ms linear infinite; }
+.bk-i-file { --bk-i: var(--bk-icon-file); }
+.bk-i-home { --bk-i: var(--bk-icon-home); }
+.bk-i-settings { --bk-i: var(--bk-icon-settings); }
+.bk-i-bell { --bk-i: var(--bk-icon-bell); }

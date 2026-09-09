@@ -1,0 +1,233 @@
+/* =============================================================================
+   SKIN — blueprint · Technical drawing
+   Cyan ink on drafting navy, a millimetre grid under everything, dashed
+   construction lines and dimension-style labels.
+   ========================================================================== */
+
+[data-bk-style="blueprint"] {
+  --bk-font-sans: "IBM Plex Mono", "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+  --bk-font-mono: var(--bk-font-sans);
+  --bk-font-display: var(--bk-font-sans);
+  --bk-heading-weight: 600;
+  --bk-heading-transform: uppercase;
+  --bk-heading-tracking: 0.06em;
+  --bk-label-transform: uppercase;
+  --bk-label-tracking: 0.12em;
+
+  --bk-bg: #0d2137;
+  --bk-surface: #10283f;
+  --bk-surface-2: #163350;
+  --bk-surface-3: #1d4062;
+  --bk-surface-inverted: #e8f4ff;
+
+  --bk-text: #d6ecff;
+  --bk-text-muted: #8fb8dc;
+  --bk-text-subtle: #5d87ad;
+  --bk-text-inverted: #0d2137;
+
+  --bk-border: #2f6390;
+  --bk-border-muted: #1d4062;
+  --bk-border-strong: #63b3ed;
+  --bk-border-width: 1px;
+  --bk-border-style: solid;
+
+  --bk-primary: #63b3ed;
+  --bk-primary-hover: #7cc3f5;
+  --bk-primary-active: #96d0f8;
+  --bk-primary-soft: #14395a;
+  --bk-primary-border: #2f6390;
+  --bk-on-primary: #072033;
+  --bk-secondary: #f6ad55;
+  --bk-secondary-hover: #f8bd74;
+  --bk-secondary-soft: #3b2a12;
+  --bk-secondary-border: #7a5a26;
+  --bk-on-secondary: #241703;
+  --bk-success: #68d391;
+  --bk-success-soft: #123328;
+  --bk-success-border: #2a6b4c;
+  --bk-on-success: #04200f;
+  --bk-warning: #f6e05e;
+  --bk-warning-soft: #3a3512;
+  --bk-warning-border: #756c26;
+  --bk-on-warning: #221f00;
+  --bk-danger: #fc8181;
+  --bk-danger-soft: #3d1a1c;
+  --bk-danger-border: #7d3438;
+  --bk-on-danger: #260607;
+  --bk-info: #63b3ed;
+  --bk-info-soft: #14395a;
+  --bk-info-border: #2f6390;
+  --bk-on-info: #072033;
+  --bk-neutral: #8fb8dc;
+  --bk-neutral-soft: #163350;
+  --bk-neutral-border: #2f6390;
+  --bk-on-neutral: #0d2137;
+
+  --bk-radius-scale: 0;
+  --bk-radius-full: 0;
+  --bk-radius-pill: 0;
+  --bk-radius-field: 0;
+  --bk-radius-card: 0;
+  --bk-radius-overlay: 0;
+  --bk-radius-thumb: 0;
+
+  --bk-shadow-xs: none;
+  --bk-shadow-sm: none;
+  --bk-shadow-md: 0 0 0 1px rgb(99 179 237 / 0.2);
+  --bk-shadow-lg: 0 0 0 1px rgb(99 179 237 / 0.35), 0 12px 40px rgb(0 0 0 / 0.5);
+  --bk-shadow-xl: 0 0 0 1px rgb(99 179 237 / 0.45), 0 20px 60px rgb(0 0 0 / 0.6);
+  --bk-shadow-2xl: 0 0 0 1px rgb(99 179 237 / 0.5), 0 30px 80px rgb(0 0 0 / 0.7);
+  --bk-shadow-inner: inset 0 0 0 1px rgb(99 179 237 / 0.18);
+
+  --bk-ring: #f6ad55;
+  --bk-ring-width: 1px;
+  --bk-ring-offset: 3px;
+  --bk-ring-style: dashed;
+
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: none;
+  --bk-btn-shadow-active: none;
+  --bk-btn-transform: uppercase;
+  --bk-btn-tracking: 0.12em;
+  --bk-btn-weight: 600;
+  --bk-btn-border-width: 1px;
+  --bk-press-transform: translateY(1px);
+
+  --bk-field-bg: rgb(13 33 55 / 0.6);
+  --bk-field-bg-hover: rgb(22 51 80 / 0.7);
+  --bk-field-border: #2f6390;
+  --bk-field-border-hover: #63b3ed;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #4f7ba3;
+
+  --bk-card-bg: rgb(16 40 63 / 0.7);
+  --bk-card-border: #2f6390;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: 0 0 0 1px #63b3ed;
+  --bk-overlay-surface: #10283f;
+  --bk-overlay-border: #63b3ed;
+  --bk-overlay-shadow: var(--bk-shadow-xl);
+  --bk-overlay-bg: rgb(5 16 27 / 0.8);
+  --bk-code-bg: rgb(7 20 33 / 0.8);
+  --bk-code-border: #2f6390;
+  --bk-tooltip-bg: #63b3ed;
+  --bk-tooltip-fg: #072033;
+  --bk-selection-bg: rgb(246 173 85 / 0.35);
+  --bk-scrollbar-thumb: #2f6390;
+  --bk-divider-color: #2f6390;
+  --bk-divider-style: dashed;
+
+  --bk-body-image:
+    linear-gradient(rgb(99 179 237 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(99 179 237 / 0.07) 1px, transparent 1px),
+    linear-gradient(rgb(99 179 237 / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(99 179 237 / 0.03) 1px, transparent 1px);
+  background-size: 6rem 6rem, 6rem 6rem, 1.2rem 1.2rem, 1.2rem 1.2rem;
+  --bk-body-attachment: fixed;
+  color-scheme: dark;
+}
+[data-bk-style="blueprint"] body,
+body[data-bk-style="blueprint"] {
+  background-size: 6rem 6rem, 6rem 6rem, 1.2rem 1.2rem, 1.2rem 1.2rem;
+}
+
+[data-bk-style="blueprint"][data-bk-theme="light"] {
+  --bk-bg: #f0f6fb;
+  --bk-surface: #ffffff;
+  --bk-surface-2: #eef5fb;
+  --bk-surface-3: #dbe9f5;
+  --bk-surface-inverted: #10283f;
+  --bk-text-inverted: #d6ecff;
+  --bk-text: #0d2137;
+  --bk-text-muted: #3f6a91;
+  --bk-text-subtle: #7599b8;
+  --bk-border: #9dc2de;
+  --bk-border-muted: #cfe2f0;
+  --bk-border-strong: #1a5f95;
+  --bk-primary: #1a5f95;
+  --bk-primary-soft: #e0edf7;
+  --bk-primary-border: #9dc2de;
+  --bk-on-primary: #ffffff;
+  --bk-field-bg: #ffffff;
+  --bk-field-border: #9dc2de;
+  --bk-card-bg: rgb(255 255 255 / 0.8);
+  --bk-card-border: #9dc2de;
+  --bk-overlay-surface: #ffffff;
+  --bk-overlay-border: #1a5f95;
+  --bk-code-bg: #eef5fb;
+  --bk-code-border: #9dc2de;
+  --bk-tooltip-bg: #0d2137;
+  --bk-tooltip-fg: #ffffff;
+  --bk-divider-color: #9dc2de;
+  --bk-body-image:
+    linear-gradient(rgb(26 95 149 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(26 95 149 / 0.08) 1px, transparent 1px),
+    linear-gradient(rgb(26 95 149 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(26 95 149 / 0.04) 1px, transparent 1px);
+  color-scheme: light;
+}
+
+[data-bk-style="blueprint"] .bk-card,
+[data-bk-style="blueprint"] .bk-panel { border-style: solid; position: relative; }
+[data-bk-style="blueprint"] .bk-card::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgb(99 179 237 / 0.25);
+  pointer-events: none;
+}
+[data-bk-style="blueprint"] .bk-divider { border-style: dashed; }
+[data-bk-style="blueprint"] .bk-section-head .bk-eyebrow::before { content: "▸ "; }
+[data-bk-style="blueprint"] .bk-navbar { border-block-end: 1px solid var(--bk-border-strong); background: transparent; }
+[data-bk-style="blueprint"] .bk-table thead th { background: transparent; border-block-end: 1px solid var(--bk-border-strong); }
+[data-bk-style="blueprint"] .bk-table th,
+[data-bk-style="blueprint"] .bk-table td { border-block-end-style: dashed; }
+[data-bk-style="blueprint"] .bk-check,
+[data-bk-style="blueprint"] .bk-switch,
+[data-bk-style="blueprint"] .bk-switch::before,
+[data-bk-style="blueprint"] .bk-avatar { border-radius: 0; }
+[data-bk-style="blueprint"] .bk-avatar { border: 1px solid var(--bk-border); }
+[data-bk-style="blueprint"] .bk-progress { border: 1px solid var(--bk-border); background: transparent; }
+[data-bk-style="blueprint"] .bk-progress-bar {
+  background-image: repeating-linear-gradient(45deg, transparent 0 4px, rgb(13 33 55 / 0.4) 4px 8px);
+}
+[data-bk-style="blueprint"] .bk-badge { border: 1px dashed currentColor; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="blueprint"] {
+  --bk-danger-on-soft: #fc8181;
+  --bk-danger-text: #fc8181;
+  --bk-info-on-soft: #63b3ed;
+  --bk-info-text: #63b3ed;
+  --bk-neutral-on-soft: #8fb8dc;
+  --bk-neutral-text: #8fb8dc;
+  --bk-primary-active: #96d0f8;
+  --bk-primary-hover: #7cc3f5;
+  --bk-secondary-on-soft: #f6ad55;
+  --bk-secondary-text: #f6ad55;
+  --bk-success-on-soft: #68d391;
+  --bk-success-text: #68d391;
+  --bk-text-subtle: #678fb2;
+  --bk-warning-on-soft: #f6e05e;
+  --bk-warning-text: #f6e05e;
+}
+[data-bk-style="blueprint"][data-bk-theme="light"] {
+  --bk-danger-on-soft: #fc8181;
+  --bk-danger-text: #da0505;
+  --bk-info-on-soft: #63b3ed;
+  --bk-info-text: #1570b2;
+  --bk-neutral-on-soft: #8fb8dc;
+  --bk-neutral-text: #336fa4;
+  --bk-primary-active: #165280;
+  --bk-primary-hover: #185789;
+  --bk-secondary-on-soft: #f6ad55;
+  --bk-secondary-text: #9f5b08;
+  --bk-success-on-soft: #68d391;
+  --bk-success-text: #237944;
+  --bk-text-subtle: #5a85aa;
+  --bk-warning-on-soft: #f6e05e;
+  --bk-warning-text: #7c6b07;
+}
+/* ==== end derived contrast tokens ==== */

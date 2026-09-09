@@ -1,0 +1,204 @@
+/* =============================================================================
+   BUKALEMUN — demos/demo.css
+   Chrome for the demo pages: the skin dock and the gallery. Same rule as every
+   component stylesheet — no colour, radius, shadow or font name is written
+   here, only tokens. That is why the chrome re-dresses itself along with the
+   page it sits on.
+   ========================================================================== */
+
+/* ------------------------------------------------------------------ dock -- */
+
+.demo-dock {
+  position: fixed;
+  inset-block-end: var(--bk-space-4);
+  inset-inline-end: var(--bk-space-4);
+  z-index: 90;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--bk-space-2);
+  max-inline-size: calc(100vw - var(--bk-space-8));
+  padding: var(--bk-space-2) var(--bk-space-3);
+  background: var(--bk-surface);
+  border: var(--bk-border-width) var(--bk-border-style) var(--bk-border-strong);
+  border-radius: var(--bk-radius-pill);
+  box-shadow: var(--bk-shadow-lg);
+}
+
+.demo-dock-label {
+  font-size: var(--bk-text-xs);
+  letter-spacing: var(--bk-label-tracking);
+  text-transform: uppercase;
+  color: var(--bk-text-muted);
+}
+
+.demo-dock select { min-inline-size: 10rem; }
+
+/* Collapse to a single row of icons where a pill of controls would cover the
+   page it is meant to be showing off. */
+@media (max-width: 40rem) {
+  .demo-dock { inset-inline: var(--bk-space-3); border-radius: var(--bk-radius-lg); justify-content: center; }
+  .demo-dock-label, .demo-dock [data-demo-hide-sm] { display: none; }
+  .demo-dock select { min-inline-size: 0; flex: 1 1 8rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .demo-dock { transition: opacity .2s ease; }
+  .demo-dock:not(:hover):not(:focus-within) { opacity: .92; }
+}
+
+/* --------------------------------------------------------------- gallery -- */
+
+.demo-page { min-block-size: 100vh; display: flex; flex-direction: column; }
+.demo-page > main { flex: 1; }
+
+.demo-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--bk-space-3);
+  padding: var(--bk-space-4) var(--bk-space-5);
+  border-block-end: var(--bk-border-width) var(--bk-border-style) var(--bk-border);
+}
+
+.demo-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--bk-space-2);
+  font-family: var(--bk-font-display);
+  font-size: var(--bk-text-lg);
+  font-weight: var(--bk-weight-bold);
+  color: var(--bk-text);
+  text-decoration: none;
+}
+
+/* The silhouette is a mask, not an <img>, so it takes currentColor and turns
+   with the skin instead of staying one fixed colour in fifty palettes. */
+.demo-mark::before {
+  content: '';
+  inline-size: 1.6em;
+  block-size: 1.6em;
+  background: currentColor;
+  -webkit-mask: var(--demo-logo) center / contain no-repeat;
+  mask: var(--demo-logo) center / contain no-repeat;
+}
+
+.demo-head-end { margin-inline-start: auto; display: flex; align-items: center; gap: var(--bk-space-2); }
+
+.demo-hero { padding: var(--bk-space-8) var(--bk-space-5) var(--bk-space-6); }
+.demo-hero .bk-badge { white-space: normal; }
+.demo-hero h1 { margin: 0 0 var(--bk-space-3); font-size: var(--bk-text-4xl); line-height: var(--bk-leading-tight); }
+.demo-hero p { margin: 0; max-inline-size: 46rem; color: var(--bk-text-muted); font-size: var(--bk-text-md); }
+
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--bk-space-3);
+  padding: var(--bk-space-4) var(--bk-space-5);
+  border-block: var(--bk-border-width) var(--bk-border-style) var(--bk-border);
+  background: var(--bk-bg-subtle);
+}
+
+.demo-controls-group { display: flex; align-items: center; gap: var(--bk-space-2); }
+.demo-controls-note { margin-inline-start: auto; font-size: var(--bk-text-sm); color: var(--bk-text-muted); }
+
+.demo-gallery {
+  display: grid;
+  gap: var(--bk-space-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  padding: var(--bk-space-6) var(--bk-space-5) var(--bk-space-10);
+}
+
+.demo-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--bk-surface);
+  border: var(--bk-border-width) var(--bk-border-style) var(--bk-border-strong);
+  border-radius: var(--bk-radius-lg);
+  box-shadow: var(--bk-shadow-sm);
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .demo-card { transition: box-shadow .16s ease, translate .16s ease; }
+  .demo-card:has(a:hover), .demo-card:has(a:focus-visible) { translate: 0 -3px; box-shadow: var(--bk-shadow-lg); }
+}
+
+.demo-card:has(a:focus-visible) { outline: var(--bk-ring-width) var(--bk-ring-style) var(--bk-ring); outline-offset: var(--bk-ring-offset); }
+
+/* A strip of window chrome, so a scaled-down page reads as a page and not as a
+   screenshot that failed to load. */
+.demo-chrome {
+  display: flex;
+  align-items: center;
+  gap: var(--bk-space-2);
+  padding: var(--bk-space-2) var(--bk-space-3);
+  border-block-end: var(--bk-border-width) var(--bk-border-style) var(--bk-border);
+  background: var(--bk-bg-subtle);
+}
+
+.demo-chrome-dots { display: flex; gap: .3rem; }
+.demo-chrome-dots i { inline-size: .55rem; block-size: .55rem; border-radius: var(--bk-radius-full); background: var(--bk-border-strong); }
+.demo-chrome-url {
+  flex: 1;
+  font-family: var(--bk-font-mono);
+  font-size: var(--bk-text-xs);
+  color: var(--bk-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The preview is a real, live page: an iframe of the demo itself, scaled. A
+   screenshot would go stale the moment a skin changed, and there are fifty. */
+.demo-frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bk-bg);
+}
+
+.demo-frame iframe {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: 1440px;
+  block-size: 1000px;
+  border: 0;
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.demo-frame::after {
+  /* Swallows pointer events so the card link stays clickable over the frame. */
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.demo-card-body { display: flex; flex-direction: column; gap: var(--bk-space-2); padding: var(--bk-space-4) var(--bk-space-5) var(--bk-space-5); }
+.demo-card-body h2 { margin: 0; font-size: var(--bk-text-lg); }
+.demo-card-body h2 a { color: inherit; text-decoration: none; }
+.demo-card-body h2 a::after { content: ''; position: absolute; inset: 0; }
+.demo-card-body p { margin: 0; font-size: var(--bk-text-sm); color: var(--bk-text-muted); }
+.demo-card-tags { display: flex; flex-wrap: wrap; gap: var(--bk-space-1); margin-block-start: var(--bk-space-1); }
+
+.demo-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bk-space-3);
+  align-items: center;
+  padding: var(--bk-space-5);
+  border-block-start: var(--bk-border-width) var(--bk-border-style) var(--bk-border);
+  font-size: var(--bk-text-sm);
+  color: var(--bk-text-muted);
+}
+.demo-foot a { color: var(--bk-text-link); }
+.demo-foot-end { margin-inline-start: auto; }
+
+/* Printing a gallery of iframes produces sixteen blank pages. */
+@media print {
+  .demo-dock, .demo-frame { display: none; }
+}

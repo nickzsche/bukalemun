@@ -1,0 +1,248 @@
+/* =============================================================================
+   SKIN — pixel · 8-bit
+   Everything snaps to a 4px grid, borders are drawn with hard box-shadow steps
+   so they stay crisp, and nothing is ever anti-aliased on purpose.
+   ========================================================================== */
+
+[data-bk-style="pixel"] {
+  --bk-font-sans: "Press Start 2P", "Silkscreen", ui-monospace, "Courier New", monospace;
+  --bk-font-mono: var(--bk-font-sans);
+  --bk-font-display: var(--bk-font-sans);
+  --bk-font-body: var(--bk-font-sans);
+  --bk-heading-weight: 400;
+  --bk-weight-normal: 400;
+  --bk-weight-medium: 400;
+  --bk-weight-semibold: 400;
+  --bk-weight-bold: 400;
+  --bk-weight-black: 400;
+  --bk-heading-tracking: 0;
+  --bk-label-tracking: 0;
+
+  --bk-text-2xs: 0.5rem;
+  --bk-text-xs: 0.5625rem;
+  --bk-text-sm: 0.625rem;
+  --bk-text-md: 0.6875rem;
+  --bk-text-base: 0.75rem;
+  --bk-text-lg: 0.875rem;
+  --bk-text-xl: 1rem;
+  --bk-text-2xl: 1.25rem;
+  --bk-text-3xl: 1.5rem;
+  --bk-text-4xl: 2rem;
+  --bk-text-5xl: 2.5rem;
+  --bk-leading-normal: 1.8;
+  --bk-leading-snug: 1.6;
+
+  --bk-bg: #1a1c2c;
+  --bk-surface: #232640;
+  --bk-surface-2: #2c3055;
+  --bk-surface-3: #3b4070;
+  --bk-surface-inverted: #f4f4f4;
+
+  --bk-text: #f4f4f4;
+  --bk-text-muted: #a7a9c4;
+  --bk-text-subtle: #6e7196;
+  --bk-text-inverted: #1a1c2c;
+
+  --bk-border: #f4f4f4;
+  --bk-border-muted: #4a4f85;
+  --bk-border-strong: #f4f4f4;
+  --bk-border-width: 3px;
+
+  --bk-primary: #41a6f6;
+  --bk-primary-hover: #5fb6f8;
+  --bk-primary-active: #2f8ad4;
+  --bk-primary-soft: #1c3a5c;
+  --bk-primary-border: #f4f4f4;
+  --bk-on-primary: #1a1c2c;
+  --bk-secondary: #38b764;
+  --bk-secondary-hover: #4ac877;
+  --bk-secondary-soft: #17381f;
+  --bk-secondary-border: #f4f4f4;
+  --bk-on-secondary: #1a1c2c;
+  --bk-success: #38b764;
+  --bk-success-soft: #17381f;
+  --bk-success-border: #f4f4f4;
+  --bk-on-success: #1a1c2c;
+  --bk-warning: #ffcd75;
+  --bk-warning-soft: #46351a;
+  --bk-warning-border: #f4f4f4;
+  --bk-on-warning: #1a1c2c;
+  --bk-danger: #ef476f;
+  --bk-danger-soft: #47172a;
+  --bk-danger-border: #f4f4f4;
+  --bk-on-danger: #1a1c2c;
+  --bk-info: #73eff7;
+  --bk-info-soft: #17414a;
+  --bk-info-border: #f4f4f4;
+  --bk-on-info: #1a1c2c;
+  --bk-neutral: #94b0c2;
+  --bk-neutral-soft: #2c3055;
+  --bk-neutral-border: #f4f4f4;
+  --bk-on-neutral: #1a1c2c;
+
+  --bk-radius-scale: 0;
+  --bk-radius-full: 0;
+  --bk-radius-pill: 0;
+  --bk-radius-field: 0;
+  --bk-radius-card: 0;
+  --bk-radius-overlay: 0;
+  --bk-radius-thumb: 0;
+
+  --bk-shadow-none: 0 0 #0000;
+  --bk-shadow-xs: 3px 3px 0 0 #0d0e18;
+  --bk-shadow-sm: 3px 3px 0 0 #0d0e18;
+  --bk-shadow-md: 6px 6px 0 0 #0d0e18;
+  --bk-shadow-lg: 9px 9px 0 0 #0d0e18;
+  --bk-shadow-xl: 12px 12px 0 0 #0d0e18;
+  --bk-shadow-2xl: 15px 15px 0 0 #0d0e18;
+  --bk-shadow-inner: inset 3px 3px 0 0 #0d0e18;
+
+  --bk-ring: #ffcd75;
+  --bk-ring-width: 3px;
+  --bk-ring-offset: 3px;
+
+  --bk-btn-border-width: 3px;
+  --bk-btn-shadow: 4px 4px 0 0 #0d0e18;
+  --bk-btn-shadow-hover: 4px 4px 0 0 #0d0e18;
+  --bk-btn-shadow-active: 0 0 0 0 #0d0e18;
+  --bk-press-transform: translate(4px, 4px);
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #1a1c2c;
+  --bk-field-border: #f4f4f4;
+  --bk-field-border-width: 3px;
+  --bk-field-shadow: inset 3px 3px 0 0 #0d0e18;
+  --bk-field-shadow-focus: inset 3px 3px 0 0 #0d0e18;
+  --bk-field-placeholder: #6e7196;
+
+  --bk-card-border-width: 3px;
+  --bk-card-shadow: 6px 6px 0 0 #0d0e18;
+  --bk-card-shadow-hover: 6px 6px 0 0 #0d0e18;
+  --bk-card-pad: var(--bk-space-5);
+  --bk-overlay-surface: #232640;
+  --bk-overlay-border: #f4f4f4;
+  --bk-overlay-shadow: 8px 8px 0 0 #0d0e18;
+  --bk-overlay-bg: rgb(13 14 24 / 0.8);
+  --bk-code-bg: #1a1c2c;
+  --bk-code-border: #f4f4f4;
+  --bk-tooltip-bg: #f4f4f4;
+  --bk-tooltip-fg: #1a1c2c;
+  --bk-selection-bg: #ffcd75;
+  --bk-selection-fg: #1a1c2c;
+  --bk-scrollbar-thumb: #f4f4f4;
+  --bk-divider-color: #f4f4f4;
+  --bk-divider-width: 3px;
+  --bk-transition: none;
+  color-scheme: dark;
+}
+
+[data-bk-style="pixel"][data-bk-theme="light"] {
+  --bk-bg: #f4f4f4;
+  --bk-surface: #ffffff;
+  --bk-surface-2: #e9e9e9;
+  --bk-surface-3: #d6d6d6;
+  --bk-surface-inverted: #232640;
+  --bk-text-inverted: #f4f4f4;
+  --bk-text: #1a1c2c;
+  --bk-text-muted: #4a4f6b;
+  --bk-text-subtle: #7c81a0;
+  --bk-border: #1a1c2c;
+  --bk-border-muted: #b8bacc;
+  --bk-border-strong: #1a1c2c;
+  --bk-shadow-xs: 3px 3px 0 0 #1a1c2c;
+  --bk-shadow-sm: 3px 3px 0 0 #1a1c2c;
+  --bk-shadow-md: 6px 6px 0 0 #1a1c2c;
+  --bk-shadow-lg: 9px 9px 0 0 #1a1c2c;
+  --bk-shadow-xl: 12px 12px 0 0 #1a1c2c;
+  --bk-btn-shadow: 4px 4px 0 0 #1a1c2c;
+  --bk-btn-shadow-hover: 4px 4px 0 0 #1a1c2c;
+  --bk-btn-shadow-active: 0 0 0 0 #1a1c2c;
+  --bk-field-bg: #ffffff;
+  --bk-field-border: #1a1c2c;
+  --bk-field-shadow: inset 3px 3px 0 0 #c9cad6;
+  --bk-card-shadow: 6px 6px 0 0 #1a1c2c;
+  --bk-card-shadow-hover: 6px 6px 0 0 #1a1c2c;
+  --bk-overlay-surface: #ffffff;
+  --bk-overlay-border: #1a1c2c;
+  --bk-overlay-shadow: 8px 8px 0 0 #1a1c2c;
+  --bk-code-bg: #e9e9e9;
+  --bk-code-border: #1a1c2c;
+  --bk-tooltip-bg: #1a1c2c;
+  --bk-tooltip-fg: #f4f4f4;
+  --bk-divider-color: #1a1c2c;
+  --bk-primary-border: #1a1c2c;
+  --bk-neutral: #1a1c2c;
+  --bk-neutral-soft: #e9e9e9;
+  --bk-on-neutral: #f4f4f4;
+  color-scheme: light;
+}
+
+[data-bk-style="pixel"] img { image-rendering: pixelated; }
+[data-bk-style="pixel"] .bk-btn { image-rendering: pixelated; }
+[data-bk-style="pixel"] .bk-avatar,
+[data-bk-style="pixel"] .bk-check,
+[data-bk-style="pixel"] .bk-switch,
+[data-bk-style="pixel"] .bk-switch::before,
+[data-bk-style="pixel"] .bk-badge,
+[data-bk-style="pixel"] .bk-chip { border-radius: 0; }
+[data-bk-style="pixel"] .bk-avatar { border: 3px solid var(--bk-border); }
+[data-bk-style="pixel"] .bk-switch { border: 3px solid var(--bk-border); background: var(--bk-surface); }
+[data-bk-style="pixel"] .bk-switch::before { background: var(--bk-text-subtle); box-shadow: none; }
+[data-bk-style="pixel"] .bk-switch:checked::before { background: var(--bk-primary); }
+[data-bk-style="pixel"] .bk-progress { border: 3px solid var(--bk-border); background: var(--bk-bg); }
+[data-bk-style="pixel"] .bk-progress-bar {
+  background-image: repeating-linear-gradient(90deg, transparent 0 8px, rgb(0 0 0 / 0.25) 8px 10px);
+}
+[data-bk-style="pixel"] .bk-spinner {
+  border-radius: 0;
+  border-width: 4px;
+  animation-timing-function: steps(8, end);
+  animation-duration: 800ms;
+}
+[data-bk-style="pixel"] .bk-badge { border: 2px solid var(--bk-border); }
+[data-bk-style="pixel"] .bk-tab[aria-selected="true"] { background: var(--bk-primary); color: var(--bk-on-primary); }
+[data-bk-style="pixel"] .bk-navbar { border-block-end: 3px solid var(--bk-border); }
+[data-bk-style="pixel"] .bk-btn:focus-visible { outline-style: dashed; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="pixel"] {
+  --bk-danger-active: #f16183;
+  --bk-danger-hover: #f0567b;
+  --bk-danger-on-soft: #f15e81;
+  --bk-danger-text: #f37694;
+  --bk-info-on-soft: #73eff7;
+  --bk-info-text: #73eff7;
+  --bk-primary-active: #5cb2f7;
+  --bk-primary-on-soft: #50adf7;
+  --bk-primary-text: #41a6f6;
+  --bk-secondary-on-soft: #38b764;
+  --bk-secondary-text: #38b764;
+  --bk-success-on-soft: #38b764;
+  --bk-success-text: #38b764;
+  --bk-text-muted: #b3b5cc;
+  --bk-text-subtle: #8f91ae;
+  --bk-warning-on-soft: #ffcd75;
+  --bk-warning-text: #ffcd75;
+}
+[data-bk-style="pixel"][data-bk-theme="light"] {
+  --bk-danger-active: #f16183;
+  --bk-danger-hover: #f0567b;
+  --bk-danger-on-soft: #f15e81;
+  --bk-danger-text: #c9113d;
+  --bk-info-on-soft: #73eff7;
+  --bk-info-text: #077279;
+  --bk-primary-active: #5cb2f7;
+  --bk-primary-on-soft: #50adf7;
+  --bk-primary-text: #0968b4;
+  --bk-secondary-on-soft: #38b764;
+  --bk-secondary-text: #247540;
+  --bk-success-on-soft: #38b764;
+  --bk-success-text: #247540;
+  --bk-text-muted: #4a4f6b;
+  --bk-text-subtle: #6d7395;
+  --bk-warning-on-soft: #ffcd75;
+  --bk-warning-text: #8e5b00;
+}
+/* ==== end derived contrast tokens ==== */

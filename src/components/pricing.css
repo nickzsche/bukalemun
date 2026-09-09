@@ -1,0 +1,105 @@
+/* =============================================================================
+   BUKALEMUN — components/pricing.css
+   Pricing tables: plan cards with price, feature list and highlighted tier.
+   Plans are built on the card tokens, so every skin dresses them for free.
+   ========================================================================== */
+
+.bk-pricing {
+  display: grid;
+  gap: var(--bk-space-5);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  align-items: stretch;
+}
+
+.bk-pricing-plan {
+  --bk-c: var(--bk-primary);
+  --bk-c-soft: var(--bk-primary-soft);
+  --bk-c-border: var(--bk-primary-border);
+  --bk-c-text: var(--bk-primary-text);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--bk-space-4);
+  background: var(--bk-card-bg);
+  border: var(--bk-card-border-width) var(--bk-border-style) var(--bk-card-border);
+  border-radius: var(--bk-card-radius);
+  box-shadow: var(--bk-card-shadow);
+  padding: var(--bk-card-pad);
+}
+
+.bk-pricing-plan-featured {
+  background: var(--bk-c-soft);
+  border-color: var(--bk-c-border);
+  box-shadow: var(--bk-card-shadow-hover);
+}
+
+.bk-pricing-name {
+  margin: 0;
+  font-family: var(--bk-heading-font);
+  font-size: var(--bk-text-sm);
+  font-weight: var(--bk-heading-weight);
+  letter-spacing: var(--bk-label-tracking);
+  text-transform: var(--bk-label-transform);
+  color: var(--bk-c-text);
+}
+
+.bk-pricing-price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--bk-space-2);
+}
+
+.bk-pricing-amount {
+  font-family: var(--bk-heading-font);
+  font-size: var(--bk-text-4xl);
+  font-weight: var(--bk-weight-bold);
+  line-height: var(--bk-leading-none);
+  letter-spacing: var(--bk-heading-tracking);
+  color: var(--bk-text);
+  font-variant-numeric: var(--bk-font-variant-numeric);
+}
+
+.bk-pricing-period { color: var(--bk-text-muted); font-size: var(--bk-text-sm); }
+
+.bk-pricing-desc { margin: 0; color: var(--bk-text-muted); font-size: var(--bk-text-sm); }
+
+.bk-pricing-feats {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--bk-space-2);
+  font-size: var(--bk-text-sm);
+}
+
+.bk-pricing-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--bk-space-2);
+}
+
+/* check mark drawn with borders only — no glyphs, no colours */
+.bk-pricing-feat::before {
+  content: "";
+  flex: none;
+  inline-size: 0.55em;
+  block-size: 0.55em;
+  margin-top: 0.3em;
+  border-right: 2px solid var(--bk-c);
+  border-bottom: 2px solid var(--bk-c);
+  rotate: 45deg;
+}
+
+.bk-pricing-feat-off { color: var(--bk-text-subtle); }
+.bk-pricing-feat-off::before {
+  border: 0;
+  inline-size: 0.8em;
+  block-size: 2px;
+  margin-top: 0.55em;
+  background: var(--bk-text-subtle);
+  rotate: none;
+}
+
+.bk-pricing-actions { margin-top: auto; display: grid; gap: var(--bk-space-2); }
+
+.bk-pricing-note { margin: 0; font-size: var(--bk-text-xs); color: var(--bk-text-subtle); }

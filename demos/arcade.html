@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="pixelart" data-bk-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Arcade demo</title>
+<meta name="description" content="A game launcher built from Bukalemun components — leaderboards, meters, loadout tree and key-cap controls.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/pixelart.min.css" data-bk-skin="pixelart">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  .arc-cover { aspect-ratio: 3 / 4; background-image: var(--cover); }
+  .arc-1 { --cover: linear-gradient(160deg, var(--bk-primary), var(--bk-bg-muted)); }
+  .arc-2 { --cover: linear-gradient(20deg, var(--bk-secondary), var(--bk-bg-muted)); }
+  .arc-3 { --cover: linear-gradient(200deg, var(--bk-bg-muted), var(--bk-primary)); }
+  .arc-4 { --cover: linear-gradient(300deg, var(--bk-secondary), var(--bk-primary)); }
+  .arc-keys { display: grid; grid-template-columns: repeat(3, 2.6rem); gap: var(--bk-space-1); justify-content: center; }
+  .arc-keys .bk-kbd { display: grid; place-items: center; block-size: 2.6rem; }
+  .arc-key-up { grid-column: 2; }
+</style>
+</head>
+<body>
+
+<nav class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="./index.html">◈ PIXEL&nbsp;CABINET</a>
+  <div class="bk-navbar-nav">
+    <a class="bk-nav-link bk-is-active" href="#">Library</a>
+    <a class="bk-nav-link" href="#">Store</a>
+    <a class="bk-nav-link" href="#">Friends</a>
+  </div>
+  <div class="bk-navbar-end">
+    <span class="bk-badge bk-badge-warning">◆ 2,480</span>
+    <span class="bk-avatar bk-avatar-sm bk-avatar-square bk-avatar-status bk-status-online">ŞH</span>
+  </div>
+</nav>
+
+<main class="bk-container" style="padding-block: var(--bk-space-6);">
+
+  <section class="bk-hero bk-hero-start bk-hero-panel" style="margin-block-end: var(--bk-space-6);">
+      <p class="bk-eyebrow">Continue playing</p>
+      <h1 class="bk-hero-title">CHAMELEON QUEST II</h1>
+      <p class="bk-hero-sub">Fifty worlds. One lizard. The palette changes every time you blink.</p>
+      <div class="bk-cluster bk-gap-4" style="margin-block: var(--bk-space-4);">
+        <span class="bk-cluster bk-gap-2"><span class="bk-subtle bk-text-sm">HP</span><span class="bk-meter" style="inline-size: 9rem;"><span class="bk-meter-bar" style="inline-size: 72%"></span></span></span>
+        <span class="bk-cluster bk-gap-2"><span class="bk-subtle bk-text-sm">MP</span><span class="bk-meter" style="inline-size: 9rem;"><span class="bk-meter-bar" style="inline-size: 45%"></span></span></span>
+        <span class="bk-cluster bk-gap-2"><span class="bk-subtle bk-text-sm">XP</span><span class="bk-meter bk-meter-segments" style="inline-size: 9rem;"><span class="bk-meter-bar" style="inline-size: 88%"></span></span></span>
+      </div>
+      <div class="bk-hero-actions">
+        <button class="bk-btn bk-btn-xl bk-btn-primary" type="button">▶ Resume — World 34</button>
+        <button class="bk-btn bk-btn-xl bk-btn-outline" type="button" data-bk-open="#controls">Controls</button>
+    </div>
+  </section>
+
+  <div class="bk-grid bk-cols-3 bk-gap-5">
+
+    <section class="bk-col-span-2 bk-stack">
+
+      <div class="bk-section-head">
+        <h2>Your library</h2>
+        <div class="bk-segmented bk-segmented-sm bk-w-fit" role="group" aria-label="Sort">
+          <button class="bk-segmented-item bk-is-active" type="button">Recent</button>
+          <button class="bk-segmented-item" type="button">A–Z</button>
+          <button class="bk-segmented-item" type="button">Hours</button>
+        </div>
+      </div>
+
+      <div class="bk-grid bk-cols-4 bk-gap-3">
+        <article class="bk-card bk-card-interactive">
+          <div class="bk-card-media arc-cover arc-1"></div>
+          <div class="bk-card-body"><p class="bk-card-title bk-text-sm">Chameleon Quest II</p><p class="bk-card-text bk-text-xs">34 h</p></div>
+        </article>
+        <article class="bk-card bk-card-interactive">
+          <div class="bk-card-media arc-cover arc-2"></div>
+          <div class="bk-card-body"><p class="bk-card-title bk-text-sm">Neon Alley</p><p class="bk-card-text bk-text-xs">12 h</p></div>
+        </article>
+        <article class="bk-card bk-card-interactive">
+          <div class="bk-card-media arc-cover arc-3"></div>
+          <div class="bk-card-body"><p class="bk-card-title bk-text-sm">Token Runner</p><p class="bk-card-text bk-text-xs">7 h</p></div>
+        </article>
+        <article class="bk-card bk-card-interactive">
+          <div class="bk-card-media arc-cover arc-4"></div>
+          <div class="bk-card-body"><p class="bk-card-title bk-text-sm">Cascade</p><p class="bk-card-text bk-text-xs">2 h</p></div>
+        </article>
+      </div>
+
+      <section class="bk-card">
+        <div class="bk-card-header"><h2 class="bk-card-title">Leaderboard — World 34</h2></div>
+        <div class="bk-table-wrap">
+          <table class="bk-table bk-table-striped bk-table-hover" data-bk-table data-bk-sort>
+            <thead>
+              <tr>
+                <th class="bk-th-sort" data-bk-sort>#</th>
+                <th class="bk-th-sort" data-bk-sort>Player</th>
+                <th class="bk-th-sort bk-td-end" data-bk-sort>Score</th>
+                <th class="bk-th-sort bk-td-end" data-bk-sort>Time</th>
+                <th class="bk-td-end">Run</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bk-tr-success"><td>1</td><td>lizardking</td><td class="bk-td-end bk-numeric">184,220</td><td class="bk-td-end bk-numeric">04:12</td><td class="bk-td-end"><span class="bk-badge bk-badge-success bk-badge-sm">clean</span></td></tr>
+              <tr><td>2</td><td>nickzsche</td><td class="bk-td-end bk-numeric">179,905</td><td class="bk-td-end bk-numeric">04:31</td><td class="bk-td-end"><span class="bk-badge bk-badge-sm">clean</span></td></tr>
+              <tr><td>3</td><td>merv</td><td class="bk-td-end bk-numeric">171,440</td><td class="bk-td-end bk-numeric">04:48</td><td class="bk-td-end"><span class="bk-badge bk-badge-sm">clean</span></td></tr>
+              <tr class="bk-tr-warning"><td>4</td><td>emrey</td><td class="bk-td-end bk-numeric">168,002</td><td class="bk-td-end bk-numeric">03:58</td><td class="bk-td-end"><span class="bk-badge bk-badge-warning bk-badge-sm">under review</span></td></tr>
+              <tr><td>5</td><td>deniz_k</td><td class="bk-td-end bk-numeric">154,700</td><td class="bk-td-end bk-numeric">05:20</td><td class="bk-td-end"><span class="bk-badge bk-badge-sm">clean</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="bk-table-footer"><span class="bk-pagination-info">Top 5 of 12,884 runs this week</span></div>
+      </section>
+
+    </section>
+
+    <aside class="bk-stack">
+
+      <section class="bk-card">
+        <div class="bk-card-header"><h2 class="bk-card-title">Loadout</h2></div>
+        <div class="bk-card-body">
+          <ul class="bk-tree" role="tree">
+            <li class="bk-tree-item" role="treeitem" aria-expanded="true">
+              <details open><summary>Tongue</summary>
+                <ul class="bk-tree">
+                  <li class="bk-tree-leaf">Reach <span class="bk-badge bk-badge-sm bk-badge-primary">III</span></li>
+                  <li class="bk-tree-leaf">Grip <span class="bk-badge bk-badge-sm">II</span></li>
+                </ul>
+              </details>
+            </li>
+            <li class="bk-tree-item" role="treeitem" aria-expanded="true">
+              <details open><summary>Camouflage</summary>
+                <ul class="bk-tree">
+                  <li class="bk-tree-leaf">Hue shift <span class="bk-badge bk-badge-sm bk-badge-primary">MAX</span></li>
+                  <li class="bk-tree-leaf">Silence <span class="bk-badge bk-badge-sm">I</span></li>
+                </ul>
+              </details>
+            </li>
+            <li class="bk-tree-item" role="treeitem">
+              <details><summary>Tail</summary>
+                <ul class="bk-tree"><li class="bk-tree-leaf">Locked — 4 more worlds</li></ul>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="bk-card">
+        <div class="bk-card-header"><h2 class="bk-card-title">Achievements</h2></div>
+        <div class="bk-card-body bk-stack bk-stack-sm">
+          <div class="bk-split"><span>Fifty faces</span><span><span class="bk-badge bk-badge-success bk-badge-sm">✓</span></span></div>
+          <div class="bk-progress bk-progress-xs"><div class="bk-progress-bar bk-progress-success" style="inline-size: 100%"></div></div>
+          <div class="bk-split"><span>No hex left behind</span><span class="bk-subtle bk-text-sm">41 / 50</span></div>
+          <div class="bk-progress bk-progress-xs"><div class="bk-progress-bar" style="inline-size: 82%"></div></div>
+          <div class="bk-split"><span>Speedrun under 3:30</span><span class="bk-subtle bk-text-sm">locked</span></div>
+          <div class="bk-progress bk-progress-xs"><div class="bk-progress-bar bk-progress-warning" style="inline-size: 12%"></div></div>
+        </div>
+      </section>
+
+      <section class="bk-card">
+        <div class="bk-card-header"><h2 class="bk-card-title">Party</h2></div>
+        <ul class="bk-list-group bk-list-group-flush">
+          <li class="bk-list-item"><span class="bk-avatar bk-avatar-xs bk-avatar-square bk-avatar-status bk-status-online">MK</span><span class="bk-list-item-body"><span class="bk-list-item-title">merv</span><span class="bk-list-item-text">World 34</span></span></li>
+          <li class="bk-list-item"><span class="bk-avatar bk-avatar-xs bk-avatar-square bk-avatar-status bk-status-busy">EY</span><span class="bk-list-item-body"><span class="bk-list-item-title">emrey</span><span class="bk-list-item-text">In a run</span></span></li>
+          <li class="bk-list-item"><span class="bk-avatar bk-avatar-xs bk-avatar-square bk-avatar-status bk-status-offline">DK</span><span class="bk-list-item-body"><span class="bk-list-item-title">deniz_k</span><span class="bk-list-item-text">Offline</span></span></li>
+        </ul>
+      </section>
+
+    </aside>
+  </div>
+</main>
+
+<div class="bk-modal bk-modal-md" id="controls" role="dialog" aria-modal="true" aria-labelledby="ctrl-t" hidden>
+  <div class="bk-modal-inner">
+    <div class="bk-modal-header">
+      <h2 class="bk-modal-title" id="ctrl-t">Controls</h2>
+      <button class="bk-close" type="button" data-bk-close aria-label="Close"></button>
+    </div>
+    <div class="bk-modal-body">
+      <div class="arc-keys" style="margin-block-end: var(--bk-space-5);">
+        <kbd class="bk-kbd bk-kbd-lg arc-key-up">W</kbd>
+        <kbd class="bk-kbd bk-kbd-lg">A</kbd>
+        <kbd class="bk-kbd bk-kbd-lg">S</kbd>
+        <kbd class="bk-kbd bk-kbd-lg">D</kbd>
+      </div>
+      <dl class="bk-dl bk-dl-rows">
+        <dt>Tongue</dt><dd><kbd class="bk-kbd">Space</kbd></dd>
+        <dt>Camouflage</dt><dd><span class="bk-kbd-combo"><kbd class="bk-kbd">Shift</kbd><span class="bk-kbd-combo-sep">+</span><kbd class="bk-kbd">C</kbd></span></dd>
+        <dt>Change palette</dt><dd><span class="bk-kbd-combo"><kbd class="bk-kbd">Shift</kbd><span class="bk-kbd-combo-sep">+</span><kbd class="bk-kbd">→</kbd></span> <span class="bk-subtle">— works on this page too, try it</span></dd>
+        <dt>Pause</dt><dd><kbd class="bk-kbd">Esc</kbd></dd>
+      </dl>
+    </div>
+    <div class="bk-modal-footer">
+      <button class="bk-btn bk-btn-primary" type="button" data-bk-close>Got it</button>
+    </div>
+  </div>
+</div>
+
+<footer class="bk-footer">
+  <div class="bk-footer-bottom">
+    <span>Pixel Cabinet — a Bukalemun demo. Try it in <code class="bk-code-inline">terminal</code> or <code class="bk-code-inline">win95</code>.</span>
+    <a class="bk-link" href="./index.html">← Back to the gallery</a>
+  </div>
+</footer>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

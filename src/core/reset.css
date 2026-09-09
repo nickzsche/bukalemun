@@ -1,0 +1,183 @@
+/* =============================================================================
+   BUKALEMUN — core/reset.css
+   A modern, opinion-light reset. Everything here is wrapped in :where() so it
+   carries zero specificity: your own single-class rule always wins.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:where(html) {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  scrollbar-color: var(--bk-scrollbar-thumb) var(--bk-scrollbar-track);
+}
+
+:where(body) {
+  margin: 0;
+  min-height: 100svh;
+  font-family: var(--bk-font-body);
+  font-size: var(--bk-text-base);
+  font-weight: var(--bk-weight-normal);
+  line-height: var(--bk-leading-normal);
+  font-feature-settings: var(--bk-font-feature);
+  font-variant-numeric: var(--bk-font-variant-numeric);
+  color: var(--bk-text);
+  background-color: var(--bk-bg);
+  background-image: var(--bk-body-image);
+  background-size: var(--bk-body-image-size);
+  background-attachment: var(--bk-body-attachment);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  accent-color: var(--bk-primary);
+  caret-color: var(--bk-caret);
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  margin: 0;
+  font-family: var(--bk-heading-font);
+  font-weight: var(--bk-heading-weight);
+  letter-spacing: var(--bk-heading-tracking);
+  text-transform: var(--bk-heading-transform);
+  line-height: var(--bk-leading-tight);
+  text-wrap: balance;
+}
+:where(h1) { font-size: var(--bk-text-4xl); }
+:where(h2) { font-size: var(--bk-text-3xl); }
+:where(h3) { font-size: var(--bk-text-2xl); }
+:where(h4) { font-size: var(--bk-text-xl); }
+:where(h5) { font-size: var(--bk-text-lg); }
+:where(h6) { font-size: var(--bk-text-base); }
+
+:where(p, figure, blockquote, dl, dd, pre) { margin: 0; }
+:where(p) { text-wrap: pretty; }
+
+:where(ul, ol) { margin: 0; padding: 0; }
+:where(ul[role="list"], ol[role="list"]) { list-style: none; }
+
+:where(hr) {
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: var(--bk-divider-width) var(--bk-divider-style) var(--bk-divider-color);
+  color: inherit;
+}
+
+:where(a) {
+  color: var(--bk-text-link);
+  text-decoration-thickness: max(1px, 0.05em);
+  text-underline-offset: 0.16em;
+}
+:where(a:hover) { text-decoration-thickness: max(2px, 0.08em); }
+
+:where(b, strong) { font-weight: var(--bk-weight-semibold); }
+:where(small) { font-size: 0.85em; }
+:where(sub, sup) { font-size: 0.72em; line-height: 0; position: relative; vertical-align: baseline; }
+:where(sub) { bottom: -0.25em; }
+:where(sup) { top: -0.5em; }
+
+:where(code, kbd, samp, pre) {
+  font-family: var(--bk-font-mono);
+  font-size: 0.9em;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+:where(pre) { overflow: auto; }
+
+:where(img, svg, video, canvas, audio, iframe, embed, object) {
+  display: block;
+  vertical-align: middle;
+}
+:where(img, video, canvas) { max-width: 100%; height: auto; }
+:where(svg) { fill: currentColor; }
+:where(svg:not([fill])) { fill: none; }
+:where(svg:not([width])) { width: 1em; height: 1em; }
+
+:where(table) {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-indent: 0;
+  border-color: inherit;
+}
+:where(th) { text-align: inherit; font-weight: var(--bk-weight-semibold); }
+
+:where(button, input, optgroup, select, textarea) {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  margin: 0;
+}
+:where(button, [type="button"], [type="reset"], [type="submit"]) {
+  -webkit-appearance: button;
+  appearance: button;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+:where(button:disabled, input:disabled, select:disabled, textarea:disabled) {
+  cursor: not-allowed;
+}
+:where(textarea) { resize: vertical; }
+:where(select) { text-transform: none; }
+:where([type="search"]) { -webkit-appearance: textfield; appearance: textfield; outline-offset: -2px; }
+:where([type="search"])::-webkit-search-decoration { -webkit-appearance: none; }
+:where(::-webkit-file-upload-button) { -webkit-appearance: button; font: inherit; }
+:where(::placeholder) { color: var(--bk-field-placeholder); opacity: 1; }
+:where(fieldset) { margin: 0; padding: 0; border: 0; min-inline-size: 0; }
+:where(legend) { padding: 0; }
+:where(progress) { vertical-align: baseline; }
+
+:where(summary) { display: list-item; cursor: pointer; }
+:where(dialog) {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+}
+:where(dialog)::backdrop { background: var(--bk-overlay-bg); }
+
+:where([hidden]:not([hidden="until-found"])) { display: none !important; }
+:where([inert]) { pointer-events: none; cursor: default; user-select: none; }
+:where([inert]) * { pointer-events: none; }
+
+::selection {
+  background-color: var(--bk-selection-bg);
+  color: var(--bk-selection-fg);
+}
+
+/* Consistent, skin-aware focus. Mouse users don't see it; keyboards do. */
+:where(:focus-visible) {
+  outline: var(--bk-ring-width) var(--bk-ring-style) var(--bk-ring);
+  outline-offset: var(--bk-ring-offset);
+}
+:where(:focus:not(:focus-visible)) { outline: none; }
+
+/* Scrollbars: skinnable but never mandatory. */
+.bk-scrollbar::-webkit-scrollbar { width: 10px; height: 10px; }
+.bk-scrollbar::-webkit-scrollbar-track { background: var(--bk-scrollbar-track); }
+.bk-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--bk-scrollbar-thumb);
+  border-radius: var(--bk-radius-full);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.bk-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--bk-text-subtle); background-clip: padding-box; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

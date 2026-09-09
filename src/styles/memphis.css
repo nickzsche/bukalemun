@@ -1,0 +1,238 @@
+/* =============================================================================
+   SKIN — memphis · Memphis Group / 80s postmodern
+   Squiggles, terrazzo confetti, clashing pastels over black outlines, and
+   shapes that refuse to line up. Loud on purpose.
+   ========================================================================== */
+
+[data-bk-style="memphis"] {
+  --bk-font-sans: "Poppins", "Avenir Next", "Century Gothic", ui-rounded, system-ui, sans-serif;
+  --bk-font-display: var(--bk-font-sans);
+  --bk-heading-weight: 800;
+  --bk-heading-tracking: -0.01em;
+
+  --bk-bg: #fdf6ec;
+  --bk-surface: #fffdf9;
+  --bk-surface-2: #fbeee0;
+  --bk-surface-3: #f6e0cb;
+  --bk-surface-inverted: #1c1c28;
+
+  --bk-text: #1c1c28;
+  --bk-text-muted: #4d4d63;
+  --bk-text-subtle: #7c7c96;
+  --bk-text-inverted: #fffdf9;
+
+  --bk-border: #1c1c28;
+  --bk-border-muted: #d9cfc2;
+  --bk-border-strong: #1c1c28;
+  --bk-border-width: 2px;
+
+  --bk-primary: #ff4f9a;
+  --bk-primary-hover: #f5348a;
+  --bk-primary-active: #dc2478;
+  --bk-primary-soft: #ffe0ee;
+  --bk-primary-border: #1c1c28;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #23c9c9;
+  --bk-secondary-hover: #16b5b5;
+  --bk-secondary-soft: #d5f6f6;
+  --bk-secondary-border: #1c1c28;
+  --bk-on-secondary: #06282a;
+  --bk-success: #4ecb71;
+  --bk-success-soft: #ddf6e3;
+  --bk-success-border: #1c1c28;
+  --bk-on-success: #08240f;
+  --bk-warning: #ffc233;
+  --bk-warning-soft: #fff2d1;
+  --bk-warning-border: #1c1c28;
+  --bk-on-warning: #2b1e00;
+  --bk-danger: #ff5b4c;
+  --bk-danger-soft: #ffe0dc;
+  --bk-danger-border: #1c1c28;
+  --bk-on-danger: #ffffff;
+  --bk-info: #6c63ff;
+  --bk-info-soft: #e3e1ff;
+  --bk-info-border: #1c1c28;
+  --bk-on-info: #ffffff;
+  --bk-neutral: #1c1c28;
+  --bk-neutral-soft: #f2e9dd;
+  --bk-neutral-border: #1c1c28;
+  --bk-on-neutral: #fffdf9;
+
+  --bk-radius-scale: 1.4;
+  --bk-radius-field: var(--bk-radius-lg);
+  --bk-radius-card: var(--bk-radius-2xl);
+  --bk-radius-pill: var(--bk-radius-full);
+
+  --bk-shadow-xs: 2px 2px 0 rgb(28 28 40 / 0.9);
+  --bk-shadow-sm: 3px 4px 0 rgb(28 28 40 / 0.9);
+  --bk-shadow-md: 5px 6px 0 rgb(28 28 40 / 0.9);
+  --bk-shadow-lg: 7px 9px 0 rgb(28 28 40 / 0.9);
+  --bk-shadow-xl: 10px 12px 0 rgb(28 28 40 / 0.9);
+  --bk-shadow-2xl: 14px 16px 0 rgb(28 28 40 / 0.9);
+
+  --bk-decor-1: #ff4f9a;
+  --bk-decor-2: #23c9c9;
+  --bk-body-image:
+    radial-gradient(circle at 12% 18%, #ff4f9a 0 6px, transparent 7px),
+    radial-gradient(circle at 82% 12%, #23c9c9 0 8px, transparent 9px),
+    radial-gradient(circle at 68% 78%, #ffc233 0 5px, transparent 6px),
+    radial-gradient(circle at 26% 86%, #6c63ff 0 7px, transparent 8px),
+    repeating-linear-gradient(45deg, rgb(28 28 40 / 0.035) 0 2px, transparent 2px 12px);
+  --bk-body-attachment: fixed;
+
+  --bk-btn-border-width: 2px;
+  --bk-btn-shadow: 3px 4px 0 rgb(28 28 40 / 0.9);
+  --bk-btn-shadow-hover: 5px 6px 0 rgb(28 28 40 / 0.9);
+  --bk-btn-shadow-active: 1px 1px 0 rgb(28 28 40 / 0.9);
+  --bk-btn-weight: 700;
+  --bk-press-transform: translate(2px, 3px);
+  --bk-hover-transform: translate(-1px, -2px) rotate(-0.6deg);
+
+  --bk-field-border: #1c1c28;
+  --bk-field-border-width: 2px;
+  --bk-field-shadow: 2px 3px 0 rgb(28 28 40 / 0.9);
+  --bk-field-shadow-focus: 2px 3px 0 var(--bk-primary), 0 0 0 2px #1c1c28;
+  --bk-card-border-width: 2px;
+  --bk-card-shadow: 5px 6px 0 rgb(28 28 40 / 0.9);
+  --bk-card-shadow-hover: 8px 10px 0 rgb(28 28 40 / 0.9);
+  --bk-overlay-shadow: 10px 12px 0 rgb(28 28 40 / 0.9);
+  --bk-code-bg: #fbeee0;
+  --bk-code-border: #1c1c28;
+  --bk-tooltip-bg: #1c1c28;
+  --bk-selection-bg: #ffc233;
+  --bk-selection-fg: #1c1c28;
+  --bk-divider-color: #1c1c28;
+  --bk-divider-width: 2px;
+  --bk-ring: #6c63ff;
+  --bk-ring-width: 3px;
+}
+
+[data-bk-style="memphis"][data-bk-theme="dark"] {
+  --bk-bg: #17172a;
+  --bk-surface: #1e1e35;
+  --bk-surface-2: #262643;
+  --bk-surface-3: #2f2f52;
+  --bk-surface-inverted: #fffdf9;
+  --bk-text-inverted: #1c1c28;
+  --bk-text: #fdf6ec;
+  --bk-text-muted: #c3bede;
+  --bk-text-subtle: #8e88b5;
+  --bk-border: #fdf6ec;
+  --bk-border-muted: #3b3b63;
+  --bk-border-strong: #fdf6ec;
+  --bk-field-border: #fdf6ec;
+  --bk-neutral: #fdf6ec;
+  --bk-neutral-soft: #262643;
+  --bk-on-neutral: #17172a;
+  --bk-primary-border: #fdf6ec;
+  --bk-shadow-xs: 2px 2px 0 #fdf6ec;
+  --bk-shadow-sm: 3px 4px 0 #fdf6ec;
+  --bk-shadow-md: 5px 6px 0 #fdf6ec;
+  --bk-shadow-lg: 7px 9px 0 #fdf6ec;
+  --bk-shadow-xl: 10px 12px 0 #fdf6ec;
+  --bk-btn-shadow: 3px 4px 0 #fdf6ec;
+  --bk-btn-shadow-hover: 5px 6px 0 #fdf6ec;
+  --bk-btn-shadow-active: 1px 1px 0 #fdf6ec;
+  --bk-field-shadow: 2px 3px 0 #fdf6ec;
+  --bk-card-shadow: 5px 6px 0 #fdf6ec;
+  --bk-card-shadow-hover: 8px 10px 0 #fdf6ec;
+  --bk-code-bg: #262643;
+  --bk-code-border: #fdf6ec;
+  --bk-divider-color: #fdf6ec;
+  --bk-tooltip-bg: #fdf6ec;
+  --bk-tooltip-fg: #17172a;
+}
+
+[data-bk-style="memphis"] .bk-card { transform: rotate(var(--bk-tilt, -0.4deg)); }
+[data-bk-style="memphis"] .bk-card:nth-child(even) { --bk-tilt: 0.5deg; }
+[data-bk-style="memphis"] .bk-card:hover { --bk-tilt: 0deg; }
+[data-bk-style="memphis"] .bk-card-header { border-block-end: 2px dashed var(--bk-border); }
+[data-bk-style="memphis"] .bk-badge { border: 2px solid var(--bk-border); font-weight: 700; }
+[data-bk-style="memphis"] .bk-avatar { border: 2px solid var(--bk-border); }
+[data-bk-style="memphis"] .bk-navbar { border-block-end: 3px solid var(--bk-border); }
+[data-bk-style="memphis"] .bk-tab[aria-selected="true"] {
+  background: var(--bk-warning);
+  color: #1c1c28;
+  border-radius: var(--bk-radius-lg) var(--bk-radius-lg) 0 0;
+  border: 2px solid var(--bk-border);
+  border-block-end: 0;
+}
+[data-bk-style="memphis"] .bk-progress { border: 2px solid var(--bk-border); background: var(--bk-surface); }
+[data-bk-style="memphis"] .bk-progress-bar {
+  background-image: repeating-linear-gradient(45deg, rgb(255 255 255 / 0.35) 0 6px, transparent 6px 12px);
+}
+[data-bk-style="memphis"] .bk-switch { border: 2px solid var(--bk-border); }
+[data-bk-style="memphis"] .bk-check { border-width: 2px; }
+[data-bk-style="memphis"] .bk-divider { border-style: dashed; }
+[data-bk-style="memphis"] .bk-section-head::after {
+  content: "";
+  display: block;
+  block-size: 8px;
+  inline-size: 5rem;
+  margin-block-start: var(--bk-space-3);
+  background: repeating-linear-gradient(90deg, var(--bk-decor-1) 0 12px, var(--bk-decor-2) 12px 24px);
+  border: 2px solid var(--bk-border);
+}
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="memphis"] {
+  --bk-danger: #ff5b4c;
+  --bk-danger-active: #ff7265;
+  --bk-danger-hover: #ff685a;
+  --bk-danger-on-soft: #c61100;
+  --bk-danger-soft: #ffe0dc;
+  --bk-danger-text: #d11100;
+  --bk-info: #6c63ff;
+  --bk-info-active: #8179ff;
+  --bk-info-hover: #786fff;
+  --bk-info-on-soft: #4a3fff;
+  --bk-info-soft: #e3e1ff;
+  --bk-info-text: #5449ff;
+  --bk-on-danger: #292929;
+  --bk-on-info: #050505;
+  --bk-on-primary: #292929;
+  --bk-primary: #ff4f9a;
+  --bk-primary-active: #ff68a8;
+  --bk-primary-hover: #ff5da2;
+  --bk-primary-on-soft: #c90056;
+  --bk-primary-soft: #ffe0ee;
+  --bk-primary-text: #cf0058;
+  --bk-secondary-on-soft: #157676;
+  --bk-secondary-text: #157676;
+  --bk-success-on-soft: #23773a;
+  --bk-success-text: #23773a;
+  --bk-warning-on-soft: #8f6400;
+  --bk-warning-text: #8a6100;
+}
+[data-bk-style="memphis"][data-bk-theme="dark"] {
+  --bk-danger: #ff5b4c;
+  --bk-danger-active: #ff7265;
+  --bk-danger-hover: #ff685a;
+  --bk-danger-on-soft: #c61100;
+  --bk-danger-soft: #ffe0dc;
+  --bk-danger-text: #ff5b4c;
+  --bk-info: #6c63ff;
+  --bk-info-active: #8179ff;
+  --bk-info-hover: #786fff;
+  --bk-info-on-soft: #4a3fff;
+  --bk-info-soft: #e3e1ff;
+  --bk-info-text: #8e87ff;
+  --bk-on-danger: #292929;
+  --bk-on-info: #050505;
+  --bk-on-primary: #292929;
+  --bk-primary: #ff4f9a;
+  --bk-primary-active: #ff68a8;
+  --bk-primary-hover: #ff5da2;
+  --bk-primary-on-soft: #c90056;
+  --bk-primary-soft: #ffe0ee;
+  --bk-primary-text: #ff4f9a;
+  --bk-secondary-on-soft: #157676;
+  --bk-secondary-text: #23c9c9;
+  --bk-success-on-soft: #23773a;
+  --bk-success-text: #4ecb71;
+  --bk-warning-on-soft: #8f6400;
+  --bk-warning-text: #ffc233;
+}
+/* ==== end derived contrast tokens ==== */

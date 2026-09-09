@@ -1,0 +1,271 @@
+/*! Bukalemun 1.6.0 — skin: macclassic
+ *  One framework, 50 skins. Zero dependencies.
+ *  https://bukalemun.zerosixlab.com/
+ *  Released under the MIT licence.
+ */
+/* =============================================================================
+   SKIN — macclassic · 1984
+   One bit of colour depth. Pure black on pure white, 1px rules, pinstriped
+   title bars, and the rounded-rectangle everyone stole. Nothing here has a
+   gradient because the hardware could not draw one.
+   ========================================================================== */
+
+[data-bk-style="macclassic"] {
+  --bk-font-sans: "Chicago", "ChiKareGo2", Geneva, Verdana, "Segoe UI", sans-serif;
+  --bk-font-display: var(--bk-font-sans);
+  --bk-font-mono: Monaco, "Courier New", ui-monospace, monospace;
+  --bk-heading-weight: 700;
+  --bk-heading-tracking: 0;
+  --bk-text-base: 0.8125rem;
+  --bk-leading-normal: 1.5;
+
+  --bk-bg: #ffffff;
+  --bk-surface: #ffffff;
+  --bk-surface-2: #ffffff;
+  --bk-surface-3: #e8e8e8;
+  --bk-surface-inverted: #000000;
+
+  --bk-text: #000000;
+  --bk-text-muted: #333333;
+  --bk-text-subtle: #666666;
+  --bk-text-inverted: #ffffff;
+
+  --bk-border: #000000;
+  --bk-border-muted: #999999;
+  --bk-border-strong: #000000;
+  --bk-border-width: 1px;
+
+  --bk-primary: #000000;
+  --bk-primary-hover: #222222;
+  --bk-primary-active: #444444;
+  --bk-primary-soft: #e8e8e8;
+  --bk-primary-border: #000000;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #444444;
+  --bk-secondary-hover: #333333;
+  --bk-secondary-soft: #ededed;
+  --bk-secondary-border: #000000;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #000000;
+  --bk-success-soft: #e8e8e8;
+  --bk-success-border: #000000;
+  --bk-warning: #000000;
+  --bk-warning-soft: #e8e8e8;
+  --bk-warning-border: #000000;
+  --bk-danger: #000000;
+  --bk-danger-soft: #e0e0e0;
+  --bk-danger-border: #000000;
+  --bk-info: #000000;
+  --bk-info-soft: #e8e8e8;
+  --bk-info-border: #000000;
+  --bk-neutral: #000000;
+  --bk-neutral-soft: #eeeeee;
+  --bk-neutral-border: #000000;
+  --bk-on-neutral: #ffffff;
+
+  --bk-radius-scale: 1.2;
+  --bk-radius-field: 3px;
+  --bk-radius-card: 6px;
+  --bk-radius-overlay: 6px;
+  --bk-radius-pill: 9999px;
+
+  --bk-shadow-none: 0 0 #0000;
+  --bk-shadow-xs: none;
+  --bk-shadow-sm: none;
+  --bk-shadow-md: 2px 2px 0 0 #000000;
+  --bk-shadow-lg: 3px 3px 0 0 #000000;
+  --bk-shadow-xl: 4px 4px 0 0 #000000;
+  --bk-shadow-2xl: 5px 5px 0 0 #000000;
+  --bk-shadow-inner: inset 1px 1px 0 0 #999999;
+
+  --bk-ring: #000000;
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 2px;
+
+  --bk-btn-border-width: 1px;
+  --bk-btn-weight: 700;
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: none;
+  --bk-btn-shadow-active: none;
+  --bk-press-transform: none;
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #ffffff;
+  --bk-field-border: #000000;
+  --bk-field-border-hover: #000000;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #888888;
+  --bk-card-shadow: 2px 2px 0 0 #000000;
+  --bk-card-shadow-hover: 3px 3px 0 0 #000000;
+  --bk-card-pad: var(--bk-space-4);
+  --bk-overlay-surface: #ffffff;
+  --bk-overlay-border: #000000;
+  --bk-overlay-shadow: 4px 4px 0 0 #000000;
+  --bk-overlay-bg: rgb(0 0 0 / 0.35);
+  --bk-code-bg: #ffffff;
+  --bk-code-border: #000000;
+  --bk-tooltip-bg: #ffffcc;
+  --bk-tooltip-fg: #000000;
+  --bk-selection-bg: #000000;
+  --bk-selection-fg: #ffffff;
+  --bk-scrollbar-thumb: #000000;
+  --bk-divider-color: #000000;
+  --bk-transition: none;
+
+  /* The desktop was a 50% dither, not a colour. */
+  --bk-body-image: repeating-conic-gradient(rgb(0 0 0 / 0.09) 0% 25%, transparent 0% 50%);
+  --bk-body-image-size: 2px 2px;
+  --bk-body-attachment: fixed;
+}
+[data-bk-style="macclassic"] body,
+body[data-bk-style="macclassic"] { background-size: 2px 2px; }
+
+[data-bk-style="macclassic"][data-bk-theme="dark"] {
+  --bk-bg: #000000;
+  --bk-surface: #000000;
+  --bk-surface-2: #000000;
+  --bk-surface-3: #1a1a1a;
+  --bk-surface-inverted: #ffffff;
+  --bk-text: #ffffff;
+  --bk-text-muted: #d0d0d0;
+  --bk-text-subtle: #9a9a9a;
+  --bk-text-inverted: #000000;
+  --bk-border: #ffffff;
+  --bk-border-muted: #666666;
+  --bk-border-strong: #ffffff;
+  --bk-primary: #ffffff;
+  --bk-primary-hover: #dddddd;
+  --bk-primary-soft: #1a1a1a;
+  --bk-primary-border: #ffffff;
+  --bk-on-primary: #000000;
+  --bk-secondary: #cccccc;
+  --bk-secondary-soft: #1a1a1a;
+  --bk-secondary-border: #ffffff;
+  --bk-on-secondary: #000000;
+  --bk-success: #ffffff; --bk-success-soft: #1a1a1a; --bk-success-border: #ffffff;
+  --bk-warning: #ffffff; --bk-warning-soft: #1a1a1a; --bk-warning-border: #ffffff;
+  --bk-danger: #ffffff; --bk-danger-soft: #221111; --bk-danger-border: #ffffff;
+  --bk-info: #ffffff; --bk-info-soft: #1a1a1a; --bk-info-border: #ffffff;
+  --bk-neutral: #ffffff;
+  --bk-neutral-soft: #1a1a1a;
+  --bk-neutral-border: #ffffff;
+  --bk-on-neutral: #000000;
+  --bk-shadow-md: 2px 2px 0 0 #ffffff;
+  --bk-shadow-lg: 3px 3px 0 0 #ffffff;
+  --bk-shadow-xl: 4px 4px 0 0 #ffffff;
+  --bk-shadow-2xl: 5px 5px 0 0 #ffffff;
+  --bk-card-shadow: 2px 2px 0 0 #ffffff;
+  --bk-card-shadow-hover: 3px 3px 0 0 #ffffff;
+  --bk-overlay-surface: #000000;
+  --bk-overlay-border: #ffffff;
+  --bk-overlay-shadow: 4px 4px 0 0 #ffffff;
+  --bk-field-bg: #000000;
+  --bk-field-border: #ffffff;
+  --bk-code-bg: #000000;
+  --bk-code-border: #ffffff;
+  --bk-tooltip-bg: #ffffff;
+  --bk-tooltip-fg: #000000;
+  --bk-divider-color: #ffffff;
+  --bk-ring: #ffffff;
+  --bk-body-image: repeating-conic-gradient(rgb(255 255 255 / 0.09) 0% 25%, transparent 0% 50%);
+}
+
+/* Pinstriped title bars, the way a window said "I have focus". */
+[data-bk-style="macclassic"] .bk-modal-header,
+[data-bk-style="macclassic"] .bk-drawer-header,
+[data-bk-style="macclassic"] .bk-card-header {
+  background-image: repeating-linear-gradient(
+    180deg, var(--bk-border) 0 1px, transparent 1px 3px);
+  border-block-end: 1px solid var(--bk-border);
+  padding-block: var(--bk-space-2);
+}
+[data-bk-style="macclassic"] .bk-modal-title,
+[data-bk-style="macclassic"] .bk-card-title {
+  background: var(--bk-surface);
+  padding-inline: var(--bk-space-2);
+}
+[data-bk-style="macclassic"] .bk-navbar {
+  border-block-end: 1px solid var(--bk-border);
+  background: var(--bk-surface);
+}
+[data-bk-style="macclassic"] .bk-table thead th { background: transparent; border-block-end: 1px solid var(--bk-border); }
+[data-bk-style="macclassic"] .bk-btn:active:not(:disabled) { background: var(--bk-text); color: var(--bk-bg); }
+[data-bk-style="macclassic"] .bk-progress { border: 1px solid var(--bk-border); background: transparent; }
+[data-bk-style="macclassic"] .bk-progress-bar {
+  background-image: repeating-conic-gradient(rgb(255 255 255 / 0.55) 0% 25%, transparent 0% 50%);
+  background-size: 2px 2px;
+}
+[data-bk-style="macclassic"] .bk-switch { border: 1px solid var(--bk-border); background: var(--bk-surface); }
+[data-bk-style="macclassic"] .bk-switch::before { background: var(--bk-border); box-shadow: none; }
+[data-bk-style="macclassic"] .bk-avatar { border: 1px solid var(--bk-border); }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="macclassic"] {
+  --bk-primary-active: #444444;
+  --bk-secondary-hover: #333333;
+}
+[data-bk-style="macclassic"][data-bk-theme="dark"] {
+  --bk-primary-active: #ffffff;
+  --bk-secondary-hover: #d0d0d0;
+}
+/* ==== end derived contrast tokens ==== */
+
+
+/* auto-mode mirror for "macclassic" — generated by scripts/build.mjs */
+@media (prefers-color-scheme: dark) {
+  [data-bk-style="macclassic"][data-bk-theme="auto"] {
+  --bk-bg: #000000;
+  --bk-surface: #000000;
+  --bk-surface-2: #000000;
+  --bk-surface-3: #1a1a1a;
+  --bk-surface-inverted: #ffffff;
+  --bk-text: #ffffff;
+  --bk-text-muted: #d0d0d0;
+  --bk-text-subtle: #9a9a9a;
+  --bk-text-inverted: #000000;
+  --bk-border: #ffffff;
+  --bk-border-muted: #666666;
+  --bk-border-strong: #ffffff;
+  --bk-primary: #ffffff;
+  --bk-primary-hover: #dddddd;
+  --bk-primary-soft: #1a1a1a;
+  --bk-primary-border: #ffffff;
+  --bk-on-primary: #000000;
+  --bk-secondary: #cccccc;
+  --bk-secondary-soft: #1a1a1a;
+  --bk-secondary-border: #ffffff;
+  --bk-on-secondary: #000000;
+  --bk-success: #ffffff; --bk-success-soft: #1a1a1a; --bk-success-border: #ffffff;
+  --bk-warning: #ffffff; --bk-warning-soft: #1a1a1a; --bk-warning-border: #ffffff;
+  --bk-danger: #ffffff; --bk-danger-soft: #221111; --bk-danger-border: #ffffff;
+  --bk-info: #ffffff; --bk-info-soft: #1a1a1a; --bk-info-border: #ffffff;
+  --bk-neutral: #ffffff;
+  --bk-neutral-soft: #1a1a1a;
+  --bk-neutral-border: #ffffff;
+  --bk-on-neutral: #000000;
+  --bk-shadow-md: 2px 2px 0 0 #ffffff;
+  --bk-shadow-lg: 3px 3px 0 0 #ffffff;
+  --bk-shadow-xl: 4px 4px 0 0 #ffffff;
+  --bk-shadow-2xl: 5px 5px 0 0 #ffffff;
+  --bk-card-shadow: 2px 2px 0 0 #ffffff;
+  --bk-card-shadow-hover: 3px 3px 0 0 #ffffff;
+  --bk-overlay-surface: #000000;
+  --bk-overlay-border: #ffffff;
+  --bk-overlay-shadow: 4px 4px 0 0 #ffffff;
+  --bk-field-bg: #000000;
+  --bk-field-border: #ffffff;
+  --bk-code-bg: #000000;
+  --bk-code-border: #ffffff;
+  --bk-tooltip-bg: #ffffff;
+  --bk-tooltip-fg: #000000;
+  --bk-divider-color: #ffffff;
+  --bk-ring: #ffffff;
+  --bk-body-image: repeating-conic-gradient(rgb(255 255 255 / 0.09) 0% 25%, transparent 0% 50%);
+
+
+  --bk-primary-active: #ffffff;
+  --bk-secondary-hover: #d0d0d0;
+}
+}

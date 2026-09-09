@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build
+        run: node scripts/build.mjs
+      - name: Structure suite
+        run: node tests/run.mjs
+      - name: Contrast audit
+        run: node tests/contrast.mjs
+      - name: Palette lock
+        run: node tests/palette.mjs
+      - name: dist/ is up to date
+        run: |
+          if [ -n "$(git status --porcelain dist)" ]; then
+            echo "dist/ differs from a fresh build — run 'npm run build' and commit."
+            git --no-pager diff --stat dist
+            exit 1
+          fi

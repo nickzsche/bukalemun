@@ -1,0 +1,95 @@
+/* =============================================================================
+   BUKALEMUN — components/hero.css
+   Hero sections: centered by default, start-aligned variant for split layouts.
+   Sits directly on the page background so skins can paint the stage.
+   ========================================================================== */
+
+.bk-hero {
+  /* position/isolation come from the older definition this file replaced. It
+     used to live in card.css and set justify-content: center, which quietly
+     beat .bk-hero-start — a start-aligned hero stayed centred because the
+     grid track itself was still centred. One definition now. */
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: var(--bk-space-5);
+  text-align: center;
+  padding-block: var(--bk-space-10) var(--bk-space-12);
+  padding-inline: var(--bk-space-5);
+}
+
+.bk-hero-start {
+  justify-items: start;
+  text-align: start;
+}
+
+.bk-hero-title {
+  margin: 0;
+  max-inline-size: 46rem;
+  font-family: var(--bk-heading-font);
+  font-weight: var(--bk-heading-weight);
+  letter-spacing: var(--bk-heading-tracking);
+  text-transform: var(--bk-heading-transform);
+  font-size: clamp(var(--bk-text-2xl), 5.5vw, var(--bk-text-4xl));
+  line-height: var(--bk-leading-tight);
+  color: var(--bk-text);
+}
+
+.bk-hero-title-accent { color: var(--bk-primary); }
+
+.bk-hero-sub {
+  margin: 0;
+  max-inline-size: 42rem;
+  font-size: var(--bk-text-lg);
+  line-height: var(--bk-leading-relaxed);
+  color: var(--bk-text-muted);
+}
+
+.bk-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bk-space-3);
+}
+
+.bk-hero-start .bk-hero-actions { justify-content: start; }
+
+.bk-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bk-space-2) var(--bk-space-4);
+  font-size: var(--bk-text-sm);
+  color: var(--bk-text-subtle);
+}
+
+.bk-hero-start .bk-hero-meta { justify-content: start; }
+
+/* optional framed variant: a surface panel behind the whole hero */
+.bk-hero-panel {
+  background: var(--bk-surface-2);
+  border: var(--bk-border-width) var(--bk-border-style) var(--bk-border-muted);
+  border-radius: var(--bk-radius-xl);
+}
+
+/* An explicit centre, for a hero inside a container that is not centred. */
+.bk-hero-center { justify-items: center; text-align: center; }
+
+/* Full-bleed art behind the hero, and a wash to keep the text off it. */
+.bk-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--bk-hero-bg, none);
+}
+.bk-hero-bg > img { inline-size: 100%; block-size: 100%; object-fit: cover; }
+.bk-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--bk-hero-overlay, linear-gradient(180deg, transparent, var(--bk-bg)));
+}

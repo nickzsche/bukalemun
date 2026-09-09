@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="glass" data-bk-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — App demo</title>
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/glass.min.css" data-bk-skin="glass">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  .demo-board { display: grid; gap: var(--bk-space-4); grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); align-items: start; margin-block-start: var(--bk-space-5); }
+  .demo-col { display: grid; gap: var(--bk-space-3); }
+  .demo-task { display: grid; gap: var(--bk-space-2); }
+  .demo-task-row { display: flex; align-items: center; justify-content: space-between; gap: var(--bk-space-2); }
+</style>
+</head>
+<body>
+
+<nav class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="#">Flowdeck</a>
+  <div class="bk-navbar-nav">
+    <a class="bk-nav-link bk-is-active" href="#">Board</a>
+    <a class="bk-nav-link" href="#">Calendar</a>
+    <a class="bk-nav-link" href="#">Inbox</a>
+  </div>
+  <div class="bk-navbar-end">
+    <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-open="#cmdk">
+      Search <span class="bk-kbd bk-kbd-sm">Ctrl</span> <span class="bk-kbd bk-kbd-sm">K</span>
+    </button>
+    <span class="bk-avatar-group">
+      <span class="bk-avatar bk-avatar-sm">EZ</span>
+      <span class="bk-avatar bk-avatar-sm">KD</span>
+      <span class="bk-avatar bk-avatar-sm">MT</span>
+      <span class="bk-avatar bk-avatar-sm bk-avatar-group-more">+2</span>
+    </span>
+  </div>
+</nav>
+
+<main class="bk-container" style="padding-block: var(--bk-space-5);">
+
+  <div class="bk-toolbar" style="justify-content: space-between;">
+    <div style="display: flex; gap: var(--bk-space-2); flex-wrap: wrap; align-items: center;">
+      <button class="bk-chip bk-chip-clickable bk-is-active" type="button">All</button>
+      <button class="bk-chip bk-chip-clickable" type="button">Design</button>
+      <button class="bk-chip bk-chip-clickable" type="button">Bugs</button>
+      <button class="bk-chip bk-chip-clickable" type="button">Research</button>
+    </div>
+    <button class="bk-btn bk-btn-primary bk-btn-sm" type="button" data-bk-open="#drawer-new">New task</button>
+  </div>
+
+  <div class="demo-board">
+
+    <section class="bk-card bk-card-flat">
+      <div class="bk-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <strong>To do</strong> <span class="bk-badge">3</span>
+      </div>
+      <div class="bk-card-body demo-col">
+        <div class="bk-card bk-card-outline demo-task">
+          <strong>Repaint settings page in terminal skin</strong>
+          <div class="demo-task-row">
+            <span class="bk-badge bk-badge-info">Design</span>
+            <div class="bk-dropdown">
+              <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-menu="#menu-1" aria-label="Task actions">&#8942;</button>
+              <div class="bk-menu" id="menu-1">
+                <button class="bk-menu-item" type="button">Edit</button>
+                <button class="bk-menu-item" type="button">Duplicate</button>
+                <div class="bk-menu-sep"></div>
+                <button class="bk-menu-item bk-menu-item-danger" type="button" data-bk-open="#confirm-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="demo-task-row">
+            <span class="bk-avatar bk-avatar-sm">EZ</span>
+            <span style="font-size: var(--bk-text-xs); color: var(--bk-text-muted);">due Fri</span>
+          </div>
+        </div>
+        <div class="bk-card bk-card-outline demo-task">
+          <strong>Audit chip contrast in swiss light</strong>
+          <div class="demo-task-row">
+            <span class="bk-badge bk-badge-warning">Bugs</span>
+            <div class="bk-dropdown">
+              <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-menu="#menu-2" aria-label="Task actions">&#8942;</button>
+              <div class="bk-menu" id="menu-2">
+                <button class="bk-menu-item" type="button">Edit</button>
+                <button class="bk-menu-item" type="button">Duplicate</button>
+                <div class="bk-menu-sep"></div>
+                <button class="bk-menu-item bk-menu-item-danger" type="button" data-bk-open="#confirm-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="demo-task-row">
+            <span class="bk-avatar bk-avatar-sm">KD</span>
+            <span style="font-size: var(--bk-text-xs); color: var(--bk-text-muted);">due Mon</span>
+          </div>
+        </div>
+        <div class="bk-card bk-card-outline demo-task">
+          <strong>Draft skin-switcher microcopy</strong>
+          <div class="demo-task-row">
+            <span class="bk-badge bk-badge-info">Research</span>
+            <div class="bk-dropdown">
+              <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-menu="#menu-3" aria-label="Task actions">&#8942;</button>
+              <div class="bk-menu" id="menu-3">
+                <button class="bk-menu-item" type="button">Edit</button>
+                <button class="bk-menu-item" type="button">Duplicate</button>
+                <div class="bk-menu-sep"></div>
+                <button class="bk-menu-item bk-menu-item-danger" type="button" data-bk-open="#confirm-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="demo-task-row">
+            <span class="bk-avatar bk-avatar-sm">MT</span>
+            <span style="font-size: var(--bk-text-xs); color: var(--bk-text-muted);">no due date</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bk-card bk-card-flat">
+      <div class="bk-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <strong>In progress</strong> <span class="bk-badge bk-badge-primary">2</span>
+      </div>
+      <div class="bk-card-body demo-col">
+        <div class="bk-card bk-card-outline demo-task">
+          <strong>Ship pricing table component</strong>
+          <div class="demo-task-row">
+            <span class="bk-badge bk-badge-success">Feature</span>
+            <div class="bk-dropdown">
+              <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-menu="#menu-4" aria-label="Task actions">&#8942;</button>
+              <div class="bk-menu" id="menu-4">
+                <button class="bk-menu-item" type="button">Edit</button>
+                <button class="bk-menu-item" type="button">Duplicate</button>
+                <div class="bk-menu-sep"></div>
+                <button class="bk-menu-item bk-menu-item-danger" type="button" data-bk-open="#confirm-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="demo-task-row">
+            <span class="bk-avatar bk-avatar-sm">EZ</span>
+            <span style="font-size: var(--bk-text-xs); color: var(--bk-text-muted);">due Thu</span>
+          </div>
+        </div>
+        <div class="bk-card bk-card-outline demo-task">
+          <strong>Command palette: fuzzy scoring</strong>
+          <div class="demo-task-row">
+            <span class="bk-badge bk-badge-success">Feature</span>
+            <div class="bk-dropdown">
+              <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-menu="#menu-5" aria-label="Task actions">&#8942;</button>
+              <div class="bk-menu" id="menu-5">
+                <button class="bk-menu-item" type="button">Edit</button>
+                <button class="bk-menu-item" type="button">Duplicate</button>
+                <div class="bk-menu-sep"></div>
+                <button class="bk-menu-item bk-menu-item-danger" type="button" data-bk-open="#confirm-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="demo-task-row">
+            <span class="bk-avatar bk-avatar-sm">MT</span>
+            <span style="font-size: var(--bk-text-xs); color: var(--bk-text-muted);">due Wed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bk-card bk-card-flat">
+      <div class="bk-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <strong>Done</strong> <span class="bk-badge bk-badge-success">4</span>
+      </div>
+      <div class="bk-card-body demo-col">
+        <div class="bk-card bk-card-outline demo-task">
+          <strong>Switch knob: kill the hardcoded colour</strong>
+          <div class="demo-task-row">
+            <span class="bk-badge">Chore</span>
+            <div class="bk-dropdown">
+              <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-menu="#menu-6" aria-label="Task actions">&#8942;</button>
+              <div class="bk-menu" id="menu-6">
+                <button class="bk-menu-item" type="button">Edit</button>
+                <button class="bk-menu-item" type="button">Duplicate</button>
+                <div class="bk-menu-sep"></div>
+                <button class="bk-menu-item bk-menu-item-danger" type="button" data-bk-open="#confirm-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="demo-task-row">
+            <span class="bk-avatar bk-avatar-sm">KD</span>
+            <span style="font-size: var(--bk-text-xs); color: var(--bk-text-muted);">shipped today</span>
+          </div>
+        </div>
+        <div class="bk-card bk-card-outline demo-task">
+          <strong>Publish 1.4.0 changelog</strong>
+          <div class="demo-task-row">
+            <span class="bk-badge">Chore</span>
+            <div class="bk-dropdown">
+              <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-menu="#menu-7" aria-label="Task actions">&#8942;</button>
+              <div class="bk-menu" id="menu-7">
+                <button class="bk-menu-item" type="button">Edit</button>
+                <button class="bk-menu-item" type="button">Duplicate</button>
+                <div class="bk-menu-sep"></div>
+                <button class="bk-menu-item bk-menu-item-danger" type="button" data-bk-open="#confirm-delete">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="demo-task-row">
+            <span class="bk-avatar bk-avatar-sm">EZ</span>
+            <span style="font-size: var(--bk-text-xs); color: var(--bk-text-muted);">yesterday</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<dialog id="drawer-new" class="bk-drawer bk-drawer-end">
+  <div class="bk-drawer-header">
+    <strong>New task</strong>
+    <button class="bk-close" type="button" data-bk-close aria-label="Close"></button>
+  </div>
+  <form class="bk-drawer-body" style="display: grid; gap: var(--bk-space-4);" onsubmit="return false;">
+    <div class="bk-field">
+      <label class="bk-label" for="task-title">Title</label>
+      <input class="bk-input" id="task-title" placeholder="Repaint the login page in riso">
+    </div>
+    <div class="bk-field">
+      <label class="bk-label" for="task-type">Type</label>
+      <select class="bk-input" id="task-type">
+        <option>Feature</option>
+        <option>Bug</option>
+        <option>Research</option>
+        <option>Chore</option>
+      </select>
+    </div>
+    <div class="bk-field">
+      <label class="bk-label" for="task-notes">Notes</label>
+      <textarea class="bk-input" id="task-notes" rows="3" placeholder="Anything the future you should know"></textarea>
+    </div>
+    <div class="bk-switch-row">
+      <input class="bk-switch" type="checkbox" id="task-notify" checked>
+      <label class="bk-switch-label" for="task-notify">Notify the channel when it ships</label>
+    </div>
+  </form>
+  <div class="bk-drawer-footer" style="display: flex; gap: var(--bk-space-3); justify-content: flex-end;">
+    <button class="bk-btn" type="button" data-bk-close>Cancel</button>
+    <button class="bk-btn bk-btn-primary" type="button"
+      onclick="this.closest('dialog').close(); bk.toast({ title: 'Task created', message: document.getElementById('task-title').value || 'Untitled task', variant: 'success' });">Create task</button>
+  </div>
+</dialog>
+
+<dialog id="confirm-delete" class="bk-modal bk-modal-sm">
+  <div class="bk-modal-header">
+    <div class="bk-modal-icon bk-modal-icon-danger">!</div>
+    <h2 class="bk-modal-title">Delete this task?</h2>
+  </div>
+  <div class="bk-modal-body">
+    <p class="bk-modal-desc">The card leaves the board immediately. There is no undo, this is a demo
+    masquerading as a serious product decision.</p>
+  </div>
+  <div class="bk-modal-footer" style="display: flex; gap: var(--bk-space-3); justify-content: flex-end;">
+    <button class="bk-btn" type="button" data-bk-close>Keep it</button>
+    <button class="bk-btn bk-btn-danger" type="button"
+      onclick="this.closest('dialog').close(); bk.toast({ title: 'Task deleted', message: 'The board is lighter now.', variant: 'danger' });">Delete</button>
+  </div>
+</dialog>
+
+<dialog id="cmdk" class="bk-cmdk" data-bk-cmdk="mod+k">
+  <div class="bk-cmdk-input-wrap">
+    <input class="bk-cmdk-input" type="text" placeholder="Type a command or search…" aria-label="Command palette">
+  </div>
+  <div class="bk-cmdk-list">
+    <div class="bk-cmdk-group">
+      <div class="bk-cmdk-group-label">Actions</div>
+      <button class="bk-cmdk-item" type="button" data-bk-open="#drawer-new">New task<span class="bk-cmdk-item-hint">N</span></button>
+      <button class="bk-cmdk-item" type="button" onclick="this.closest('dialog').close(); bk.theme.toggle();">Toggle light / dark<span class="bk-cmdk-item-hint">T</span></button>
+      <button class="bk-cmdk-item" type="button" onclick="this.closest('dialog').close(); bk.theme.next();">Next skin<span class="bk-cmdk-item-hint">S</span></button>
+      <button class="bk-cmdk-item" type="button" onclick="this.closest('dialog').close(); bk.theme.random();">Random skin<span class="bk-cmdk-item-hint">R</span></button>
+    </div>
+    <div class="bk-cmdk-group">
+      <div class="bk-cmdk-group-label">Places</div>
+      <button class="bk-cmdk-item" type="button">Go to board<span class="bk-cmdk-item-hint">G B</span></button>
+      <button class="bk-cmdk-item" type="button">Go to calendar<span class="bk-cmdk-item-hint">G C</span></button>
+    </div>
+    <div class="bk-cmdk-empty">No commands match. Try fewer letters.</div>
+  </div>
+  <div class="bk-cmdk-footer">
+    <span><span class="bk-kbd bk-kbd-sm">&#8593;</span><span class="bk-kbd bk-kbd-sm">&#8595;</span> navigate</span>
+    <span><span class="bk-kbd bk-kbd-sm">Enter</span> select</span>
+    <span><span class="bk-kbd bk-kbd-sm">Esc</span> close</span>
+  </div>
+</dialog>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

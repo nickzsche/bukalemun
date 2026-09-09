@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="y2k" data-bk-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Chat demo</title>
+<meta name="description" content="A messaging client built from Bukalemun components — bubbles, presence, typing indicator and a live composer.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/y2k.min.css" data-bk-skin="y2k">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  .chat-shell { display: grid; grid-template-columns: 19rem 1fr; min-block-size: 100vh; }
+  .chat-aside { display: flex; flex-direction: column; border-inline-end: var(--bk-border-width) var(--bk-border-style) var(--bk-border); background: var(--bk-bg-subtle); }
+  .chat-main { display: flex; flex-direction: column; min-inline-size: 0; }
+  .chat-head { display: flex; align-items: center; min-block-size: 4rem; gap: var(--bk-space-3); padding: var(--bk-space-3) var(--bk-space-5); border-block-end: var(--bk-border-width) var(--bk-border-style) var(--bk-border); }
+  .chat-head-end { margin-inline-start: auto; display: flex; gap: var(--bk-space-2); }
+  .chat-body { flex: 1; overflow-y: auto; padding: var(--bk-space-5); }
+  .chat-composer { display: flex; gap: var(--bk-space-2); align-items: flex-end; padding: var(--bk-space-3) var(--bk-space-5) var(--bk-space-5); border-block-start: var(--bk-border-width) var(--bk-border-style) var(--bk-border); }
+  .chat-composer .bk-textarea { flex: 1; }
+  .chat-day { display: flex; align-items: center; gap: var(--bk-space-3); margin-block: var(--bk-space-4); color: var(--bk-text-muted); font-size: var(--bk-text-xs); text-transform: uppercase; letter-spacing: var(--bk-label-tracking); }
+  .chat-day::before, .chat-day::after { content: ''; flex: 1; block-size: var(--bk-border-width); background: var(--bk-border); }
+  /* The sidebar is the first thing to go: a 19rem column of conversation names
+     is not worth two thirds of a phone screen. */
+  @media (max-width: 52rem) { .chat-shell { grid-template-columns: 1fr; } .chat-aside { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="chat-shell">
+
+  <aside class="chat-aside">
+    <div class="chat-head">
+      <a class="bk-navbar-brand" href="./index.html">Sohbet</a>
+      <span class="chat-head-end"><button class="bk-btn bk-btn-sm bk-btn-icon bk-btn-ghost" type="button" aria-label="New conversation">＋</button></span>
+    </div>
+
+    <div style="padding: var(--bk-space-3) var(--bk-space-4);">
+      <div class="bk-search">
+        <input class="bk-input bk-input-sm" type="search" placeholder="Search conversations" aria-label="Search conversations" data-bk-filter="#chat-list">
+      </div>
+    </div>
+
+    <ul class="bk-list-group bk-list-group-flush bk-scroll-y" id="chat-list" style="flex: 1;">
+      <li class="bk-list-item bk-is-active">
+        <span class="bk-avatar bk-avatar-sm bk-avatar-status bk-status-online">MK</span>
+        <span class="bk-list-item-body">
+          <span class="bk-list-item-title">Merve Kaya</span>
+          <span class="bk-list-item-text bk-truncate">the contrast script caught it, not me</span>
+        </span>
+        <span class="bk-list-item-meta">09:41</span>
+      </li>
+      <li class="bk-list-item">
+        <span class="bk-avatar bk-avatar-sm bk-avatar-status bk-status-busy">EY</span>
+        <span class="bk-list-item-body">
+          <span class="bk-list-item-title">Emre Yıldız</span>
+          <span class="bk-list-item-text bk-truncate">pushed, CI is green for once</span>
+        </span>
+        <span class="bk-list-item-meta"><span class="bk-badge bk-badge-count">2</span></span>
+      </li>
+      <li class="bk-list-item">
+        <span class="bk-avatar bk-avatar-sm bk-avatar-square">#</span>
+        <span class="bk-list-item-body">
+          <span class="bk-list-item-title">#design-system</span>
+          <span class="bk-list-item-text bk-truncate">Deniz: can we kill the fourth grey</span>
+        </span>
+        <span class="bk-list-item-meta">08:12</span>
+      </li>
+      <li class="bk-list-item">
+        <span class="bk-avatar bk-avatar-sm bk-avatar-status bk-status-away">DK</span>
+        <span class="bk-list-item-body">
+          <span class="bk-list-item-title">Deniz Karaca</span>
+          <span class="bk-list-item-text bk-truncate">call moved to 3</span>
+        </span>
+        <span class="bk-list-item-meta">Yesterday</span>
+      </li>
+      <li class="bk-list-item">
+        <span class="bk-avatar bk-avatar-sm bk-avatar-square">#</span>
+        <span class="bk-list-item-body">
+          <span class="bk-list-item-title">#deploys</span>
+          <span class="bk-list-item-text bk-truncate">bot: production 1.4.0 ✓</span>
+        </span>
+        <span class="bk-list-item-meta">Yesterday</span>
+      </li>
+    </ul>
+
+    <div class="bk-list-item" style="border-block-start: var(--bk-border-width) var(--bk-border-style) var(--bk-border);">
+      <span class="bk-avatar bk-avatar-sm bk-avatar-status bk-status-online">ŞH</span>
+      <span class="bk-list-item-body"><span class="bk-list-item-title">Şahan</span><span class="bk-list-item-text">Available</span></span>
+      <button class="bk-btn bk-btn-xs bk-btn-ghost" type="button" data-bk-popover="#status-pop" aria-label="Set status">▾</button>
+    </div>
+  </aside>
+
+  <main class="chat-main">
+
+    <header class="chat-head">
+      <span class="bk-avatar bk-avatar-status bk-status-online">MK</span>
+      <span>
+        <strong>Merve Kaya</strong><br>
+        <span class="bk-subtle bk-text-sm">Online · replies fast, types faster</span>
+      </span>
+      <span class="chat-head-end">
+        <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-tooltip="Start a call">Call</button>
+        <button class="bk-btn bk-btn-sm bk-btn-ghost" type="button" data-bk-menu="#chat-menu">⋯</button>
+      </span>
+    </header>
+
+    <div class="chat-body">
+      <div class="bk-chat">
+
+        <p class="chat-day">Tuesday</p>
+
+        <div class="bk-bubble">
+          <div class="bk-bubble-body">Did you look at the industrial skin in dark mode?</div>
+          <div class="bk-bubble-meta">Merve · 09:12</div>
+        </div>
+
+        <div class="bk-bubble bk-bubble-mine">
+          <div class="bk-bubble-body">Just did. The muted text on the panel fails AA by a hair.</div>
+          <div class="bk-bubble-meta">09:14 · seen</div>
+        </div>
+
+        <div class="bk-bubble">
+          <div class="bk-bubble-body">the contrast script caught it, not me. it walks every pair and moves lightness one per cent at a time until it clears</div>
+          <div class="bk-bubble-meta">Merve · 09:41</div>
+        </div>
+
+        <div class="bk-bubble">
+          <div class="bk-bubble-body">
+            <div class="bk-code-frame">
+              <div class="bk-code-head"><span class="bk-code-dots"><i></i><i></i><i></i></span><span>terminal</span><button class="bk-code-copy" type="button" data-bk-copy=".bk-code-lines">Copy</button></div>
+              <pre class="bk-code"><code class="bk-code-lines">npm run contrast:fix
+<span class="bk-tok-com"># industrial/dark: --bk-text-muted 4.31 → 4.62</span></code></pre>
+            </div>
+          </div>
+          <div class="bk-bubble-meta">Merve · 09:42</div>
+        </div>
+
+        <div class="bk-bubble bk-bubble-mine">
+          <div class="bk-bubble-body">Perfect. Ship it and I will re-lock the palette snapshots.</div>
+          <div class="bk-bubble-meta">09:44 · seen</div>
+        </div>
+
+        <div class="bk-bubble">
+          <div class="bk-bubble-body bk-typing" aria-label="Merve is typing"><span></span><span></span><span></span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <form class="chat-composer" onsubmit="return false">
+      <button class="bk-btn bk-btn-icon bk-btn-ghost" type="button" aria-label="Attach a file">📎</button>
+      <textarea class="bk-textarea bk-textarea-auto" rows="1" data-bk-autosize placeholder="Write a message… Enter to send" aria-label="Message"></textarea>
+      <button class="bk-btn bk-btn-primary" type="submit">Send</button>
+    </form>
+
+  </main>
+</div>
+
+<div class="bk-menu" id="chat-menu" role="menu" hidden>
+  <button class="bk-menu-item" type="button" role="menuitem">Search in conversation <span class="bk-menu-item-shortcut"><kbd class="bk-kbd bk-kbd-sm">⌘</kbd><kbd class="bk-kbd bk-kbd-sm">F</kbd></span></button>
+  <button class="bk-menu-item" type="button" role="menuitem">Mute for 8 hours</button>
+  <button class="bk-menu-item" type="button" role="menuitem">Export transcript</button>
+  <hr class="bk-menu-sep">
+  <button class="bk-menu-item bk-menu-item-danger" type="button" role="menuitem">Leave conversation</button>
+</div>
+
+<div class="bk-popover" id="status-pop" role="dialog" hidden>
+  <div class="bk-popover-header"><p class="bk-popover-title">Set your status</p></div>
+  <div class="bk-popover-text">
+    <div class="bk-check-group">
+      <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="presence" checked><span class="bk-check-label-text"><span class="bk-status bk-status-online">Available</span></span></label>
+      <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="presence"><span class="bk-check-label-text"><span class="bk-status bk-status-busy">Heads down</span></span></label>
+      <label class="bk-check-label"><input class="bk-check bk-check-radio" type="radio" name="presence"><span class="bk-check-label-text"><span class="bk-status bk-status-away">Back in an hour</span></span></label>
+    </div>
+  </div>
+</div>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+/* =============================================================================
+   SKIN — sketch · Hand-drawn
+   Wobbly ink borders (SVG turbulence, no images), notebook paper, marker
+   highlights and a handwriting display face. Looks like a napkin wireframe.
+   ========================================================================== */
+
+[data-bk-style="sketch"] {
+  --bk-font-sans: "Gaegu", "Comic Neue", "Segoe Print", "Bradley Hand", "Chalkboard SE", cursive, sans-serif;
+  --bk-font-display: var(--bk-font-sans);
+  --bk-font-body: var(--bk-font-sans);
+  --bk-font-mono: "Courier New", ui-monospace, monospace;
+  --bk-heading-weight: 700;
+  --bk-heading-tracking: 0;
+  --bk-text-base: 1.0625rem;
+  --bk-leading-normal: 1.6;
+
+  --bk-bg: #fdfdf7;
+  --bk-surface: #ffffff;
+  --bk-surface-2: #f8f8f0;
+  --bk-surface-3: #eeeee0;
+  --bk-surface-inverted: #1f1f1c;
+
+  --bk-text: #22221f;
+  --bk-text-muted: #55554e;
+  --bk-text-subtle: #86867c;
+  --bk-text-inverted: #fdfdf7;
+
+  --bk-border: #22221f;
+  --bk-border-muted: #b9b9ac;
+  --bk-border-strong: #22221f;
+  --bk-border-width: 2px;
+
+  --bk-primary: #2f6fd0;
+  --bk-primary-hover: #2861bb;
+  --bk-primary-active: #2255a3;
+  --bk-primary-soft: #e2ecfa;
+  --bk-primary-border: #22221f;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #d06f2f;
+  --bk-secondary-soft: #faeade;
+  --bk-secondary-border: #22221f;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #3d8b3d;
+  --bk-success-soft: #e3f2e3;
+  --bk-success-border: #22221f;
+  --bk-warning: #d0a02f;
+  --bk-warning-soft: #f9f0d9;
+  --bk-warning-border: #22221f;
+  --bk-on-warning: #22221f;
+  --bk-danger: #c73f3f;
+  --bk-danger-soft: #f8e2e2;
+  --bk-danger-border: #22221f;
+  --bk-info: #2f6fd0;
+  --bk-info-soft: #e2ecfa;
+  --bk-info-border: #22221f;
+  --bk-neutral: #22221f;
+  --bk-neutral-soft: #f0f0e6;
+  --bk-neutral-border: #22221f;
+  --bk-on-neutral: #fdfdf7;
+
+  --bk-radius-scale: 1.2;
+  --bk-radius-field: 12px 4px 14px 6px;
+  --bk-radius-card: 14px 6px 16px 8px;
+  --bk-radius-overlay: 18px 8px 20px 10px;
+
+  --bk-shadow-xs: 1px 2px 0 rgb(34 34 31 / 0.5);
+  --bk-shadow-sm: 2px 3px 0 rgb(34 34 31 / 0.45);
+  --bk-shadow-md: 3px 4px 0 rgb(34 34 31 / 0.4);
+  --bk-shadow-lg: 4px 6px 0 rgb(34 34 31 / 0.35);
+  --bk-shadow-xl: 6px 9px 0 rgb(34 34 31 / 0.3);
+  --bk-shadow-2xl: 8px 12px 0 rgb(34 34 31 / 0.28);
+  --bk-shadow-inner: inset 2px 2px 0 rgb(34 34 31 / 0.12);
+
+  --bk-ring: #2f6fd0;
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 3px;
+  --bk-ring-style: dashed;
+
+  --bk-btn-border-width: 2px;
+  --bk-btn-radius: 14px 6px 16px 8px;
+  --bk-btn-shadow: 2px 3px 0 rgb(34 34 31 / 0.55);
+  --bk-btn-shadow-hover: 3px 4px 0 rgb(34 34 31 / 0.6);
+  --bk-btn-shadow-active: 1px 1px 0 rgb(34 34 31 / 0.6);
+  --bk-btn-weight: 700;
+  --bk-press-transform: translate(1px, 2px) rotate(0.3deg);
+  --bk-hover-transform: rotate(-0.7deg);
+
+  --bk-field-bg: #ffffff;
+  --bk-field-border: #22221f;
+  --bk-field-border-width: 2px;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #9a9a8e;
+  --bk-card-border-width: 2px;
+  --bk-card-shadow: 3px 4px 0 rgb(34 34 31 / 0.35);
+  --bk-card-shadow-hover: 5px 7px 0 rgb(34 34 31 / 0.35);
+  --bk-overlay-surface: #ffffff;
+  --bk-overlay-border: #22221f;
+  --bk-overlay-shadow: 6px 9px 0 rgb(34 34 31 / 0.4);
+  --bk-overlay-bg: rgb(34 34 31 / 0.35);
+  --bk-code-bg: #f5f5ea;
+  --bk-code-border: #22221f;
+  --bk-tooltip-bg: #22221f;
+  --bk-selection-bg: #ffe98a;
+  --bk-selection-fg: #22221f;
+  --bk-scrollbar-thumb: #b9b9ac;
+  --bk-divider-color: #22221f;
+  --bk-divider-width: 2px;
+  --bk-divider-style: solid;
+
+  --bk-body-image:
+    linear-gradient(90deg, transparent 3.4rem, rgb(199 63 63 / 0.18) 3.4rem 3.5rem, transparent 3.5rem),
+    repeating-linear-gradient(180deg, transparent 0 1.55rem, rgb(47 111 208 / 0.09) 1.55rem 1.6rem);
+  --bk-body-attachment: local;
+}
+
+[data-bk-style="sketch"][data-bk-theme="dark"] {
+  --bk-bg: #1c1c19;
+  --bk-surface: #232320;
+  --bk-surface-2: #2b2b27;
+  --bk-surface-3: #363631;
+  --bk-surface-inverted: #ffffff;
+  --bk-text-inverted: #22221f;
+  --bk-text: #f2f2e8;
+  --bk-text-muted: #c0c0b4;
+  --bk-text-subtle: #8d8d82;
+  --bk-border: #f2f2e8;
+  --bk-border-muted: #4a4a43;
+  --bk-border-strong: #f2f2e8;
+  --bk-primary-border: #f2f2e8;
+  --bk-neutral: #f2f2e8;
+  --bk-neutral-soft: #2b2b27;
+  --bk-neutral-border: #f2f2e8;
+  --bk-on-neutral: #1c1c19;
+  --bk-field-bg: #232320;
+  --bk-field-border: #f2f2e8;
+  --bk-code-bg: #2b2b27;
+  --bk-code-border: #f2f2e8;
+  --bk-overlay-surface: #232320;
+  --bk-overlay-border: #f2f2e8;
+  --bk-shadow-xs: 1px 2px 0 rgb(242 242 232 / 0.5);
+  --bk-shadow-sm: 2px 3px 0 rgb(242 242 232 / 0.45);
+  --bk-shadow-md: 3px 4px 0 rgb(242 242 232 / 0.4);
+  --bk-shadow-lg: 4px 6px 0 rgb(242 242 232 / 0.35);
+  --bk-btn-shadow: 2px 3px 0 rgb(242 242 232 / 0.5);
+  --bk-btn-shadow-hover: 3px 4px 0 rgb(242 242 232 / 0.55);
+  --bk-btn-shadow-active: 1px 1px 0 rgb(242 242 232 / 0.55);
+  --bk-card-shadow: 3px 4px 0 rgb(242 242 232 / 0.3);
+  --bk-card-shadow-hover: 5px 7px 0 rgb(242 242 232 / 0.3);
+  --bk-overlay-shadow: 6px 9px 0 rgb(242 242 232 / 0.35);
+  --bk-tooltip-bg: #f2f2e8;
+  --bk-tooltip-fg: #1c1c19;
+  --bk-divider-color: #f2f2e8;
+  --bk-body-image: repeating-linear-gradient(180deg, transparent 0 1.55rem, rgb(242 242 232 / 0.05) 1.55rem 1.6rem);
+}
+
+/* The wobble: an SVG turbulence filter, inlined as a data URI. No assets. */
+[data-bk-style="sketch"] .bk-card,
+[data-bk-style="sketch"] .bk-btn:not(.bk-btn-link),
+[data-bk-style="sketch"] .bk-input,
+[data-bk-style="sketch"] .bk-textarea,
+[data-bk-style="sketch"] .bk-select,
+[data-bk-style="sketch"] .bk-alert,
+[data-bk-style="sketch"] .bk-panel,
+[data-bk-style="sketch"] .bk-badge,
+[data-bk-style="sketch"] .bk-modal,
+[data-bk-style="sketch"] .bk-table-wrap {
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='w' x='-5%25' y='-15%25' width='110%25' height='130%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.014' numOctaves='3' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='2.6' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/svg%3E#w");
+}
+@supports not (filter: url("#x")) {
+  [data-bk-style="sketch"] .bk-card,
+  [data-bk-style="sketch"] .bk-btn { filter: none; }
+}
+[data-bk-style="sketch"] .bk-card:nth-child(2n) { border-radius: 6px 16px 8px 14px; }
+[data-bk-style="sketch"] .bk-btn:nth-of-type(2n) { border-radius: 6px 16px 8px 14px; }
+[data-bk-style="sketch"] .bk-avatar { border: 2px solid var(--bk-border); border-radius: 48% 52% 45% 55% / 50% 46% 54% 50%; }
+[data-bk-style="sketch"] .bk-check { border-radius: 4px 2px 5px 3px; border-width: 2px; }
+[data-bk-style="sketch"] .bk-switch { border: 2px solid var(--bk-border); background: var(--bk-surface); }
+[data-bk-style="sketch"] .bk-switch::before { background: var(--bk-border); box-shadow: none; }
+[data-bk-style="sketch"] .bk-switch:checked { background: var(--bk-primary-soft); }
+[data-bk-style="sketch"] .bk-switch:checked::before { background: var(--bk-primary); }
+[data-bk-style="sketch"] .bk-progress { border: 2px solid var(--bk-border); background: transparent; }
+[data-bk-style="sketch"] .bk-mark,
+[data-bk-style="sketch"] mark {
+  background: linear-gradient(180deg, transparent 55%, #ffe98a 55%);
+  padding: 0;
+}
+[data-bk-style="sketch"] .bk-divider { border-style: solid; border-block-start-width: 2px; }
+[data-bk-style="sketch"] .bk-table thead th { background: transparent; border-block-end: 2px solid var(--bk-border); }
+[data-bk-style="sketch"] .bk-navbar { border-block-end: 2px solid var(--bk-border); background: transparent; }
+[data-bk-style="sketch"] .bk-title,
+[data-bk-style="sketch"] .bk-display { transform: rotate(-0.6deg); }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="sketch"] {
+  --bk-danger: #c73f3f;
+  --bk-danger-active: #ab3636;
+  --bk-danger-hover: #b73a3a;
+  --bk-danger-on-soft: #b73535;
+  --bk-danger-soft: #f8e2e2;
+  --bk-danger-text: #c73f3f;
+  --bk-field-placeholder: #909083;
+  --bk-info: #2f6fd0;
+  --bk-info-active: #285fb3;
+  --bk-info-hover: #2b66bf;
+  --bk-info-on-soft: #2a64bb;
+  --bk-info-soft: #e2ecfa;
+  --bk-info-text: #2f6fd0;
+  --bk-on-danger: #ffffff;
+  --bk-on-info: #ffffff;
+  --bk-on-secondary: #1f1f1f;
+  --bk-on-success: #080808;
+  --bk-primary-on-soft: #2a64bb;
+  --bk-primary-text: #2f6fd0;
+  --bk-secondary: #d06f2f;
+  --bk-secondary-active: #d7834c;
+  --bk-secondary-hover: #d47b40;
+  --bk-secondary-on-soft: #9e5424;
+  --bk-secondary-soft: #faeade;
+  --bk-secondary-text: #a65926;
+  --bk-success: #3d8b3d;
+  --bk-success-active: #589b58;
+  --bk-success-hover: #4d944d;
+  --bk-success-on-soft: #347634;
+  --bk-success-soft: #e3f2e3;
+  --bk-success-text: #377d37;
+  --bk-warning-on-soft: #85661e;
+  --bk-warning-text: #896a1f;
+}
+[data-bk-style="sketch"][data-bk-theme="dark"] {
+  --bk-danger: #c73f3f;
+  --bk-danger-active: #ab3636;
+  --bk-danger-hover: #b73a3a;
+  --bk-danger-on-soft: #b73535;
+  --bk-danger-soft: #f8e2e2;
+  --bk-danger-text: #d87a7a;
+  --bk-field-placeholder: #9a9a8e;
+  --bk-info: #2f6fd0;
+  --bk-info-active: #285fb3;
+  --bk-info-hover: #2b66bf;
+  --bk-info-on-soft: #2a64bb;
+  --bk-info-soft: #e2ecfa;
+  --bk-info-text: #6997dd;
+  --bk-on-danger: #fdf7f7;
+  --bk-on-info: #f9fcfe;
+  --bk-on-secondary: #1f1f1f;
+  --bk-on-success: #020b06;
+  --bk-primary-on-soft: #2a64bb;
+  --bk-primary-text: #6997dd;
+  --bk-secondary: #d06f2f;
+  --bk-secondary-active: #d7834c;
+  --bk-secondary-hover: #d47b40;
+  --bk-secondary-on-soft: #9e5424;
+  --bk-secondary-soft: #faeade;
+  --bk-secondary-text: #d68048;
+  --bk-success: #3d8b3d;
+  --bk-success-active: #589b58;
+  --bk-success-hover: #4d944d;
+  --bk-success-on-soft: #347634;
+  --bk-success-soft: #e3f2e3;
+  --bk-success-text: #49a749;
+  --bk-warning-on-soft: #85661e;
+  --bk-warning-text: #d0a02f;
+}
+/* ==== end derived contrast tokens ==== */

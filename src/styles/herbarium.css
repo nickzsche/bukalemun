@@ -1,0 +1,265 @@
+/* =============================================================================
+   SKIN — herbarium · Botanical plate
+   A pressed-specimen sheet: aged rag paper, engraved serif, pressed-leaf greens
+   and the small italic label in the corner. Thin single rules, no fills, and
+   the composure of something catalogued in 1843.
+   ========================================================================== */
+
+[data-bk-style="herbarium"] {
+  --bk-font-serif: "EB Garamond", "Cormorant Garamond", Garamond, Georgia, serif;
+  --bk-font-sans: var(--bk-font-serif);
+  --bk-font-body: var(--bk-font-serif);
+  --bk-font-display: var(--bk-font-serif);
+  --bk-heading-font: var(--bk-font-serif);
+  --bk-heading-weight: 500;
+  --bk-heading-tracking: 0.01em;
+  --bk-label-transform: uppercase;
+  --bk-label-tracking: 0.2em;
+  --bk-leading-relaxed: 1.75;
+  --bk-prose-width: 64ch;
+
+  --bk-bg: #f3efe2;
+  --bk-surface: #faf7ec;
+  --bk-surface-2: #efeade;
+  --bk-surface-3: #e0dac6;
+  --bk-surface-inverted: #26291f;
+
+  --bk-text: #2c2f24;
+  --bk-text-muted: #5a5c4b;
+  --bk-text-subtle: #8b8b76;
+  --bk-text-inverted: #faf7ec;
+
+  --bk-border: #cec7ae;
+  --bk-border-muted: #e2dcc7;
+  --bk-border-strong: #6f7259;
+  --bk-border-width: 1px;
+
+  --bk-primary: #4a6141;
+  --bk-primary-hover: #3d5136;
+  --bk-primary-active: #31422c;
+  --bk-primary-soft: #e4ebdd;
+  --bk-primary-border: #adbfa1;
+  --bk-on-primary: #faf7ec;
+  --bk-secondary: #8a5a2b;
+  --bk-secondary-hover: #754b23;
+  --bk-secondary-soft: #f0e5d5;
+  --bk-secondary-border: #cbb08a;
+  --bk-on-secondary: #faf7ec;
+  --bk-success: #4a6141;
+  --bk-success-soft: #e4ebdd;
+  --bk-success-border: #adbfa1;
+  --bk-warning: #8a6a1f;
+  --bk-warning-soft: #f2ead2;
+  --bk-warning-border: #d3c188;
+  --bk-danger: #8b3a2e;
+  --bk-danger-soft: #f0dfd9;
+  --bk-danger-border: #cfa79b;
+  --bk-info: #40606b;
+  --bk-info-soft: #dee9ec;
+  --bk-info-border: #a4c0c7;
+  --bk-neutral: #2c2f24;
+  --bk-neutral-soft: #eae5d6;
+  --bk-neutral-border: #cec7ae;
+  --bk-on-neutral: #faf7ec;
+
+  --bk-radius-scale: 0.2;
+  --bk-radius-field: 1px;
+  --bk-radius-card: 1px;
+  --bk-radius-overlay: 1px;
+  --bk-radius-pill: 9999px;
+
+  --bk-shadow-xs: none;
+  --bk-shadow-sm: none;
+  --bk-shadow-md: none;
+  --bk-shadow-lg: 0 2px 18px rgb(70 65 40 / 0.09);
+  --bk-shadow-xl: 0 10px 40px rgb(70 65 40 / 0.13);
+  --bk-shadow-2xl: 0 20px 60px rgb(70 65 40 / 0.18);
+  --bk-shadow-inner: none;
+
+  --bk-ring: #4a6141;
+  --bk-ring-width: 1px;
+  --bk-ring-offset: 3px;
+
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: none;
+  --bk-btn-shadow-active: none;
+  --bk-btn-weight: 500;
+  --bk-btn-transform: uppercase;
+  --bk-btn-tracking: 0.14em;
+  --bk-press-transform: none;
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #faf7ec;
+  --bk-field-border: #b9b299;
+  --bk-field-border-hover: #4a6141;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #a6a390;
+  --bk-card-bg: #faf7ec;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: var(--bk-shadow-lg);
+  --bk-card-pad: var(--bk-space-6);
+  --bk-overlay-surface: #faf7ec;
+  --bk-overlay-shadow: var(--bk-shadow-2xl);
+  --bk-overlay-bg: rgb(44 47 36 / 0.35);
+  --bk-code-bg: #efeade;
+  --bk-code-border: #cec7ae;
+  --bk-tooltip-bg: #2c2f24;
+  --bk-selection-bg: rgb(74 97 65 / 0.2);
+  --bk-scrollbar-thumb: #cec7ae;
+  --bk-divider-color: #cec7ae;
+
+  /* Foxing and laid lines, the way old rag paper ages. */
+  --bk-body-image:
+    repeating-linear-gradient(90deg, rgb(110 100 60 / 0.028) 0 1px, transparent 1px 1.4rem),
+    radial-gradient(circle at 18% 28%, rgb(140 110 60 / 0.05), transparent 22%),
+    radial-gradient(circle at 76% 66%, rgb(140 110 60 / 0.045), transparent 20%);
+  --bk-body-attachment: fixed;
+}
+
+[data-bk-style="herbarium"][data-bk-theme="dark"] {
+  --bk-bg: #1a1c16;
+  --bk-surface: #22251d;
+  --bk-surface-2: #292c22;
+  --bk-surface-3: #33372a;
+  --bk-surface-inverted: #faf7ec;
+  --bk-text-inverted: #2c2f24;
+  --bk-card-bg: #22251d;
+  --bk-text: #e8e4d3;
+  --bk-text-muted: #b0af99;
+  --bk-text-subtle: #85846f;
+  --bk-border: #3a3e2f;
+  --bk-border-muted: #2a2d23;
+  --bk-border-strong: #7e8268;
+  --bk-primary: #9dba8e;
+  --bk-primary-hover: #aec8a0;
+  --bk-primary-soft: #232c1f;
+  --bk-primary-border: #46543d;
+  --bk-on-primary: #131a10;
+  --bk-secondary: #cfa570;
+  --bk-secondary-soft: #2c2316;
+  --bk-secondary-border: #59462b;
+  --bk-on-secondary: #1a1309;
+  --bk-success-soft: #1e2a19;
+  --bk-warning-soft: #2c2611;
+  --bk-danger-soft: #2e1c17;
+  --bk-info-soft: #1a2528;
+  --bk-neutral: #e8e4d3;
+  --bk-neutral-soft: #292c22;
+  --bk-neutral-border: #3a3e2f;
+  --bk-on-neutral: #1a1c16;
+  --bk-field-bg: #22251d;
+  --bk-field-border: #4a4e3c;
+  --bk-code-bg: #20231b;
+  --bk-code-border: #3a3e2f;
+  --bk-overlay-surface: #22251d;
+  --bk-tooltip-bg: #e8e4d3;
+  --bk-tooltip-fg: #1a1c16;
+  --bk-divider-color: #3a3e2f;
+  --bk-body-image: repeating-linear-gradient(90deg, rgb(220 210 160 / 0.02) 0 1px, transparent 1px 1.4rem);
+}
+
+/* The specimen sheet: a thin rule inset from the edge, like a mounting frame. */
+[data-bk-style="herbarium"] .bk-card { position: relative; }
+[data-bk-style="herbarium"] .bk-card::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid var(--bk-border);
+  pointer-events: none;
+}
+[data-bk-style="herbarium"] .bk-card-title { font-style: italic; font-weight: 500; }
+[data-bk-style="herbarium"] .bk-navbar { background: transparent; border-block-end: 1px solid var(--bk-border-strong); }
+[data-bk-style="herbarium"] .bk-table thead th {
+  background: transparent;
+  font-family: var(--bk-font-serif);
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  border-block-end: 1px solid var(--bk-border-strong);
+}
+[data-bk-style="herbarium"] .bk-badge { border: 1px solid currentColor; font-style: italic; letter-spacing: 0.06em; }
+[data-bk-style="herbarium"] .bk-blockquote { font-family: var(--bk-font-serif); border-inline-start-width: 1px; background: transparent; }
+[data-bk-style="herbarium"] .bk-section-head::after {
+  content: "";
+  display: block;
+  inline-size: 100%;
+  block-size: 1px;
+  margin-block-start: var(--bk-space-4);
+  background: var(--bk-border-strong);
+}
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="herbarium"] {
+  --bk-danger: #8b3a2e;
+  --bk-danger-active: #9b564b;
+  --bk-danger-hover: #944a3f;
+  --bk-danger-on-soft: #8b3a2e;
+  --bk-danger-soft: #f0dfd9;
+  --bk-danger-text: #8b3a2e;
+  --bk-field-placeholder: #8f8c74;
+  --bk-info: #40606b;
+  --bk-info-active: #5b7680;
+  --bk-info-hover: #4f6d77;
+  --bk-info-on-soft: #40606b;
+  --bk-info-soft: #dee9ec;
+  --bk-info-text: #40606b;
+  --bk-on-danger: #ffffff;
+  --bk-on-info: #ffffff;
+  --bk-on-success: #ffffff;
+  --bk-on-warning: #ffffff;
+  --bk-primary-active: #31422c;
+  --bk-secondary-active: #774d25;
+  --bk-secondary-hover: #754b23;
+  --bk-success: #4a6141;
+  --bk-success-active: #63775c;
+  --bk-success-hover: #586e50;
+  --bk-success-on-soft: #4a6141;
+  --bk-success-soft: #e4ebdd;
+  --bk-success-text: #4a6141;
+  --bk-text-subtle: #787865;
+  --bk-warning: #8a6a1f;
+  --bk-warning-active: #775b1b;
+  --bk-warning-hover: #7f621d;
+  --bk-warning-on-soft: #7e601c;
+  --bk-warning-soft: #f2ead2;
+  --bk-warning-text: #7e601c;
+}
+[data-bk-style="herbarium"][data-bk-theme="dark"] {
+  --bk-danger: #8b3a2e;
+  --bk-danger-active: #783228;
+  --bk-danger-hover: #80352a;
+  --bk-danger-on-soft: #cb7063;
+  --bk-danger-soft: #2e1c17;
+  --bk-danger-text: #d07e72;
+  --bk-field-placeholder: #a6a390;
+  --bk-info: #40606b;
+  --bk-info-active: #37535c;
+  --bk-info-hover: #3b5862;
+  --bk-info-on-soft: #6895a4;
+  --bk-info-soft: #1a2528;
+  --bk-info-text: #719caa;
+  --bk-on-danger: #f2c0c5;
+  --bk-on-info: #bcddf9;
+  --bk-on-success: #87ebb4;
+  --bk-on-warning: #fdf7eb;
+  --bk-primary-active: #abc49e;
+  --bk-secondary-active: #b69162;
+  --bk-secondary-hover: #d3ac7b;
+  --bk-success: #4a6141;
+  --bk-success-active: #405338;
+  --bk-success-hover: #44593c;
+  --bk-success-on-soft: #779a69;
+  --bk-success-soft: #1e2a19;
+  --bk-success-text: #7c9e6f;
+  --bk-text-subtle: #85846f;
+  --bk-warning: #8a6a1f;
+  --bk-warning-active: #775b1b;
+  --bk-warning-hover: #7f621d;
+  --bk-warning-on-soft: #b48a28;
+  --bk-warning-soft: #2c2611;
+  --bk-warning-text: #bc902a;
+}
+/* ==== end derived contrast tokens ==== */

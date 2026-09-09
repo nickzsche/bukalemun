@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="swiss" data-bk-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Demo gallery</title>
+<meta name="description" content="Ten complete pages, one markup, fifty visual languages. Every preview below is the live page, not a screenshot.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/swiss.min.css" data-bk-skin="swiss">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>:root { --demo-logo: url('../assets/logo.svg'); }</style>
+</head>
+<body class="demo-page">
+
+<header class="demo-head">
+  <a class="demo-mark" href="../index.html">Bukalemun</a>
+  <div class="demo-head-end">
+    <a class="bk-btn bk-btn-sm bk-btn-ghost" href="../docs/index.html">Docs</a>
+    <a class="bk-btn bk-btn-sm bk-btn-ghost" href="https://github.com/nickzsche/bukalemun">GitHub</a>
+    <a class="bk-btn bk-btn-sm bk-btn-outline" href="https://www.npmjs.com/package/bukalemun">npm</a>
+  </div>
+</header>
+
+<main>
+  <section class="demo-hero">
+    <p class="bk-badge bk-badge-primary bk-badge-outline">Ten pages · Fifty skins · Zero dependencies</p>
+    <h1>The same HTML, wearing fifty different faces.</h1>
+    <p>Every card below is a <strong>live page in an iframe</strong>, not a screenshot — scaled down and
+    running the real stylesheet. Open one and the dock in its corner switches between all fifty skins;
+    the markup underneath never changes. Use the control below to re-dress every preview at once.</p>
+  </section>
+
+  <div class="demo-controls">
+    <div class="demo-controls-group">
+      <label class="demo-dock-label" for="preview-skin">Previews</label>
+      <select class="bk-select bk-select-sm" id="preview-skin" data-demo-preview-skin aria-label="Preview skin"></select>
+    </div>
+    <div class="demo-controls-group">
+      <span class="demo-dock-label">Page</span>
+      <select class="bk-select bk-select-sm" data-bk-style-select aria-label="Gallery skin"></select>
+      <button class="bk-btn bk-btn-sm bk-btn-neutral" type="button" data-bk-theme-toggle="Light / dark">◐</button>
+    </div>
+    <p class="demo-controls-note"><kbd class="bk-kbd bk-kbd-sm">Shift</kbd> + <kbd class="bk-kbd bk-kbd-sm">←</kbd> <kbd class="bk-kbd bk-kbd-sm">→</kbd> cycles skins anywhere</p>
+  </div>
+
+  <div class="demo-gallery">
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">landing.html — neo-brutalist</span></div>
+      <div class="demo-frame"><iframe src="./landing.html?skin=brutal&amp;mode=dark&amp;chrome=0" title="Landing page preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./landing.html">Landing</a></h2>
+        <p>The full marketing stack — hero, feature grid, pricing table, testimonials, FAQ, footer.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">hero</span><span class="bk-badge bk-badge-sm">pricing</span><span class="bk-badge bk-badge-sm">testimonial</span><span class="bk-badge bk-badge-sm">accordion</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">dashboard.html — terminal</span></div>
+      <div class="demo-frame"><iframe src="./dashboard.html?skin=terminal&amp;mode=dark&amp;chrome=0" title="Dashboard preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./dashboard.html">Dashboard</a></h2>
+        <p>Stat grid, sortable table, timeline, progress rings and toasts under a phosphor CRT.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">stat</span><span class="bk-badge bk-badge-sm">table</span><span class="bk-badge bk-badge-sm">timeline</span><span class="bk-badge bk-badge-sm">toast</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">docs.html — newsprint</span></div>
+      <div class="demo-frame"><iframe src="./docs.html?skin=paper&amp;mode=light&amp;chrome=0" title="Documentation preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./docs.html">Docs</a></h2>
+        <p>Sidebar, table of contents, tabs, syntax-highlighted code frames, callouts, key caps.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">sidebar</span><span class="bk-badge bk-badge-sm">code</span><span class="bk-badge bk-badge-sm">callout</span><span class="bk-badge bk-badge-sm">kbd</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">store.html — claymorphism</span></div>
+      <div class="demo-frame"><iframe src="./store.html?skin=clay&amp;mode=light&amp;chrome=0" title="Store preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./store.html">Store</a></h2>
+        <p>Product carousel, choice cards, ratings, reviews and a cart badge that counts.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">carousel</span><span class="bk-badge bk-badge-sm">choice</span><span class="bk-badge bk-badge-sm">rating</span><span class="bk-badge bk-badge-sm">indicator</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">app.html — glassmorphism</span></div>
+      <div class="demo-frame"><iframe src="./app.html?skin=glass&amp;mode=dark&amp;chrome=0" title="Application preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./app.html">App</a></h2>
+        <p>Kanban board, side drawer, confirm modal, command palette and context menus.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">drawer</span><span class="bk-badge bk-badge-sm">modal</span><span class="bk-badge bk-badge-sm">cmdk</span><span class="bk-badge bk-badge-sm">menu</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">blog.html — magazine</span></div>
+      <div class="demo-frame"><iframe src="./blog.html?skin=magazine&amp;mode=light&amp;chrome=0" title="Article preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./blog.html">Article</a></h2>
+        <p>Long-form editorial — pull quotes, figures, footnotes, author card, related reading.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">prose</span><span class="bk-badge bk-badge-sm">media</span><span class="bk-badge bk-badge-sm">pagination</span><span class="bk-badge bk-badge-sm">chip</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">portfolio.html — film noir</span></div>
+      <div class="demo-frame"><iframe src="./portfolio.html?skin=noir&amp;mode=dark&amp;chrome=0" title="Portfolio preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./portfolio.html">Portfolio</a></h2>
+        <p>Gallery grid with a working lightbox, a marquee ticker, case-study cards and stats.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">lightbox</span><span class="bk-badge bk-badge-sm">marquee</span><span class="bk-badge bk-badge-sm">avatar</span><span class="bk-badge bk-badge-sm">stat</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">settings.html — clinical</span></div>
+      <div class="demo-frame"><iframe src="./settings.html?skin=clinical&amp;mode=light&amp;chrome=0" title="Settings preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./settings.html">Settings</a></h2>
+        <p>The whole form kit in one place — validation, switches, range, dropzone, tags, OTP, steps.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">form</span><span class="bk-badge bk-badge-sm">switch</span><span class="bk-badge bk-badge-sm">dropzone</span><span class="bk-badge bk-badge-sm">steps</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">chat.html — y2k</span></div>
+      <div class="demo-frame"><iframe src="./chat.html?skin=y2k&amp;mode=light&amp;chrome=0" title="Chat preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./chat.html">Chat</a></h2>
+        <p>Conversation list, message bubbles, typing indicator, presence dots and a live composer.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">chat</span><span class="bk-badge bk-badge-sm">bubble</span><span class="bk-badge bk-badge-sm">status</span><span class="bk-badge bk-badge-sm">popover</span></div>
+      </div>
+    </article>
+
+    <article class="demo-card">
+      <div class="demo-chrome"><span class="demo-chrome-dots"><i></i><i></i><i></i></span><span class="demo-chrome-url">arcade.html — pixel art</span></div>
+      <div class="demo-frame"><iframe src="./arcade.html?skin=pixelart&amp;mode=dark&amp;chrome=0" title="Arcade preview" loading="lazy" tabindex="-1" aria-hidden="true" scrolling="no"></iframe></div>
+      <div class="demo-card-body">
+        <h2><a href="./arcade.html">Arcade</a></h2>
+        <p>Leaderboard, health meters, loadout tree, key-cap controls and an achievement wall.</p>
+        <div class="demo-card-tags"><span class="bk-badge bk-badge-sm">meter</span><span class="bk-badge bk-badge-sm">tree</span><span class="bk-badge bk-badge-sm">kbd</span><span class="bk-badge bk-badge-sm">segmented</span></div>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="demo-foot">
+  <span>Ten demos, fifty skins, one stylesheet. No build step, no framework, no dependencies.</span>
+  <span class="demo-foot-end"><a href="../docs/index.html">Documentation</a> · <a href="https://github.com/nickzsche/bukalemun">Source</a></span>
+</footer>
+
+</body>
+</html>

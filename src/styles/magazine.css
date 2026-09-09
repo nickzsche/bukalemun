@@ -1,0 +1,252 @@
+/* =============================================================================
+   SKIN — magazine · Newsstand editorial
+   White page, enormous condensed headlines set tight enough to touch, one
+   arterial red, and a hard baseline discipline. Where `luxe` whispers in the
+   dark, this shouts on a rack.
+   ========================================================================== */
+
+[data-bk-style="magazine"] {
+  --bk-font-display: "Anton", "Archivo Black", "Oswald", "Impact", ui-sans-serif, sans-serif;
+  --bk-font-sans: "Inter", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --bk-font-serif: "Playfair Display", Georgia, serif;
+  --bk-heading-font: var(--bk-font-display);
+  --bk-heading-weight: 400;
+  --bk-heading-transform: uppercase;
+  --bk-heading-tracking: -0.025em;
+  --bk-label-transform: uppercase;
+  --bk-label-tracking: 0.18em;
+  --bk-leading-tight: 0.92;
+
+  --bk-bg: #ffffff;
+  --bk-surface: #ffffff;
+  --bk-surface-2: #f5f5f3;
+  --bk-surface-3: #e6e6e2;
+  --bk-surface-inverted: #111111;
+
+  --bk-text: #111111;
+  --bk-text-muted: #4b4b4b;
+  --bk-text-subtle: #7d7d7a;
+  --bk-text-inverted: #ffffff;
+
+  --bk-border: #111111;
+  --bk-border-muted: #d8d8d4;
+  --bk-border-strong: #111111;
+  --bk-border-width: 1px;
+
+  --bk-primary: #e01b24;
+  --bk-primary-hover: #c4161e;
+  --bk-primary-active: #a71219;
+  --bk-primary-soft: #fde3e4;
+  --bk-primary-border: #111111;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #111111;
+  --bk-secondary-hover: #2c2c2c;
+  --bk-secondary-soft: #ededea;
+  --bk-secondary-border: #111111;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #10693f;
+  --bk-success-soft: #dff0e7;
+  --bk-success-border: #111111;
+  --bk-warning: #8a6100;
+  --bk-warning-soft: #f7ecd2;
+  --bk-warning-border: #111111;
+  --bk-danger: #e01b24;
+  --bk-danger-soft: #fde3e4;
+  --bk-danger-border: #111111;
+  --bk-info: #14449c;
+  --bk-info-soft: #e0e7f7;
+  --bk-info-border: #111111;
+  --bk-neutral: #111111;
+  --bk-neutral-soft: #f0f0ed;
+  --bk-neutral-border: #111111;
+  --bk-on-neutral: #ffffff;
+
+  --bk-radius-scale: 0;
+  --bk-radius-full: 0;
+  --bk-radius-pill: 9999px;
+  --bk-radius-field: 0;
+  --bk-radius-card: 0;
+  --bk-radius-overlay: 0;
+  --bk-radius-thumb: 9999px;
+
+  --bk-shadow-xs: none;
+  --bk-shadow-sm: none;
+  --bk-shadow-md: none;
+  --bk-shadow-lg: 0 8px 30px rgb(0 0 0 / 0.1);
+  --bk-shadow-xl: 0 16px 50px rgb(0 0 0 / 0.14);
+  --bk-shadow-2xl: 0 28px 80px rgb(0 0 0 / 0.2);
+  --bk-shadow-inner: none;
+
+  --bk-ring: #e01b24;
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 2px;
+
+  --bk-btn-weight: 700;
+  --bk-btn-transform: uppercase;
+  --bk-btn-tracking: 0.16em;
+  --bk-btn-border-width: 1px;
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: none;
+  --bk-btn-shadow-active: none;
+  --bk-press-transform: none;
+  --bk-hover-transform: none;
+
+  --bk-field-bg: #ffffff;
+  --bk-field-border: #111111;
+  --bk-field-border-hover: #e01b24;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #9b9b98;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: none;
+  --bk-card-pad: var(--bk-space-5);
+  --bk-overlay-surface: #ffffff;
+  --bk-overlay-border: #111111;
+  --bk-overlay-shadow: var(--bk-shadow-2xl);
+  --bk-overlay-bg: rgb(17 17 17 / 0.55);
+  --bk-code-bg: #f5f5f3;
+  --bk-code-border: #111111;
+  --bk-tooltip-bg: #111111;
+  --bk-selection-bg: #e01b24;
+  --bk-selection-fg: #ffffff;
+  --bk-scrollbar-thumb: #111111;
+  --bk-divider-color: #111111;
+}
+
+[data-bk-style="magazine"][data-bk-theme="dark"] {
+  --bk-bg: #0c0c0c;
+  --bk-surface: #0f0f0f;
+  --bk-surface-2: #171717;
+  --bk-surface-3: #222222;
+  --bk-surface-inverted: #ffffff;
+  --bk-text: #f6f6f4;
+  --bk-text-muted: #b0b0ad;
+  --bk-text-subtle: #808080;
+  --bk-text-inverted: #0c0c0c;
+  --bk-border: #f6f6f4;
+  --bk-border-muted: #2a2a2a;
+  --bk-border-strong: #f6f6f4;
+  --bk-primary: #ff3b44;
+  --bk-primary-hover: #ff5760;
+  --bk-primary-soft: #2c0d0f;
+  --bk-primary-border: #f6f6f4;
+  --bk-on-primary: #1a0203;
+  --bk-secondary: #f6f6f4;
+  --bk-secondary-soft: #1c1c1c;
+  --bk-secondary-border: #f6f6f4;
+  --bk-on-secondary: #0c0c0c;
+  --bk-success-soft: #0f2419;
+  --bk-warning-soft: #2a2109;
+  --bk-danger: #ff3b44;
+  --bk-danger-soft: #2c0d0f;
+  --bk-danger-border: #f6f6f4;
+  --bk-info-soft: #101a33;
+  --bk-neutral: #f6f6f4;
+  --bk-neutral-soft: #171717;
+  --bk-neutral-border: #f6f6f4;
+  --bk-on-neutral: #0c0c0c;
+  --bk-field-bg: #0f0f0f;
+  --bk-field-border: #f6f6f4;
+  --bk-code-bg: #171717;
+  --bk-code-border: #f6f6f4;
+  --bk-overlay-surface: #0f0f0f;
+  --bk-overlay-border: #f6f6f4;
+  --bk-tooltip-bg: #f6f6f4;
+  --bk-tooltip-fg: #0c0c0c;
+  --bk-divider-color: #f6f6f4;
+}
+
+[data-bk-style="magazine"] .bk-display {
+  font-size: clamp(3rem, 12vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: -0.035em;
+}
+[data-bk-style="magazine"] .bk-title { line-height: 0.95; }
+[data-bk-style="magazine"] .bk-eyebrow {
+  color: var(--bk-bg);
+  background: var(--bk-primary);
+  padding: 0.2em 0.6em;
+  display: inline-block;
+}
+[data-bk-style="magazine"] .bk-navbar { border-block-end: 3px solid var(--bk-border); background: transparent; }
+[data-bk-style="magazine"] .bk-section-head { border-block-start: 6px solid var(--bk-border); padding-block-start: var(--bk-space-3); }
+[data-bk-style="magazine"] .bk-card { border-block-start: 3px solid var(--bk-border); border-inline: 0; border-block-end: 0; }
+[data-bk-style="magazine"] .bk-table thead th { background: var(--bk-surface-inverted); color: var(--bk-text-inverted); }
+[data-bk-style="magazine"] .bk-badge { border-radius: 0; border: 1px solid currentColor; }
+[data-bk-style="magazine"] .bk-lead { font-family: var(--bk-font-serif); font-style: italic; }
+[data-bk-style="magazine"] .bk-prose p:first-of-type::first-letter {
+  float: inline-start;
+  font-family: var(--bk-font-display);
+  font-size: 4.2em;
+  line-height: 0.78;
+  padding-inline-end: 0.06em;
+  color: var(--bk-primary);
+}
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="magazine"] {
+  --bk-danger-active: #c1171f;
+  --bk-danger-hover: #ce1921;
+  --bk-danger-on-soft: #c91820;
+  --bk-danger-text: #d71a23;
+  --bk-field-placeholder: #91918e;
+  --bk-info: #14449c;
+  --bk-info-active: #355eaa;
+  --bk-info-hover: #2753a4;
+  --bk-info-on-soft: #14449c;
+  --bk-info-soft: #e0e7f7;
+  --bk-info-text: #14449c;
+  --bk-on-info: #ffffff;
+  --bk-on-success: #ffffff;
+  --bk-on-warning: #ffffff;
+  --bk-primary-active: #a71219;
+  --bk-primary-on-soft: #c91820;
+  --bk-primary-text: #d71a23;
+  --bk-secondary-hover: #2c2c2c;
+  --bk-success: #10693f;
+  --bk-success-active: #317e5a;
+  --bk-success-hover: #23754e;
+  --bk-success-on-soft: #10693f;
+  --bk-success-soft: #dff0e7;
+  --bk-success-text: #10693f;
+  --bk-warning: #8a6100;
+  --bk-warning-active: #775300;
+  --bk-warning-hover: #936e14;
+  --bk-warning-on-soft: #8a6100;
+  --bk-warning-soft: #f7ecd2;
+  --bk-warning-text: #8a6100;
+}
+[data-bk-style="magazine"][data-bk-theme="dark"] {
+  --bk-danger-active: #ff565e;
+  --bk-danger-hover: #ed373f;
+  --bk-danger-on-soft: #ff3b44;
+  --bk-danger-text: #ff3b44;
+  --bk-field-placeholder: #9b9b98;
+  --bk-info: #14449c;
+  --bk-info-active: #113a86;
+  --bk-info-hover: #123f90;
+  --bk-info-on-soft: #4c83e8;
+  --bk-info-soft: #101a33;
+  --bk-info-text: #4880e8;
+  --bk-on-info: #89c2f4;
+  --bk-on-success: #8becb7;
+  --bk-on-warning: #faebcf;
+  --bk-primary-active: #ff565e;
+  --bk-primary-on-soft: #ff3b44;
+  --bk-primary-text: #ff3b44;
+  --bk-secondary-hover: #f7f7f5;
+  --bk-success: #10693f;
+  --bk-success-active: #0e5a36;
+  --bk-success-hover: #0f613a;
+  --bk-success-on-soft: #189e5f;
+  --bk-success-soft: #0f2419;
+  --bk-success-text: #17955a;
+  --bk-warning: #8a6100;
+  --bk-warning-active: #775300;
+  --bk-warning-hover: #7f5900;
+  --bk-warning-on-soft: #b88100;
+  --bk-warning-soft: #2a2109;
+  --bk-warning-text: #ae7a00;
+}
+/* ==== end derived contrast tokens ==== */

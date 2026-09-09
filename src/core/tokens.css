@@ -1,0 +1,518 @@
+/* =============================================================================
+   BUKALEMUN — core/tokens.css
+   The design-token contract. Every component reads from these variables and
+   nothing else, which is what lets a single stylesheet wear 50 different skins.
+
+   Tier 1  primitives   raw, style-agnostic scales (space, type, motion)
+   Tier 2  semantics    meaning-bearing aliases (surface, text, primary, ...)
+   Tier 3  components   per-component knobs that default to tier 2
+
+   A style file only has to overwrite tier 2 (+ any tier 3 knob it cares about)
+   to completely change the look of the whole library.
+   ========================================================================== */
+
+:where(:root),
+:where(.bk-scope) {
+  color-scheme: light dark;
+
+  /* ---------------------------------------------------------------- fonts */
+  --bk-font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --bk-font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --bk-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  --bk-font-display: var(--bk-font-sans);
+  --bk-font-body: var(--bk-font-sans);
+  --bk-font-feature: "kern" 1, "liga" 1, "calt" 1;
+  --bk-font-variant-numeric: normal;
+
+  /* ------------------------------------------------------- type scale (rem) */
+  --bk-text-2xs: 0.6875rem;
+  --bk-text-xs: 0.75rem;
+  --bk-text-sm: 0.8125rem;
+  --bk-text-md: 0.875rem;
+  --bk-text-base: 1rem;
+  --bk-text-lg: 1.125rem;
+  --bk-text-xl: 1.25rem;
+  --bk-text-2xl: 1.5rem;
+  --bk-text-3xl: 1.875rem;
+  --bk-text-4xl: 2.25rem;
+  --bk-text-5xl: 3rem;
+  --bk-text-6xl: 3.75rem;
+  --bk-text-7xl: 4.5rem;
+
+  --bk-leading-none: 1;
+  --bk-leading-tight: 1.2;
+  --bk-leading-snug: 1.35;
+  --bk-leading-normal: 1.55;
+  --bk-leading-relaxed: 1.75;
+
+  --bk-tracking-tighter: -0.03em;
+  --bk-tracking-tight: -0.015em;
+  --bk-tracking-normal: 0em;
+  --bk-tracking-wide: 0.02em;
+  --bk-tracking-wider: 0.06em;
+  --bk-tracking-widest: 0.14em;
+
+  --bk-weight-light: 300;
+  --bk-weight-normal: 400;
+  --bk-weight-medium: 500;
+  --bk-weight-semibold: 600;
+  --bk-weight-bold: 700;
+  --bk-weight-black: 800;
+  /* Styles that want an all-caps, letterspaced UI flip these two. */
+  --bk-label-transform: none;
+  --bk-label-tracking: var(--bk-tracking-normal);
+  --bk-heading-transform: none;
+  --bk-heading-weight: var(--bk-weight-bold);
+  --bk-heading-tracking: var(--bk-tracking-tight);
+  --bk-heading-font: var(--bk-font-display);
+
+  /* -------------------------------------------------------------- spacing */
+  --bk-space-unit: 0.25rem;
+  --bk-space-0: 0px;
+  --bk-space-px: 1px;
+  --bk-space-1: calc(var(--bk-space-unit) * 1);
+  --bk-space-2: calc(var(--bk-space-unit) * 2);
+  --bk-space-3: calc(var(--bk-space-unit) * 3);
+  --bk-space-4: calc(var(--bk-space-unit) * 4);
+  --bk-space-5: calc(var(--bk-space-unit) * 5);
+  --bk-space-6: calc(var(--bk-space-unit) * 6);
+  --bk-space-8: calc(var(--bk-space-unit) * 8);
+  --bk-space-10: calc(var(--bk-space-unit) * 10);
+  --bk-space-12: calc(var(--bk-space-unit) * 12);
+  --bk-space-16: calc(var(--bk-space-unit) * 16);
+  --bk-space-20: calc(var(--bk-space-unit) * 20);
+  --bk-space-24: calc(var(--bk-space-unit) * 24);
+  --bk-space-32: calc(var(--bk-space-unit) * 32);
+  --bk-space-40: calc(var(--bk-space-unit) * 40);
+
+  /* --------------------------------------------------------------- radius */
+  --bk-radius-scale: 1;
+  --bk-radius-xs: calc(0.125rem * var(--bk-radius-scale));
+  --bk-radius-sm: calc(0.25rem * var(--bk-radius-scale));
+  --bk-radius-md: calc(0.375rem * var(--bk-radius-scale));
+  --bk-radius-lg: calc(0.5rem * var(--bk-radius-scale));
+  --bk-radius-xl: calc(0.75rem * var(--bk-radius-scale));
+  --bk-radius-2xl: calc(1rem * var(--bk-radius-scale));
+  --bk-radius-3xl: calc(1.5rem * var(--bk-radius-scale));
+  --bk-radius-full: 9999px;
+  /* role radii — components use these, never the raw scale */
+  --bk-radius-field: var(--bk-radius-md);
+  --bk-radius-card: var(--bk-radius-xl);
+  --bk-radius-pill: var(--bk-radius-full);
+  --bk-radius-overlay: var(--bk-radius-xl);
+  --bk-radius-thumb: var(--bk-radius-full);
+
+  /* --------------------------------------------------------------- border */
+  --bk-border-width: 1px;
+  --bk-border-width-strong: 2px;
+  --bk-border-style: solid;
+
+  /* --------------------------------------------------------------- motion */
+  --bk-dur-instant: 60ms;
+  --bk-dur-fast: 120ms;
+  --bk-dur-base: 200ms;
+  --bk-dur-slow: 320ms;
+  --bk-dur-slower: 560ms;
+  --bk-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --bk-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --bk-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --bk-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --bk-ease-snap: cubic-bezier(0.2, 0, 0, 1);
+  --bk-transition: color var(--bk-dur-fast) var(--bk-ease),
+    background-color var(--bk-dur-fast) var(--bk-ease),
+    border-color var(--bk-dur-fast) var(--bk-ease),
+    box-shadow var(--bk-dur-fast) var(--bk-ease),
+    transform var(--bk-dur-fast) var(--bk-ease),
+    opacity var(--bk-dur-fast) var(--bk-ease);
+
+  /* ---------------------------------------------------------------- layer */
+  --bk-z-base: 0;
+  --bk-z-raised: 10;
+  --bk-z-sticky: 100;
+  --bk-z-drawer: 400;
+  --bk-z-modal: 500;
+  --bk-z-popover: 600;
+  --bk-z-tooltip: 700;
+  --bk-z-toast: 800;
+  --bk-z-max: 2147483000;
+
+  /* --------------------------------------------------------- size tokens */
+  --bk-control-height-xs: 1.5rem;
+  --bk-control-height-sm: 1.875rem;
+  --bk-control-height-md: 2.25rem;
+  --bk-control-height-lg: 2.75rem;
+  --bk-control-height-xl: 3.25rem;
+  --bk-container-xs: 30rem;
+  --bk-container-sm: 40rem;
+  --bk-container-md: 48rem;
+  --bk-container-lg: 64rem;
+  --bk-container-xl: 80rem;
+  --bk-container-2xl: 96rem;
+  --bk-prose-width: 68ch;
+
+  /* ============================ TIER 2 — SEMANTIC (light default) ======== */
+  --bk-bg: #ffffff;
+  --bk-surface: #ffffff;
+  --bk-surface-2: #f7f8fa;
+  --bk-surface-3: #eef0f4;
+  /* Page-level tints for sections and wells. Aliases of the surface ramp, so
+     a skin that tunes its surfaces has tuned these too. */
+  --bk-bg-subtle: var(--bk-surface-2);
+  --bk-bg-muted: var(--bk-surface-3);
+  --bk-surface-inverted: #14161a;
+  --bk-overlay-bg: rgb(12 14 18 / 0.45);
+  --bk-scrim: rgb(12 14 18 / 0.6);
+
+  --bk-text: #15181d;
+  --bk-text-muted: #565f6d;
+  --bk-text-subtle: #7d879a;
+  --bk-text-inverted: #ffffff;
+  --bk-text-link: var(--bk-primary-text);
+
+  --bk-border: #e3e6ec;
+  --bk-border-muted: #eef0f4;
+  --bk-border-strong: #c6ccd8;
+  --bk-border-inverted: #2a2f39;
+
+  --bk-primary: #4b4bd2;
+  --bk-primary-soft: #ececfb;
+  --bk-primary-border: #c9c9f3;
+  --bk-on-primary: #ffffff;
+
+  --bk-secondary: #0d6861;
+  --bk-secondary-soft: #e2f4f2;
+  --bk-secondary-border: #b7e3de;
+  --bk-on-secondary: #ffffff;
+
+  --bk-success: #146c43;
+  --bk-success-soft: #e3f5eb;
+  --bk-success-border: #b6e3ca;
+  --bk-on-success: #ffffff;
+
+  --bk-warning: #8f4f00;
+  --bk-warning-soft: #fdf0dd;
+  --bk-warning-border: #f5d9ab;
+  --bk-on-warning: #ffffff;
+
+  --bk-danger: #bc2934;
+  --bk-danger-soft: #fdeaec;
+  --bk-danger-border: #f6c5c9;
+  --bk-on-danger: #ffffff;
+
+  --bk-info: #0a5eb3;
+  --bk-info-soft: #e4f0fd;
+  --bk-info-border: #b8d8f7;
+  --bk-on-info: #ffffff;
+
+  --bk-neutral: #3d4451;
+  --bk-neutral-soft: #eef0f4;
+  --bk-neutral-border: #dfe3ea;
+  --bk-on-neutral: #ffffff;
+
+  /* ------------------------------------------------- hover and active -----
+     A solid fill under the pointer moves a step *towards its own label*: a
+     dark-on-light fill darkens, a light-on-dark fill lightens, and a skin that
+     only names the fill gets a hover that still belongs to it. (Before this,
+     a skin that set --bk-success but not --bk-success-hover fell back to the
+     default palette's green under the pointer.) Skins may still pin literals;
+     the contrast deriver pins one for them when the derived value fails AA. */
+  --bk-primary-hover: color-mix(in srgb, var(--bk-primary), var(--bk-on-primary) 8%);
+  --bk-primary-active: color-mix(in srgb, var(--bk-primary), var(--bk-on-primary) 14%);
+  --bk-secondary-hover: color-mix(in srgb, var(--bk-secondary), var(--bk-on-secondary) 8%);
+  --bk-secondary-active: color-mix(in srgb, var(--bk-secondary), var(--bk-on-secondary) 14%);
+  --bk-success-hover: color-mix(in srgb, var(--bk-success), var(--bk-on-success) 8%);
+  --bk-success-active: color-mix(in srgb, var(--bk-success), var(--bk-on-success) 14%);
+  --bk-warning-hover: color-mix(in srgb, var(--bk-warning), var(--bk-on-warning) 8%);
+  --bk-warning-active: color-mix(in srgb, var(--bk-warning), var(--bk-on-warning) 14%);
+  --bk-danger-hover: color-mix(in srgb, var(--bk-danger), var(--bk-on-danger) 8%);
+  --bk-danger-active: color-mix(in srgb, var(--bk-danger), var(--bk-on-danger) 14%);
+  --bk-info-hover: color-mix(in srgb, var(--bk-info), var(--bk-on-info) 8%);
+  --bk-info-active: color-mix(in srgb, var(--bk-info), var(--bk-on-info) 14%);
+  --bk-neutral-hover: color-mix(in srgb, var(--bk-neutral), var(--bk-on-neutral) 8%);
+  --bk-neutral-active: color-mix(in srgb, var(--bk-neutral), var(--bk-on-neutral) 14%);
+
+  /* --------------------------------------------- accent-as-foreground -----
+     An accent used as a *fill* and the same accent used as *text* have very
+     different contrast requirements. Skins whose accents are bright fills
+     (brutal, memphis, clay, aero, terminal…) override these with a darker,
+     readable variant, so soft/outline/ghost treatments stay legible.        */
+  --bk-primary-text: var(--bk-primary);
+  --bk-secondary-text: var(--bk-secondary);
+  --bk-success-text: var(--bk-success);
+  --bk-warning-text: var(--bk-warning);
+  --bk-danger-text: var(--bk-danger);
+  --bk-info-text: var(--bk-info);
+  --bk-neutral-text: var(--bk-neutral);
+
+  /* And the text painted on a *soft* fill is a third case again: a skin may
+     keep pale soft chips even in dark mode (brutal does), so this cannot be
+     derived from the page background. Defaults to the accent-as-text value. */
+  --bk-primary-on-soft: var(--bk-primary-text);
+  --bk-secondary-on-soft: var(--bk-secondary-text);
+  --bk-success-on-soft: var(--bk-success-text);
+  --bk-warning-on-soft: var(--bk-warning-text);
+  --bk-danger-on-soft: var(--bk-danger-text);
+  --bk-info-on-soft: var(--bk-info-text);
+  --bk-neutral-on-soft: var(--bk-neutral-text);
+
+  /* focus ring */
+  --bk-ring: var(--bk-primary);
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 2px;
+  --bk-ring-style: solid;
+
+  /* --------------------------------------------------------------- shadow */
+  --bk-shadow-color: 220 20% 12%;
+  --bk-shadow-strength: 1;
+  --bk-shadow-xs: 0 1px 2px 0 hsl(var(--bk-shadow-color) / calc(0.05 * var(--bk-shadow-strength)));
+  --bk-shadow-sm: 0 1px 2px 0 hsl(var(--bk-shadow-color) / calc(0.06 * var(--bk-shadow-strength))),
+    0 1px 3px 0 hsl(var(--bk-shadow-color) / calc(0.08 * var(--bk-shadow-strength)));
+  --bk-shadow-md: 0 2px 4px -2px hsl(var(--bk-shadow-color) / calc(0.06 * var(--bk-shadow-strength))),
+    0 4px 8px -2px hsl(var(--bk-shadow-color) / calc(0.1 * var(--bk-shadow-strength)));
+  --bk-shadow-lg: 0 4px 8px -4px hsl(var(--bk-shadow-color) / calc(0.07 * var(--bk-shadow-strength))),
+    0 12px 24px -6px hsl(var(--bk-shadow-color) / calc(0.12 * var(--bk-shadow-strength)));
+  --bk-shadow-xl: 0 8px 16px -8px hsl(var(--bk-shadow-color) / calc(0.08 * var(--bk-shadow-strength))),
+    0 24px 48px -12px hsl(var(--bk-shadow-color) / calc(0.16 * var(--bk-shadow-strength)));
+  --bk-shadow-2xl: 0 32px 72px -16px hsl(var(--bk-shadow-color) / calc(0.24 * var(--bk-shadow-strength)));
+  --bk-shadow-inner: inset 0 1px 2px 0 hsl(var(--bk-shadow-color) / calc(0.07 * var(--bk-shadow-strength)));
+  --bk-shadow-none: 0 0 #0000;
+
+  /* --------------------------------------------- style-personality hooks --
+     These are the "escape hatches" a skin uses to express itself without any
+     component stylesheet knowing about it.                                  */
+  --bk-surface-image: none;          /* gradient / texture painted on surfaces */
+
+  /* A skin whose surface image is a repeating pattern has to say how big one
+     tile is. Left to `auto`, a repeating-conic-gradient stretches one cone
+     across the whole element — which is how the pixel-art navbar ended up
+     half dark and half checkered. */
+  --bk-body-image-size: auto;
+  --bk-surface-image-size: auto;
+  --bk-card-image-size: auto;
+  --bk-surface-backdrop: none;       /* backdrop-filter for glassy skins       */
+  --bk-body-image: none;             /* page-level background art             */
+  --bk-body-attachment: scroll;
+  --bk-press-transform: none;        /* how interactive things react to :active */
+  --bk-hover-transform: none;
+  --bk-decor-1: transparent;         /* accent colour for decorative bits     */
+  --bk-decor-2: transparent;
+  --bk-corner-cut: 0px;              /* for clip-path chamfered skins         */
+  --bk-outline-offset: 0px;
+  --bk-glow: none;                   /* the .bk-glow halo; `none` keeps the default */
+  --bk-inner-highlight: none;        /* inset light line for glossy skins     */
+  --bk-selection-bg: color-mix(in oklab, var(--bk-primary) 24%, transparent);
+  --bk-selection-fg: inherit;
+  --bk-scrollbar-thumb: var(--bk-border-strong);
+  --bk-scrollbar-track: transparent;
+  --bk-caret: var(--bk-primary);
+
+  /* ============================ TIER 3 — COMPONENT KNOBS ================= */
+  --bk-switch-knob: var(--bk-surface-inverted);
+  --bk-btn-radius: var(--bk-radius-field);
+  --bk-btn-weight: var(--bk-weight-medium);
+  --bk-btn-tracking: var(--bk-label-tracking);
+  --bk-btn-transform: var(--bk-label-transform);
+  --bk-btn-shadow: var(--bk-shadow-xs);
+  --bk-btn-shadow-hover: var(--bk-shadow-sm);
+  --bk-btn-shadow-active: var(--bk-shadow-none);
+  --bk-btn-border-width: var(--bk-border-width);
+  --bk-btn-press: var(--bk-press-transform);
+  --bk-btn-image: var(--bk-surface-image);
+  --bk-btn-image-size: var(--bk-surface-image-size);
+  --bk-btn-gradient: linear-gradient(135deg, var(--bk-primary), var(--bk-secondary));
+
+  --bk-field-radius: var(--bk-radius-field);
+  --bk-field-bg: var(--bk-surface);
+  --bk-field-bg-hover: var(--bk-surface);
+  --bk-field-bg-disabled: var(--bk-surface-3);
+  --bk-field-border: var(--bk-border-strong);
+  --bk-field-border-hover: var(--bk-text-subtle);
+  --bk-field-shadow: var(--bk-shadow-none);
+  --bk-field-shadow-focus: none;
+  --bk-field-border-width: var(--bk-border-width);
+  --bk-field-placeholder: var(--bk-text-subtle);
+
+  --bk-card-radius: var(--bk-radius-card);
+  --bk-card-bg: var(--bk-surface);
+  --bk-card-border: var(--bk-border);
+  --bk-card-border-width: var(--bk-border-width);
+  --bk-card-shadow: var(--bk-shadow-sm);
+  --bk-card-shadow-hover: var(--bk-shadow-md);
+  --bk-card-image: var(--bk-surface-image);
+  --bk-card-pad: var(--bk-space-5);
+
+  --bk-overlay-radius: var(--bk-radius-overlay);
+  --bk-overlay-shadow: var(--bk-shadow-xl);
+  --bk-overlay-border: var(--bk-border);
+  --bk-overlay-surface: var(--bk-surface);
+  --bk-overlay-backdrop: var(--bk-surface-backdrop);
+
+  --bk-badge-radius: var(--bk-radius-pill);
+  --bk-badge-weight: var(--bk-weight-medium);
+  --bk-badge-transform: var(--bk-label-transform);
+
+  --bk-tooltip-bg: var(--bk-surface-inverted);
+  --bk-tooltip-fg: var(--bk-text-inverted);
+  --bk-tooltip-radius: var(--bk-radius-md);
+
+  --bk-code-bg: var(--bk-surface-3);
+  --bk-code-fg: var(--bk-text);
+  --bk-code-border: var(--bk-border);
+  --bk-code-radius: var(--bk-radius-md);
+
+  --bk-divider-color: var(--bk-border);
+  --bk-divider-width: var(--bk-border-width);
+  --bk-divider-style: solid;
+
+  --bk-table-pad: var(--bk-space-3);
+  --bk-container-gutter: var(--bk-space-5);
+  --bk-text-gradient: linear-gradient(90deg, var(--bk-primary), var(--bk-secondary));
+}
+
+/* ------------------------------------------------------------------ dark --
+   Applies on [data-bk-theme="dark"] anywhere in the tree, and on
+   [data-bk-theme="auto"] when the OS asks for it.                          */
+:where([data-bk-theme="dark"]) {
+  color-scheme: dark;
+  --bk-bg: #0e1014;
+  --bk-surface: #14171d;
+  --bk-surface-2: #1b1f27;
+  --bk-surface-3: #232833;
+  --bk-surface-inverted: #f2f4f8;
+  --bk-overlay-bg: rgb(0 0 0 / 0.6);
+  --bk-scrim: rgb(0 0 0 / 0.72);
+
+  --bk-text: #eef1f6;
+  --bk-text-muted: #a6b0c0;
+  --bk-text-subtle: #78839a;
+  --bk-text-inverted: #0e1014;
+
+  --bk-border: #262c37;
+  --bk-border-muted: #1e232c;
+  --bk-border-strong: #39414f;
+  --bk-border-inverted: #e3e6ec;
+
+  --bk-primary: #8b8bf0;
+  --bk-primary-soft: #21213c;
+  --bk-primary-border: #3a3a63;
+  --bk-on-primary: #0d0d1f;
+
+  --bk-secondary: #34c5b8;
+  --bk-secondary-soft: #102b29;
+  --bk-secondary-border: #1d4a46;
+  --bk-on-secondary: #04201d;
+
+  --bk-success: #3fc27e;
+  --bk-success-soft: #10281c;
+  --bk-success-border: #1d4530;
+  --bk-on-success: #04180d;
+
+  --bk-warning: #e5a13a;
+  --bk-warning-soft: #2c2110;
+  --bk-warning-border: #4d3a1a;
+  --bk-on-warning: #1f1503;
+
+  --bk-danger: #f0656f;
+  --bk-danger-soft: #2e1417;
+  --bk-danger-border: #4f2126;
+  --bk-on-danger: #22070a;
+
+  --bk-info: #56a8f5;
+  --bk-info-soft: #10202f;
+  --bk-info-border: #1c3a55;
+  --bk-on-info: #03121f;
+
+  --bk-neutral: #d6dbe4;
+  --bk-neutral-soft: #232833;
+  --bk-neutral-border: #333a47;
+  --bk-on-neutral: #14171d;
+
+  --bk-shadow-color: 220 40% 2%;
+  --bk-shadow-strength: 2.2;
+  --bk-field-bg: var(--bk-surface-2);
+  --bk-field-bg-disabled: var(--bk-surface-3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :where([data-bk-theme="auto"]) {
+    color-scheme: dark;
+    --bk-bg: #0e1014;
+    --bk-surface: #14171d;
+    --bk-surface-2: #1b1f27;
+    --bk-surface-3: #232833;
+    --bk-surface-inverted: #f2f4f8;
+    --bk-overlay-bg: rgb(0 0 0 / 0.6);
+    --bk-scrim: rgb(0 0 0 / 0.72);
+    --bk-text: #eef1f6;
+    --bk-text-muted: #a6b0c0;
+    --bk-text-subtle: #78839a;
+    --bk-text-inverted: #0e1014;
+    --bk-border: #262c37;
+    --bk-border-muted: #1e232c;
+    --bk-border-strong: #39414f;
+    --bk-border-inverted: #e3e6ec;
+    --bk-primary: #8b8bf0;
+    --bk-primary-soft: #21213c;
+      --bk-primary-border: #3a3a63;
+    --bk-on-primary: #0d0d1f;
+    --bk-secondary: #34c5b8;
+    --bk-secondary-soft: #102b29;
+    --bk-secondary-border: #1d4a46;
+    --bk-on-secondary: #04201d;
+    --bk-success: #3fc27e;
+    --bk-success-soft: #10281c;
+    --bk-success-border: #1d4530;
+    --bk-on-success: #04180d;
+    --bk-warning: #e5a13a;
+    --bk-warning-soft: #2c2110;
+    --bk-warning-border: #4d3a1a;
+    --bk-on-warning: #1f1503;
+    --bk-danger: #f0656f;
+    --bk-danger-soft: #2e1417;
+    --bk-danger-border: #4f2126;
+    --bk-on-danger: #22070a;
+    --bk-info: #56a8f5;
+    --bk-info-soft: #10202f;
+    --bk-info-border: #1c3a55;
+    --bk-on-info: #03121f;
+    --bk-neutral: #d6dbe4;
+    --bk-neutral-soft: #232833;
+    --bk-neutral-border: #333a47;
+    --bk-on-neutral: #14171d;
+    --bk-shadow-color: 220 40% 2%;
+    --bk-shadow-strength: 2.2;
+    --bk-field-bg: var(--bk-surface-2);
+    --bk-field-bg-disabled: var(--bk-surface-3);
+  }
+}
+
+/* Density modifiers — orthogonal to skin. */
+:where([data-bk-density="compact"]) {
+  --bk-space-unit: 0.1875rem;
+  --bk-control-height-xs: 1.25rem;
+  --bk-control-height-sm: 1.625rem;
+  --bk-control-height-md: 2rem;
+  --bk-control-height-lg: 2.375rem;
+  --bk-control-height-xl: 2.875rem;
+  --bk-card-pad: var(--bk-space-4);
+}
+:where([data-bk-density="comfortable"]) {
+  --bk-space-unit: 0.3125rem;
+  --bk-control-height-md: 2.625rem;
+  --bk-control-height-lg: 3.125rem;
+  --bk-control-height-xl: 3.75rem;
+  --bk-card-pad: var(--bk-space-6);
+}
+
+/* Global radius override, orthogonal to skin: data-bk-radius="none|sm|full" */
+:where([data-bk-radius="none"]) { --bk-radius-scale: 0; --bk-radius-pill: 0; }
+:where([data-bk-radius="sm"]) { --bk-radius-scale: 0.5; }
+:where([data-bk-radius="lg"]) { --bk-radius-scale: 1.6; }
+:where([data-bk-radius="full"]) {
+  --bk-radius-scale: 2;
+  --bk-radius-field: var(--bk-radius-full);
+  --bk-radius-card: var(--bk-radius-3xl);
+}

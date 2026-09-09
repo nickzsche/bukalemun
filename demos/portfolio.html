@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="noir" data-bk-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Portfolio demo</title>
+<meta name="description" content="A studio portfolio built from Bukalemun components — gallery, lightbox, marquee and case studies.">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/noir.min.css" data-bk-skin="noir">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  /* No photographs ship with the demo. Each plate is a token-built gradient, so
+     the gallery re-colours itself with the skin instead of fighting it. */
+  .work-plate { aspect-ratio: 4 / 3; border-radius: var(--bk-radius-md); background-image: var(--plate); }
+  .work-plate-1 { --plate: linear-gradient(135deg, var(--bk-primary), var(--bk-secondary)); }
+  .work-plate-2 { --plate: linear-gradient(200deg, var(--bk-secondary), var(--bk-accent, var(--bk-primary))); }
+  .work-plate-3 { --plate: linear-gradient(45deg, var(--bk-border-strong), var(--bk-primary)); }
+  .work-plate-4 { --plate: radial-gradient(circle at 30% 20%, var(--bk-primary), var(--bk-bg-muted)); }
+  .work-plate-5 { --plate: linear-gradient(90deg, var(--bk-bg-muted), var(--bk-secondary)); }
+  .work-plate-6 { --plate: conic-gradient(from 210deg, var(--bk-primary), var(--bk-secondary), var(--bk-primary)); }
+  .work-open { display: block; inline-size: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+  .work-plate { display: block; }
+  .work-tile { margin: 0; }
+  /* The caption sits under the plate rather than over it. Over it, the only
+     thing keeping it readable was a translucent scrim, and half the plates in
+     fifty palettes are light enough to swallow the text. */
+  .work-tile figcaption { padding: var(--bk-space-3) var(--bk-space-1) 0; font-size: var(--bk-text-sm); color: var(--bk-text-muted); }
+</style>
+</head>
+<body>
+
+<nav class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="./index.html">HASRET&nbsp;&amp;&nbsp;CO</a>
+  <div class="bk-navbar-nav">
+    <a class="bk-nav-link bk-is-active" href="#work">Work</a>
+    <a class="bk-nav-link" href="#studio">Studio</a>
+    <a class="bk-nav-link" href="#contact">Contact</a>
+  </div>
+  <div class="bk-navbar-end">
+    <span class="bk-status bk-status-online">Taking work for Q4</span>
+  </div>
+</nav>
+
+<header class="bk-hero bk-hero-start bk-hero-panel">
+    <p class="bk-eyebrow">Independent design studio · Ankara</p>
+    <h1 class="bk-hero-title">We make interfaces that <span class="bk-hero-title-accent">hold their nerve</span> under load.</h1>
+    <p class="bk-hero-sub">Twelve years, four continents, one stubborn belief: the interface is the product,
+    and everything else is an implementation detail.</p>
+    <div class="bk-hero-actions">
+      <a class="bk-btn bk-btn-lg bk-btn-primary" href="#work">See the work</a>
+      <a class="bk-btn bk-btn-lg bk-btn-outline" href="#contact">Start a project</a>
+    </div>
+    <div class="bk-hero-meta">
+      <span class="bk-avatar-group">
+        <span class="bk-avatar">ŞH</span>
+        <span class="bk-avatar">MK</span>
+        <span class="bk-avatar">EY</span>
+        <span class="bk-avatar bk-avatar-group-more">+6</span>
+      </span>
+      <span class="bk-subtle">Nine people. No account managers.</span>
+    </div>
+</header>
+
+<div class="bk-marquee" data-bk-marquee>
+  <div class="bk-marquee-track">
+    <span>Brand systems</span><span>·</span><span>Design engineering</span><span>·</span>
+    <span>Motion</span><span>·</span><span>Accessibility audits</span><span>·</span>
+    <span>Design tokens</span><span>·</span><span>Front-of-front-end</span><span>·</span>
+  </div>
+</div>
+
+<main class="bk-container">
+
+  <section id="work" class="bk-section">
+    <div class="bk-section-head">
+      <h2>Selected work</h2>
+      <div class="bk-segmented bk-segmented-sm bk-w-fit" role="group" aria-label="Filter">
+        <button class="bk-segmented-item bk-is-active" type="button">All</button>
+        <button class="bk-segmented-item" type="button">Product</button>
+        <button class="bk-segmented-item" type="button">Brand</button>
+      </div>
+    </div>
+
+    <div class="bk-grid bk-cols-3 bk-gap-4">
+      <figure class="work-tile">
+        <button class="work-open" type="button" data-bk-open="#work-1" aria-label="Open Kartal Bank — Onboarding, rebuilt">
+          <span class="work-plate work-plate-1"></span>
+        </button>
+        <figcaption>Kartal Bank — Onboarding, rebuilt</figcaption>
+      </figure>
+      <figure class="work-tile">
+        <button class="work-open" type="button" data-bk-open="#work-2" aria-label="Open Meridian — Design tokens">
+          <span class="work-plate work-plate-2"></span>
+        </button>
+        <figcaption>Meridian — Design tokens</figcaption>
+      </figure>
+      <figure class="work-tile">
+        <button class="work-open" type="button" data-bk-open="#work-3" aria-label="Open Orta — Editorial system">
+          <span class="work-plate work-plate-3"></span>
+        </button>
+        <figcaption>Orta — Editorial system</figcaption>
+      </figure>
+      <figure class="work-tile">
+        <button class="work-open" type="button" data-bk-open="#work-4" aria-label="Open Tuz — Logistics console">
+          <span class="work-plate work-plate-4"></span>
+        </button>
+        <figcaption>Tuz — Logistics console</figcaption>
+      </figure>
+      <figure class="work-tile">
+        <button class="work-open" type="button" data-bk-open="#work-5" aria-label="Open Vira — Identity">
+          <span class="work-plate work-plate-5"></span>
+        </button>
+        <figcaption>Vira — Identity</figcaption>
+      </figure>
+      <figure class="work-tile">
+        <button class="work-open" type="button" data-bk-open="#work-6" aria-label="Open Aselsan — Dashboard">
+          <span class="work-plate work-plate-6"></span>
+        </button>
+        <figcaption>Aselsan — Dashboard</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="bk-section">
+    <div class="bk-stat-grid">
+      <div class="bk-stat">
+        <span class="bk-stat-label">Projects shipped</span>
+        <span class="bk-stat-value" data-bk-counter="184">184</span>
+        <span class="bk-stat-delta bk-stat-up">+12 this year</span>
+      </div>
+      <div class="bk-stat">
+        <span class="bk-stat-label">Average engagement</span>
+        <span class="bk-stat-value">14 <span class="bk-stat-unit">weeks</span></span>
+        <span class="bk-stat-delta bk-stat-flat">unchanged</span>
+      </div>
+      <div class="bk-stat">
+        <span class="bk-stat-label">Clients who came back</span>
+        <span class="bk-stat-value" data-bk-counter="78" data-bk-suffix="%">78%</span>
+        <span class="bk-stat-delta bk-stat-up">+6 pts</span>
+      </div>
+      <div class="bk-stat">
+        <span class="bk-stat-label">Accessibility failures shipped</span>
+        <span class="bk-stat-value">0</span>
+        <span class="bk-stat-delta bk-stat-down">audited monthly</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="studio" class="bk-section">
+    <div class="bk-section-head"><h2>How a project runs</h2></div>
+    <ol class="bk-steps bk-steps-responsive">
+      <li class="bk-step bk-is-done"><span class="bk-step-text"><span class="bk-step-title">Audit</span>Two weeks in your codebase, not in a deck.</span></li>
+      <li class="bk-step bk-is-done"><span class="bk-step-text"><span class="bk-step-title">Tokens</span>The palette, type scale and spacing, agreed once.</span></li>
+      <li class="bk-step bk-is-active"><span class="bk-step-text"><span class="bk-step-title">Build</span>Components, shipped weekly, in your repo.</span></li>
+      <li class="bk-step"><span class="bk-step-text"><span class="bk-step-title">Handover</span>Docs your team writes, we edit.</span></li>
+    </ol>
+  </section>
+
+  <section class="bk-section">
+    <div class="bk-grid bk-cols-2 bk-gap-5">
+      <blockquote class="bk-testimonial bk-testimonial-lg">
+        <p class="bk-testimonial-quote">They deleted more code than they wrote, and the app got faster
+        and better looking at the same time. I have stopped trying to explain how.</p>
+        <footer class="bk-testimonial-author">
+          <span class="bk-avatar">DK</span>
+          <span class="bk-testimonial-meta">
+            <span class="bk-testimonial-name">Deniz Karaca</span>
+            <span class="bk-testimonial-role">CTO, Meridian</span>
+          </span>
+        </footer>
+      </blockquote>
+      <blockquote class="bk-testimonial bk-testimonial-lg">
+        <p class="bk-testimonial-quote">The audit was uncomfortable reading and every line of it was
+        correct. Six months later our contrast bugs are a closed category.</p>
+        <footer class="bk-testimonial-author">
+          <span class="bk-avatar">LA</span>
+          <span class="bk-testimonial-meta">
+            <span class="bk-testimonial-name">Leyla Aydın</span>
+            <span class="bk-testimonial-role">Head of Design, Kartal</span>
+          </span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section id="contact" class="bk-section">
+    <div class="bk-card bk-card-elevated">
+      <div class="bk-card-header"><h2 class="bk-card-title">Tell us what is broken</h2></div>
+      <div class="bk-card-body">
+        <form class="bk-form bk-form-grid" data-bk-validate onsubmit="return false">
+          <div class="bk-field">
+            <label class="bk-label bk-label-required" for="p-name">Name</label>
+            <input class="bk-input" id="p-name" name="name" required>
+          </div>
+          <div class="bk-field">
+            <label class="bk-label bk-label-required" for="p-mail">Email</label>
+            <input class="bk-input" id="p-mail" name="email" type="email" required>
+            <span class="bk-error">We only use it to reply.</span>
+          </div>
+          <div class="bk-field bk-col-span-2">
+            <label class="bk-label" for="p-brief">Brief</label>
+            <textarea class="bk-textarea" id="p-brief" rows="4" data-bk-autosize placeholder="Two paragraphs is plenty."></textarea>
+            <span class="bk-help">We reply to everything within two working days.</span>
+          </div>
+          <div class="bk-form-actions bk-form-actions-end bk-col-span-2">
+            <button class="bk-btn bk-btn-ghost" type="reset">Clear</button>
+            <button class="bk-btn bk-btn-primary" type="submit">Send brief</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bk-footer">
+  <div class="bk-footer-grid">
+    <div>
+      <p class="bk-footer-title">Hasret &amp; Co</p>
+      <p class="bk-subtle">Ankara · working remotely since before it was fashionable.</p>
+    </div>
+    <div class="bk-footer-links">
+      <p class="bk-footer-title">Studio</p>
+      <a href="#">Work</a><a href="#">People</a><a href="#">Writing</a>
+    </div>
+    <div class="bk-footer-links">
+      <p class="bk-footer-title">Elsewhere</p>
+      <a href="https://github.com/nickzsche/bukalemun">GitHub</a><a href="#">Dribbble</a><a href="#">Mastodon</a>
+    </div>
+  </div>
+  <div class="bk-footer-bottom">
+    <span>A Bukalemun demo — every pixel here is a token.</span>
+    <a class="bk-link" href="./index.html">← Back to the gallery</a>
+  </div>
+</footer>
+
+<div class="bk-modal bk-modal-lg" id="work-1" role="dialog" aria-modal="true" aria-labelledby="work-1-t" hidden>
+  <div class="bk-modal-inner">
+    <div class="bk-modal-header">
+      <h2 class="bk-modal-title" id="work-1-t">Kartal Bank</h2>
+      <button class="bk-close" type="button" data-bk-close aria-label="Close"></button>
+    </div>
+    <div class="bk-modal-body">
+      <span class="work-plate work-plate-1"></span>
+      <p class="bk-lead" style="margin-block-start: var(--bk-space-4);">Onboarding, rebuilt</p>
+      <p>Seventeen screens down to four. Drop-off fell by a third in the first month.</p>
+    </div>
+    <div class="bk-modal-footer bk-modal-footer-between">
+      <span class="bk-cluster bk-gap-2"><span class="bk-chip">Case study</span><span class="bk-chip">2025</span></span>
+      <button class="bk-btn bk-btn-primary" type="button" data-bk-close>Close</button>
+    </div>
+  </div>
+</div>
+<div class="bk-modal bk-modal-lg" id="work-2" role="dialog" aria-modal="true" aria-labelledby="work-2-t" hidden>
+  <div class="bk-modal-inner">
+    <div class="bk-modal-header">
+      <h2 class="bk-modal-title" id="work-2-t">Meridian</h2>
+      <button class="bk-close" type="button" data-bk-close aria-label="Close"></button>
+    </div>
+    <div class="bk-modal-body">
+      <span class="work-plate work-plate-2"></span>
+      <p class="bk-lead" style="margin-block-start: var(--bk-space-4);">Design tokens</p>
+      <p>One palette, three products, zero hardcoded hex values left in the codebase.</p>
+    </div>
+    <div class="bk-modal-footer bk-modal-footer-between">
+      <span class="bk-cluster bk-gap-2"><span class="bk-chip">Case study</span><span class="bk-chip">2025</span></span>
+      <button class="bk-btn bk-btn-primary" type="button" data-bk-close>Close</button>
+    </div>
+  </div>
+</div>
+<div class="bk-modal bk-modal-lg" id="work-3" role="dialog" aria-modal="true" aria-labelledby="work-3-t" hidden>
+  <div class="bk-modal-inner">
+    <div class="bk-modal-header">
+      <h2 class="bk-modal-title" id="work-3-t">Orta</h2>
+      <button class="bk-close" type="button" data-bk-close aria-label="Close"></button>
+    </div>
+    <div class="bk-modal-body">
+      <span class="work-plate work-plate-3"></span>
+      <p class="bk-lead" style="margin-block-start: var(--bk-space-4);">Editorial system</p>
+      <p>A newsroom template that survives contributors who have never opened a style guide.</p>
+    </div>
+    <div class="bk-modal-footer bk-modal-footer-between">
+      <span class="bk-cluster bk-gap-2"><span class="bk-chip">Case study</span><span class="bk-chip">2025</span></span>
+      <button class="bk-btn bk-btn-primary" type="button" data-bk-close>Close</button>
+    </div>
+  </div>
+</div>
+<div class="bk-modal bk-modal-lg" id="work-4" role="dialog" aria-modal="true" aria-labelledby="work-4-t" hidden>
+  <div class="bk-modal-inner">
+    <div class="bk-modal-header">
+      <h2 class="bk-modal-title" id="work-4-t">Tuz</h2>
+      <button class="bk-close" type="button" data-bk-close aria-label="Close"></button>
+    </div>
+    <div class="bk-modal-body">
+      <span class="work-plate work-plate-4"></span>
+      <p class="bk-lead" style="margin-block-start: var(--bk-space-4);">Logistics console</p>
+      <p>Dense tables that stay readable at 2am on a warehouse monitor.</p>
+    </div>
+    <div class="bk-modal-footer bk-modal-footer-between">
+      <span class="bk-cluster bk-gap-2"><span class="bk-chip">Case study</span><span class="bk-chip">2025</span></span>
+      <button class="bk-btn bk-btn-primary" type="button" data-bk-close>Close</button>
+    </div>
+  </div>
+</div>
+<div class="bk-modal bk-modal-lg" id="work-5" role="dialog" aria-modal="true" aria-labelledby="work-5-t" hidden>
+  <div class="bk-modal-inner">
+    <div class="bk-modal-header">
+      <h2 class="bk-modal-title" id="work-5-t">Vira</h2>
+      <button class="bk-close" type="button" data-bk-close aria-label="Close"></button>
+    </div>
+    <div class="bk-modal-body">
+      <span class="work-plate work-plate-5"></span>
+      <p class="bk-lead" style="margin-block-start: var(--bk-space-4);">Identity</p>
+      <p>A mark that works at 16 pixels, which is where most of them are actually seen.</p>
+    </div>
+    <div class="bk-modal-footer bk-modal-footer-between">
+      <span class="bk-cluster bk-gap-2"><span class="bk-chip">Case study</span><span class="bk-chip">2025</span></span>
+      <button class="bk-btn bk-btn-primary" type="button" data-bk-close>Close</button>
+    </div>
+  </div>
+</div>
+<div class="bk-modal bk-modal-lg" id="work-6" role="dialog" aria-modal="true" aria-labelledby="work-6-t" hidden>
+  <div class="bk-modal-inner">
+    <div class="bk-modal-header">
+      <h2 class="bk-modal-title" id="work-6-t">Aselsan</h2>
+      <button class="bk-close" type="button" data-bk-close aria-label="Close"></button>
+    </div>
+    <div class="bk-modal-body">
+      <span class="work-plate work-plate-6"></span>
+      <p class="bk-lead" style="margin-block-start: var(--bk-space-4);">Dashboard</p>
+      <p>Realtime telemetry without a single spinner in the critical path.</p>
+    </div>
+    <div class="bk-modal-footer bk-modal-footer-between">
+      <span class="bk-cluster bk-gap-2"><span class="bk-chip">Case study</span><span class="bk-chip">2025</span></span>
+      <button class="bk-btn bk-btn-primary" type="button" data-bk-close>Close</button>
+    </div>
+  </div>
+</div>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

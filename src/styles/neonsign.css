@@ -1,0 +1,331 @@
+/* =============================================================================
+   SKIN — neonsign · Glass tube on brick
+   Bent glass filled with gas, mounted on a dark wall. The light bleeds onto
+   what is behind it, the tubes hum slightly, and anything switched off is just
+   dull grey glass.
+   ========================================================================== */
+
+[data-bk-style="neonsign"] {
+  --bk-font-sans: "Monoton", "Bungee", "Righteous", ui-sans-serif, system-ui, sans-serif;
+  --bk-font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --bk-font-display: var(--bk-font-sans);
+  --bk-heading-font: var(--bk-font-display);
+  --bk-heading-weight: 400;
+  --bk-heading-transform: uppercase;
+  --bk-heading-tracking: 0.06em;
+  --bk-label-transform: uppercase;
+  --bk-label-tracking: 0.16em;
+
+  --_pink: #ff3d81;
+  --_cyan: #2ee6ff;
+
+  --bk-bg: #120e14;
+  --bk-surface: #191420;
+  --bk-surface-2: #201a29;
+  --bk-surface-3: #2b2335;
+  --bk-surface-inverted: #f5eefa;
+
+  --bk-text: #f3e9f7;
+  --bk-text-muted: #b4a4bd;
+  --bk-text-subtle: #857792;
+  --bk-text-inverted: #120e14;
+
+  --bk-border: #38304a;
+  --bk-border-muted: #241e2e;
+  --bk-border-strong: var(--_pink);
+  --bk-border-width: 2px;
+
+  --bk-primary: var(--_pink);
+  --bk-primary-hover: #ff5f96;
+  --bk-primary-active: #ff7fab;
+  --bk-primary-soft: #37101f;
+  --bk-primary-border: #74203f;
+  --bk-on-primary: #1c0209;
+  --bk-secondary: var(--_cyan);
+  --bk-secondary-hover: #5aeeff;
+  --bk-secondary-active: #86f3ff;
+  --bk-secondary-soft: #0c2f36;
+  --bk-secondary-border: #1a616e;
+  --bk-on-secondary: #021a1f;
+  --bk-success: #4dff9e;
+  --bk-success-soft: #0d3320;
+  --bk-success-border: #1c6b42;
+  --bk-on-success: #001c0d;
+  --bk-warning: #ffd85e;
+  --bk-warning-soft: #362c0d;
+  --bk-warning-border: #6e5c1c;
+  --bk-on-warning: #1e1700;
+  --bk-danger: #ff4d4d;
+  --bk-danger-soft: #371212;
+  --bk-danger-border: #732424;
+  --bk-on-danger: #1e0303;
+  --bk-info: #7c8cff;
+  --bk-info-soft: #1b1d3d;
+  --bk-info-border: #383c77;
+  --bk-on-info: #07081f;
+  --bk-neutral: #f3e9f7;
+  --bk-neutral-soft: #201a29;
+  --bk-neutral-border: #38304a;
+  --bk-on-neutral: #120e14;
+
+  --bk-radius-scale: 2.4;
+  --bk-radius-field: var(--bk-radius-full);
+  --bk-radius-card: var(--bk-radius-2xl);
+  --bk-radius-overlay: var(--bk-radius-2xl);
+
+  --bk-shadow-xs: 0 0 6px rgb(255 61 129 / 0.3);
+  --bk-shadow-sm: 0 0 12px rgb(255 61 129 / 0.35);
+  --bk-shadow-md: 0 0 22px rgb(255 61 129 / 0.4);
+  --bk-shadow-lg: 0 0 36px rgb(255 61 129 / 0.45), 0 0 70px rgb(46 230 255 / 0.2);
+  --bk-shadow-xl: 0 0 52px rgb(255 61 129 / 0.5), 0 0 100px rgb(46 230 255 / 0.25);
+  --bk-shadow-2xl: 0 0 70px rgb(255 61 129 / 0.55), 0 0 140px rgb(46 230 255 / 0.3);
+  --bk-shadow-inner: inset 0 0 18px rgb(255 61 129 / 0.16);
+
+  --bk-ring: var(--_cyan);
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 3px;
+
+  --bk-btn-radius: var(--bk-radius-full);
+  --bk-btn-border-width: 2px;
+  --bk-btn-weight: 700;
+  --bk-btn-transform: uppercase;
+  --bk-btn-tracking: 0.16em;
+  --bk-btn-shadow: 0 0 10px rgb(255 61 129 / 0.28), inset 0 0 8px rgb(255 61 129 / 0.2);
+  --bk-btn-shadow-hover: 0 0 26px rgb(255 61 129 / 0.55), inset 0 0 14px rgb(255 61 129 / 0.3);
+  --bk-btn-shadow-active: inset 0 0 16px rgb(0 0 0 / 0.5);
+  --bk-press-transform: translateY(1px);
+
+  --bk-field-bg: rgb(0 0 0 / 0.4);
+  --bk-field-border: #4a3f5e;
+  --bk-field-border-hover: var(--_cyan);
+  --bk-field-shadow: inset 0 0 12px rgb(0 0 0 / 0.6);
+  --bk-field-shadow-focus: inset 0 0 12px rgb(0 0 0 / 0.6), 0 0 18px rgb(46 230 255 / 0.45);
+  --bk-field-placeholder: #6f6280;
+
+  --bk-card-bg: rgb(25 20 32 / 0.8);
+  --bk-card-border: #38304a;
+  --bk-card-shadow: 0 0 18px rgb(255 61 129 / 0.14);
+  --bk-card-shadow-hover: 0 0 34px rgb(255 61 129 / 0.3);
+  --bk-card-pad: var(--bk-space-6);
+  --bk-overlay-surface: #191420;
+  --bk-overlay-border: var(--_pink);
+  --bk-overlay-shadow: var(--bk-shadow-2xl);
+  --bk-overlay-bg: rgb(6 4 8 / 0.85);
+  --bk-code-bg: rgb(0 0 0 / 0.45);
+  --bk-code-border: #38304a;
+  --bk-tooltip-bg: var(--_cyan);
+  --bk-tooltip-fg: #021a1f;
+  --bk-selection-bg: rgb(255 61 129 / 0.45);
+  --bk-scrollbar-thumb: #4a3f5e;
+  --bk-divider-color: #38304a;
+
+  /* Brick, and the wash the tubes throw onto it. */
+  --bk-body-image:
+    radial-gradient(40rem 26rem at 18% 10%, rgb(255 61 129 / 0.16), transparent 60%),
+    radial-gradient(38rem 24rem at 84% 72%, rgb(46 230 255 / 0.14), transparent 60%),
+    repeating-linear-gradient(0deg, rgb(255 255 255 / 0.022) 0 1px, transparent 1px 2.2rem),
+    repeating-linear-gradient(90deg, rgb(255 255 255 / 0.022) 0 1px, transparent 1px 4.6rem);
+  --bk-body-attachment: fixed;
+  color-scheme: dark;
+}
+
+/* Daylight. The sign is switched off: the same pink and cyan, but as the
+   colour of the glass itself, on a pale plaster wall. Nothing glows. */
+[data-bk-style="neonsign"][data-bk-theme="light"] {
+  --_pink: #d81b60;
+  --_cyan: #0086a3;
+
+  --bk-bg: #f4eef3;
+  --bk-surface: #fbf7fa;
+  --bk-surface-2: #f1e9f0;
+  --bk-surface-3: #e6dbe4;
+  --bk-surface-inverted: #120e14;
+
+  --bk-text: #241a2a;
+  --bk-text-muted: #5d4f66;
+  --bk-text-subtle: #7e7089;
+  --bk-text-inverted: #f3e9f7;
+
+  --bk-border: #d9cdd8;
+  --bk-border-muted: #eae0e8;
+  --bk-border-strong: var(--_pink);
+
+  --bk-primary: var(--_pink);
+  --bk-primary-hover: #c2185b;
+  --bk-primary-active: #ad1457;
+  --bk-primary-soft: #fbe0ec;
+  --bk-primary-border: #f0a6c4;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: var(--_cyan);
+  --bk-secondary-hover: #007691;
+  --bk-secondary-active: #00657d;
+  --bk-secondary-soft: #d9f2f7;
+  --bk-secondary-border: #8fd6e6;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #1f8a4c;
+  --bk-success-soft: #d9f3e3;
+  --bk-success-border: #9bdcb8;
+  --bk-on-success: #ffffff;
+  --bk-warning: #a86300;
+  --bk-warning-soft: #fdecc8;
+  --bk-warning-border: #f2cf8a;
+  --bk-on-warning: #ffffff;
+  --bk-danger: #d32f2f;
+  --bk-danger-soft: #fbe0e0;
+  --bk-danger-border: #f2a5a5;
+  --bk-on-danger: #ffffff;
+  --bk-info: #4b57d6;
+  --bk-info-soft: #e2e5fb;
+  --bk-info-border: #b3b9f0;
+  --bk-on-info: #ffffff;
+  --bk-neutral: #241a2a;
+  --bk-neutral-soft: #f1e9f0;
+  --bk-neutral-border: #d9cdd8;
+  --bk-on-neutral: #ffffff;
+
+  --bk-shadow-xs: 0 1px 2px rgb(36 26 42 / 0.06);
+  --bk-shadow-sm: 0 1px 3px rgb(36 26 42 / 0.08), 0 1px 2px rgb(36 26 42 / 0.06);
+  --bk-shadow-md: 0 4px 10px rgb(36 26 42 / 0.1);
+  --bk-shadow-lg: 0 10px 24px rgb(36 26 42 / 0.12);
+  --bk-shadow-xl: 0 18px 40px rgb(36 26 42 / 0.16);
+  --bk-shadow-2xl: 0 28px 64px rgb(36 26 42 / 0.2);
+  --bk-shadow-inner: inset 0 1px 3px rgb(36 26 42 / 0.08);
+
+  --bk-ring: var(--_cyan);
+
+  --bk-btn-shadow: 0 1px 2px rgb(36 26 42 / 0.1);
+  --bk-btn-shadow-hover: 0 3px 8px rgb(36 26 42 / 0.16);
+  --bk-btn-shadow-active: inset 0 1px 3px rgb(0 0 0 / 0.18);
+
+  --bk-field-bg: #ffffff;
+  --bk-field-border: #cdbfcc;
+  --bk-field-border-hover: var(--_cyan);
+  --bk-field-shadow: none;
+  --bk-field-shadow-focus: 0 0 0 3px rgb(0 134 163 / 0.22);
+  --bk-field-placeholder: #8a7c95;
+
+  --bk-card-bg: #fbf7fa;
+  --bk-card-border: #d9cdd8;
+  --bk-card-shadow: 0 1px 3px rgb(36 26 42 / 0.08);
+  --bk-card-shadow-hover: 0 6px 18px rgb(36 26 42 / 0.12);
+  --bk-overlay-surface: #fbf7fa;
+  --bk-overlay-border: var(--_pink);
+  --bk-overlay-shadow: var(--bk-shadow-2xl);
+  --bk-overlay-bg: rgb(36 26 42 / 0.45);
+  --bk-code-bg: #f1e9f0;
+  --bk-code-border: #d9cdd8;
+  --bk-tooltip-bg: #120e14;
+  --bk-tooltip-fg: #f3e9f7;
+  --bk-selection-bg: rgb(216 27 96 / 0.22);
+  --bk-scrollbar-thumb: #cdbfcc;
+  --bk-divider-color: #d9cdd8;
+
+  /* The same brick, seen by day. */
+  --bk-body-image:
+    repeating-linear-gradient(0deg, rgb(36 26 42 / 0.035) 0 1px, transparent 1px 2.2rem),
+    repeating-linear-gradient(90deg, rgb(36 26 42 / 0.035) 0 1px, transparent 1px 4.6rem);
+  color-scheme: light;
+}
+
+/* Lit glass: the letterform glows, the tube behind it does not. */
+[data-bk-style="neonsign"] .bk-display,
+[data-bk-style="neonsign"] .bk-title,
+[data-bk-style="neonsign"] .bk-navbar-brand {
+  color: #fff6fb;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 12px var(--_pink),
+    0 0 28px var(--_pink),
+    0 0 60px rgb(255 61 129 / 0.7);
+  animation: bk-flicker 6s steps(1) infinite;
+}
+[data-bk-style="neonsign"] .bk-eyebrow {
+  color: var(--_cyan);
+  text-shadow: 0 0 4px #fff, 0 0 14px var(--_cyan), 0 0 30px rgb(46 230 255 / 0.6);
+}
+[data-bk-style="neonsign"] .bk-btn-outline,
+[data-bk-style="neonsign"] .bk-btn-ghost { text-shadow: 0 0 10px currentColor; }
+[data-bk-style="neonsign"] .bk-badge { border: 2px solid currentColor; box-shadow: 0 0 10px currentColor; text-shadow: 0 0 8px currentColor; }
+[data-bk-style="neonsign"] .bk-navbar { background: rgb(18 14 20 / 0.8); border-block-end: 2px solid var(--_pink); box-shadow: 0 0 24px rgb(255 61 129 / 0.3); }
+[data-bk-style="neonsign"] .bk-card { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+[data-bk-style="neonsign"] .bk-progress { border: 2px solid var(--bk-border); background: rgb(0 0 0 / 0.4); }
+[data-bk-style="neonsign"] .bk-progress-bar { box-shadow: 0 0 16px var(--bk-primary); }
+[data-bk-style="neonsign"] .bk-avatar { border: 2px solid var(--_cyan); box-shadow: 0 0 14px rgb(46 230 255 / 0.5); }
+[data-bk-style="neonsign"] .bk-tab[aria-selected="true"] { text-shadow: 0 0 12px currentColor; border-block-end-width: 3px; }
+[data-bk-style="neonsign"] .bk-switch:checked { box-shadow: 0 0 14px var(--bk-primary); }
+/* Switched off is dull glass, not a dimmer colour. */
+[data-bk-style="neonsign"] .bk-btn:disabled { text-shadow: none; box-shadow: none; filter: saturate(0.15); }
+
+/* By day the tubes are just coloured glass: no glow, no flicker, no halo. */
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-display,
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-title,
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-navbar-brand { color: var(--_pink); text-shadow: none; animation: none; }
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-eyebrow { text-shadow: none; }
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-btn-outline,
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-btn-ghost,
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-tab[aria-selected="true"] { text-shadow: none; }
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-badge { box-shadow: none; text-shadow: none; }
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-navbar { background: rgb(251 247 250 / 0.85); box-shadow: 0 1px 0 rgb(36 26 42 / 0.06); }
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-progress { background: var(--bk-surface-3); }
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-progress-bar,
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-switch:checked,
+[data-bk-style="neonsign"][data-bk-theme="light"] .bk-avatar { box-shadow: none; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="neonsign"] {
+  --bk-danger-active: #df4343;
+  --bk-danger-hover: #ed4747;
+  --bk-danger-on-soft: #ff4d4d;
+  --bk-danger-text: #ff4d4d;
+  --bk-info-active: #6c7ae0;
+  --bk-on-secondary: #021a1f;
+  --bk-on-success: #001c0d;
+  --bk-primary-on-soft: #ff3d81;
+  --bk-primary-text: #ff3d81;
+  --bk-secondary: #2ee6ff;
+  --bk-secondary-active: #86f3ff;
+  --bk-secondary-hover: #5aeeff;
+  --bk-secondary-on-soft: #2ee6ff;
+  --bk-secondary-soft: #0c2f36;
+  --bk-secondary-text: #2ee6ff;
+  --bk-success: #4dff9e;
+  --bk-success-active: #42df8a;
+  --bk-success-hover: #47ed92;
+  --bk-success-on-soft: #4dff9e;
+  --bk-success-soft: #0d3320;
+  --bk-success-text: #4dff9e;
+  --bk-warning-active: #dfbd51;
+  --bk-warning-hover: #edc956;
+  --bk-warning-on-soft: #ffd85e;
+  --bk-warning-text: #ffd85e;
+}
+[data-bk-style="neonsign"][data-bk-theme="light"] {
+  --bk-danger-active: #b52828;
+  --bk-danger-hover: #c22b2b;
+  --bk-danger-on-soft: #c02929;
+  --bk-danger-text: #c42929;
+  --bk-info-active: #414bb8;
+  --bk-on-secondary: #080808;
+  --bk-on-success: #030303;
+  --bk-primary-on-soft: #c11856;
+  --bk-primary-text: #c61958;
+  --bk-secondary: #0086a3;
+  --bk-secondary-active: #2497b0;
+  --bk-secondary-hover: #1490aa;
+  --bk-secondary-on-soft: #00718a;
+  --bk-secondary-soft: #d9f2f7;
+  --bk-secondary-text: #00718a;
+  --bk-success: #1f8a4c;
+  --bk-success-active: #3e9a65;
+  --bk-success-hover: #31935a;
+  --bk-success-on-soft: #1a7541;
+  --bk-success-soft: #d9f3e3;
+  --bk-success-text: #1a7541;
+  --bk-warning-active: #905500;
+  --bk-warning-hover: #9b5b00;
+  --bk-warning-on-soft: #995a00;
+  --bk-warning-text: #945700;
+}
+/* ==== end derived contrast tokens ==== */

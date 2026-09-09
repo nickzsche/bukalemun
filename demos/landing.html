@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-bk-style="brutal" data-bk-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bukalemun — Landing demo</title>
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<!-- The shipping shape: the framework, then one skin. demo.js pulls the
+     other forty-nine in after load, so switching stays instant without
+     making first paint wait for palettes nobody has asked for yet. -->
+<link rel="stylesheet" href="../dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="../dist/styles/brutal.min.css" data-bk-skin="brutal">
+<link rel="stylesheet" href="./demo.css">
+<script src="../dist/no-flash.js" data-bk-skins="../dist/styles/{skin}.min.css"></script>
+<script src="./demo.js"></script>
+<script src="../dist/bukalemun.min.js" defer></script>
+<style>
+  .demo-grid { display: grid; gap: var(--bk-space-5); grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); }
+  .demo-section { padding-block: var(--bk-space-8); }
+</style>
+</head>
+<body>
+
+<nav class="bk-navbar bk-navbar-sticky">
+  <a class="bk-navbar-brand" href="#">Bukalemun</a>
+  <div class="bk-navbar-nav">
+    <a class="bk-nav-link" href="#features">Features</a>
+    <a class="bk-nav-link" href="#pricing">Pricing</a>
+    <a class="bk-nav-link" href="#faq">FAQ</a>
+  </div>
+  <div class="bk-navbar-end">
+    <a class="bk-btn bk-btn-primary bk-btn-sm" href="#pricing">Get started</a>
+  </div>
+</nav>
+
+<header class="bk-hero">
+  <h1 class="bk-hero-title">Interfaces that <span class="bk-hero-title-accent">change faces</span>, not frameworks</h1>
+  <p class="bk-hero-sub">One markup, one class list, one JavaScript file — wearing fifty completely
+  different design languages. Flip one attribute and the whole page repaints itself.</p>
+  <div class="bk-hero-actions">
+    <a class="bk-btn bk-btn-primary bk-btn-lg" href="#pricing">Start free</a>
+    <a class="bk-btn bk-btn-outline bk-btn-lg" href="#faq">Why Bukalemun?</a>
+  </div>
+  <div class="bk-hero-meta">
+    <span class="bk-badge">Zero dependencies</span>
+    <span class="bk-badge">50 skins, light + dark</span>
+    <span class="bk-badge">MIT licensed</span>
+  </div>
+</header>
+
+<main class="bk-container">
+
+  <section id="features" class="demo-section">
+    <h2>Everything speaks token</h2>
+    <p class="bk-hero-sub" style="margin-block-end: var(--bk-space-6);">Components never name a colour,
+    a radius or a shadow — skins do. That is the whole trick.</p>
+    <div class="demo-grid">
+      <div class="bk-card">
+        <div class="bk-card-body">
+          <span class="bk-badge bk-badge-primary">Tokens</span>
+          <h3 class="bk-card-title">One contract, fifty voices</h3>
+          <p class="bk-card-text">Semantic roles like surface, text and primary are the only vocabulary
+          a component is allowed to read. Skins rewrite the roles, not the rules.</p>
+        </div>
+      </div>
+      <div class="bk-card">
+        <div class="bk-card-body">
+          <span class="bk-badge bk-badge-success">Pure CSS</span>
+          <h3 class="bk-card-title">Works with JavaScript off</h3>
+          <p class="bk-card-text">Every visual piece is a stylesheet. The runtime only adds behaviour:
+          dialogs, tabs, toasts, tables. Delete it and the page still looks right.</p>
+        </div>
+      </div>
+      <div class="bk-card">
+        <div class="bk-card-body">
+          <span class="bk-badge bk-badge-info">32 KB</span>
+          <h3 class="bk-card-title">Base plus one skin</h3>
+          <p class="bk-card-text">Ship the core and a single skin, gzipped, and you are done.
+          The full fifty-skin bundle exists for playgrounds, not payloads.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="demo-section">
+    <h2>Pricing</h2>
+    <p class="bk-hero-sub" style="margin-block-end: var(--bk-space-6);">Same component tree on every
+    tier — only the tokens differ. Sound familiar?</p>
+    <div class="bk-pricing">
+      <div class="bk-pricing-plan">
+        <h3 class="bk-pricing-name">Hobby</h3>
+        <div class="bk-pricing-price">
+          <span class="bk-pricing-amount">$0</span>
+          <span class="bk-pricing-period">/ forever</span>
+        </div>
+        <p class="bk-pricing-desc">For side projects and quick prototypes.</p>
+        <ul class="bk-pricing-feats">
+          <li class="bk-pricing-feat">All 50 skins</li>
+          <li class="bk-pricing-feat">Unlimited personal projects</li>
+          <li class="bk-pricing-feat">Community support</li>
+          <li class="bk-pricing-feat bk-pricing-feat-off">Custom skin audits</li>
+        </ul>
+        <div class="bk-pricing-actions">
+          <button class="bk-btn bk-btn-outline" type="button">Download</button>
+        </div>
+      </div>
+      <div class="bk-pricing-plan bk-pricing-plan-featured">
+        <h3 class="bk-pricing-name">Studio <span class="bk-badge bk-badge-primary">Most popular</span></h3>
+        <div class="bk-pricing-price">
+          <span class="bk-pricing-amount">$19</span>
+          <span class="bk-pricing-period">/ month</span>
+        </div>
+        <p class="bk-pricing-desc">For teams shipping real products.</p>
+        <ul class="bk-pricing-feats">
+          <li class="bk-pricing-feat">Everything in Hobby</li>
+          <li class="bk-pricing-feat">Contrast-audited dark palettes</li>
+          <li class="bk-pricing-feat">Priority issues on GitHub</li>
+          <li class="bk-pricing-feat">TypeScript declarations</li>
+        </ul>
+        <div class="bk-pricing-actions">
+          <button class="bk-btn bk-btn-primary" type="button">Start trial</button>
+        </div>
+      </div>
+      <div class="bk-pricing-plan">
+        <h3 class="bk-pricing-name">Agency</h3>
+        <div class="bk-pricing-price">
+          <span class="bk-pricing-amount">$49</span>
+          <span class="bk-pricing-period">/ month</span>
+        </div>
+        <p class="bk-pricing-desc">For client work at volume.</p>
+        <ul class="bk-pricing-feats">
+          <li class="bk-pricing-feat">Everything in Studio</li>
+          <li class="bk-pricing-feat">Unlimited client seats</li>
+          <li class="bk-pricing-feat">Custom skin commissioning</li>
+          <li class="bk-pricing-feat bk-pricing-feat-off">White-glove migration</li>
+        </ul>
+        <div class="bk-pricing-actions">
+          <button class="bk-btn bk-btn-outline" type="button">Contact us</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <h2>Word of mouth</h2>
+    <div class="demo-grid" style="margin-block-start: var(--bk-space-6);">
+      <figure class="bk-testimonial">
+        <blockquote class="bk-testimonial-quote">We reskinned an entire dashboard suite from neo-brutalist
+        to clinical for a hospital client. One attribute. The design review took longer than the migration.</blockquote>
+        <figcaption class="bk-testimonial-author">
+          <span class="bk-avatar bk-avatar-primary">MK</span>
+          <span class="bk-testimonial-meta">
+            <span class="bk-testimonial-name">Mara Kessler</span>
+            <span class="bk-testimonial-role">Design lead, Fieldnote</span>
+          </span>
+        </figcaption>
+      </figure>
+      <figure class="bk-testimonial">
+        <blockquote class="bk-testimonial-quote">The token contract is stricter than my own design system,
+        and that is exactly why I trust it. Sixty components, zero hardcoded colours. Obsessive in the good way.</blockquote>
+        <figcaption class="bk-testimonial-author">
+          <span class="bk-avatar">AR</span>
+          <span class="bk-testimonial-meta">
+            <span class="bk-testimonial-name">Aydin Rahman</span>
+            <span class="bk-testimonial-role">Frontend engineer, freelance</span>
+          </span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="faq" class="demo-section">
+    <h2>FAQ</h2>
+    <div class="bk-accordion" style="margin-block-start: var(--bk-space-5);">
+      <details class="bk-accordion-item">
+        <summary class="bk-accordion-trigger">Do skins change layout or only looks?</summary>
+        <div class="bk-accordion-panel"><p>Looks only. Spacing scales, type and motion are tier-one
+        primitives every skin inherits, so your layout survives the switch intact.</p></div>
+      </details>
+      <details class="bk-accordion-item">
+        <summary class="bk-accordion-trigger">Can I ship just one skin?</summary>
+        <div class="bk-accordion-panel"><p>Yes. Load the base bundle plus a single skin file —
+        roughly 32 KB gzipped all together.</p></div>
+      </details>
+      <details class="bk-accordion-item">
+        <summary class="bk-accordion-trigger">How is dark mode handled?</summary>
+        <div class="bk-accordion-panel"><p>Every skin ships a light and a dark palette, both
+        contrast-audited against WCAG targets. Toggle with one attribute or one function call.</p></div>
+      </details>
+      <details class="bk-accordion-item">
+        <summary class="bk-accordion-trigger">What if I disagree with a knob?</summary>
+        <div class="bk-accordion-panel"><p>Every component reads tier-three knobs you can override —
+        button radius, card shadow, badge transform. Restyle without forking.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="demo-section">
+    <div class="bk-hero bk-hero-panel">
+      <h2 class="bk-hero-title">Repaint your next project in one line</h2>
+      <div class="bk-hero-actions">
+        <a class="bk-btn bk-btn-primary bk-btn-lg" href="#pricing">Start free</a>
+        <button class="bk-btn bk-btn-outline bk-btn-lg" type="button" onclick="bk.theme.random()">Surprise me</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bk-footer">
+  <div class="bk-footer-grid">
+    <div>
+      <h4 class="bk-footer-title">Bukalemun</h4>
+      <p class="bk-card-text">A CSS framework with fifty faces.</p>
+    </div>
+    <div>
+      <h4 class="bk-footer-title">Project</h4>
+      <div class="bk-footer-links"><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+    </div>
+    <div>
+      <h4 class="bk-footer-title">Elsewhere</h4>
+      <div class="bk-footer-links"><a href="https://github.com/nickzsche/bukalemun">GitHub</a><a href="https://www.npmjs.com/package/bukalemun">npm</a></div>
+    </div>
+  </div>
+  <div class="bk-footer-bottom">MIT licensed. No cookies, no tracking, no lorem ipsum.</div>
+</footer>
+
+<div data-demo-dock></div>
+
+</body>
+</html>

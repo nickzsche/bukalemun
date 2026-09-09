@@ -1,0 +1,258 @@
+/* =============================================================================
+   SKIN — chalk · Blackboard
+   Slate green board, chalk dust in the corners, hand-drawn strokes that never
+   quite close, and the pale ghost of everything wiped off before this lesson.
+   ========================================================================== */
+
+[data-bk-style="chalk"] {
+  --bk-font-sans: "Caveat", "Gaegu", "Comic Neue", "Bradley Hand", cursive, sans-serif;
+  --bk-font-display: var(--bk-font-sans);
+  --bk-font-body: var(--bk-font-sans);
+  --bk-font-mono: "Courier New", ui-monospace, monospace;
+  --bk-heading-weight: 700;
+  --bk-heading-tracking: 0.01em;
+  --bk-text-base: 1.125rem;
+  --bk-text-md: 1rem;
+  --bk-leading-normal: 1.55;
+
+  --bk-bg: #26332c;
+  --bk-surface: #2b3931;
+  --bk-surface-2: #314038;
+  --bk-surface-3: #3a4a41;
+  --bk-surface-inverted: #f2efe4;
+
+  --bk-text: #f2efe4;
+  --bk-text-muted: #c3c8bd;
+  --bk-text-subtle: #8f978d;
+  --bk-text-inverted: #26332c;
+
+  --bk-border: #6d7a71;
+  --bk-border-muted: #47564d;
+  --bk-border-strong: #f2efe4;
+  --bk-border-width: 2px;
+
+  --bk-primary: #f2efe4;
+  --bk-primary-hover: #ffffff;
+  --bk-primary-active: #ded9c9;
+  --bk-primary-soft: #384740;
+  --bk-primary-border: #8b9890;
+  --bk-on-primary: #26332c;
+  --bk-secondary: #f7d477;
+  --bk-secondary-hover: #f9de92;
+  --bk-secondary-soft: #3e3c25;
+  --bk-secondary-border: #6f6a3c;
+  --bk-on-secondary: #241f06;
+  --bk-success: #a8dba0;
+  --bk-success-soft: #2c3d2b;
+  --bk-success-border: #4e6b4b;
+  --bk-on-success: #0f1c0e;
+  --bk-warning: #f7d477;
+  --bk-warning-soft: #3e3c25;
+  --bk-warning-border: #6f6a3c;
+  --bk-on-warning: #241f06;
+  --bk-danger: #f5a3a3;
+  --bk-danger-soft: #402c2c;
+  --bk-danger-border: #6f4c4c;
+  --bk-on-danger: #2a1010;
+  --bk-info: #a5cfe0;
+  --bk-info-soft: #2b3a41;
+  --bk-info-border: #4c6873;
+  --bk-on-info: #0d1a20;
+  --bk-neutral: #f2efe4;
+  --bk-neutral-soft: #314038;
+  --bk-neutral-border: #6d7a71;
+  --bk-on-neutral: #26332c;
+
+  --bk-radius-scale: 1.2;
+  --bk-radius-field: 14px 5px 12px 6px;
+  --bk-radius-card: 16px 6px 14px 8px;
+  --bk-radius-overlay: 18px 8px 16px 10px;
+
+  --bk-shadow-xs: none;
+  --bk-shadow-sm: none;
+  --bk-shadow-md: 0 2px 12px rgb(0 0 0 / 0.35);
+  --bk-shadow-lg: 0 6px 24px rgb(0 0 0 / 0.45);
+  --bk-shadow-xl: 0 12px 40px rgb(0 0 0 / 0.55);
+  --bk-shadow-2xl: 0 20px 60px rgb(0 0 0 / 0.65);
+  --bk-shadow-inner: inset 0 0 30px rgb(0 0 0 / 0.3);
+
+  --bk-ring: #f7d477;
+  --bk-ring-width: 2px;
+  --bk-ring-offset: 3px;
+  --bk-ring-style: dashed;
+
+  --bk-btn-border-width: 2px;
+  --bk-btn-weight: 700;
+  --bk-btn-shadow: none;
+  --bk-btn-shadow-hover: none;
+  --bk-btn-shadow-active: none;
+  --bk-press-transform: translate(1px, 1px) rotate(0.4deg);
+  --bk-hover-transform: rotate(-0.6deg);
+
+  --bk-field-bg: rgb(255 255 255 / 0.04);
+  --bk-field-border: #8b9890;
+  --bk-field-border-width: 2px;
+  --bk-field-border-hover: #f2efe4;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #869089;
+  --bk-card-bg: rgb(255 255 255 / 0.03);
+  --bk-card-border-width: 2px;
+  --bk-card-border: #6d7a71;
+  --bk-card-shadow: none;
+  --bk-card-shadow-hover: 0 4px 18px rgb(0 0 0 / 0.35);
+  --bk-card-pad: var(--bk-space-5);
+  --bk-overlay-surface: #2b3931;
+  --bk-overlay-border: #f2efe4;
+  --bk-overlay-shadow: 0 20px 60px rgb(0 0 0 / 0.7);
+  --bk-overlay-bg: rgb(12 18 15 / 0.7);
+  --bk-code-bg: rgb(0 0 0 / 0.25);
+  --bk-code-border: #6d7a71;
+  --bk-tooltip-bg: #f2efe4;
+  --bk-tooltip-fg: #26332c;
+  --bk-selection-bg: rgb(247 212 119 / 0.35);
+  --bk-scrollbar-thumb: #6d7a71;
+  --bk-divider-color: #6d7a71;
+  --bk-divider-width: 2px;
+  --bk-divider-style: dashed;
+
+  /* Chalk dust and the ghost of a bad wipe. */
+  --bk-body-image:
+    radial-gradient(60rem 30rem at 20% 12%, rgb(242 239 228 / 0.05), transparent 55%),
+    radial-gradient(50rem 26rem at 82% 68%, rgb(242 239 228 / 0.04), transparent 55%),
+    repeating-linear-gradient(102deg, rgb(242 239 228 / 0.018) 0 3px, transparent 3px 9px);
+  --bk-body-attachment: fixed;
+  color-scheme: dark;
+}
+
+[data-bk-style="chalk"][data-bk-theme="light"] {
+  /* The whiteboard on the other wall. */
+  --bk-bg: #f6f6f4;
+  --bk-surface: #ffffff;
+  --bk-surface-2: #f0f0ed;
+  --bk-surface-3: #e2e2de;
+  --bk-surface-inverted: #26332c;
+  --bk-text: #23262b;
+  --bk-text-muted: #4f545a;
+  --bk-text-subtle: #82878d;
+  --bk-text-inverted: #ffffff;
+  --bk-border: #23262b;
+  --bk-border-muted: #c8c8c4;
+  --bk-border-strong: #23262b;
+  --bk-primary: #1f5fbf;
+  --bk-primary-hover: #1a51a4;
+  --bk-primary-soft: #dfe9f8;
+  --bk-primary-border: #23262b;
+  --bk-on-primary: #ffffff;
+  --bk-secondary: #b8540c;
+  --bk-secondary-soft: #f8e6d8;
+  --bk-secondary-border: #23262b;
+  --bk-on-secondary: #ffffff;
+  --bk-success: #1f7a3f; --bk-success-soft: #dcf0e2; --bk-success-border: #23262b;
+  --bk-warning: #9a6a10; --bk-warning-soft: #f7ecd2; --bk-warning-border: #23262b;
+  --bk-danger: #b32424; --bk-danger-soft: #f8dede; --bk-danger-border: #23262b;
+  --bk-info: #1f5fbf; --bk-info-soft: #dfe9f8; --bk-info-border: #23262b;
+  --bk-neutral: #23262b; --bk-neutral-soft: #f0f0ed; --bk-neutral-border: #23262b;
+  --bk-on-neutral: #ffffff;
+  --bk-field-bg: #ffffff;
+  --bk-field-border: #23262b;
+  --bk-card-bg: #ffffff;
+  --bk-card-border: #23262b;
+  --bk-code-bg: #f0f0ed;
+  --bk-code-border: #23262b;
+  --bk-overlay-surface: #ffffff;
+  --bk-overlay-border: #23262b;
+  --bk-tooltip-bg: #23262b;
+  --bk-tooltip-fg: #ffffff;
+  --bk-divider-color: #23262b;
+  --bk-ring: #1f5fbf;
+  --bk-body-image: none;
+  color-scheme: light;
+}
+
+/* Chalk never draws a clean line. */
+[data-bk-style="chalk"] .bk-card,
+[data-bk-style="chalk"] .bk-btn:not(.bk-btn-link),
+[data-bk-style="chalk"] .bk-input,
+[data-bk-style="chalk"] .bk-textarea,
+[data-bk-style="chalk"] .bk-alert,
+[data-bk-style="chalk"] .bk-badge {
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c' x='-6%25' y='-16%25' width='112%25' height='132%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='2' seed='11' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='2' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3C/svg%3E#c");
+}
+[data-bk-style="chalk"] .bk-display,
+[data-bk-style="chalk"] .bk-title { text-shadow: 0 0 12px rgb(242 239 228 / 0.28); }
+[data-bk-style="chalk"][data-bk-theme="light"] .bk-display,
+[data-bk-style="chalk"][data-bk-theme="light"] .bk-title { text-shadow: none; }
+[data-bk-style="chalk"] .bk-card:nth-child(2n) { border-radius: 6px 16px 8px 14px; }
+[data-bk-style="chalk"] .bk-avatar { border: 2px solid var(--bk-border); border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%; }
+[data-bk-style="chalk"] .bk-navbar { background: transparent; border-block-end: 2px dashed var(--bk-border); }
+[data-bk-style="chalk"] .bk-table thead th { background: transparent; border-block-end: 2px dashed var(--bk-border-strong); }
+[data-bk-style="chalk"] .bk-table th,
+[data-bk-style="chalk"] .bk-table td { border-block-end-style: dashed; }
+[data-bk-style="chalk"] .bk-progress { border: 2px solid var(--bk-border); background: transparent; }
+[data-bk-style="chalk"] .bk-mark,
+[data-bk-style="chalk"] mark { background: rgb(247 212 119 / 0.3); color: inherit; }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="chalk"] {
+  --bk-danger: #f5a3a3;
+  --bk-danger-active: #d98e8e;
+  --bk-danger-hover: #e59797;
+  --bk-danger-soft: #402c2c;
+  --bk-info: #a5cfe0;
+  --bk-info-active: #90b6c5;
+  --bk-info-hover: #99c1d1;
+  --bk-info-soft: #2b3a41;
+  --bk-on-danger: #2a1010;
+  --bk-on-info: #0d1a20;
+  --bk-on-success: #0f1c0e;
+  --bk-on-warning: #241f06;
+  --bk-primary-active: #ded9c9;
+  --bk-secondary-active: #d9bb67;
+  --bk-secondary-hover: #f9de92;
+  --bk-secondary-on-soft: #f7d477;
+  --bk-secondary-text: #f7d477;
+  --bk-success: #a8dba0;
+  --bk-success-active: #93c08c;
+  --bk-success-hover: #9ccc94;
+  --bk-success-soft: #2c3d2b;
+  --bk-text-subtle: #8f978d;
+  --bk-warning: #f7d477;
+  --bk-warning-active: #d9bb67;
+  --bk-warning-hover: #e6c66e;
+  --bk-warning-on-soft: #f7d477;
+  --bk-warning-soft: #3e3c25;
+  --bk-warning-text: #f7d477;
+}
+[data-bk-style="chalk"][data-bk-theme="light"] {
+  --bk-danger: #b32424;
+  --bk-danger-active: #9a1f1f;
+  --bk-danger-hover: #a52121;
+  --bk-danger-soft: #f8dede;
+  --bk-info: #1f5fbf;
+  --bk-info-active: #1b52a4;
+  --bk-info-hover: #1d57b0;
+  --bk-info-soft: #dfe9f8;
+  --bk-on-danger: #efd4d4;
+  --bk-on-info: #d3e5ed;
+  --bk-on-success: #e9f3e8;
+  --bk-on-warning: #fefefc;
+  --bk-primary-active: #1b52a4;
+  --bk-secondary-active: #9e480a;
+  --bk-secondary-hover: #a94d0b;
+  --bk-secondary-on-soft: #a54b0b;
+  --bk-secondary-text: #aa4d0b;
+  --bk-success: #1f7a3f;
+  --bk-success-active: #1b6936;
+  --bk-success-hover: #1d703a;
+  --bk-success-soft: #dcf0e2;
+  --bk-text-subtle: #787d83;
+  --bk-warning: #9a6a10;
+  --bk-warning-active: #845b0e;
+  --bk-warning-hover: #8e620f;
+  --bk-warning-on-soft: #8c600f;
+  --bk-warning-soft: #f7ecd2;
+  --bk-warning-text: #8c600f;
+}
+/* ==== end derived contrast tokens ==== */

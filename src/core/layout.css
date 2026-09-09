@@ -1,0 +1,218 @@
+/* =============================================================================
+   BUKALEMUN — core/layout.css
+   Layout primitives. Intrinsic-first: things wrap and reflow on their own
+   instead of relying on a breakpoint zoo.
+   ========================================================================== */
+
+.bk-container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--bk-container-gutter, var(--bk-space-5));
+  max-width: var(--bk-container-max, var(--bk-container-xl));
+}
+.bk-container-xs { --bk-container-max: var(--bk-container-xs); }
+.bk-container-sm { --bk-container-max: var(--bk-container-sm); }
+.bk-container-md { --bk-container-max: var(--bk-container-md); }
+.bk-container-lg { --bk-container-max: var(--bk-container-lg); }
+.bk-container-xl { --bk-container-max: var(--bk-container-xl); }
+.bk-container-2xl { --bk-container-max: var(--bk-container-2xl); }
+.bk-container-full { --bk-container-max: none; }
+
+/* --- stack: vertical rhythm without margin collapsing surprises ---------- */
+.bk-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bk-gap, var(--bk-space-4));
+}
+.bk-stack > * { margin-block: 0; }
+.bk-stack-h {
+  display: flex;
+  flex-direction: row;
+  align-items: var(--bk-align, center);
+  gap: var(--bk-gap, var(--bk-space-3));
+}
+
+/* --- cluster: wrapping row of things (tags, buttons, chips) -------------- */
+.bk-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: var(--bk-align, center);
+  justify-content: var(--bk-justify, flex-start);
+  gap: var(--bk-gap, var(--bk-space-2));
+}
+
+/* --- switcher: row that becomes a column below a threshold --------------- */
+.bk-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bk-gap, var(--bk-space-4));
+}
+.bk-switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--bk-switch-at, 30rem) - 100%) * 999);
+}
+
+/* --- sidebar layout: fixed-ish side + fluid main ------------------------- */
+.bk-sidebar-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bk-gap, var(--bk-space-6));
+}
+.bk-sidebar-layout > :first-child {
+  flex-basis: var(--bk-side-width, 16rem);
+  flex-grow: 1;
+}
+.bk-sidebar-layout > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-width: var(--bk-side-min, 55%);
+}
+.bk-sidebar-layout[data-side="end"] > :first-child { order: 2; }
+.bk-sidebar-layout[data-side="end"] > :last-child { order: 1; }
+
+/* --- grid: auto-fitting card grid --------------------------------------- */
+.bk-grid {
+  display: grid;
+  gap: var(--bk-gap, var(--bk-space-4));
+  grid-template-columns: repeat(var(--bk-cols, 1), minmax(0, 1fr));
+}
+.bk-grid-auto {
+  display: grid;
+  gap: var(--bk-gap, var(--bk-space-4));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--bk-min, 16rem), 100%), 1fr));
+}
+.bk-grid-fill {
+  display: grid;
+  gap: var(--bk-gap, var(--bk-space-4));
+  grid-template-columns: repeat(auto-fill, minmax(min(var(--bk-min, 16rem), 100%), 1fr));
+}
+.bk-cols-1 { --bk-cols: 1; }
+.bk-cols-2 { --bk-cols: 2; }
+.bk-cols-3 { --bk-cols: 3; }
+.bk-cols-4 { --bk-cols: 4; }
+.bk-cols-5 { --bk-cols: 5; }
+.bk-cols-6 { --bk-cols: 6; }
+.bk-cols-12 { --bk-cols: 12; }
+.bk-col-span-2 { grid-column: span 2; }
+.bk-col-span-3 { grid-column: span 3; }
+.bk-col-span-4 { grid-column: span 4; }
+.bk-col-span-6 { grid-column: span 6; }
+.bk-col-span-full { grid-column: 1 / -1; }
+.bk-row-span-2 { grid-row: span 2; }
+.bk-row-span-3 { grid-row: span 3; }
+
+@media (max-width: 60rem) {
+  .bk-cols-4, .bk-cols-5, .bk-cols-6 { --bk-cols: 2; }
+  .bk-cols-3 { --bk-cols: 2; }
+}
+@media (max-width: 40rem) {
+  .bk-cols-2, .bk-cols-3, .bk-cols-4, .bk-cols-5, .bk-cols-6 { --bk-cols: 1; }
+  .bk-col-span-2, .bk-col-span-3, .bk-col-span-4, .bk-col-span-6 { grid-column: 1 / -1; }
+}
+
+/* --- center: intrinsic centering with a max measure ---------------------- */
+.bk-center {
+  box-sizing: content-box;
+  margin-inline: auto;
+  max-inline-size: var(--bk-measure, var(--bk-prose-width));
+}
+.bk-center-both {
+  display: grid;
+  place-items: center;
+  min-block-size: var(--bk-min-h, auto);
+}
+
+/* --- cover: hero-ish region with a centred principal child --------------- */
+.bk-cover {
+  display: flex;
+  flex-direction: column;
+  gap: var(--bk-gap, var(--bk-space-4));
+  min-block-size: var(--bk-min-h, 60svh);
+  padding: var(--bk-pad, var(--bk-space-6));
+}
+.bk-cover > * { margin-block: 0; }
+.bk-cover > .bk-cover-main { margin-block: auto; }
+
+/* --- frame / aspect ratio ------------------------------------------------ */
+.bk-frame {
+  position: relative;
+  aspect-ratio: var(--bk-ratio, 16 / 9);
+  overflow: hidden;
+  border-radius: var(--bk-radius, var(--bk-radius-card));
+}
+.bk-frame > img,
+.bk-frame > video,
+.bk-frame > iframe {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: var(--bk-fit, cover);
+}
+.bk-ratio-square { --bk-ratio: 1; }
+.bk-ratio-video { --bk-ratio: 16 / 9; }
+.bk-ratio-photo { --bk-ratio: 4 / 3; }
+.bk-ratio-portrait { --bk-ratio: 3 / 4; }
+.bk-ratio-ultrawide { --bk-ratio: 21 / 9; }
+.bk-ratio-golden { --bk-ratio: 1.618; }
+
+/* --- reel: horizontal scroller with snap --------------------------------- */
+.bk-reel {
+  display: flex;
+  gap: var(--bk-gap, var(--bk-space-4));
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--bk-pad, var(--bk-space-4));
+  padding-block-end: var(--bk-space-2);
+}
+.bk-reel > * {
+  flex: 0 0 var(--bk-item, min(22rem, 82%));
+  scroll-snap-align: start;
+}
+.bk-reel-center > * { scroll-snap-align: center; }
+
+/* --- split: two panes with an adjustable ratio --------------------------- */
+.bk-split {
+  display: grid;
+  gap: var(--bk-gap, var(--bk-space-6));
+  grid-template-columns: var(--bk-split, 1fr 1fr);
+  align-items: var(--bk-align, start);
+}
+@media (max-width: 48rem) {
+  .bk-split { grid-template-columns: 1fr; }
+}
+
+/* --- masonry-ish column layout ------------------------------------------ */
+.bk-columns {
+  column-count: var(--bk-cols, 3);
+  column-gap: var(--bk-gap, var(--bk-space-4));
+}
+.bk-columns > * {
+  break-inside: avoid;
+  margin-block-end: var(--bk-gap, var(--bk-space-4));
+}
+@media (max-width: 60rem) { .bk-columns { column-count: 2; } }
+@media (max-width: 40rem) { .bk-columns { column-count: 1; } }
+
+/* --- sticky & scroll helpers -------------------------------------------- */
+.bk-sticky {
+  position: sticky;
+  top: var(--bk-sticky-top, 0);
+  z-index: var(--bk-z-sticky);
+}
+.bk-scroll-area {
+  overflow: auto;
+  overscroll-behavior: contain;
+  max-block-size: var(--bk-max-h, 20rem);
+  scrollbar-width: thin;
+}
+.bk-scroll-x { overflow-x: auto; overflow-y: hidden; }
+.bk-scroll-y { overflow-y: auto; overflow-x: hidden; }
+.bk-smooth-scroll { scroll-behavior: smooth; }
+
+/* --- overlap / stack in z ------------------------------------------------ */
+.bk-layers { display: grid; }
+.bk-layers > * { grid-area: 1 / 1; }
+
+/* --- spacers ------------------------------------------------------------- */
+.bk-spacer { flex: 1 1 auto; }
+.bk-divider-space { block-size: var(--bk-space-8); }

@@ -1,0 +1,321 @@
+/*! Bukalemun 1.6.0 — skin: solarpunk
+ *  One framework, 50 skins. Zero dependencies.
+ *  https://bukalemun.zerosixlab.com/
+ *  Released under the MIT licence.
+ */
+/* =============================================================================
+   SKIN — solarpunk · Botanical optimism
+   Warm brass and leaf green on limewashed plaster, generous curves, soft light.
+   The future as a greenhouse rather than a server rack.
+   ========================================================================== */
+
+[data-bk-style="solarpunk"] {
+  --bk-font-sans: "Work Sans", "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+  --bk-font-display: "Fraunces", "Bitter", Georgia, serif;
+  --bk-heading-font: var(--bk-font-display);
+  --bk-heading-weight: 600;
+  --bk-heading-tracking: -0.012em;
+
+  --bk-bg: #f5f7ec;
+  --bk-surface: #fcfdf6;
+  --bk-surface-2: #eef2e0;
+  --bk-surface-3: #dfe8cc;
+  --bk-surface-inverted: #1d2618;
+
+  --bk-text: #22301c;
+  --bk-text-muted: #4f6045;
+  --bk-text-subtle: #82927a;
+  --bk-text-inverted: #fcfdf6;
+
+  --bk-border: #cfdcb8;
+  --bk-border-muted: #e3ebd0;
+  --bk-border-strong: #a3b98a;
+
+  --bk-primary: #3f7d3a;
+  --bk-primary-hover: #356b31;
+  --bk-primary-active: #2b5828;
+  --bk-primary-soft: #e0efd9;
+  --bk-primary-border: #a8cfa0;
+  --bk-on-primary: #fcfdf6;
+  --bk-secondary: #a97a24;
+  --bk-secondary-hover: #92681d;
+  --bk-secondary-soft: #f6ecd4;
+  --bk-secondary-border: #ddc186;
+  --bk-on-secondary: #fcfdf6;
+  --bk-success: #3f7d3a;
+  --bk-success-soft: #e0efd9;
+  --bk-success-border: #a8cfa0;
+  --bk-warning: #a06a12;
+  --bk-warning-soft: #f7ead0;
+  --bk-warning-border: #dcbc7c;
+  --bk-danger: #a4402e;
+  --bk-danger-soft: #f6e2dc;
+  --bk-danger-border: #d7a496;
+  --bk-info: #2f6f78;
+  --bk-info-soft: #ddeef0;
+  --bk-info-border: #9cc6cc;
+  --bk-neutral: #3d4a37;
+  --bk-neutral-soft: #e8eedb;
+  --bk-neutral-border: #cfdcb8;
+  --bk-on-neutral: #fcfdf6;
+
+  --bk-radius-scale: 2;
+  --bk-radius-field: var(--bk-radius-xl);
+  --bk-radius-card: var(--bk-radius-2xl);
+  --bk-radius-overlay: var(--bk-radius-2xl);
+
+  --bk-shadow-color: 100 25% 25%;
+  --bk-shadow-strength: 0.85;
+
+  --bk-btn-radius: var(--bk-radius-full);
+  --bk-btn-weight: 600;
+  --bk-btn-shadow: 0 1px 2px rgb(60 80 40 / 0.1);
+  --bk-btn-shadow-hover: 0 6px 18px rgb(60 80 40 / 0.18);
+  --bk-btn-shadow-active: 0 1px 2px rgb(60 80 40 / 0.14);
+  --bk-hover-transform: translateY(-2px);
+  --bk-press-transform: translateY(0);
+
+  --bk-field-bg: #fcfdf6;
+  --bk-field-border: #c2d3a8;
+  --bk-field-border-hover: #3f7d3a;
+  --bk-field-shadow: none;
+  --bk-field-placeholder: #9aab90;
+  --bk-card-shadow: 0 2px 12px rgb(60 80 40 / 0.07);
+  --bk-card-shadow-hover: 0 10px 28px rgb(60 80 40 / 0.13);
+  --bk-card-pad: var(--bk-space-6);
+  --bk-overlay-surface: #fcfdf6;
+  --bk-overlay-shadow: 0 24px 60px rgb(30 45 20 / 0.22);
+  --bk-overlay-bg: rgb(34 48 28 / 0.35);
+  --bk-code-bg: #eef2e0;
+  --bk-code-border: #cfdcb8;
+  --bk-tooltip-bg: #22301c;
+  --bk-selection-bg: rgb(63 125 58 / 0.24);
+  --bk-scrollbar-thumb: #c2d3a8;
+  --bk-divider-color: #cfdcb8;
+
+  --bk-body-image:
+    radial-gradient(48rem 32rem at 88% -12%, rgb(169 122 36 / 0.14), transparent 62%),
+    radial-gradient(44rem 34rem at 4% 104%, rgb(63 125 58 / 0.14), transparent 60%);
+  --bk-body-attachment: fixed;
+}
+
+[data-bk-style="solarpunk"][data-bk-theme="dark"] {
+  --bk-bg: #131a10;
+  --bk-surface: #1a2317;
+  --bk-surface-2: #1f2a1b;
+  --bk-surface-3: #273422;
+  --bk-surface-inverted: #fcfdf6;
+  --bk-text-inverted: #22301c;
+  --bk-text: #e8f0df;
+  --bk-text-muted: #adbfa2;
+  --bk-text-subtle: #7d8f74;
+  --bk-border: #2f4028;
+  --bk-border-muted: #22301c;
+  --bk-border-strong: #4a6440;
+  --bk-primary: #86c47c;
+  --bk-primary-hover: #99d08f;
+  --bk-primary-soft: #1c2b18;
+  --bk-primary-border: #3c5a35;
+  --bk-on-primary: #0d1509;
+  --bk-secondary: #dcae5c;
+  --bk-secondary-soft: #2b2210;
+  --bk-secondary-border: #5c4a22;
+  --bk-on-secondary: #1a1305;
+  --bk-neutral: #e8f0df;
+  --bk-neutral-soft: #1f2a1b;
+  --bk-neutral-border: #2f4028;
+  --bk-on-neutral: #131a10;
+  --bk-field-bg: #1a2317;
+  --bk-field-border: #38492f;
+  --bk-code-bg: #182015;
+  --bk-code-border: #2f4028;
+  --bk-overlay-surface: #1a2317;
+  --bk-tooltip-bg: #e8f0df;
+  --bk-tooltip-fg: #131a10;
+  --bk-divider-color: #2f4028;
+  --bk-body-image:
+    radial-gradient(48rem 32rem at 88% -12%, rgb(220 174 92 / 0.12), transparent 62%),
+    radial-gradient(44rem 34rem at 4% 104%, rgb(134 196 124 / 0.12), transparent 60%);
+}
+
+[data-bk-style="solarpunk"] .bk-card { border-start-end-radius: var(--bk-radius-3xl); }
+[data-bk-style="solarpunk"] .bk-navbar { background: transparent; border-block-end: 1px solid var(--bk-border); }
+[data-bk-style="solarpunk"] .bk-table thead th { background: transparent; border-block-end: 1px solid var(--bk-border-strong); }
+[data-bk-style="solarpunk"] .bk-title { font-style: italic; }
+[data-bk-style="solarpunk"] .bk-section-head .bk-eyebrow::before { content: "❋ "; color: var(--bk-secondary); }
+[data-bk-style="solarpunk"] .bk-avatar { border-radius: 52% 48% 44% 56% / 48% 52% 48% 52%; }
+[data-bk-style="solarpunk"] .bk-badge { border-radius: var(--bk-radius-full); }
+
+/* ==== derived contrast tokens — generated by scripts/derive-contrast.mjs
+     Hue and saturation are the skin's; only lightness moved, and only far
+     enough to clear WCAG AA. Regenerate with: npm run contrast:fix        */
+[data-bk-style="solarpunk"] {
+  --bk-danger: #a4402e;
+  --bk-danger-active: #b15b4b;
+  --bk-danger-hover: #ab4f3f;
+  --bk-danger-on-soft: #a4402e;
+  --bk-danger-soft: #f6e2dc;
+  --bk-danger-text: #a4402e;
+  --bk-field-placeholder: #809573;
+  --bk-info: #2f6f78;
+  --bk-info-active: #285f67;
+  --bk-info-hover: #407b83;
+  --bk-info-on-soft: #2f6f78;
+  --bk-info-soft: #ddeef0;
+  --bk-info-text: #2f6f78;
+  --bk-on-danger: #ffffff;
+  --bk-on-info: #ffffff;
+  --bk-on-secondary: #161805;
+  --bk-on-success: #ffffff;
+  --bk-on-warning: #ffffff;
+  --bk-primary-active: #2b5828;
+  --bk-primary-on-soft: #3a7335;
+  --bk-primary-text: #3b7637;
+  --bk-secondary: #a97a24;
+  --bk-secondary-active: #b58d43;
+  --bk-secondary-hover: #b08536;
+  --bk-secondary-on-soft: #87621d;
+  --bk-secondary-soft: #f6ecd4;
+  --bk-secondary-text: #87621d;
+  --bk-success: #3f7d3a;
+  --bk-success-active: #366c32;
+  --bk-success-hover: #3a7335;
+  --bk-success-on-soft: #3a7335;
+  --bk-success-soft: #e0efd9;
+  --bk-success-text: #3b7637;
+  --bk-text-subtle: #73826b;
+  --bk-warning: #a06a12;
+  --bk-warning-active: #8a5b0f;
+  --bk-warning-hover: #936211;
+  --bk-warning-on-soft: #8e5e10;
+  --bk-warning-soft: #f7ead0;
+  --bk-warning-text: #8e5e10;
+}
+[data-bk-style="solarpunk"][data-bk-theme="dark"] {
+  --bk-danger: #a4402e;
+  --bk-danger-active: #8d3728;
+  --bk-danger-hover: #973b2a;
+  --bk-danger-on-soft: #a4402e;
+  --bk-danger-soft: #f6e2dc;
+  --bk-danger-text: #d57968;
+  --bk-field-placeholder: #9aab90;
+  --bk-info: #2f6f78;
+  --bk-info-active: #285f67;
+  --bk-info-hover: #2b666e;
+  --bk-info-on-soft: #2f6f78;
+  --bk-info-soft: #ddeef0;
+  --bk-info-text: #439eab;
+  --bk-on-danger: #f7d9dc;
+  --bk-on-info: #d8ebfb;
+  --bk-on-secondary: #1a1305;
+  --bk-on-success: #ebfcf3;
+  --bk-on-warning: #ffffff;
+  --bk-primary-active: #97cc8e;
+  --bk-primary-on-soft: #86c47c;
+  --bk-primary-text: #86c47c;
+  --bk-secondary: #dcae5c;
+  --bk-secondary-active: #c19850;
+  --bk-secondary-hover: #dfb469;
+  --bk-secondary-on-soft: #dcae5c;
+  --bk-secondary-soft: #2b2210;
+  --bk-secondary-text: #dcae5c;
+  --bk-success: #3f7d3a;
+  --bk-success-active: #366c32;
+  --bk-success-hover: #3a7335;
+  --bk-success-on-soft: #3a7335;
+  --bk-success-soft: #e0efd9;
+  --bk-success-text: #52a34c;
+  --bk-text-subtle: #7d8f74;
+  --bk-warning: #9b6711;
+  --bk-warning-active: #86590f;
+  --bk-warning-hover: #8f5f10;
+  --bk-warning-on-soft: #8e5e10;
+  --bk-warning-soft: #f7ead0;
+  --bk-warning-text: #c58216;
+}
+/* ==== end derived contrast tokens ==== */
+
+
+/* auto-mode mirror for "solarpunk" — generated by scripts/build.mjs */
+@media (prefers-color-scheme: dark) {
+  [data-bk-style="solarpunk"][data-bk-theme="auto"] {
+  --bk-bg: #131a10;
+  --bk-surface: #1a2317;
+  --bk-surface-2: #1f2a1b;
+  --bk-surface-3: #273422;
+  --bk-surface-inverted: #fcfdf6;
+  --bk-text-inverted: #22301c;
+  --bk-text: #e8f0df;
+  --bk-text-muted: #adbfa2;
+  --bk-text-subtle: #7d8f74;
+  --bk-border: #2f4028;
+  --bk-border-muted: #22301c;
+  --bk-border-strong: #4a6440;
+  --bk-primary: #86c47c;
+  --bk-primary-hover: #99d08f;
+  --bk-primary-soft: #1c2b18;
+  --bk-primary-border: #3c5a35;
+  --bk-on-primary: #0d1509;
+  --bk-secondary: #dcae5c;
+  --bk-secondary-soft: #2b2210;
+  --bk-secondary-border: #5c4a22;
+  --bk-on-secondary: #1a1305;
+  --bk-neutral: #e8f0df;
+  --bk-neutral-soft: #1f2a1b;
+  --bk-neutral-border: #2f4028;
+  --bk-on-neutral: #131a10;
+  --bk-field-bg: #1a2317;
+  --bk-field-border: #38492f;
+  --bk-code-bg: #182015;
+  --bk-code-border: #2f4028;
+  --bk-overlay-surface: #1a2317;
+  --bk-tooltip-bg: #e8f0df;
+  --bk-tooltip-fg: #131a10;
+  --bk-divider-color: #2f4028;
+  --bk-body-image:
+    radial-gradient(48rem 32rem at 88% -12%, rgb(220 174 92 / 0.12), transparent 62%),
+    radial-gradient(44rem 34rem at 4% 104%, rgb(134 196 124 / 0.12), transparent 60%);
+
+
+  --bk-danger: #a4402e;
+  --bk-danger-active: #8d3728;
+  --bk-danger-hover: #973b2a;
+  --bk-danger-on-soft: #a4402e;
+  --bk-danger-soft: #f6e2dc;
+  --bk-danger-text: #d57968;
+  --bk-field-placeholder: #9aab90;
+  --bk-info: #2f6f78;
+  --bk-info-active: #285f67;
+  --bk-info-hover: #2b666e;
+  --bk-info-on-soft: #2f6f78;
+  --bk-info-soft: #ddeef0;
+  --bk-info-text: #439eab;
+  --bk-on-danger: #f7d9dc;
+  --bk-on-info: #d8ebfb;
+  --bk-on-secondary: #1a1305;
+  --bk-on-success: #ebfcf3;
+  --bk-on-warning: #ffffff;
+  --bk-primary-active: #97cc8e;
+  --bk-primary-on-soft: #86c47c;
+  --bk-primary-text: #86c47c;
+  --bk-secondary: #dcae5c;
+  --bk-secondary-active: #c19850;
+  --bk-secondary-hover: #dfb469;
+  --bk-secondary-on-soft: #dcae5c;
+  --bk-secondary-soft: #2b2210;
+  --bk-secondary-text: #dcae5c;
+  --bk-success: #3f7d3a;
+  --bk-success-active: #366c32;
+  --bk-success-hover: #3a7335;
+  --bk-success-on-soft: #3a7335;
+  --bk-success-soft: #e0efd9;
+  --bk-success-text: #52a34c;
+  --bk-text-subtle: #7d8f74;
+  --bk-warning: #9b6711;
+  --bk-warning-active: #86590f;
+  --bk-warning-hover: #8f5f10;
+  --bk-warning-on-soft: #8e5e10;
+  --bk-warning-soft: #f7ead0;
+  --bk-warning-text: #c58216;
+}
+}
