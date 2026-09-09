@@ -159,6 +159,28 @@ test('all custom properties use the --bk- prefix', () => {
 const tokenSource = read(join(src, 'core', 'tokens.css')) + read(join(src, 'core', 'icons.css'));
 const definedTokens = new Set([...tokenSource.matchAll(/(--bk-[\w-]+)\s*:/g)].map((m) => m[1]));
 
+// The one hard rule, finally enforced: a component reads tokens, it does not
+// name a colour. tokens.css is where literals live by definition, and
+// a11y.css speaks the OS's own colour names (Canvas, CanvasText, Highlight)
+// and prints in plain black on white. Everything else has to go through a
+// knob. url() payloads (data-URI icons) and comments are skipped; so is the
+// word "white" inside "white-space".
+test('component and core sheets never name a colour', () => {
+  const exempt = new Set(['tokens.css', 'a11y.css']);
+  const sheets = [...cssFiles(join(src, 'core')), ...cssFiles(join(src, 'components'))]
+    .filter((p) => !exempt.has(basename(p)));
+  const literal = /#[0-9a-f]{3,8}\b|\brgba?\(|\bhsla?\(|(?<!-)\b(?:white|black|red|blue|green|yellow|orange|purple|pink|gr[ae]y|silver|gold|navy|teal|maroon|olive|lime|aqua|fuchsia|cyan|magenta)\b(?!-)/i;
+  const offenders = [];
+  for (const sheet of sheets) {
+    const body = stripCss(read(sheet)).replace(/url\([^)]*\)/g, 'url()');
+    body.split('\n').forEach((line, i) => {
+      const m = line.match(literal);
+      if (m) offenders.push(basename(sheet) + ':' + (i + 1) + ' → ' + m[0]);
+    });
+  }
+  assert(offenders.length === 0, 'colour literals in component/core sheets:\n      ' + offenders.join('\n      '));
+});
+
 test('the token contract defines every documented semantic role', () => {
   const required = [
     '--bk-bg', '--bk-surface', '--bk-surface-2', '--bk-surface-3', '--bk-surface-inverted',

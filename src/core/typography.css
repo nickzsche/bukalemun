@@ -109,11 +109,14 @@
 .bk-text-info { color: var(--bk-info-text); }
 .bk-text-inverted { color: var(--bk-text-inverted); }
 
-/* --- gradient / decorated text ------------------------------------------ */
+/* --- gradient / decorated text ------------------------------------------
+   Opt-in. Nothing in the core applies it; the chrome, foil and mesh skins
+   (y2k, holo, aurora, vapor) reach for it because gradient lettering is their
+   identity, and a11y.css turns it back into solid ink under forced colours. */
 .bk-text-gradient {
   background-image: var(--bk-text-gradient,
     linear-gradient(100deg, var(--bk-primary), var(--bk-secondary)));
-  -webkit-background-clip: text;
+  -webkit-background-clip: text; /* impeccable-disable-line gradient-text -- opt-in utility, see above */
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
@@ -185,7 +188,7 @@
 .bk-blockquote {
   position: relative;
   padding: var(--bk-space-3) var(--bk-space-5);
-  border-inline-start: 3px solid var(--bk-primary);
+  border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-primary);
   color: var(--bk-text-muted);
   font-style: italic;
   background: var(--bk-surface-2);
@@ -269,7 +272,7 @@
 .bk-prose a { color: var(--bk-text-link); text-decoration: underline; text-underline-offset: 0.18em; }
 .bk-prose blockquote {
   padding-inline-start: var(--bk-space-4);
-  border-inline-start: 3px solid var(--bk-border-strong);
+  border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-border-strong);
   color: var(--bk-text-muted);
   font-style: italic;
 }

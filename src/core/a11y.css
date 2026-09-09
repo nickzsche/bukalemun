@@ -71,6 +71,17 @@
   :where(.bk-skeleton) { background: Canvas; border: 1px dashed CanvasText; animation: none; }
   :where(.bk-spinner) { border-color: CanvasText; border-block-start-color: Highlight; }
 
+  /* Gradient lettering is painted through background-clip with the text
+     itself transparent; strip the image and the heading vanishes. Put the
+     ink back. */
+  :where(.bk-text-gradient, .bk-display, .bk-title, .bk-navbar-brand) {
+    background-image: none !important;
+    color: CanvasText !important;
+    -webkit-text-fill-color: CanvasText !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
   /* Decorative washes are noise here. */
   :where(body) { background-image: none !important; }
   :where(.bk-hero-bg, .bk-hero-overlay, .bk-marquee) { display: none; }
@@ -104,16 +115,24 @@
   }
 }
 
-/* Some users disable transparency system-wide; honour it where we can. */
+/* Some users disable transparency system-wide; honour it where we can. The
+   frosted skins (glass, aurora, vapor, holo, aero) blur cards, panels and the
+   navbar directly, so the list has to cover those too, and it has to outrank
+   a skin's own scoped rule. */
 @media (prefers-reduced-transparency: reduce) {
+  :where(:root), :where(.bk-scope) {
+    --bk-surface-backdrop: none;
+    --bk-overlay-backdrop: none;
+  }
   :where(.bk-glass, .bk-card-glass, .bk-navbar-glass, .bk-dock, .bk-btn-glass) {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     background-color: var(--bk-surface);
   }
-  :where(.bk-modal::backdrop, .bk-drawer::backdrop, .bk-cmdk::backdrop) {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+  :where(.bk-glass, .bk-card-glass, .bk-navbar-glass, .bk-dock, .bk-btn-glass,
+         .bk-card, .bk-panel, .bk-stat, .bk-navbar, .bk-toast, .bk-menu,
+         .bk-popover, .bk-modal, .bk-drawer, .bk-cmdk, .bk-tooltip,
+         .bk-modal::backdrop, .bk-drawer::backdrop, .bk-cmdk::backdrop) {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 

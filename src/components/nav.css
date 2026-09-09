@@ -55,8 +55,13 @@
 }
 .bk-navbar-end { margin-inline-start: auto; display: flex; align-items: center; gap: var(--bk-space-2); }
 .bk-navbar-toggle { display: none; }
+/* The collapse is the small-screen menu. Above the breakpoint it is not laid
+   out at all; a page that lists the same links in .bk-navbar-nav no longer
+   shows them twice. */
+.bk-navbar-collapse { display: none; }
 @media (max-width: 52rem) {
   .bk-navbar-toggle { display: inline-flex; }
+  .bk-navbar-collapse.bk-is-open { display: flex; }
   .bk-navbar-collapse {
     position: absolute;
     inset-block-start: 100%;
@@ -69,7 +74,6 @@
     border-block-end: var(--bk-border-width) solid var(--bk-border);
     box-shadow: var(--bk-shadow-lg);
   }
-  .bk-navbar-collapse:not(.bk-is-open) { display: none; }
 }
 
 .bk-nav-link {

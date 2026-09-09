@@ -310,7 +310,7 @@
   --bk-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --bk-ease-in: cubic-bezier(0.4, 0, 1, 1);
   --bk-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --bk-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --bk-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* impeccable-disable-line bounce-easing -- a primitive for skins that want overshoot; the core animates with ease-out */
   --bk-ease-snap: cubic-bezier(0.2, 0, 0, 1);
   --bk-transition: color var(--bk-dur-fast) var(--bk-ease),
     background-color var(--bk-dur-fast) var(--bk-ease),
@@ -561,6 +561,16 @@
   --bk-table-pad: var(--bk-space-3);
   --bk-container-gutter: var(--bk-space-5);
   --bk-text-gradient: linear-gradient(90deg, var(--bk-primary), var(--bk-secondary));
+
+  /* The few places a component used to write a literal instead of reading a
+     token. Each is now a knob a skin can reshape, and the structural suite
+     fails the build if a literal creeps back into a component sheet. */
+  --bk-accent-edge: var(--bk-border-width-strong); /* accent bar on callouts, accent cards and alerts, blockquotes */
+  --bk-code-dot-1: var(--bk-danger);               /* the three "window" dots on a code frame */
+  --bk-code-dot-2: var(--bk-warning);
+  --bk-code-dot-3: var(--bk-success);
+  --bk-progress-stripe: rgb(255 255 255 / 0.18);   /* the diagonal wash on striped progress */
+  --bk-lightbox-fg: #ffffff;                       /* controls drawn over the lightbox scrim */
 }
 
 /* ------------------------------------------------------------------ dark --
@@ -930,11 +940,14 @@
 .bk-text-info { color: var(--bk-info-text); }
 .bk-text-inverted { color: var(--bk-text-inverted); }
 
-/* --- gradient / decorated text ------------------------------------------ */
+/* --- gradient / decorated text ------------------------------------------
+   Opt-in. Nothing in the core applies it; the chrome, foil and mesh skins
+   (y2k, holo, aurora, vapor) reach for it because gradient lettering is their
+   identity, and a11y.css turns it back into solid ink under forced colours. */
 .bk-text-gradient {
   background-image: var(--bk-text-gradient,
     linear-gradient(100deg, var(--bk-primary), var(--bk-secondary)));
-  -webkit-background-clip: text;
+  -webkit-background-clip: text; /* impeccable-disable-line gradient-text -- opt-in utility, see above */
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
@@ -1006,7 +1019,7 @@
 .bk-blockquote {
   position: relative;
   padding: var(--bk-space-3) var(--bk-space-5);
-  border-inline-start: 3px solid var(--bk-primary);
+  border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-primary);
   color: var(--bk-text-muted);
   font-style: italic;
   background: var(--bk-surface-2);
@@ -1090,7 +1103,7 @@
 .bk-prose a { color: var(--bk-text-link); text-decoration: underline; text-underline-offset: 0.18em; }
 .bk-prose blockquote {
   padding-inline-start: var(--bk-space-4);
-  border-inline-start: 3px solid var(--bk-border-strong);
+  border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-border-strong);
   color: var(--bk-text-muted);
   font-style: italic;
 }
@@ -1819,6 +1832,17 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   :where(.bk-skeleton) { background: Canvas; border: 1px dashed CanvasText; animation: none; }
   :where(.bk-spinner) { border-color: CanvasText; border-block-start-color: Highlight; }
 
+  /* Gradient lettering is painted through background-clip with the text
+     itself transparent; strip the image and the heading vanishes. Put the
+     ink back. */
+  :where(.bk-text-gradient, .bk-display, .bk-title, .bk-navbar-brand) {
+    background-image: none !important;
+    color: CanvasText !important;
+    -webkit-text-fill-color: CanvasText !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
   /* Decorative washes are noise here. */
   :where(body) { background-image: none !important; }
   :where(.bk-hero-bg, .bk-hero-overlay, .bk-marquee) { display: none; }
@@ -1852,16 +1876,24 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   }
 }
 
-/* Some users disable transparency system-wide; honour it where we can. */
+/* Some users disable transparency system-wide; honour it where we can. The
+   frosted skins (glass, aurora, vapor, holo, aero) blur cards, panels and the
+   navbar directly, so the list has to cover those too, and it has to outrank
+   a skin's own scoped rule. */
 @media (prefers-reduced-transparency: reduce) {
+  :where(:root), :where(.bk-scope) {
+    --bk-surface-backdrop: none;
+    --bk-overlay-backdrop: none;
+  }
   :where(.bk-glass, .bk-card-glass, .bk-navbar-glass, .bk-dock, .bk-btn-glass) {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     background-color: var(--bk-surface);
   }
-  :where(.bk-modal::backdrop, .bk-drawer::backdrop, .bk-cmdk::backdrop) {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+  :where(.bk-glass, .bk-card-glass, .bk-navbar-glass, .bk-dock, .bk-btn-glass,
+         .bk-card, .bk-panel, .bk-stat, .bk-navbar, .bk-toast, .bk-menu,
+         .bk-popover, .bk-modal, .bk-drawer, .bk-cmdk, .bk-tooltip,
+         .bk-modal::backdrop, .bk-drawer::backdrop, .bk-cmdk::backdrop) {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 

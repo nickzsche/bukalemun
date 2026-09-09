@@ -310,7 +310,7 @@
   --bk-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --bk-ease-in: cubic-bezier(0.4, 0, 1, 1);
   --bk-ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --bk-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --bk-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* impeccable-disable-line bounce-easing -- a primitive for skins that want overshoot; the core animates with ease-out */
   --bk-ease-snap: cubic-bezier(0.2, 0, 0, 1);
   --bk-transition: color var(--bk-dur-fast) var(--bk-ease),
     background-color var(--bk-dur-fast) var(--bk-ease),
@@ -561,6 +561,16 @@
   --bk-table-pad: var(--bk-space-3);
   --bk-container-gutter: var(--bk-space-5);
   --bk-text-gradient: linear-gradient(90deg, var(--bk-primary), var(--bk-secondary));
+
+  /* The few places a component used to write a literal instead of reading a
+     token. Each is now a knob a skin can reshape, and the structural suite
+     fails the build if a literal creeps back into a component sheet. */
+  --bk-accent-edge: var(--bk-border-width-strong); /* accent bar on callouts, accent cards and alerts, blockquotes */
+  --bk-code-dot-1: var(--bk-danger);               /* the three "window" dots on a code frame */
+  --bk-code-dot-2: var(--bk-warning);
+  --bk-code-dot-3: var(--bk-success);
+  --bk-progress-stripe: rgb(255 255 255 / 0.18);   /* the diagonal wash on striped progress */
+  --bk-lightbox-fg: #ffffff;                       /* controls drawn over the lightbox scrim */
 }
 
 /* ------------------------------------------------------------------ dark --
@@ -930,11 +940,14 @@
 .bk-text-info { color: var(--bk-info-text); }
 .bk-text-inverted { color: var(--bk-text-inverted); }
 
-/* --- gradient / decorated text ------------------------------------------ */
+/* --- gradient / decorated text ------------------------------------------
+   Opt-in. Nothing in the core applies it; the chrome, foil and mesh skins
+   (y2k, holo, aurora, vapor) reach for it because gradient lettering is their
+   identity, and a11y.css turns it back into solid ink under forced colours. */
 .bk-text-gradient {
   background-image: var(--bk-text-gradient,
     linear-gradient(100deg, var(--bk-primary), var(--bk-secondary)));
-  -webkit-background-clip: text;
+  -webkit-background-clip: text; /* impeccable-disable-line gradient-text -- opt-in utility, see above */
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
@@ -1006,7 +1019,7 @@
 .bk-blockquote {
   position: relative;
   padding: var(--bk-space-3) var(--bk-space-5);
-  border-inline-start: 3px solid var(--bk-primary);
+  border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-primary);
   color: var(--bk-text-muted);
   font-style: italic;
   background: var(--bk-surface-2);
@@ -1090,7 +1103,7 @@
 .bk-prose a { color: var(--bk-text-link); text-decoration: underline; text-underline-offset: 0.18em; }
 .bk-prose blockquote {
   padding-inline-start: var(--bk-space-4);
-  border-inline-start: 3px solid var(--bk-border-strong);
+  border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-border-strong);
   color: var(--bk-text-muted);
   font-style: italic;
 }
@@ -1819,6 +1832,17 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   :where(.bk-skeleton) { background: Canvas; border: 1px dashed CanvasText; animation: none; }
   :where(.bk-spinner) { border-color: CanvasText; border-block-start-color: Highlight; }
 
+  /* Gradient lettering is painted through background-clip with the text
+     itself transparent; strip the image and the heading vanishes. Put the
+     ink back. */
+  :where(.bk-text-gradient, .bk-display, .bk-title, .bk-navbar-brand) {
+    background-image: none !important;
+    color: CanvasText !important;
+    -webkit-text-fill-color: CanvasText !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
   /* Decorative washes are noise here. */
   :where(body) { background-image: none !important; }
   :where(.bk-hero-bg, .bk-hero-overlay, .bk-marquee) { display: none; }
@@ -1852,16 +1876,24 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   }
 }
 
-/* Some users disable transparency system-wide; honour it where we can. */
+/* Some users disable transparency system-wide; honour it where we can. The
+   frosted skins (glass, aurora, vapor, holo, aero) blur cards, panels and the
+   navbar directly, so the list has to cover those too, and it has to outrank
+   a skin's own scoped rule. */
 @media (prefers-reduced-transparency: reduce) {
+  :where(:root), :where(.bk-scope) {
+    --bk-surface-backdrop: none;
+    --bk-overlay-backdrop: none;
+  }
   :where(.bk-glass, .bk-card-glass, .bk-navbar-glass, .bk-dock, .bk-btn-glass) {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
     background-color: var(--bk-surface);
   }
-  :where(.bk-modal::backdrop, .bk-drawer::backdrop, .bk-cmdk::backdrop) {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+  :where(.bk-glass, .bk-card-glass, .bk-navbar-glass, .bk-dock, .bk-btn-glass,
+         .bk-card, .bk-panel, .bk-stat, .bk-navbar, .bk-toast, .bk-menu,
+         .bk-popover, .bk-modal, .bk-drawer, .bk-cmdk, .bk-tooltip,
+         .bk-modal::backdrop, .bk-drawer::backdrop, .bk-cmdk::backdrop) {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }
 
@@ -3327,8 +3359,8 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
 }
 
 /* accent stripe */
-.bk-card-accent { border-block-start: 3px solid var(--bk-primary); }
-.bk-card-accent-start { border-inline-start: 3px solid var(--bk-primary); }
+.bk-card-accent { border-block-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-primary); }
+.bk-card-accent-start { border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-primary); }
 .bk-card-primary { --bk-card-border: var(--bk-primary-border); --bk-card-bg: var(--bk-primary-soft); }
 .bk-card-success { --bk-card-border: var(--bk-success-border); --bk-card-bg: var(--bk-success-soft); }
 .bk-card-warning { --bk-card-border: var(--bk-warning-border); --bk-card-bg: var(--bk-warning-soft); }
@@ -3776,7 +3808,7 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   color: var(--bk-text);
   background: var(--bk-surface);
   border-color: var(--bk-border);
-  border-inline-start: 3px solid var(--bk-c);
+  border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-c);
 }
 .bk-alert-accent::before { background: var(--bk-c-text, var(--bk-c)); }
 .bk-alert-accent .bk-alert-text { color: var(--bk-text-muted); }
@@ -3815,7 +3847,7 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   gap: var(--bk-space-2);
   padding: var(--bk-space-4) var(--bk-space-5);
   background: var(--bk-surface-2);
-  border-inline-start: 4px solid var(--bk-c);
+  border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-c);
   border-radius: var(--bk-radius-md);
 }
 .bk-callout-title {
@@ -3868,7 +3900,7 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   box-shadow: var(--bk-overlay-shadow);
   backdrop-filter: var(--bk-overlay-backdrop);
   font-size: var(--bk-text-md);
-  animation: bk-toast-in var(--bk-dur-slow) var(--bk-ease-spring);
+  animation: bk-toast-in var(--bk-dur-slow) var(--bk-ease-out);
   overflow: hidden;
 }
 @keyframes bk-toast-in {
@@ -3945,8 +3977,8 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
 .bk-progress-gradient { --bk-progress-fill: linear-gradient(90deg, var(--bk-primary), var(--bk-secondary)); }
 .bk-progress-striped .bk-progress-bar {
   background-image: linear-gradient(45deg,
-    rgb(255 255 255 / 0.18) 25%, transparent 25%, transparent 50%,
-    rgb(255 255 255 / 0.18) 50%, rgb(255 255 255 / 0.18) 75%, transparent 75%);
+    var(--bk-progress-stripe) 25%, transparent 25%, transparent 50%,
+    var(--bk-progress-stripe) 50%, var(--bk-progress-stripe) 75%, transparent 75%);
   background-size: 1rem 1rem;
 }
 .bk-progress-animated .bk-progress-bar { animation: bk-progress-stripes 900ms linear infinite; }
@@ -4061,13 +4093,13 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   block-size: 0.45em;
   border-radius: var(--bk-radius-full);
   background: currentColor;
-  animation: bk-bounce-dot 1.1s var(--bk-ease) infinite;
+  animation: bk-dot-pulse 1.1s var(--bk-ease-out) infinite;
 }
 .bk-dots > span:nth-child(2) { animation-delay: 0.15s; }
 .bk-dots > span:nth-child(3) { animation-delay: 0.3s; }
-@keyframes bk-bounce-dot {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
-  30% { transform: translateY(-0.4em); opacity: 1; }
+@keyframes bk-dot-pulse {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-0.3em); opacity: 1; }
 }
 
 .bk-bars { display: inline-flex; gap: 0.18em; align-items: flex-end; block-size: 1em; }
@@ -4427,8 +4459,13 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
 }
 .bk-navbar-end { margin-inline-start: auto; display: flex; align-items: center; gap: var(--bk-space-2); }
 .bk-navbar-toggle { display: none; }
+/* The collapse is the small-screen menu. Above the breakpoint it is not laid
+   out at all; a page that lists the same links in .bk-navbar-nav no longer
+   shows them twice. */
+.bk-navbar-collapse { display: none; }
 @media (max-width: 52rem) {
   .bk-navbar-toggle { display: inline-flex; }
+  .bk-navbar-collapse.bk-is-open { display: flex; }
   .bk-navbar-collapse {
     position: absolute;
     inset-block-start: 100%;
@@ -4441,7 +4478,6 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
     border-block-end: var(--bk-border-width) solid var(--bk-border);
     box-shadow: var(--bk-shadow-lg);
   }
-  .bk-navbar-collapse:not(.bk-is-open) { display: none; }
 }
 
 .bk-nav-link {
@@ -5392,6 +5428,15 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
 }
 .bk-cmdk::backdrop { background: var(--bk-scrim); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .bk-cmdk[open] { animation: bk-cmdk-in var(--bk-dur-base) var(--bk-ease-out); }
+
+/* The drawer and the palette set display: flex for their open layout, which
+   also overrides the browser's own "a closed dialog is display: none". Without
+   this a closed drawer sat rendered at the foot of the document, and a palette
+   that had been opened once stayed painted, fixed, after it closed. The
+   closing animation runs while [open] is still present, so nothing is cut short. */
+.bk-modal:not([open]),
+.bk-drawer:not([open]),
+.bk-cmdk:not([open]) { display: none; }
 @keyframes bk-cmdk-in {
   from { opacity: 0; transform: translateY(-8px) scale(0.98); }
   to { opacity: 1; transform: none; }
@@ -5481,7 +5526,7 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   box-shadow: var(--bk-shadow-2xl);
   animation: bk-zoom-in var(--bk-dur-base) var(--bk-ease-out);
 }
-.bk-lightbox-close { position: absolute; inset-block-start: var(--bk-space-4); inset-inline-end: var(--bk-space-4); color: #fff; }
+.bk-lightbox-close { position: absolute; inset-block-start: var(--bk-space-4); inset-inline-end: var(--bk-space-4); color: var(--bk-lightbox-fg); }
 
 /* Body lock while an overlay owns the screen. */
 .bk-scroll-locked { overflow: hidden !important; touch-action: none; }
@@ -5711,9 +5756,9 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
 }
 .bk-code-dots { display: flex; gap: 6px; margin-inline-end: var(--bk-space-2); }
 .bk-code-dots > span { inline-size: 10px; block-size: 10px; border-radius: 50%; background: var(--bk-border-strong); }
-.bk-code-dots > span:nth-child(1) { background: #ff5f57; }
-.bk-code-dots > span:nth-child(2) { background: #febc2e; }
-.bk-code-dots > span:nth-child(3) { background: #28c840; }
+.bk-code-dots > span:nth-child(1) { background: var(--bk-code-dot-1); }
+.bk-code-dots > span:nth-child(2) { background: var(--bk-code-dot-2); }
+.bk-code-dots > span:nth-child(3) { background: var(--bk-code-dot-3); }
 .bk-code-copy { margin-inline-start: auto; }
 .bk-code-lines { counter-reset: bk-line; }
 .bk-code-lines .bk-line { display: block; counter-increment: bk-line; }
@@ -5774,7 +5819,7 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
 .bk-typing > span {
   inline-size: 6px; block-size: 6px; border-radius: 50%;
   background: var(--bk-text-subtle);
-  animation: bk-bounce-dot 1.2s var(--bk-ease) infinite;
+  animation: bk-dot-pulse 1.2s var(--bk-ease-out) infinite;
 }
 .bk-typing > span:nth-child(2) { animation-delay: 0.15s; }
 .bk-typing > span:nth-child(3) { animation-delay: 0.3s; }
@@ -5828,8 +5873,8 @@ html.bk-no-js .bk-reveal { opacity: 1; transform: none; filter: none; }
   display: flex;
   overflow: hidden;
   gap: var(--bk-marquee-gap, var(--bk-space-8));
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, currentColor 8%, currentColor 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, currentColor 8%, currentColor 92%, transparent);
   user-select: none;
 }
 .bk-marquee-track {

@@ -153,8 +153,8 @@
 }
 
 /* accent stripe */
-.bk-card-accent { border-block-start: 3px solid var(--bk-primary); }
-.bk-card-accent-start { border-inline-start: 3px solid var(--bk-primary); }
+.bk-card-accent { border-block-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-primary); }
+.bk-card-accent-start { border-inline-start: var(--bk-accent-edge) var(--bk-border-style) var(--bk-primary); }
 .bk-card-primary { --bk-card-border: var(--bk-primary-border); --bk-card-bg: var(--bk-primary-soft); }
 .bk-card-success { --bk-card-border: var(--bk-success-border); --bk-card-bg: var(--bk-success-soft); }
 .bk-card-warning { --bk-card-border: var(--bk-warning-border); --bk-card-bg: var(--bk-warning-soft); }

@@ -443,6 +443,15 @@
 }
 .bk-cmdk::backdrop { background: var(--bk-scrim); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 .bk-cmdk[open] { animation: bk-cmdk-in var(--bk-dur-base) var(--bk-ease-out); }
+
+/* The drawer and the palette set display: flex for their open layout, which
+   also overrides the browser's own "a closed dialog is display: none". Without
+   this a closed drawer sat rendered at the foot of the document, and a palette
+   that had been opened once stayed painted, fixed, after it closed. The
+   closing animation runs while [open] is still present, so nothing is cut short. */
+.bk-modal:not([open]),
+.bk-drawer:not([open]),
+.bk-cmdk:not([open]) { display: none; }
 @keyframes bk-cmdk-in {
   from { opacity: 0; transform: translateY(-8px) scale(0.98); }
   to { opacity: 1; transform: none; }
@@ -532,7 +541,7 @@
   box-shadow: var(--bk-shadow-2xl);
   animation: bk-zoom-in var(--bk-dur-base) var(--bk-ease-out);
 }
-.bk-lightbox-close { position: absolute; inset-block-start: var(--bk-space-4); inset-inline-end: var(--bk-space-4); color: #fff; }
+.bk-lightbox-close { position: absolute; inset-block-start: var(--bk-space-4); inset-inline-end: var(--bk-space-4); color: var(--bk-lightbox-fg); }
 
 /* Body lock while an overlay owns the screen. */
 .bk-scroll-locked { overflow: hidden !important; touch-action: none; }

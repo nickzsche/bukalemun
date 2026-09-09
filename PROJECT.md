@@ -281,7 +281,10 @@ dist/              generated — do not edit
   never writes a colour.
 - **No framework adapters.** The `data-bk-*` attributes and the `MutationObserver`
   are the integration story.
-- **No `!important`.** Not once in `src/`.
+- **No `!important` in a skin or a component.** It appears in exactly two
+  places: `src/core/a11y.css`, where forced colours, reduced transparency
+  and print have to beat every skin by definition, and the body scroll lock
+  an overlay applies, which must survive a page's own `overflow` rule.
 
 ## Adding a skin
 
