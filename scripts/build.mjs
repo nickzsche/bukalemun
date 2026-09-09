@@ -195,8 +195,14 @@ const componentCss = COMPONENTS.map((f) => read(join(src, 'components', `${f}.cs
  */
 function mirrorAutoMode(css, skin) {
   const out = [];
-  for (const mode of ['dark', 'light']) {
-    const needle = `[data-bk-style="${skin}"][data-bk-theme="${mode}"]`;
+  // The accent variants carry their own mode blocks, one attribute longer.
+  const prefixes = [
+    `[data-bk-style="${skin}"]`,
+    `[data-bk-style="${skin}"][data-bk-accent="warm"]`,
+    `[data-bk-style="${skin}"][data-bk-accent="cool"]`
+  ];
+  for (const prefix of prefixes) for (const mode of ['dark', 'light']) {
+    const needle = `${prefix}[data-bk-theme="${mode}"]`;
     let cursor = 0;
     const blocks = [];
     while (true) {
@@ -221,7 +227,7 @@ function mirrorAutoMode(css, skin) {
     if (!blocks.length) continue;
     out.push(
       `@media (prefers-color-scheme: ${mode}) {\n` +
-      `  [data-bk-style="${skin}"][data-bk-theme="auto"] {${blocks.join('\n')}}\n` +
+      `  ${prefix}[data-bk-theme="auto"] {${blocks.join('\n')}}\n` +
       `}`
     );
   }
@@ -308,7 +314,7 @@ writeFileSync(join(dist, 'bukalemun.esm.min.js'), banner('runtime (ESM)') + mini
 /* --------------------------------------------------- no-flash snippet --- */
 
 const flash = `/* Paste inline in <head> to apply the saved skin before first paint. Ship base + one skin and add data-bk-skins="…/styles/{skin}.min.css" to this tag: the stored skin is fetched here, before paint, and bk.theme fetches the rest as they are chosen. */
-(function(){try{var d=document.documentElement,s=localStorage.getItem('bk:style'),m=localStorage.getItem('bk:mode');if(s&&s!=='default'){d.setAttribute('data-bk-style',s);var c=document.currentScript,t=c&&c.getAttribute('data-bk-skins');if(t&&!document.querySelector('link[data-bk-skin="'+s+'"]')){var l=document.createElement('link');l.rel='stylesheet';l.href=t.replace('{skin}',s);l.setAttribute('data-bk-skin',s);document.head.appendChild(l);}}if(m)d.setAttribute('data-bk-theme',m);else if(!d.getAttribute('data-bk-theme'))d.setAttribute('data-bk-theme','auto');d.classList.add('bk-no-js');}catch(e){}})();`;
+(function(){try{var d=document.documentElement,s=localStorage.getItem('bk:style'),m=localStorage.getItem('bk:mode'),a=localStorage.getItem('bk:accent');if(s&&s!=='default'){d.setAttribute('data-bk-style',s);var c=document.currentScript,t=c&&c.getAttribute('data-bk-skins');if(t&&!document.querySelector('link[data-bk-skin="'+s+'"]')){var l=document.createElement('link');l.rel='stylesheet';l.href=t.replace('{skin}',s);l.setAttribute('data-bk-skin',s);document.head.appendChild(l);}}if(m)d.setAttribute('data-bk-theme',m);else if(!d.getAttribute('data-bk-theme'))d.setAttribute('data-bk-theme','auto');if(a&&a!=='none')d.setAttribute('data-bk-accent',a);d.classList.add('bk-no-js');}catch(e){}})();`;
 writeFileSync(join(dist, 'no-flash.js'), flash);
 
 /* ---------------------------------------------------------- manifest --- */

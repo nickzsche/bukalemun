@@ -18,6 +18,8 @@ export type SkinName =
 
 export type ColorMode = 'light' | 'dark' | 'auto';
 export type ResolvedMode = 'light' | 'dark';
+/** The accent axis: the skin's own accent, or the same family rotated warmer or cooler. */
+export type AccentName = 'none' | 'warm' | 'cool';
 
 export type Placement =
   | 'top' | 'top-start' | 'top-end'
@@ -39,6 +41,7 @@ export interface ThemeState {
   style: SkinName;
   mode: ColorMode;
   resolved: ResolvedMode;
+  accent: AccentName;
 }
 
 export interface Theme {
@@ -59,6 +62,12 @@ export interface Theme {
   setMode(mode: ColorMode, persist?: boolean): ColorMode;
   resolved(): ResolvedMode;
   toggle(): ColorMode;
+  /** The two generated variants, without 'none'. */
+  readonly accents: AccentName[];
+  accentInfo(name?: AccentName): SkinInfo;
+  getAccent(): AccentName;
+  setAccent(name: AccentName, persist?: boolean): AccentName;
+  nextAccent(): AccentName;
   sync(): void;
   restore(): void;
   /** Returns an unsubscribe function. */

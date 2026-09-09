@@ -140,7 +140,7 @@
   </div>
 
   <ul class="doc-hero-facts">
-    <li><strong>50</strong> skins, light and dark</li>
+    <li><strong>50</strong> skins, light and dark, warm and cool</li>
     <li><strong>65+</strong> components</li>
     <li><strong>0</strong> dependencies</li>
     <li><strong id="hero-version">v1.6.0</strong> · MIT</li>
@@ -266,6 +266,11 @@ import bk from 'bukalemun';</code></pre>
       <button class="bk-segmented-item" data-bk-mode-set="dark">Dark</button>
       <button class="bk-segmented-item" data-bk-mode-set="auto">Auto</button>
     </div>
+    <div class="bk-segmented bk-segmented-sm" role="group" aria-label="Accent">
+      <button class="bk-segmented-item" data-bk-accent-set="none">Skin's own</button>
+      <button class="bk-segmented-item" data-bk-accent-set="warm">Warmer</button>
+      <button class="bk-segmented-item" data-bk-accent-set="cool">Cooler</button>
+    </div>
   </div>
 
   <div class="bk-panel" style="margin-top: var(--bk-space-6);">
@@ -298,6 +303,9 @@ import bk from 'bukalemun';</code></pre>
     </div>
     <p class="bk-help" style="margin-top: var(--bk-space-3);">
       Density, radius and direction are orthogonal to the skin — they compose with all 50.
+      So does the accent: <em>Warmer</em> and <em>Cooler</em> are the skin's own accent family
+      rotated thirty degrees in hue, generated from the skin rather than painted, and audited
+      like everything else.
     </p>
   </div>
 </section>

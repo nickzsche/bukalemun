@@ -39,12 +39,12 @@ Change one attribute, change everything.
 <html data-bk-style="brutal" data-bk-theme="dark">
 ```
 
-That is the whole install — **32.7 KB of CSS gzipped**, no build step, no config
+That is the whole install — **33.0 KB of CSS gzipped**, no build step, no config
 file, no plugin ecosystem, no `node_modules`.
 
 Fifty skins in one file is the *playground* build, not the shipping one. Reach
 for `bukalemun.min.css` when you want a visitor to be able to try all of them
-in a picker; it costs 91 KB gzipped, which is fifty palettes you are not
+in a picker; it costs 120 KB gzipped, which is fifty palettes you are not
 using.
 
 ---
@@ -92,11 +92,19 @@ one attribute change.
 
 Every skin ships a light **and** a dark palette, and every one is contrast-audited.
 
+Every skin also carries two **accent variants**, `warm` and `cool`: the same
+accent family rotated thirty degrees in hue, with saturation and lightness left
+exactly where the skin put them, so a brutalist yellow becomes a brutalist
+orange and a vaporwave pink becomes a vaporwave coral. They are generated, not
+painted (`scripts/derive-variants.mjs`), and every one is audited and locked
+like a skin. Switch with `data-bk-accent="warm|cool"` on `<html>`.
+
 ```js
 bk.theme.setStyle('vapor');   // switch
 bk.theme.next();              // cycle
 bk.theme.random();            // roll the dice
 bk.theme.toggle();            // light ⇄ dark
+bk.theme.setAccent('cool');   // the skin's accent, thirty degrees cooler
 bk.theme.loadFonts();         // opt-in: fetch the skin's display face from Google Fonts
 ```
 
@@ -110,7 +118,7 @@ The choice persists in `localStorage`. Paste `dist/no-flash.js` inline in
 ## Install
 
 **CDN — what you should ship** · core + every component, then one skin.
-30.8 KB + 1.7 KB gzipped.
+31.0 KB + 2.0 KB gzipped.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.base.min.css">
@@ -139,7 +147,7 @@ paints in the wrong palette. This is what the docs and every demo do: about
 up front, and `bk.theme.lazy(template)` sets the template from script instead.
 
 **CDN — all fifty in one file** · for a playground where every skin is on the
-page at once. 98 KB gzipped.
+page at once. 120 KB gzipped.
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.css">
@@ -180,12 +188,12 @@ await bk.confirm({ title: 'Ship it?', danger: true });
 
 | file | raw | gzip |
 |---|---:|---:|
-| `bukalemun.base.min.css` — core + every component, no skins | 179 KB | **30.9 KB** |
-| a single skin, e.g. `styles/brutal.min.css` | 8 KB | **1.7 KB** |
-| **the two above — what you should ship** | 186 KB | **32.7 KB** |
-| `bukalemun.min.js` — the full runtime, entirely optional | 78 KB | **22.6 KB** |
-| `bukalemun.min.css` — all fifty skins in one file | 610 KB | **97.8 KB** |
-| `bukalemun.core.min.css` — tokens, reset, layout, utilities, a11y, **no components** | 61 KB | **13.4 KB** |
+| `bukalemun.base.min.css` — core + every component, no skins | 180 KB | **31.0 KB** |
+| a single skin with its two accent variants, e.g. `styles/brutal.min.css` | 10 KB | **2.0 KB** |
+| **the two above — what you should ship** | 190 KB | **33.0 KB** |
+| `bukalemun.min.js` — the full runtime, entirely optional | 82 KB | **23.4 KB** |
+| `bukalemun.min.css` — all fifty skins in one file | 768 KB | **119.7 KB** |
+| `bukalemun.core.min.css` — tokens, reset, layout, utilities, a11y, **no components** | 63 KB | **13.5 KB** |
 
 The last two rows are not smaller ways to install the framework. The fifty-skin
 bundle is for playgrounds and style pickers — this project's own demos use it
@@ -293,9 +301,10 @@ Not a checklist item — a build gate.
 - **Native elements first.** Checkboxes are `<input type=checkbox>`, dialogs are
   `<dialog>`, accordions are `<details>`. Semantics and keyboard support come
   from the platform, not from re-implementations.
-- **7 242 contrast pairs are audited on every `npm test`** — 51 skins × 2 colour
-  modes × every foreground/background combination the components actually paint,
-  hover and active fills, cards, overlays and inverted surfaces included.
+- **21 442 contrast pairs are audited on every `npm test`** — 51 skins × 2 colour
+  modes × 3 accent variants × every foreground/background combination the
+  components actually paint, hover and active fills, cards, overlays and
+  inverted surfaces included.
   `node tests/contrast.mjs` resolves the token graph (var() chains, fallbacks,
   alpha compositing) without a browser and fails the build below WCAG AA.
 - **Forced colours are handled properly.** In Windows High Contrast the skins
@@ -342,11 +351,12 @@ By hand: override tokens; never fork a component.
 .checkout { --bk-primary: #16794b; }   /* scoped to a region */
 ```
 
-Three axes compose freely with all 50 skins:
+Four axes compose freely with all 50 skins:
 
 ```html
 <html data-bk-style="glass"
       data-bk-theme="dark"
+      data-bk-accent="cool"
       data-bk-density="compact"
       data-bk-radius="full">
 ```
@@ -359,7 +369,7 @@ cd bukalemun
 npm run build          # concatenate + minify (no dependencies)
 npm test               # structure suite + contrast audit + palette lock
 npm run docs           # http://localhost:4321
-npm run contrast:fix   # re-derive accessible accent variants
+npm run contrast:fix   # re-derive the contrast fixes and the warm/cool accent variants
 npm run palette:update # re-lock the palette snapshot after a deliberate change
 ```
 
@@ -371,7 +381,7 @@ Three test layers, none of which need a browser:
 | suite | what it protects |
 |---|---|
 | `tests/run.mjs` | structure — token contract, skin scoping, naming, build integrity |
-| `tests/contrast.mjs` | legibility — 7 242 WCAG pairs across every skin and mode |
+| `tests/contrast.mjs` | legibility — 21 000+ WCAG pairs across every skin, mode and accent variant |
 | `tests/palette.mjs` | identity — a lockfile of how each skin *resolves*, so a refactor cannot repaint a skin in silence |
 
 ## Browser support

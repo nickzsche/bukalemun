@@ -11,7 +11,7 @@
 
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadTokens, tokenMap, pairsFor } from '../scripts/lib/tokens.mjs';
+import { loadTokens, tokenMap, pairsFor, combinations } from '../scripts/lib/tokens.mjs';
 
 const src = join(dirname(fileURLToPath(import.meta.url)), '..', 'src');
 const VERBOSE = process.argv.includes('--verbose');
@@ -22,13 +22,16 @@ const skins = Object.keys(tokens.SKINS);
 let checked = 0;
 const failures = [];
 
-for (const skin of skins) {
-  for (const mode of ['light', 'dark']) {
-    for (const pair of pairsFor(tokenMap(tokens, skin, mode))) {
-      checked++;
-      if (pair.ratio + 0.005 < pair.min) failures.push({ skin, mode, ...pair });
-      else if (VERBOSE) console.log(`    ${skin}/${mode}  ${pair.label}  ${pair.ratio.toFixed(2)}`);
-    }
+// Every skin, both modes, and each accent variant a skin carries — a variant
+// is a palette like any other and gets audited like one.
+let variantCombos = 0;
+for (const { skin, mode, variant } of combinations(tokens)) {
+  if (variant) variantCombos++;
+  const key = variant ? `${skin}/${mode}/${variant}` : `${skin}/${mode}`;
+  for (const pair of pairsFor(tokenMap(tokens, skin, mode, variant))) {
+    checked++;
+    if (pair.ratio + 0.005 < pair.min) failures.push({ key, ...pair });
+    else if (VERBOSE) console.log(`    ${key}  ${pair.label}  ${pair.ratio.toFixed(2)}`);
   }
 }
 
@@ -37,7 +40,8 @@ for (const skin of skins) {
 const skinCount = skins.filter((s) => s !== 'default').length;
 console.log(
   `\n\x1b[1mBukalemun contrast audit\x1b[0m — ${checked} pairs, ` +
-  `${skinCount} skins + the default palette, light and dark\n`
+  `${skinCount} skins + the default palette, light and dark` +
+  (variantCombos ? `, plus ${variantCombos} accent-variant palettes` : '') + '\n'
 );
 
 if (!failures.length) {
@@ -46,7 +50,7 @@ if (!failures.length) {
 }
 
 const grouped = {};
-for (const f of failures) (grouped[`${f.skin}/${f.mode}`] ||= []).push(f);
+for (const f of failures) (grouped[f.key] ||= []).push(f);
 for (const [key, list] of Object.entries(grouped)) {
   console.log(`\x1b[31m  ${key}\x1b[0m`);
   for (const f of list.sort((a, b) => a.ratio - b.ratio)) {

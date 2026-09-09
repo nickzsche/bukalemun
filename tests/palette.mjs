@@ -16,7 +16,7 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadTokens, tokenMap, get, toHex, ROLES } from '../scripts/lib/tokens.mjs';
+import { loadTokens, tokenMap, get, toHex, ROLES, combinations } from '../scripts/lib/tokens.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const src = join(here, '..', 'src');
@@ -53,19 +53,21 @@ const tokens = loadTokens(src);
 
 function snapshot() {
   const out = {};
-  for (const skin of Object.keys(tokens.SKINS).sort()) {
-    for (const mode of ['light', 'dark']) {
-      const map = tokenMap(tokens, skin, mode);
-      const entry = {};
-      for (const t of COLOUR_TOKENS) {
-        const c = get(map, t);
-        if (c) entry[t] = c.a < 1 ? `${toHex(c)}@${c.a.toFixed(2)}` : toHex(c);
-      }
-      for (const t of LITERAL_TOKENS) {
-        if (map[t] !== undefined) entry[t] = map[t].replace(/\s+/g, ' ').trim();
-      }
-      out[`${skin}/${mode}`] = entry;
+  // skin/mode, then skin/mode/warm and skin/mode/cool: a variant that
+  // repaints itself is as much a regression as a skin that does.
+  const combos = combinations(tokens).sort((x, y) =>
+    x.skin.localeCompare(y.skin) || x.mode.localeCompare(y.mode) || String(x.variant).localeCompare(String(y.variant)));
+  for (const { skin, mode, variant } of combos) {
+    const map = tokenMap(tokens, skin, mode, variant);
+    const entry = {};
+    for (const t of COLOUR_TOKENS) {
+      const c = get(map, t);
+      if (c) entry[t] = c.a < 1 ? `${toHex(c)}@${c.a.toFixed(2)}` : toHex(c);
     }
+    for (const t of LITERAL_TOKENS) {
+      if (map[t] !== undefined) entry[t] = map[t].replace(/\s+/g, ' ').trim();
+    }
+    out[variant ? `${skin}/${mode}/${variant}` : `${skin}/${mode}`] = entry;
   }
   return out;
 }
@@ -99,9 +101,11 @@ const total = Object.keys(current).length;
 // trap the prose already has a test for.
 const palettes = new Set(Object.keys(current).map((k) => k.split('/')[0]));
 const skinCount = [...palettes].filter((p) => p !== 'default').length;
+const variantCount = Object.keys(current).filter((k) => k.split('/').length === 3).length;
 console.log(
   `\n\x1b[1mBukalemun palette lock\x1b[0m — ${total} snapshots ` +
-  `(${skinCount} skins + the default, light and dark)\n`
+  `(${skinCount} skins + the default, light and dark` +
+  (variantCount ? `, ${variantCount} of them accent variants)` : ')') + '\n'
 );
 
 if (!drift.length) {

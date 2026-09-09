@@ -681,14 +681,24 @@ var bk = (function () {
   };
   Object.keys(META).forEach(function (k) { META[k].fonts = FONTS.hasOwnProperty(k) ? FONTS[k] : null; });
 
+  /* The third axis. A skin's accent family, rotated warmer or cooler by the
+     build (scripts/derive-variants.mjs) and switched with data-bk-accent. */
+  var ACCENTS = ['warm', 'cool'];
+  var ACCENT_META = {
+    'none': { label: 'Skin\'s own', blurb: 'The accent the skin was drawn with.' },
+    'warm': { label: 'Warmer',     blurb: 'The same accent, thirty degrees toward red.' },
+    'cool': { label: 'Cooler',     blurb: 'The same accent, thirty degrees toward blue.' }
+  };
+
   var KEY_STYLE = 'bk:style';
   var KEY_MODE = 'bk:mode';
+  var KEY_ACCENT = 'bk:accent';
   var listeners = [];
 
   function root() { return document.documentElement; }
 
   function notify() {
-    var s = { style: getStyle(), mode: getMode(), resolved: resolvedMode() };
+    var s = { style: getStyle(), mode: getMode(), resolved: resolvedMode(), accent: getAccent() };
     listeners.slice().forEach(function (fn) { fn(s); });
     bk.emit(root(), 'bk:themechange', s);
   }
@@ -853,6 +863,25 @@ var bk = (function () {
     return setMode(resolvedMode() === 'dark' ? 'light' : 'dark');
   }
 
+  function getAccent() {
+    return root().getAttribute('data-bk-accent') || 'none';
+  }
+
+  function setAccent(name, persist) {
+    var value = ACCENTS.indexOf(name) === -1 ? 'none' : name;
+    if (value === 'none') root().removeAttribute('data-bk-accent');
+    else root().setAttribute('data-bk-accent', value);
+    if (persist !== false) bk.storage.set(KEY_ACCENT, value);
+    syncControls();
+    notify();
+    return value;
+  }
+
+  function nextAccent() {
+    var all = ['none'].concat(ACCENTS);
+    return setAccent(all[(all.indexOf(getAccent()) + 1) % all.length]);
+  }
+
   /** Reflect current state onto any control that declares itself a theme UI. */
   function syncControls() {
     var style = getStyle(), mode = getMode(), resolved = resolvedMode();
@@ -872,13 +901,22 @@ var bk = (function () {
       var label = n.getAttribute('data-bk-theme-toggle');
       if (label && label !== 'true') n.setAttribute('aria-label', label);
     });
+    var accent = getAccent();
+    bk.$$('[data-bk-accent-set]').forEach(function (n) {
+      var on = (n.getAttribute('data-bk-accent-set') || 'none') === accent;
+      n.setAttribute('aria-pressed', on ? 'true' : 'false');
+      n.classList.toggle('bk-is-active', on);
+    });
+    bk.$$('select[data-bk-accent-select]').forEach(function (n) { n.value = accent; });
   }
 
   function restore() {
     var savedStyle = bk.storage.get(KEY_STYLE, null);
     var savedMode = bk.storage.get(KEY_MODE, null);
+    var savedAccent = bk.storage.get(KEY_ACCENT, null);
     if (savedStyle) setStyle(savedStyle, false);
     if (savedMode) setMode(savedMode, false);
+    if (savedAccent) setAccent(savedAccent, false);
     else if (!root().hasAttribute('data-bk-theme')) root().setAttribute('data-bk-theme', 'auto');
     syncControls();
   }
@@ -889,7 +927,7 @@ var bk = (function () {
     styles: STYLES,
     meta: META,
     info: function (name) { return META[name || getStyle()] || { label: name, blurb: '' }; },
-    get: function () { return { style: getStyle(), mode: getMode(), resolved: resolvedMode() }; },
+    get: function () { return { style: getStyle(), mode: getMode(), resolved: resolvedMode(), accent: getAccent() }; },
     getStyle: getStyle,
     setStyle: setStyle,
     next: nextStyle,
@@ -907,6 +945,11 @@ var bk = (function () {
     setMode: setMode,
     resolved: resolvedMode,
     toggle: toggleMode,
+    accents: ACCENTS,
+    accentInfo: function (name) { return ACCENT_META[name || getAccent()] || { label: name, blurb: '' }; },
+    getAccent: getAccent,
+    setAccent: setAccent,
+    nextAccent: nextAccent,
     sync: syncControls,
     restore: restore,
     onChange: function (fn) {
@@ -918,7 +961,7 @@ var bk = (function () {
   bk.theme = theme;
 
   bk.define('theme-controls', {
-    selector: '[data-bk-theme-toggle],[data-bk-style-set],[data-bk-mode-set],[data-bk-style-select],[data-bk-style-cycle]',
+    selector: '[data-bk-theme-toggle],[data-bk-style-set],[data-bk-mode-set],[data-bk-style-select],[data-bk-style-cycle],[data-bk-accent-set],[data-bk-accent-select],[data-bk-accent-cycle]',
     setup: function (node) {
       if (node.matches('[data-bk-theme-toggle]')) {
         bk.on(node, 'click', function () { toggleMode(); });
@@ -930,6 +973,18 @@ var bk = (function () {
         bk.on(node, 'click', function () {
           nextStyle(node.getAttribute('data-bk-style-cycle') === 'prev' ? -1 : 1);
         });
+      } else if (node.matches('[data-bk-accent-set]')) {
+        bk.on(node, 'click', function () { setAccent(node.getAttribute('data-bk-accent-set')); });
+      } else if (node.matches('[data-bk-accent-cycle]')) {
+        bk.on(node, 'click', function () { nextAccent(); });
+      } else if (node.matches('select[data-bk-accent-select]')) {
+        if (!node.options.length) {
+          ['none'].concat(ACCENTS).forEach(function (a) {
+            node.appendChild(bk.el('option', { value: a }, ACCENT_META[a].label));
+          });
+        }
+        node.value = getAccent();
+        bk.on(node, 'change', function () { setAccent(node.value); });
       } else if (node.matches('select[data-bk-style-select]')) {
         if (!node.options.length) {
           STYLES.forEach(function (s) {

@@ -177,6 +177,32 @@ wrong first:
    it points at may itself be pinned per mode — following the link would drag a
    light-mode fix into dark mode.
 
+## Accent variants
+
+Every skin also carries a `warm` and a `cool` accent variant, switched with
+`data-bk-accent` on `<html>` and orthogonal to the skin and the colour mode.
+Nobody painted them. `scripts/derive-variants.mjs` takes the skin's own accent
+family — `--bk-primary` and `--bk-secondary` with their washes and borders,
+plus any knob the skin paints in that hue (rings, selections, glows, focus
+shadows, accent borders) — and rotates every literal in it 30° in hue, toward
+red for warm and toward blue for cool, with saturation and lightness left
+exactly where they were. The hover and active fills the core derives from a
+fill follow it automatically. Page, surfaces, text and the status roles never
+move; they are what makes the skin the skin. A grey accent (minimal, wireframe)
+is tinted instead of rotated, faintly, and only where there is lightness to tint.
+
+Whatever the rotation pushes below WCAG AA is then re-fitted by lightness only,
+with the same last resort as the contrast deriver (move the fill, pair it with
+black or white). The output lands in a second regenerable block at the end of
+the skin file, as `[data-bk-style="x"][data-bk-accent="warm"]` plus a mode block
+for each mode the skin declares — one attribute longer than the block it
+shadows, so it wins at every layer of the cascade. The build mirrors the variant
+mode blocks into `auto` exactly as it does the skin's own.
+
+Variants are audited and locked like skins: the contrast suite covers every
+(skin, mode, variant) and the palette lock holds three snapshots per skin and
+mode instead of one.
+
 ## Three test layers
 
 Each one protects a different property, and none of them needs a browser.
@@ -295,7 +321,8 @@ dist/              generated — do not edit
    `src/js/modules/theme.js` — a test enforces that they stay in sync.
 4. Add the slug to the `SkinName` union in `types/index.d.ts` — also enforced
    by a test.
-5. `npm run contrast:fix && npm test`.
+5. `npm run contrast:fix && npm test` — this also generates the skin's warm and
+   cool accent variants.
 
 The build picks the file up automatically; nothing else needs editing.
 

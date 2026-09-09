@@ -341,6 +341,21 @@ test('every skin scopes its rules under its own attribute selector', () => {
   }
 });
 
+// The variants are generated, and a skin that missed the generator would ship
+// with a data-bk-accent axis that silently does nothing.
+test('every skin carries a warm and a cool accent variant', () => {
+  for (const skinPath of skinPaths) {
+    const name = basename(skinPath, '.css');
+    const body = read(skinPath);
+    for (const variant of ['warm', 'cool']) {
+      assert(
+        body.includes(`[data-bk-style="${name}"][data-bk-accent="${variant}"]`),
+        `${basename(skinPath)} has no ${variant} accent variant — run npm run variants:update`
+      );
+    }
+  }
+});
+
 test('skin list in theme.js matches the files on disk', () => {
   const themeJs = read(join(src, 'js', 'modules', 'theme.js'));
   // Slugs may contain digits (y2k, retro70s), so do not restrict to letters.

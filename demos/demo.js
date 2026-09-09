@@ -19,6 +19,7 @@
   var params = new URLSearchParams(location.search);
   var forcedSkin = params.get('skin');
   var forcedMode = params.get('mode');
+  var forcedAccent = params.get('accent');
   var wantsChrome = params.get('chrome') !== '0';
   var root = document.documentElement;
 
@@ -46,6 +47,7 @@
     root.setAttribute('data-bk-style', forcedSkin);
   }
   if (forcedMode) root.setAttribute('data-bk-theme', forcedMode);
+  if (forcedAccent) root.setAttribute('data-bk-accent', forcedAccent);
 
   /* --- 2. the dock ------------------------------------------------------- */
 
@@ -83,6 +85,16 @@
     // select[data-bk-style-select] from its skin list, which keeps this from
     // going stale the next time a skin is added.
     host.appendChild(select);
+
+    // Same trick for the accent axis: the runtime fills it with the skin's
+    // own accent plus the two generated variants.
+    var accent = el('select', {
+      class: 'bk-select bk-select-sm',
+      'data-bk-accent-select': '',
+      'data-demo-hide-sm': '',
+      'aria-label': 'Accent'
+    });
+    host.appendChild(accent);
 
     var group = el('div', { class: 'bk-btn-group bk-btn-group-attached' });
     group.appendChild(el('button', {
@@ -209,6 +221,7 @@
     // the URL. Put the URL back, still without persisting it.
     if (forcedSkin) bk.theme.setStyle(forcedSkin, false);
     if (forcedMode) bk.theme.setMode(forcedMode, false);
+    if (forcedAccent) bk.theme.setAccent(forcedAccent, false);
 
     buildDock(bk);
     shortcuts(bk);
