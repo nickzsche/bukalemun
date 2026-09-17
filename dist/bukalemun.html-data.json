@@ -1,0 +1,1340 @@
+{
+  "version": 1.1,
+  "globalAttributes": [
+    {
+      "name": "data-bk-style",
+      "description": {
+        "kind": "markdown",
+        "value": "The skin for the page, set on <html>. Omit it for the default skin."
+      },
+      "values": [
+        {
+          "name": "default",
+          "description": "Default. Neutral, modern, boring on purpose."
+        },
+        {
+          "name": "brutal",
+          "description": "Neo-Brutalist. Hard shadows, thick ink, zero radius."
+        },
+        {
+          "name": "glass",
+          "description": "Glassmorphism. Frosted panes over an aurora."
+        },
+        {
+          "name": "neumorph",
+          "description": "Neumorphism. One slab of plastic, lit top-left."
+        },
+        {
+          "name": "skeuo",
+          "description": "Skeuomorphic. Bevels, gloss and brushed metal."
+        },
+        {
+          "name": "terminal",
+          "description": "Terminal. Phosphor on a CRT, scanlines included."
+        },
+        {
+          "name": "swiss",
+          "description": "Swiss. Grid, Helvetica, one red accent."
+        },
+        {
+          "name": "memphis",
+          "description": "Memphis. 80s confetti and clashing pastels."
+        },
+        {
+          "name": "clay",
+          "description": "Claymorphism. Puffy pastel dough with fat corners."
+        },
+        {
+          "name": "cyber",
+          "description": "Cyberpunk. Chamfered neon HUD panels."
+        },
+        {
+          "name": "pixel",
+          "description": "8-bit. Everything snaps to the pixel grid."
+        },
+        {
+          "name": "material",
+          "description": "Material. Elevation, tonal surfaces, ripples."
+        },
+        {
+          "name": "minimal",
+          "description": "Minimal. Hairlines and whitespace only."
+        },
+        {
+          "name": "paper",
+          "description": "Newsprint. Serif editorial on textured stock."
+        },
+        {
+          "name": "aurora",
+          "description": "Aurora. Gradient mesh and soft glow."
+        },
+        {
+          "name": "blueprint",
+          "description": "Blueprint. Cyan drafting ink on navy grid."
+        },
+        {
+          "name": "deco",
+          "description": "Art Deco. Gold hairlines, stepped chamfers."
+        },
+        {
+          "name": "bauhaus",
+          "description": "Bauhaus. Primary colours, primary shapes."
+        },
+        {
+          "name": "vapor",
+          "description": "Vaporwave. Sunset grid, chrome, VHS fringe."
+        },
+        {
+          "name": "organic",
+          "description": "Organic. Blob radii and earthy pigments."
+        },
+        {
+          "name": "aero",
+          "description": "Frutiger Aero. Glossy aqua optimism, circa 2006."
+        },
+        {
+          "name": "sketch",
+          "description": "Hand-drawn. Wobbly ink on notebook paper."
+        },
+        {
+          "name": "luxe",
+          "description": "Editorial Noir. Charcoal, champagne, high-contrast serif."
+        },
+        {
+          "name": "y2k",
+          "description": "Y2K Chrome. Liquid chrome type and bevelled bubbles."
+        },
+        {
+          "name": "zen",
+          "description": "Japandi. Washi paper, sumi ink, one clay accent."
+        },
+        {
+          "name": "comic",
+          "description": "Comic. Ink outlines and Ben-Day halftone dots."
+        },
+        {
+          "name": "wireframe",
+          "description": "Wireframe. Lo-fi greyscale mockup, dashed and honest."
+        },
+        {
+          "name": "solarpunk",
+          "description": "Solarpunk. Brass and leaf green on limewashed plaster."
+        },
+        {
+          "name": "retro70s",
+          "description": "Retro 70s. Avocado, rust and harvest gold bands."
+        },
+        {
+          "name": "pixelart",
+          "description": "Pixel Art. 16-bit palette, dithering instead of gradients."
+        },
+        {
+          "name": "riso",
+          "description": "Risograph. Two spot inks, overprinted, slightly off-register."
+        },
+        {
+          "name": "gothic",
+          "description": "Gothic. Blackletter, oxblood and tarnished gold."
+        },
+        {
+          "name": "win95",
+          "description": "Desktop 95. Grey chrome, outset bevels, title bars."
+        },
+        {
+          "name": "macclassic",
+          "description": "Mac Classic. One bit of colour depth, pinstriped."
+        },
+        {
+          "name": "noir",
+          "description": "Film Noir. Hard light, venetian blinds, one bruise."
+        },
+        {
+          "name": "candy",
+          "description": "Bubblegum. Glossy, saturated and entirely unserious."
+        },
+        {
+          "name": "industrial",
+          "description": "Industrial. Concrete, safety orange, hazard striping."
+        },
+        {
+          "name": "herbarium",
+          "description": "Herbarium. Pressed-specimen sheet, engraved serif."
+        },
+        {
+          "name": "typewriter",
+          "description": "Typewriter. Struck on onion skin, red ribbon."
+        },
+        {
+          "name": "magazine",
+          "description": "Magazine. Newsstand headlines, one arterial red."
+        },
+        {
+          "name": "ledger",
+          "description": "Ledger. Green-bar paper and figures that add up."
+        },
+        {
+          "name": "nouveau",
+          "description": "Art Nouveau. Whiplash curves, sage and old brass."
+        },
+        {
+          "name": "holo",
+          "description": "Holographic. Prism foil that shifts as it moves."
+        },
+        {
+          "name": "thermal",
+          "description": "Thermal. One ink, no greys — only dithered dots."
+        },
+        {
+          "name": "chalk",
+          "description": "Blackboard. Slate, chalk dust and unclosed strokes."
+        },
+        {
+          "name": "neonsign",
+          "description": "Neon Sign. Bent glass on brick, humming slightly."
+        },
+        {
+          "name": "denim",
+          "description": "Denim. Indigo twill, contrast topstitching."
+        },
+        {
+          "name": "marble",
+          "description": "Marble. Carrara veining and inscriptional caps."
+        },
+        {
+          "name": "space",
+          "description": "Observatory. Deep field, star map, instrument cyan."
+        },
+        {
+          "name": "clinical",
+          "description": "Clinical. Sterile white, mint, strict tabular grid."
+        },
+        {
+          "name": "origami",
+          "description": "Origami. Every sheet has a corner folded back."
+        }
+      ]
+    },
+    {
+      "name": "data-bk-theme",
+      "description": {
+        "kind": "markdown",
+        "value": "Colour mode, set on <html>."
+      },
+      "values": [
+        {
+          "name": "auto",
+          "description": "Follow the operating system preference."
+        },
+        {
+          "name": "light",
+          "description": "Always light."
+        },
+        {
+          "name": "dark",
+          "description": "Always dark."
+        }
+      ]
+    },
+    {
+      "name": "data-bk-accent",
+      "description": {
+        "kind": "markdown",
+        "value": "Accent variant, set on <html>: the skin's accent turned warmer or cooler."
+      },
+      "values": [
+        {
+          "name": "none",
+          "description": "The skin's own accent."
+        },
+        {
+          "name": "warm",
+          "description": "The skin's accent rotated toward red."
+        },
+        {
+          "name": "cool",
+          "description": "The skin's accent rotated toward blue."
+        }
+      ]
+    },
+    {
+      "name": "data-bk-density",
+      "description": {
+        "kind": "markdown",
+        "value": "Spacing scale for everything inside."
+      },
+      "values": [
+        {
+          "name": "compact",
+          "description": "Tighter spacing."
+        },
+        {
+          "name": "comfortable",
+          "description": "Looser spacing."
+        }
+      ]
+    },
+    {
+      "name": "data-bk-radius",
+      "description": {
+        "kind": "markdown",
+        "value": "Corner radius override, independent of the skin."
+      },
+      "values": [
+        {
+          "name": "none",
+          "description": "Square corners."
+        },
+        {
+          "name": "sm",
+          "description": "Half the skin's radius."
+        },
+        {
+          "name": "lg",
+          "description": "A larger radius."
+        },
+        {
+          "name": "full",
+          "description": "Pill-shaped controls."
+        }
+      ]
+    },
+    {
+      "name": "data-bk-theme-toggle",
+      "description": {
+        "kind": "markdown",
+        "value": "Click toggles light and dark mode. The value, if any, becomes its accessible label."
+      }
+    },
+    {
+      "name": "data-bk-mode-set",
+      "description": {
+        "kind": "markdown",
+        "value": "Click sets this colour mode. aria-pressed tracks the current mode."
+      },
+      "values": [
+        {
+          "name": "auto",
+          "description": "Follow the operating system preference."
+        },
+        {
+          "name": "light",
+          "description": "Always light."
+        },
+        {
+          "name": "dark",
+          "description": "Always dark."
+        }
+      ]
+    },
+    {
+      "name": "data-bk-style-set",
+      "description": {
+        "kind": "markdown",
+        "value": "Click switches to this skin. aria-pressed tracks the current skin."
+      },
+      "values": [
+        {
+          "name": "default",
+          "description": "Default. Neutral, modern, boring on purpose."
+        },
+        {
+          "name": "brutal",
+          "description": "Neo-Brutalist. Hard shadows, thick ink, zero radius."
+        },
+        {
+          "name": "glass",
+          "description": "Glassmorphism. Frosted panes over an aurora."
+        },
+        {
+          "name": "neumorph",
+          "description": "Neumorphism. One slab of plastic, lit top-left."
+        },
+        {
+          "name": "skeuo",
+          "description": "Skeuomorphic. Bevels, gloss and brushed metal."
+        },
+        {
+          "name": "terminal",
+          "description": "Terminal. Phosphor on a CRT, scanlines included."
+        },
+        {
+          "name": "swiss",
+          "description": "Swiss. Grid, Helvetica, one red accent."
+        },
+        {
+          "name": "memphis",
+          "description": "Memphis. 80s confetti and clashing pastels."
+        },
+        {
+          "name": "clay",
+          "description": "Claymorphism. Puffy pastel dough with fat corners."
+        },
+        {
+          "name": "cyber",
+          "description": "Cyberpunk. Chamfered neon HUD panels."
+        },
+        {
+          "name": "pixel",
+          "description": "8-bit. Everything snaps to the pixel grid."
+        },
+        {
+          "name": "material",
+          "description": "Material. Elevation, tonal surfaces, ripples."
+        },
+        {
+          "name": "minimal",
+          "description": "Minimal. Hairlines and whitespace only."
+        },
+        {
+          "name": "paper",
+          "description": "Newsprint. Serif editorial on textured stock."
+        },
+        {
+          "name": "aurora",
+          "description": "Aurora. Gradient mesh and soft glow."
+        },
+        {
+          "name": "blueprint",
+          "description": "Blueprint. Cyan drafting ink on navy grid."
+        },
+        {
+          "name": "deco",
+          "description": "Art Deco. Gold hairlines, stepped chamfers."
+        },
+        {
+          "name": "bauhaus",
+          "description": "Bauhaus. Primary colours, primary shapes."
+        },
+        {
+          "name": "vapor",
+          "description": "Vaporwave. Sunset grid, chrome, VHS fringe."
+        },
+        {
+          "name": "organic",
+          "description": "Organic. Blob radii and earthy pigments."
+        },
+        {
+          "name": "aero",
+          "description": "Frutiger Aero. Glossy aqua optimism, circa 2006."
+        },
+        {
+          "name": "sketch",
+          "description": "Hand-drawn. Wobbly ink on notebook paper."
+        },
+        {
+          "name": "luxe",
+          "description": "Editorial Noir. Charcoal, champagne, high-contrast serif."
+        },
+        {
+          "name": "y2k",
+          "description": "Y2K Chrome. Liquid chrome type and bevelled bubbles."
+        },
+        {
+          "name": "zen",
+          "description": "Japandi. Washi paper, sumi ink, one clay accent."
+        },
+        {
+          "name": "comic",
+          "description": "Comic. Ink outlines and Ben-Day halftone dots."
+        },
+        {
+          "name": "wireframe",
+          "description": "Wireframe. Lo-fi greyscale mockup, dashed and honest."
+        },
+        {
+          "name": "solarpunk",
+          "description": "Solarpunk. Brass and leaf green on limewashed plaster."
+        },
+        {
+          "name": "retro70s",
+          "description": "Retro 70s. Avocado, rust and harvest gold bands."
+        },
+        {
+          "name": "pixelart",
+          "description": "Pixel Art. 16-bit palette, dithering instead of gradients."
+        },
+        {
+          "name": "riso",
+          "description": "Risograph. Two spot inks, overprinted, slightly off-register."
+        },
+        {
+          "name": "gothic",
+          "description": "Gothic. Blackletter, oxblood and tarnished gold."
+        },
+        {
+          "name": "win95",
+          "description": "Desktop 95. Grey chrome, outset bevels, title bars."
+        },
+        {
+          "name": "macclassic",
+          "description": "Mac Classic. One bit of colour depth, pinstriped."
+        },
+        {
+          "name": "noir",
+          "description": "Film Noir. Hard light, venetian blinds, one bruise."
+        },
+        {
+          "name": "candy",
+          "description": "Bubblegum. Glossy, saturated and entirely unserious."
+        },
+        {
+          "name": "industrial",
+          "description": "Industrial. Concrete, safety orange, hazard striping."
+        },
+        {
+          "name": "herbarium",
+          "description": "Herbarium. Pressed-specimen sheet, engraved serif."
+        },
+        {
+          "name": "typewriter",
+          "description": "Typewriter. Struck on onion skin, red ribbon."
+        },
+        {
+          "name": "magazine",
+          "description": "Magazine. Newsstand headlines, one arterial red."
+        },
+        {
+          "name": "ledger",
+          "description": "Ledger. Green-bar paper and figures that add up."
+        },
+        {
+          "name": "nouveau",
+          "description": "Art Nouveau. Whiplash curves, sage and old brass."
+        },
+        {
+          "name": "holo",
+          "description": "Holographic. Prism foil that shifts as it moves."
+        },
+        {
+          "name": "thermal",
+          "description": "Thermal. One ink, no greys — only dithered dots."
+        },
+        {
+          "name": "chalk",
+          "description": "Blackboard. Slate, chalk dust and unclosed strokes."
+        },
+        {
+          "name": "neonsign",
+          "description": "Neon Sign. Bent glass on brick, humming slightly."
+        },
+        {
+          "name": "denim",
+          "description": "Denim. Indigo twill, contrast topstitching."
+        },
+        {
+          "name": "marble",
+          "description": "Marble. Carrara veining and inscriptional caps."
+        },
+        {
+          "name": "space",
+          "description": "Observatory. Deep field, star map, instrument cyan."
+        },
+        {
+          "name": "clinical",
+          "description": "Clinical. Sterile white, mint, strict tabular grid."
+        },
+        {
+          "name": "origami",
+          "description": "Origami. Every sheet has a corner folded back."
+        }
+      ]
+    },
+    {
+      "name": "data-bk-style-select",
+      "description": {
+        "kind": "markdown",
+        "value": "On a <select>: switches the skin on change and follows it when changed elsewhere."
+      }
+    },
+    {
+      "name": "data-bk-style-cycle",
+      "description": {
+        "kind": "markdown",
+        "value": "Click moves to the next or previous skin."
+      },
+      "values": [
+        {
+          "name": "next"
+        },
+        {
+          "name": "prev"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-accent-set",
+      "description": {
+        "kind": "markdown",
+        "value": "Click sets this accent variant."
+      },
+      "values": [
+        {
+          "name": "none",
+          "description": "The skin's own accent."
+        },
+        {
+          "name": "warm",
+          "description": "The skin's accent rotated toward red."
+        },
+        {
+          "name": "cool",
+          "description": "The skin's accent rotated toward blue."
+        }
+      ]
+    },
+    {
+      "name": "data-bk-accent-select",
+      "description": {
+        "kind": "markdown",
+        "value": "On a <select>: switches the accent variant on change."
+      }
+    },
+    {
+      "name": "data-bk-accent-cycle",
+      "description": {
+        "kind": "markdown",
+        "value": "Click moves to the next accent variant."
+      }
+    },
+    {
+      "name": "data-bk-skins",
+      "description": {
+        "kind": "markdown",
+        "value": "On the no-flash.js <script>: URL template for lazy skins, with {skin} standing for the name."
+      }
+    },
+    {
+      "name": "data-bk-manual",
+      "description": {
+        "kind": "markdown",
+        "value": "On the bundle <script>: do not boot automatically; call bk.start() yourself."
+      }
+    },
+    {
+      "name": "data-bk-open",
+      "description": {
+        "kind": "markdown",
+        "value": "Click opens the modal or drawer this selector points at."
+      }
+    },
+    {
+      "name": "data-bk-toggle-overlay",
+      "description": {
+        "kind": "markdown",
+        "value": "Click opens or closes the modal or drawer this selector points at."
+      }
+    },
+    {
+      "name": "data-bk-close",
+      "description": {
+        "kind": "markdown",
+        "value": "Click closes the overlay this selector points at, or the enclosing dialog when empty or \"true\"."
+      }
+    },
+    {
+      "name": "data-bk-modal-root",
+      "description": {
+        "kind": "markdown",
+        "value": "Treat this element as a modal even though it is not a dialog.bk-modal."
+      }
+    },
+    {
+      "name": "data-bk-modal-mode",
+      "description": {
+        "kind": "markdown",
+        "value": "On a modal: \"non-modal\" opens it without a backdrop or inert page."
+      },
+      "values": [
+        {
+          "name": "non-modal"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-dismissable",
+      "description": {
+        "kind": "markdown",
+        "value": "On a modal or drawer: \"false\" stops a backdrop click from closing it."
+      },
+      "values": [
+        {
+          "name": "false"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-static",
+      "description": {
+        "kind": "markdown",
+        "value": "On a modal or drawer: \"true\" ignores Esc and shakes instead of closing."
+      },
+      "values": [
+        {
+          "name": "true"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-initial-focus",
+      "description": {
+        "kind": "markdown",
+        "value": "On a modal or drawer: selector of the element that receives focus on open."
+      }
+    },
+    {
+      "name": "data-bk-cmdk",
+      "description": {
+        "kind": "markdown",
+        "value": "Command palette dialog. The value is its hotkey, \"mod+k\" by default."
+      }
+    },
+    {
+      "name": "data-bk-keywords",
+      "description": {
+        "kind": "markdown",
+        "value": "On a command palette item: extra words it matches when searching."
+      }
+    },
+    {
+      "name": "data-bk-value",
+      "description": {
+        "kind": "markdown",
+        "value": "On a menu, command palette or combobox item: the value reported when it is chosen."
+      }
+    },
+    {
+      "name": "data-bk-keep-open",
+      "description": {
+        "kind": "markdown",
+        "value": "On a menu or command palette item: \"true\" keeps the panel open after choosing it."
+      },
+      "values": [
+        {
+          "name": "true"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-tooltip",
+      "description": {
+        "kind": "markdown",
+        "value": "Tooltip text, shown on hover and keyboard focus."
+      }
+    },
+    {
+      "name": "data-bk-title",
+      "description": {
+        "kind": "markdown",
+        "value": "CSS-only tooltip text, shown on hover without the runtime."
+      }
+    },
+    {
+      "name": "data-bk-popover",
+      "description": {
+        "kind": "markdown",
+        "value": "Click toggles the popover panel this selector points at."
+      }
+    },
+    {
+      "name": "data-bk-menu",
+      "description": {
+        "kind": "markdown",
+        "value": "Click toggles the dropdown menu this selector points at, with arrow-key navigation."
+      }
+    },
+    {
+      "name": "data-bk-placement",
+      "description": {
+        "kind": "markdown",
+        "value": "Where a tooltip, popover or menu opens. It flips when there is no room."
+      },
+      "values": [
+        {
+          "name": "top"
+        },
+        {
+          "name": "top-start"
+        },
+        {
+          "name": "top-end"
+        },
+        {
+          "name": "bottom"
+        },
+        {
+          "name": "bottom-start"
+        },
+        {
+          "name": "bottom-end"
+        },
+        {
+          "name": "left"
+        },
+        {
+          "name": "left-start"
+        },
+        {
+          "name": "left-end"
+        },
+        {
+          "name": "right"
+        },
+        {
+          "name": "right-start"
+        },
+        {
+          "name": "right-end"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-delay",
+      "description": {
+        "kind": "markdown",
+        "value": "On a tooltip: milliseconds before it shows. Default 120."
+      }
+    },
+    {
+      "name": "data-bk-tabs",
+      "description": {
+        "kind": "markdown",
+        "value": "Accessible tabs with arrow-key navigation on this container."
+      }
+    },
+    {
+      "name": "data-bk-activation",
+      "description": {
+        "kind": "markdown",
+        "value": "On tabs: \"manual\" moves focus with the arrows and activates on Enter or Space."
+      },
+      "values": [
+        {
+          "name": "manual"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-remember",
+      "description": {
+        "kind": "markdown",
+        "value": "On tabs: storage key that remembers the chosen tab across visits."
+      }
+    },
+    {
+      "name": "data-bk-panel",
+      "description": {
+        "kind": "markdown",
+        "value": "On a tab: selector of the panel it shows."
+      }
+    },
+    {
+      "name": "data-bk-accordion",
+      "description": {
+        "kind": "markdown",
+        "value": "Accordion on this container. \"single\" keeps only one section open."
+      },
+      "values": [
+        {
+          "name": "single"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-collapse",
+      "description": {
+        "kind": "markdown",
+        "value": "Click expands or collapses the panel this selector points at."
+      }
+    },
+    {
+      "name": "data-bk-toggle",
+      "description": {
+        "kind": "markdown",
+        "value": "Click toggles a class on the element this selector points at."
+      }
+    },
+    {
+      "name": "data-bk-toggle-class",
+      "description": {
+        "kind": "markdown",
+        "value": "With data-bk-toggle: the class to toggle. Default bk-is-open."
+      }
+    },
+    {
+      "name": "data-bk-scrollspy",
+      "description": {
+        "kind": "markdown",
+        "value": "On a nav: marks the link whose section is in view. The value can scope the sections."
+      }
+    },
+    {
+      "name": "data-bk-offset",
+      "description": {
+        "kind": "markdown",
+        "value": "On scrollspy or smooth scrolling: pixels to leave for a sticky header."
+      }
+    },
+    {
+      "name": "data-bk-navbar-scroll",
+      "description": {
+        "kind": "markdown",
+        "value": "On a navbar: adds a scrolled state after this many pixels. Default 8."
+      }
+    },
+    {
+      "name": "data-bk-hide-on-scroll",
+      "description": {
+        "kind": "markdown",
+        "value": "With data-bk-navbar-scroll: hide the navbar while scrolling down."
+      }
+    },
+    {
+      "name": "data-bk-to-top",
+      "description": {
+        "kind": "markdown",
+        "value": "Back-to-top button that appears after this many pixels. Default 400."
+      }
+    },
+    {
+      "name": "data-bk-smooth",
+      "description": {
+        "kind": "markdown",
+        "value": "Smooth scrolling for in-page links inside this element."
+      }
+    },
+    {
+      "name": "data-bk-table",
+      "description": {
+        "kind": "markdown",
+        "value": "On a <table>: sortable columns, plus filtering with data-bk-filter."
+      }
+    },
+    {
+      "name": "data-bk-sort",
+      "description": {
+        "kind": "markdown",
+        "value": "On a <th>: makes the column sortable, compared as this type."
+      },
+      "values": [
+        {
+          "name": "text"
+        },
+        {
+          "name": "number"
+        },
+        {
+          "name": "date"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-sort-value",
+      "description": {
+        "kind": "markdown",
+        "value": "On a cell: the value to sort by instead of its text."
+      }
+    },
+    {
+      "name": "data-bk-filter",
+      "description": {
+        "kind": "markdown",
+        "value": "On a table: selector of the search input that filters its rows."
+      }
+    },
+    {
+      "name": "data-bk-count-into",
+      "description": {
+        "kind": "markdown",
+        "value": "On a table: selector of the element that shows how many rows match."
+      }
+    },
+    {
+      "name": "data-bk-carousel",
+      "description": {
+        "kind": "markdown",
+        "value": "Carousel with scroll snapping, dots and previous and next buttons."
+      }
+    },
+    {
+      "name": "data-bk-autoplay",
+      "description": {
+        "kind": "markdown",
+        "value": "On a carousel: milliseconds between slides. 0 or absent means no autoplay."
+      }
+    },
+    {
+      "name": "data-bk-loop",
+      "description": {
+        "kind": "markdown",
+        "value": "On a carousel: \"false\" stops at the last slide."
+      },
+      "values": [
+        {
+          "name": "false"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-counter",
+      "description": {
+        "kind": "markdown",
+        "value": "Counts up to this number when scrolled into view."
+      }
+    },
+    {
+      "name": "data-bk-duration",
+      "description": {
+        "kind": "markdown",
+        "value": "On a counter: animation length in milliseconds. Default 1400."
+      }
+    },
+    {
+      "name": "data-bk-decimals",
+      "description": {
+        "kind": "markdown",
+        "value": "On a counter: decimal places to show."
+      }
+    },
+    {
+      "name": "data-bk-prefix",
+      "description": {
+        "kind": "markdown",
+        "value": "On a counter: text before the number."
+      }
+    },
+    {
+      "name": "data-bk-suffix",
+      "description": {
+        "kind": "markdown",
+        "value": "On a counter: text after the number."
+      }
+    },
+    {
+      "name": "data-bk-progress",
+      "description": {
+        "kind": "markdown",
+        "value": "Progress bar or ring value from 0 to 100."
+      }
+    },
+    {
+      "name": "data-bk-copy",
+      "description": {
+        "kind": "markdown",
+        "value": "Click copies the text of the element this selector points at, or the value itself."
+      }
+    },
+    {
+      "name": "data-bk-copied-label",
+      "description": {
+        "kind": "markdown",
+        "value": "On a copy button: confirmation text. Default \"Copied\"."
+      }
+    },
+    {
+      "name": "data-bk-copy-swap",
+      "description": {
+        "kind": "markdown",
+        "value": "On a copy button: briefly swap its label for the confirmation."
+      }
+    },
+    {
+      "name": "data-bk-copy-toast",
+      "description": {
+        "kind": "markdown",
+        "value": "On a copy button: confirm with a toast."
+      }
+    },
+    {
+      "name": "data-bk-hotkey",
+      "description": {
+        "kind": "markdown",
+        "value": "Keyboard shortcut that clicks this element, such as \"mod+k\" or \"shift+/\"."
+      }
+    },
+    {
+      "name": "data-bk-reveal",
+      "description": {
+        "kind": "markdown",
+        "value": "Fades the element in when it scrolls into view."
+      }
+    },
+    {
+      "name": "data-bk-reveal-once",
+      "description": {
+        "kind": "markdown",
+        "value": "On a reveal: \"false\" hides it again when it leaves the view."
+      },
+      "values": [
+        {
+          "name": "false"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-reveal-delay",
+      "description": {
+        "kind": "markdown",
+        "value": "On a reveal: delay in milliseconds."
+      }
+    },
+    {
+      "name": "data-bk-ripple",
+      "description": {
+        "kind": "markdown",
+        "value": "Material-style ripple on press."
+      }
+    },
+    {
+      "name": "data-bk-marquee",
+      "description": {
+        "kind": "markdown",
+        "value": "Scrolling marquee. The value, if a number, is the loop length in seconds."
+      }
+    },
+    {
+      "name": "data-bk-toast",
+      "description": {
+        "kind": "markdown",
+        "value": "Toast declared in markup. The value is how long it stays, in milliseconds. Default 4000."
+      }
+    },
+    {
+      "name": "data-bk-position",
+      "description": {
+        "kind": "markdown",
+        "value": "On a toast: where it stacks."
+      },
+      "values": [
+        {
+          "name": "top-start"
+        },
+        {
+          "name": "top-center"
+        },
+        {
+          "name": "top-end"
+        },
+        {
+          "name": "bottom-start"
+        },
+        {
+          "name": "bottom-center"
+        },
+        {
+          "name": "bottom-end"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-validate",
+      "description": {
+        "kind": "markdown",
+        "value": "On a <form>: inline validation messages instead of the browser bubbles."
+      }
+    },
+    {
+      "name": "data-bk-message",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: the one message shown for any validation failure."
+      }
+    },
+    {
+      "name": "data-bk-message-valuemissing",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for valueMissing."
+      }
+    },
+    {
+      "name": "data-bk-message-typemismatch",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for typeMismatch."
+      }
+    },
+    {
+      "name": "data-bk-message-patternmismatch",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for patternMismatch."
+      }
+    },
+    {
+      "name": "data-bk-message-tooshort",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for tooShort."
+      }
+    },
+    {
+      "name": "data-bk-message-toolong",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for tooLong."
+      }
+    },
+    {
+      "name": "data-bk-message-rangeunderflow",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for rangeUnderflow."
+      }
+    },
+    {
+      "name": "data-bk-message-rangeoverflow",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for rangeOverflow."
+      }
+    },
+    {
+      "name": "data-bk-message-stepmismatch",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for stepMismatch."
+      }
+    },
+    {
+      "name": "data-bk-message-badinput",
+      "description": {
+        "kind": "markdown",
+        "value": "On a field: message shown for badInput."
+      }
+    },
+    {
+      "name": "data-bk-autosize",
+      "description": {
+        "kind": "markdown",
+        "value": "On a <textarea>: grows with its content."
+      }
+    },
+    {
+      "name": "data-bk-count",
+      "description": {
+        "kind": "markdown",
+        "value": "On an input, textarea or select: selector of the element that shows its character count."
+      }
+    },
+    {
+      "name": "data-bk-output",
+      "description": {
+        "kind": "markdown",
+        "value": "On a .bk-range input: selector of the element that shows its value."
+      }
+    },
+    {
+      "name": "data-bk-password-toggle",
+      "description": {
+        "kind": "markdown",
+        "value": "Click shows or hides the password field this selector points at."
+      }
+    },
+    {
+      "name": "data-bk-otp",
+      "description": {
+        "kind": "markdown",
+        "value": "One-time code input with this many boxes. Default 6."
+      }
+    },
+    {
+      "name": "data-bk-tags",
+      "description": {
+        "kind": "markdown",
+        "value": "Tag input: type and press Enter or the separator to add a tag."
+      }
+    },
+    {
+      "name": "data-bk-separator",
+      "description": {
+        "kind": "markdown",
+        "value": "On a tag input: the character that ends a tag. Default \",\"."
+      }
+    },
+    {
+      "name": "data-bk-max",
+      "description": {
+        "kind": "markdown",
+        "value": "On a tag input: the most tags allowed. 0 means no limit."
+      }
+    },
+    {
+      "name": "data-bk-dropzone",
+      "description": {
+        "kind": "markdown",
+        "value": "File drop area. The value can point at its file input."
+      }
+    },
+    {
+      "name": "data-bk-file-list",
+      "description": {
+        "kind": "markdown",
+        "value": "On a dropzone: selector of the element that lists the chosen files."
+      }
+    },
+    {
+      "name": "data-bk-combobox",
+      "description": {
+        "kind": "markdown",
+        "value": "Searchable combobox with keyboard navigation."
+      }
+    },
+    {
+      "name": "data-bk-options",
+      "description": {
+        "kind": "markdown",
+        "value": "On a combobox: its options as a JSON array, or a comma-separated list."
+      }
+    },
+    {
+      "name": "data-bk-stepper",
+      "description": {
+        "kind": "markdown",
+        "value": "Number stepper with increment and decrement buttons."
+      }
+    },
+    {
+      "name": "data-bk-step",
+      "description": {
+        "kind": "markdown",
+        "value": "Inside a stepper: \"1\" for the increment button, \"-1\" for the decrement button."
+      },
+      "values": [
+        {
+          "name": "1"
+        },
+        {
+          "name": "-1"
+        }
+      ]
+    },
+    {
+      "name": "data-bk-step-up",
+      "description": {
+        "kind": "markdown",
+        "value": "Inside a stepper: the increment button."
+      }
+    },
+    {
+      "name": "data-bk-step-down",
+      "description": {
+        "kind": "markdown",
+        "value": "Inside a stepper: the decrement button."
+      }
+    },
+    {
+      "name": "data-bk-check-all",
+      "description": {
+        "kind": "markdown",
+        "value": "Checkbox that checks every data-bk-check-item. The value can scope them."
+      }
+    },
+    {
+      "name": "data-bk-check-item",
+      "description": {
+        "kind": "markdown",
+        "value": "Checkbox controlled by a data-bk-check-all."
+      }
+    }
+  ]
+}

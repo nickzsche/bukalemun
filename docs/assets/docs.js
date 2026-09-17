@@ -427,6 +427,108 @@
     bk.toast({ message: 'Preview cleared — back to ' + bk.theme.info().label, duration: 2000 });
   });
 
+  /* --- take it with you ---------------------------------------------------
+     Copy is the quick path; these are for keeping a skin, handing it to a
+     token pipeline, or sending someone the exact dials. */
+
+  function download(name, type, text) {
+    var url = URL.createObjectURL(new Blob([text], { type: type }));
+    var a = bk.el('a', { href: url, download: name, hidden: true });
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 0);
+    bk.toast({ message: 'Downloaded ' + name, duration: 2000 });
+  }
+
+  // Same shape as dist/tokens.json (skins.<skin>.<mode>.<group>), so whatever
+  // reads the framework's tokens reads this one too. Shadows stay in the CSS:
+  // the design-token shadow type is structured, and a skin's shadows are not.
+  function designTokens() {
+    var tokens = build();
+    var set = { color: {}, font: {}, radius: {}, border: {} };
+    Object.keys(tokens).forEach(function (k) {
+      var v = tokens[k];
+      if (/^#[0-9a-f]{6}$/i.test(v)) set.color[k.replace(/^--bk-/, '')] = { $type: 'color', $value: v };
+    });
+    set.font.sans = {
+      $type: 'fontFamily',
+      $value: tokens['--bk-font-sans'].split(',').map(function (f) { return f.trim().replace(/^"|"$/g, ''); })
+    };
+    set.radius.scale = { $type: 'number', $value: Number(tokens['--bk-radius-scale']) };
+    set.border.width = { $type: 'dimension', $value: tokens['--bk-border-width'] };
+    var mode = lum(hexToRgb(tokens['--bk-bg'])) < 0.4 ? 'dark' : 'light';
+    var doc = {
+      $description: 'my-skin, made with the Bukalemun skin builder. Groups: skins.mine.' + mode + '.',
+      skins: { mine: {} }
+    };
+    doc.skins.mine[mode] = set;
+    return JSON.stringify(doc, null, 2) + '\n';
+  }
+
+  // The six dials as query parameters. The hash stays #builder so the link
+  // lands on this section.
+  var DIALS = { p: 'mk-primary', bg: 'mk-bg', r: 'mk-radius', b: 'mk-border', d: 'mk-depth', f: 'mk-font' };
+
+  function shareUrl() {
+    var q = new URLSearchParams();
+    Object.keys(DIALS).forEach(function (key) {
+      var v = document.getElementById(DIALS[key]).value;
+      q.set(key, v.charAt(0) === '#' ? v.slice(1) : v);
+    });
+    return location.href.split(/[?#]/)[0] + '?' + q.toString() + '#builder';
+  }
+
+  /** Apply dials from the address bar. Anything malformed is ignored. */
+  function dialsFromUrl() {
+    var q = new URLSearchParams(location.search);
+    var applied = false;
+    function hex(key, id) {
+      var v = q.get(key);
+      if (!v || !/^[0-9a-f]{6}$/i.test(v)) return;
+      document.getElementById(id).value = document.getElementById(id + '-hex').value = '#' + v.toLowerCase();
+      applied = true;
+    }
+    function range(key, id) {
+      var input = document.getElementById(id);
+      var raw = q.get(key);
+      var v = Number(raw);
+      if (raw === null || raw === '' || !Number.isInteger(v) || v < Number(input.min) || v > Number(input.max)) return;
+      input.value = String(v);
+      applied = true;
+    }
+    function option(key, id) {
+      var select = document.getElementById(id);
+      var v = q.get(key);
+      if (v === null || !Array.prototype.some.call(select.options, function (o) { return o.value === v; })) return;
+      select.value = v;
+      applied = true;
+    }
+    hex('p', 'mk-primary');
+    hex('bg', 'mk-bg');
+    range('r', 'mk-radius');
+    range('b', 'mk-border');
+    option('d', 'mk-depth');
+    option('f', 'mk-font');
+    return applied;
+  }
+
+  bk.on(document.getElementById('mk-download'), 'click', function () {
+    download('my-skin.css', 'text/css;charset=utf-8', out.textContent + '\n');
+  });
+  bk.on(document.getElementById('mk-tokens'), 'click', function () {
+    download('my-skin.tokens.json', 'application/json', designTokens());
+  });
+  bk.on(document.getElementById('mk-share'), 'click', function () {
+    var url = shareUrl();
+    bk.copy(url).then(function () {
+      bk.toast({ message: 'Link to these dials copied', duration: 2000 });
+    }, function () {
+      history.replaceState(null, '', url);
+      bk.toast({ message: 'Could not copy. The link is in the address bar.', duration: 3000 });
+    });
+  });
+
   // Seed the dials from whatever skin is active, so you start from something
   // real rather than from grey.
   function seedFromActiveSkin() {
@@ -448,8 +550,11 @@
       document.getElementById('mk-bg-hex').value = asHex(read('--bk-bg'), '#ffffff');
   }
 
+  // A shared link previews its skin straight away. Otherwise the dials start
+  // from the active skin and the page stays as it is until you touch one.
   bk.ready(function () {
     live.textContent = '';
+    if (dialsFromUrl()) { render(); return; }
     seedFromActiveSkin();
     render();
     live.textContent = '';

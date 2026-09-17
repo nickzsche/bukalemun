@@ -58,6 +58,7 @@
     "./no-flash": "./dist/no-flash.js",
     "./manifest": "./dist/manifest.json",
     "./tokens": "./dist/tokens.json",
+    "./html-data": "./dist/bukalemun.html-data.json",
     "./package.json": "./package.json"
   },
   "files": [

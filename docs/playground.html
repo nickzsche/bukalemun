@@ -125,7 +125,7 @@
         <span class="play-chrome-dots"><i></i><i></i><i></i></span>
         <span><strong id="play-chrome-skin">Default</strong> · <span id="play-chrome-blurb">Neutral, modern, boring on purpose.</span></span>
       </div>
-      <iframe class="play-frame" id="play-frame" title="Preview of your HTML in the current skin" sandbox="allow-scripts allow-same-origin"></iframe>
+      <iframe class="play-frame" id="play-frame" title="Preview of your HTML in the current skin" sandbox="allow-scripts"></iframe>
     </section>
   </div>
 
@@ -299,7 +299,7 @@
         var meta = bk.theme.info(skin);
         var tile = bk.el('article', { class: 'bk-card play-tile' }, [
           bk.el('div', { class: 'play-tile-frame' }, [
-            bk.el('iframe', { title: meta.label + ' preview', loading: 'lazy', tabindex: '-1', 'aria-hidden': 'true', sandbox: 'allow-scripts allow-same-origin', 'data-skin': skin })
+            bk.el('iframe', { title: meta.label + ' preview', loading: 'lazy', tabindex: '-1', 'aria-hidden': 'true', sandbox: 'allow-scripts', 'data-skin': skin })
           ]),
           bk.el('div', { class: 'play-tile-name' }, [document.createTextNode(meta.label), bk.el('span', {}, meta.blurb)])
         ]);

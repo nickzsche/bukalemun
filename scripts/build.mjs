@@ -10,7 +10,9 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, rmSync } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 import { loadTokens, tokenMap, combinations, get, toHex, parseColor } from './lib/tokens.mjs';
+import { htmlData } from './html-data.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, '..');
@@ -78,7 +80,9 @@ function minifyCss(css) {
       const prev = out[out.length - 1];
       const next = css[j];
       // Whitespace is only meaningful between two "word-ish" characters.
-      if (prev && next && !/[{}:;,>~+([]/.test(prev) && !/[{};,>~+)\]]/.test(next)) {
+      // '+' keeps its spaces: calc(), min(), max() and clamp() need them, and
+      // a selector combinator reads the same either way.
+      if (prev && next && !/[{}:;,>~([]/.test(prev) && !/[{};,>~)\]]/.test(next)) {
         out += ' ';
       }
       i = j;
@@ -358,6 +362,16 @@ function tokensJson() {
   return JSON.stringify(out);
 }
 writeFileSync(join(dist, 'tokens.json'), tokensJson() + '\n');
+
+/* ------------------------------------------------------ html-data.json --
+   Editor autocomplete for every data-bk-* attribute. Skin names, labels and
+   accents come from the runtime just written, so they cannot drift from it. */
+
+{
+  const { theme } = createRequire(import.meta.url)(join(dist, 'bukalemun.cjs'));
+  const data = htmlData({ skins: theme.styles.filter((s) => s !== 'default'), meta: theme.meta, accents: theme.accents });
+  writeFileSync(join(dist, 'bukalemun.html-data.json'), JSON.stringify(data, null, 2) + '\n');
+}
 
 /* ---------------------------------------------------------- manifest --- */
 

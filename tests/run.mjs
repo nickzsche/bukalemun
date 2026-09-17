@@ -547,8 +547,30 @@ if (distExists) {
     'bukalemun.js', 'bukalemun.min.js',
     'bukalemun.cjs', 'bukalemun.min.cjs',
     'bukalemun.esm.js', 'bukalemun.esm.min.js',
-    'no-flash.js', 'manifest.json', 'tokens.json'
+    'no-flash.js', 'manifest.json', 'tokens.json', 'bukalemun.html-data.json'
   ];
+
+  // The attribute docs are hand-written, so they are checked against the source
+  // both ways: nothing documented that the code does not read, and nothing the
+  // code reads left undocumented. The runtime also stamps a few attributes of its
+  // own on elements it creates; those are not for authors.
+  test('html-data documents exactly the data-bk-* attributes the source uses', () => {
+    const data = JSON.parse(read(join(dist, 'bukalemun.html-data.json')));
+    const documented = new Set(data.globalAttributes.map((a) => a.name));
+    const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk(join(dir, e.name)) : /\.(js|css)$/.test(e.name) ? [join(dir, e.name)] : []);
+    const source = walk(src).map(read).join('\n');
+    const internal = new Set(['data-bk-portal-home', 'data-bk-side', 'data-bk-align', 'data-bk-skin', 'data-bk-fonts']);
+    const used = new Set((source.match(/data-bk-[a-z]+(?:-[a-z]+)*/g) || []).filter((n) => !internal.has(n) && n !== 'data-bk-message'));
+    used.add('data-bk-message');
+    for (const name of used) assert(documented.has(name), `${name} is read by src/ but missing from html-data`);
+    for (const name of documented) {
+      const base = name.startsWith('data-bk-message-') ? 'data-bk-message-' : name;
+      assert(source.includes(base), `${name} is documented but nothing in src/ reads it`);
+    }
+    const style = data.globalAttributes.find((a) => a.name === 'data-bk-style');
+    assert(style.values.length === skinNames.length + 1, `data-bk-style lists ${style.values.length} values for ${skinNames.length} skins + default`);
+  });
 
   test('every expected artefact is emitted', () => {
     for (const f of expected) {
@@ -557,6 +579,17 @@ if (distExists) {
     for (const skin of skinNames) {
       assert(existsSync(join(dist, 'styles', `${skin}.css`)), `dist/styles/${skin}.css missing`);
       assert(existsSync(join(dist, 'styles', `${skin}.min.css`)), `dist/styles/${skin}.min.css missing`);
+    }
+  });
+
+  // calc(100%+4px) is not a sum but an invalid value, so the browser drops the
+  // whole declaration. The minifier used to squeeze the spaces out of every '+'.
+  test('minified CSS keeps the spaces around + in math functions', () => {
+    const files = ['bukalemun.min.css', 'bukalemun.base.min.css', 'bukalemun.core.min.css',
+      ...readdirSync(join(dist, 'styles')).filter((f) => f.endsWith('.min.css')).map((f) => join('styles', f))];
+    for (const f of files) {
+      const broken = read(join(dist, f)).replace(/"[^"]*"|'[^']*'/g, '').match(/[\w%.)]\+[\w(.]/g);
+      assert(!broken, `${f} has an unspaced + (${broken && broken.slice(0, 3).join(', ')})`);
     }
   });
 

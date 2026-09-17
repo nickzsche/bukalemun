@@ -30,6 +30,26 @@
 - **`dist/tokens.json`.** Every skin, colour mode and accent variant resolved in
   the W3C Design Tokens format (colours, font stacks, radii, spacing), exported
   as `bukalemun/tokens` for Figma variables and token pipelines.
+- **The minifier broke `calc()`.** It squeezed the spaces out of every `+`, and
+  `calc(100%+4px)` is not a sum but an invalid value, so browsers dropped the
+  whole declaration: twelve math functions in the minified bundle, among them
+  the offset of the CSS-only `data-bk-title` tooltip. `+` keeps its spaces
+  now, and a test reads every minified sheet for an unspaced one.
+- **Editor autocomplete.** `dist/bukalemun.html-data.json`, exported as
+  `bukalemun/html-data`, is VS Code HTML custom data for every `data-bk-*`
+  attribute: what it does, and its values, with skin names and labels taken
+  from the built runtime. A test holds it to the source both ways, so an
+  attribute cannot be documented without existing or exist without being
+  documented.
+- **Skin builder keeps what you make.** Download the skin as `my-skin.css`,
+  export it as design tokens in the same shape as `dist/tokens.json`, or copy a
+  link that reopens the builder with the same six dials and previews the skin
+  on arrival.
+- The playground's previews run without `allow-same-origin`. Markup arrives
+  in a shareable link, so a script inside it could otherwise act as the docs
+  site.
+- Every CDN snippet in the README and docs pins the major version,
+  `bukalemun@1`, so a future 2.0 cannot change a page that copied one.
 
 ## 1.6.0
 

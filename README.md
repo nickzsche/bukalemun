@@ -16,7 +16,7 @@ Change one attribute, change everything.
 [![npm](https://img.shields.io/npm/v/bukalemun?color=black&label=npm)](https://www.npmjs.com/package/bukalemun)
 [![MIT](https://img.shields.io/badge/license-MIT-black)](LICENSE)
 [![no dependencies](https://img.shields.io/badge/dependencies-0-black)](package.json)
-[![CSS 91 KB gzipped](https://img.shields.io/badge/css-91%20KB%20gzip-black)](#size)
+[![CSS 33 KB gzipped](https://img.shields.io/badge/css-33%20KB%20gzip-black)](#size)
 [![typed](https://img.shields.io/badge/types-included-black)](types/index.d.ts)
 [![WCAG AA](https://img.shields.io/badge/contrast-WCAG%20AA%20audited-black)](#accessibility)
 
@@ -30,9 +30,9 @@ Change one attribute, change everything.
 
 ```html
 <!-- everything except the skins, then the one skin you picked -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.base.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/styles/brutal.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/styles/brutal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/bukalemun.min.js" defer></script>
 ```
 
 ```html
@@ -121,9 +121,9 @@ The choice persists in `localStorage`. Paste `dist/no-flash.js` inline in
 31.0 KB + 2.0 KB gzipped.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.base.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/styles/brutal.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/bukalemun.base.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/styles/brutal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/bukalemun.min.js" defer></script>
 ```
 
 Swapping skins later is swapping that second line. Shipping two or three so a
@@ -137,10 +137,10 @@ paints in the wrong palette. This is what the docs and every demo do: about
 55 KB gzipped on arrival, then ~2 KB per skin you actually look at.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.base.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bukalemun/dist/no-flash.js"
-        data-bk-skins="https://cdn.jsdelivr.net/npm/bukalemun/dist/styles/{skin}.min.css"></script>
-<script src="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/bukalemun.base.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/no-flash.js"
+        data-bk-skins="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/styles/{skin}.min.css"></script>
+<script src="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/bukalemun.min.js" defer></script>
 ```
 
 `bk.theme.preload()` fetches the rest during idle time if you would rather pay
@@ -150,8 +150,8 @@ up front, and `bk.theme.lazy(template)` sets the template from script instead.
 page at once. 120 KB gzipped.
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bukalemun/dist/bukalemun.min.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/bukalemun.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bukalemun@1/dist/bukalemun.min.js" defer></script>
 ```
 
 > `bukalemun.core.min.css` (14 KB) is tokens, reset, layout and utilities
@@ -293,6 +293,14 @@ bk.define('flip', {
 
 New nodes are picked up automatically by a `MutationObserver`, so it works with
 htmx, Turbo, or any framework that swaps DOM under you.
+
+Every `data-bk-*` attribute autocompletes in VS Code, with a hover description
+and its allowed values, skin names included:
+
+```json
+// .vscode/settings.json
+{ "html.customData": ["./node_modules/bukalemun/dist/bukalemun.html-data.json"] }
+```
 
 ## <a id="accessibility"></a>Accessibility
 
