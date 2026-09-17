@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.7.0 (unreleased)
+## 1.7.0
 
 - **Accent variants.** Every skin carries a `warm` and a `cool` accent
   variant: its own accent family rotated 30° in hue, saturation and lightness

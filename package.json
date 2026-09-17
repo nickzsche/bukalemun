@@ -1,6 +1,6 @@
 {
   "name": "bukalemun",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "One CSS + JS framework that wears 50 completely different visual languages — neo-brutalist, glassmorphic, terminal, Bauhaus, risograph, neon-sign and more. Zero dependencies, drop-in via CDN or npm.",
   "keywords": [
     "css",

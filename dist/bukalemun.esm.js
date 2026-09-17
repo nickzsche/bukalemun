@@ -1,4 +1,4 @@
-/*! Bukalemun 1.6.0 — runtime (ES module)
+/*! Bukalemun 1.7.0 — runtime (ES module)
  *  One framework, 50 skins. Zero dependencies.
  *  https://bukalemun.zerosixlab.com/
  *  Released under the MIT licence.
@@ -20,7 +20,7 @@ var bk = (function () {
   // Replaced by scripts/build.mjs from package.json. Kept as a visible
   // placeholder rather than a real number so an unbuilt file cannot quietly
   // claim to be a release — bk.version said 1.3.2 for two releases.
-  var VERSION = '1.6.0';
+  var VERSION = '1.7.0';
   var doc = typeof document !== 'undefined' ? document : null;
   var win = typeof window !== 'undefined' ? window : null;
 
