@@ -582,6 +582,17 @@ if (distExists) {
     }
   });
 
+  // A Windows checkout used to feed CRLF into the build (no .gitattributes),
+  // baking CRLF into dist/ so the committed bundles no longer matched a Linux
+  // `npm run build` and the "dist/ is up to date" CI step failed. Keep every
+  // source and every shipped bundle at LF.
+  test('sources and shipped bundles keep LF line endings', () => {
+    const walk = (dir) => readdirSync(dir, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk(join(dir, e.name)) : /\.(js|css)$/.test(e.name) ? [join(dir, e.name)] : []);
+    const crlf = [...walk(src), ...walk(dist)].filter((f) => read(f).includes('\r'));
+    assert(!crlf.length, `CR line ending in: ${crlf.map((f) => f.replace(root + '/', '')).join(', ')}`);
+  });
+
   // calc(100%+4px) is not a sum but an invalid value, so the browser drops the
   // whole declaration. The minifier used to squeeze the spaces out of every '+'.
   test('minified CSS keeps the spaces around + in math functions', () => {

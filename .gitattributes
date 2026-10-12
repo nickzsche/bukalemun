@@ -1,0 +1,5 @@
+# Normalise line endings: store LF, check out LF, everywhere.
+# Without this a Windows checkout with core.autocrlf=true feeds CRLF sources
+# into the build and bakes CRLF into dist/, so the committed bundles no longer
+# match a Linux `npm run build` and the "dist/ is up to date" CI step fails.
+* text=auto eol=lf
